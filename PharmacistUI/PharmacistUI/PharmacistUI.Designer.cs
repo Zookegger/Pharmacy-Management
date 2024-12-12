@@ -68,11 +68,12 @@
             this.accordionControl_SidePanel.Margin = new System.Windows.Forms.Padding(4);
             this.accordionControl_SidePanel.Name = "accordionControl_SidePanel";
             this.accordionControl_SidePanel.OptionsMinimizing.ElementHeight = 40;
+            this.accordionControl_SidePanel.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
             this.accordionControl_SidePanel.ScaleImages = DevExpress.Utils.DefaultBoolean.True;
             this.accordionControl_SidePanel.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Hidden;
             this.accordionControl_SidePanel.SelectElementMode = DevExpress.XtraBars.Navigation.SelectElementMode.MouseDown;
             this.accordionControl_SidePanel.ShowToolTips = false;
-            this.accordionControl_SidePanel.Size = new System.Drawing.Size(365, 723);
+            this.accordionControl_SidePanel.Size = new System.Drawing.Size(57, 723);
             this.accordionControl_SidePanel.TabIndex = 0;
             this.accordionControl_SidePanel.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
@@ -84,7 +85,7 @@
             this.accordionControlElement_Home.Name = "accordionControlElement_Home";
             this.accordionControlElement_Home.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionControlElement_Home.Text = "Trang Chủ";
-            this.accordionControlElement_Home.Click += new System.EventHandler(this.btn_Click);
+            this.accordionControlElement_Home.Click += new System.EventHandler(this.btn_SelectFunctions);
             // 
             // accordionControlElement_Add
             // 
@@ -94,7 +95,7 @@
             this.accordionControlElement_Add.Name = "accordionControlElement_Add";
             this.accordionControlElement_Add.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionControlElement_Add.Text = "Thêm Thuốc";
-            this.accordionControlElement_Add.Click += new System.EventHandler(this.btn_Click);
+            this.accordionControlElement_Add.Click += new System.EventHandler(this.btn_SelectFunctions);
             // 
             // accordionControlElement_Sell
             // 
@@ -104,7 +105,7 @@
             this.accordionControlElement_Sell.Name = "accordionControlElement_Sell";
             this.accordionControlElement_Sell.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionControlElement_Sell.Text = "Bán Thuốc";
-            this.accordionControlElement_Sell.Click += new System.EventHandler(this.btn_Click);
+            this.accordionControlElement_Sell.Click += new System.EventHandler(this.btn_SelectFunctions);
             // 
             // accordionControlElement_View
             // 
@@ -114,7 +115,7 @@
             this.accordionControlElement_View.Name = "accordionControlElement_View";
             this.accordionControlElement_View.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionControlElement_View.Text = "Xem Thuốc";
-            this.accordionControlElement_View.Click += new System.EventHandler(this.btn_Click);
+            this.accordionControlElement_View.Click += new System.EventHandler(this.btn_SelectFunctions);
             // 
             // accordionControlElement_Edit
             // 
@@ -124,7 +125,7 @@
             this.accordionControlElement_Edit.Name = "accordionControlElement_Edit";
             this.accordionControlElement_Edit.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionControlElement_Edit.Text = "Chỉnh Sửa Thuốc";
-            this.accordionControlElement_Edit.Click += new System.EventHandler(this.btn_Click);
+            this.accordionControlElement_Edit.Click += new System.EventHandler(this.btn_SelectFunctions);
             // 
             // accordionControlElement_LogOut
             // 
@@ -140,9 +141,9 @@
             // panel_Main
             // 
             this.panel_Main.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_Main.Location = new System.Drawing.Point(365, 0);
+            this.panel_Main.Location = new System.Drawing.Point(57, 0);
             this.panel_Main.Name = "panel_Main";
-            this.panel_Main.Size = new System.Drawing.Size(533, 723);
+            this.panel_Main.Size = new System.Drawing.Size(881, 723);
             this.panel_Main.TabIndex = 1;
             // 
             // PharmacistUI
@@ -150,12 +151,12 @@
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(898, 723);
+            this.ClientSize = new System.Drawing.Size(938, 723);
             this.Controls.Add(this.panel_Main);
             this.Controls.Add(this.accordionControl_SidePanel);
             this.Font = new System.Drawing.Font("Tahoma", 10F);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(900, 760);
+            this.MinimumSize = new System.Drawing.Size(940, 760);
             this.Name = "PharmacistUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trang Chủ";

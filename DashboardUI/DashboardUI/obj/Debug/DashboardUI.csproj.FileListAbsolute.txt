@@ -30,3 +30,6 @@ C:\Users\HELLO\source\repos\Zookegger\Pharmacy-Management\DashboardUI\DashboardU
 C:\Users\HELLO\source\repos\Zookegger\Pharmacy-Management\DashboardUI\DashboardUI\obj\Debug\DashboardUI.exe
 C:\Users\HELLO\source\repos\Zookegger\Pharmacy-Management\DashboardUI\DashboardUI\obj\Debug\DashboardUI.pdb
 C:\Users\HELLO\source\repos\Zookegger\Pharmacy-Management\DashboardUI\DashboardUI\obj\Debug\DashboardUI.frm_PharmacistUI.resources
+C:\Users\HELLO\source\repos\Zookegger\Pharmacy-Management\DashboardUI\DashboardUI\obj\Debug\DashboardUI.AddMedicine.resources
+C:\Users\HELLO\source\repos\Zookegger\Pharmacy-Management\DashboardUI\DashboardUI\obj\Debug\DashboardUI.Dashboard.resources
+C:\Users\HELLO\source\repos\Zookegger\Pharmacy-Management\DashboardUI\DashboardUI\obj\Debug\DashboardUI.exe.licenses

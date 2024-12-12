@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace PharmacistUI
 {
-    public delegate void AddMedicineDelegate(String id, String name, int amount, long price);
-    public partial class AddMedicine : Form
+    public delegate void AddMedicineDelegate(String id, String name, int amount, long price, DateTime prodDate, DateTime expDate);
+    public partial class frm_AddMedicine : Form
     {
         public AddMedicineDelegate OnAddMedicine;
-        public AddMedicine()
+        public frm_AddMedicine()
         {
             InitializeComponent();
         }
@@ -62,6 +62,9 @@ namespace PharmacistUI
                        name = txt_Name.Text;
                 int amount = 0;
                 long price = 0;
+                DateTime prodDate = dateTimePicker_ProductionDate.Value,
+                         expDate = dateTimePicker_ExpirationDate.Value;
+
                 if (!int.TryParse(txt_Amount.Text, out amount))
                 {
                     txt_Amount.Focus();
@@ -72,13 +75,26 @@ namespace PharmacistUI
                     txt_PricePerUnit.Focus();
                     throw new Exception($"Giá trị vùng {label_PricePerUnit}");
                 }
-                OnAddMedicine?.Invoke(id, name, amount, price);
-                MessageBox.Show("Medicine added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (expDate <= DateTime.Now)
+                {
+                    throw new Exception($"Thuốc hết hạn sử dụng!");
+                }
+                if (prodDate > DateTime.Now)
+                {
+                    throw new Exception($"Ngày sản xuất không hợp lệ!");
+                }
+                OnAddMedicine?.Invoke(id, name, amount, price, prodDate, expDate);
+                MessageBox.Show("Thêm thuốc thành công!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void splitContainer_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+
         }
     }
 }

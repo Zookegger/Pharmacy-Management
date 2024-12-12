@@ -45,18 +45,23 @@ namespace PharmacistUI
             }
 
             Form form = null;
-            switch (formName)
+            switch (formName.ToLower())
             {
-                case "Trang Chủ":
+                case "trang chủ":
                     form = new Home();
                     break;
-                case "Thêm Thuốc":
-                    form = new AddMedicine();
+                case "thêm thuốc":
+                    form = new frm_AddMedicine();
+                    break;
+                case "xem thuốc":
+                    form = new frm_ViewMedicine();
+                    break;
+                case "chỉnh sửa thuốc":
+                    form = new frm_EditMedicine();
                     break;
                 default:
                     throw new Exception($"Không tìm thấy chức năng: {formName}");
             }
-
             form.TopLevel = false;
             form.Parent = panel_Main;
             form.Dock = DockStyle.Fill;
@@ -66,9 +71,10 @@ namespace PharmacistUI
             formCache[formName] = form;
 
             form.Show();
+            form.Refresh();
         }
 
-        private void btn_Click(object sender, EventArgs e)
+        private void btn_SelectFunctions(object sender, EventArgs e)
         {
             AccordionControlElement btn = sender as AccordionControlElement;
             LoadForm(btn.Text);
@@ -111,5 +117,7 @@ namespace PharmacistUI
             e.Buttons[DialogResult.Cancel].Appearance.FontSizeDelta = 4;
             e.Buttons[DialogResult.Cancel].Appearance.FontStyleDelta = FontStyle.Bold;
         }
+
+        
     }
 }

@@ -50,5 +50,10 @@ namespace PharmacistUI
             e.Buttons[DialogResult.OK].Appearance.FontSizeDelta = 4;
             e.Buttons[DialogResult.OK].Appearance.FontStyleDelta = FontStyle.Bold;
         }
+        private void frm_ViewMedicine_Load(object sender, EventArgs e)
+        {
+            // Set header font to grid view since value from properties for some reason doesn't want to apply
+            dgv_Medicine.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 12);
+        }
     }
 }

@@ -31,10 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PharmacistUI));
             this.accordionControl_SidePanel = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accordionControlElement_Home = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement_Add = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement_Sell = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement_View = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement_Edit = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement_AddMedicine = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement_SellMedicine = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement_ViewMedicine = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement_EditMedicine = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement_LogOut = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panel_Main = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl_SidePanel)).BeginInit();
@@ -59,10 +59,10 @@
             this.accordionControl_SidePanel.ElementPositionOnExpanding = DevExpress.XtraBars.Navigation.ElementPositionOnExpanding.Fixed;
             this.accordionControl_SidePanel.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionControlElement_Home,
-            this.accordionControlElement_Add,
-            this.accordionControlElement_Sell,
-            this.accordionControlElement_View,
-            this.accordionControlElement_Edit,
+            this.accordionControlElement_AddMedicine,
+            this.accordionControlElement_SellMedicine,
+            this.accordionControlElement_ViewMedicine,
+            this.accordionControlElement_EditMedicine,
             this.accordionControlElement_LogOut});
             this.accordionControl_SidePanel.Location = new System.Drawing.Point(0, 0);
             this.accordionControl_SidePanel.Margin = new System.Windows.Forms.Padding(4);
@@ -73,7 +73,7 @@
             this.accordionControl_SidePanel.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Hidden;
             this.accordionControl_SidePanel.SelectElementMode = DevExpress.XtraBars.Navigation.SelectElementMode.MouseDown;
             this.accordionControl_SidePanel.ShowToolTips = false;
-            this.accordionControl_SidePanel.Size = new System.Drawing.Size(57, 723);
+            this.accordionControl_SidePanel.Size = new System.Drawing.Size(57, 758);
             this.accordionControl_SidePanel.TabIndex = 0;
             this.accordionControl_SidePanel.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
@@ -87,45 +87,45 @@
             this.accordionControlElement_Home.Text = "Trang Chủ";
             this.accordionControlElement_Home.Click += new System.EventHandler(this.btn_SelectFunctions);
             // 
-            // accordionControlElement_Add
+            // accordionControlElement_AddMedicine
             // 
-            this.accordionControlElement_Add.Height = 70;
-            this.accordionControlElement_Add.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement_Add.ImageOptions.SvgImage")));
-            this.accordionControlElement_Add.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.Full;
-            this.accordionControlElement_Add.Name = "accordionControlElement_Add";
-            this.accordionControlElement_Add.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement_Add.Text = "Thêm Thuốc";
-            this.accordionControlElement_Add.Click += new System.EventHandler(this.btn_SelectFunctions);
+            this.accordionControlElement_AddMedicine.Height = 70;
+            this.accordionControlElement_AddMedicine.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement_Add.ImageOptions.SvgImage")));
+            this.accordionControlElement_AddMedicine.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.Full;
+            this.accordionControlElement_AddMedicine.Name = "accordionControlElement_AddMedicine";
+            this.accordionControlElement_AddMedicine.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement_AddMedicine.Text = "Thêm Thuốc";
+            this.accordionControlElement_AddMedicine.Click += new System.EventHandler(this.btn_SelectFunctions);
             // 
-            // accordionControlElement_Sell
+            // accordionControlElement_SellMedicine
             // 
-            this.accordionControlElement_Sell.Height = 70;
-            this.accordionControlElement_Sell.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement_Sell.ImageOptions.SvgImage")));
-            this.accordionControlElement_Sell.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.Full;
-            this.accordionControlElement_Sell.Name = "accordionControlElement_Sell";
-            this.accordionControlElement_Sell.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement_Sell.Text = "Bán Thuốc";
-            this.accordionControlElement_Sell.Click += new System.EventHandler(this.btn_SelectFunctions);
+            this.accordionControlElement_SellMedicine.Height = 70;
+            this.accordionControlElement_SellMedicine.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement_Sell.ImageOptions.SvgImage")));
+            this.accordionControlElement_SellMedicine.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.Full;
+            this.accordionControlElement_SellMedicine.Name = "accordionControlElement_SellMedicine";
+            this.accordionControlElement_SellMedicine.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement_SellMedicine.Text = "Bán Thuốc";
+            this.accordionControlElement_SellMedicine.Click += new System.EventHandler(this.btn_SelectFunctions);
             // 
-            // accordionControlElement_View
+            // accordionControlElement_ViewMedicine
             // 
-            this.accordionControlElement_View.Height = 70;
-            this.accordionControlElement_View.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement_View.ImageOptions.SvgImage")));
-            this.accordionControlElement_View.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.Full;
-            this.accordionControlElement_View.Name = "accordionControlElement_View";
-            this.accordionControlElement_View.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement_View.Text = "Xem Thuốc";
-            this.accordionControlElement_View.Click += new System.EventHandler(this.btn_SelectFunctions);
+            this.accordionControlElement_ViewMedicine.Height = 70;
+            this.accordionControlElement_ViewMedicine.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement_View.ImageOptions.SvgImage")));
+            this.accordionControlElement_ViewMedicine.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.Full;
+            this.accordionControlElement_ViewMedicine.Name = "accordionControlElement_ViewMedicine";
+            this.accordionControlElement_ViewMedicine.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement_ViewMedicine.Text = "Xem Thuốc";
+            this.accordionControlElement_ViewMedicine.Click += new System.EventHandler(this.btn_SelectFunctions);
             // 
-            // accordionControlElement_Edit
+            // accordionControlElement_EditMedicine
             // 
-            this.accordionControlElement_Edit.Height = 70;
-            this.accordionControlElement_Edit.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement_Edit.ImageOptions.SvgImage")));
-            this.accordionControlElement_Edit.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.Full;
-            this.accordionControlElement_Edit.Name = "accordionControlElement_Edit";
-            this.accordionControlElement_Edit.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement_Edit.Text = "Chỉnh Sửa Thuốc";
-            this.accordionControlElement_Edit.Click += new System.EventHandler(this.btn_SelectFunctions);
+            this.accordionControlElement_EditMedicine.Height = 70;
+            this.accordionControlElement_EditMedicine.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement_Edit.ImageOptions.SvgImage")));
+            this.accordionControlElement_EditMedicine.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.Full;
+            this.accordionControlElement_EditMedicine.Name = "accordionControlElement_EditMedicine";
+            this.accordionControlElement_EditMedicine.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement_EditMedicine.Text = "Chỉnh Sửa Thuốc";
+            this.accordionControlElement_EditMedicine.Click += new System.EventHandler(this.btn_SelectFunctions);
             // 
             // accordionControlElement_LogOut
             // 
@@ -143,7 +143,7 @@
             this.panel_Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_Main.Location = new System.Drawing.Point(57, 0);
             this.panel_Main.Name = "panel_Main";
-            this.panel_Main.Size = new System.Drawing.Size(881, 723);
+            this.panel_Main.Size = new System.Drawing.Size(891, 758);
             this.panel_Main.TabIndex = 1;
             // 
             // PharmacistUI
@@ -151,12 +151,13 @@
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(938, 723);
+            this.ClientSize = new System.Drawing.Size(948, 758);
             this.Controls.Add(this.panel_Main);
             this.Controls.Add(this.accordionControl_SidePanel);
             this.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(940, 760);
+            this.MinimumSize = new System.Drawing.Size(950, 795);
             this.Name = "PharmacistUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trang Chủ";
@@ -170,10 +171,10 @@
 
         private DevExpress.XtraBars.Navigation.AccordionControl accordionControl_SidePanel;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_Home;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_Add;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_Sell;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_View;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_Edit;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_AddMedicine;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_SellMedicine;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_ViewMedicine;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_EditMedicine;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_LogOut;
         private System.Windows.Forms.Panel panel_Main;
     }

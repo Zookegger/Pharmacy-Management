@@ -47,11 +47,10 @@
             this.dateTimePicker_ExpirationDate = new System.Windows.Forms.DateTimePicker();
             this.panel_PricePerUnit = new System.Windows.Forms.Panel();
             this.txt_PricePerUnit = new System.Windows.Forms.TextBox();
-            this.labelControl_ProductionDay = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl_ExpirationDate = new DevExpress.XtraEditors.LabelControl();
+            this.label_ProductionDay = new DevExpress.XtraEditors.LabelControl();
+            this.label_ExpirationDate = new DevExpress.XtraEditors.LabelControl();
             this.label_PricePerUnit = new DevExpress.XtraEditors.LabelControl();
             this.dateTimePicker_ProductionDate = new System.Windows.Forms.DateTimePicker();
-            this.groupBox_Input = new System.Windows.Forms.GroupBox();
             this.panel_Title.SuspendLayout();
             this.panel_Buttons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
@@ -62,7 +61,6 @@
             this.panel_Name.SuspendLayout();
             this.panel_ID.SuspendLayout();
             this.panel_PricePerUnit.SuspendLayout();
-            this.groupBox_Input.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_Title
@@ -71,7 +69,7 @@
             this.panel_Title.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_Title.Location = new System.Drawing.Point(0, 0);
             this.panel_Title.Name = "panel_Title";
-            this.panel_Title.Size = new System.Drawing.Size(891, 73);
+            this.panel_Title.Size = new System.Drawing.Size(892, 73);
             this.panel_Title.TabIndex = 5;
             // 
             // label_TitleAdd
@@ -80,7 +78,7 @@
             this.label_TitleAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.21818F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label_TitleAdd.Location = new System.Drawing.Point(0, 0);
             this.label_TitleAdd.Name = "label_TitleAdd";
-            this.label_TitleAdd.Size = new System.Drawing.Size(891, 73);
+            this.label_TitleAdd.Size = new System.Drawing.Size(892, 73);
             this.label_TitleAdd.TabIndex = 0;
             this.label_TitleAdd.Text = " Thêm Thuốc";
             this.label_TitleAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -90,9 +88,9 @@
             this.panel_Buttons.Controls.Add(this.btn_Add);
             this.panel_Buttons.Controls.Add(this.btn_Reload);
             this.panel_Buttons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_Buttons.Location = new System.Drawing.Point(3, 476);
+            this.panel_Buttons.Location = new System.Drawing.Point(0, 480);
             this.panel_Buttons.Name = "panel_Buttons";
-            this.panel_Buttons.Size = new System.Drawing.Size(885, 136);
+            this.panel_Buttons.Size = new System.Drawing.Size(892, 135);
             this.panel_Buttons.TabIndex = 102;
             // 
             // btn_Add
@@ -125,9 +123,9 @@
             this.btn_Add.ImageOptions.ImageToTextIndent = 10;
             this.btn_Add.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_Add.ImageOptions.SvgImage")));
             this.btn_Add.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.Full;
-            this.btn_Add.Location = new System.Drawing.Point(224, 39);
+            this.btn_Add.Location = new System.Drawing.Point(228, 39);
             this.btn_Add.Name = "btn_Add";
-            this.btn_Add.Size = new System.Drawing.Size(177, 56);
+            this.btn_Add.Size = new System.Drawing.Size(177, 55);
             this.btn_Add.TabIndex = 6;
             this.btn_Add.Text = "Thêm";
             this.btn_Add.Click += new System.EventHandler(this.btn_Add_Click);
@@ -155,19 +153,20 @@
             this.btn_Reload.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btn_Reload.ImageOptions.ImageToTextIndent = 10;
             this.btn_Reload.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_Reload.ImageOptions.SvgImage")));
-            this.btn_Reload.Location = new System.Drawing.Point(478, 39);
+            this.btn_Reload.Location = new System.Drawing.Point(482, 39);
             this.btn_Reload.Margin = new System.Windows.Forms.Padding(0);
             this.btn_Reload.Name = "btn_Reload";
-            this.btn_Reload.Size = new System.Drawing.Size(187, 56);
+            this.btn_Reload.Size = new System.Drawing.Size(187, 55);
             this.btn_Reload.TabIndex = 7;
             this.btn_Reload.Text = "Tải lại";
+            this.btn_Reload.Click += new System.EventHandler(this.btn_Reload_Click);
             // 
             // splitContainer
             // 
             this.splitContainer.BackColor = System.Drawing.Color.DodgerBlue;
             this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer.IsSplitterFixed = true;
-            this.splitContainer.Location = new System.Drawing.Point(3, 16);
+            this.splitContainer.Location = new System.Drawing.Point(0, 73);
             this.splitContainer.Name = "splitContainer";
             // 
             // splitContainer.Panel1
@@ -185,25 +184,26 @@
             this.splitContainer.Panel2.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer.Panel2.Controls.Add(this.dateTimePicker_ExpirationDate);
             this.splitContainer.Panel2.Controls.Add(this.panel_PricePerUnit);
-            this.splitContainer.Panel2.Controls.Add(this.labelControl_ProductionDay);
-            this.splitContainer.Panel2.Controls.Add(this.labelControl_ExpirationDate);
+            this.splitContainer.Panel2.Controls.Add(this.label_ProductionDay);
+            this.splitContainer.Panel2.Controls.Add(this.label_ExpirationDate);
             this.splitContainer.Panel2.Controls.Add(this.label_PricePerUnit);
             this.splitContainer.Panel2.Controls.Add(this.dateTimePicker_ProductionDate);
-            this.splitContainer.Size = new System.Drawing.Size(885, 460);
-            this.splitContainer.SplitterDistance = 438;
+            this.splitContainer.Size = new System.Drawing.Size(892, 407);
+            this.splitContainer.SplitterDistance = 440;
             this.splitContainer.SplitterWidth = 10;
-            this.splitContainer.TabIndex = 101;
+            this.splitContainer.TabIndex = 103;
             // 
             // panel_Amount
             // 
             this.panel_Amount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel_Amount.BackColor = System.Drawing.Color.White;
             this.panel_Amount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_Amount.Controls.Add(this.txt_Amount);
-            this.panel_Amount.Location = new System.Drawing.Point(53, 301);
+            this.panel_Amount.Location = new System.Drawing.Point(56, 262);
             this.panel_Amount.Name = "panel_Amount";
             this.panel_Amount.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel_Amount.Size = new System.Drawing.Size(295, 37);
+            this.panel_Amount.Size = new System.Drawing.Size(296, 37);
             this.panel_Amount.TabIndex = 10;
             this.panel_Amount.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
@@ -216,11 +216,11 @@
             this.txt_Amount.Location = new System.Drawing.Point(5, 7);
             this.txt_Amount.Margin = new System.Windows.Forms.Padding(0);
             this.txt_Amount.Name = "txt_Amount";
-            this.txt_Amount.Size = new System.Drawing.Size(287, 28);
+            this.txt_Amount.Size = new System.Drawing.Size(285, 28);
             this.txt_Amount.TabIndex = 2;
             this.txt_Amount.Text = "0";
-            this.txt_Amount.Enter += new System.EventHandler(this.txt_Enter);
-            this.txt_Amount.Leave += new System.EventHandler(this.txt_Leave);
+            this.txt_Amount.Enter += new System.EventHandler(this.txtbox_Enter);
+            this.txt_Amount.Leave += new System.EventHandler(this.txtbox_Leave);
             // 
             // label_Name
             // 
@@ -229,7 +229,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_Name.Appearance.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label_Name.Appearance.Options.UseFont = true;
-            this.label_Name.Location = new System.Drawing.Point(57, 182);
+            this.label_Name.Location = new System.Drawing.Point(60, 143);
             this.label_Name.Name = "label_Name";
             this.label_Name.Size = new System.Drawing.Size(99, 25);
             this.label_Name.TabIndex = 0;
@@ -239,12 +239,13 @@
             // 
             this.panel_Name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel_Name.BackColor = System.Drawing.Color.White;
             this.panel_Name.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_Name.Controls.Add(this.txt_Name);
-            this.panel_Name.Location = new System.Drawing.Point(53, 211);
+            this.panel_Name.Location = new System.Drawing.Point(56, 172);
             this.panel_Name.Name = "panel_Name";
             this.panel_Name.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel_Name.Size = new System.Drawing.Size(295, 37);
+            this.panel_Name.Size = new System.Drawing.Size(296, 37);
             this.panel_Name.TabIndex = 9;
             this.panel_Name.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
@@ -257,10 +258,10 @@
             this.txt_Name.Location = new System.Drawing.Point(6, 7);
             this.txt_Name.Margin = new System.Windows.Forms.Padding(0);
             this.txt_Name.Name = "txt_Name";
-            this.txt_Name.Size = new System.Drawing.Size(286, 28);
+            this.txt_Name.Size = new System.Drawing.Size(285, 28);
             this.txt_Name.TabIndex = 1;
-            this.txt_Name.Enter += new System.EventHandler(this.txt_Enter);
-            this.txt_Name.Leave += new System.EventHandler(this.txt_Leave);
+            this.txt_Name.Enter += new System.EventHandler(this.txtbox_Enter);
+            this.txt_Name.Leave += new System.EventHandler(this.txtbox_Leave);
             // 
             // label_Amount
             // 
@@ -269,7 +270,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_Amount.Appearance.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label_Amount.Appearance.Options.UseFont = true;
-            this.label_Amount.Location = new System.Drawing.Point(57, 272);
+            this.label_Amount.Location = new System.Drawing.Point(60, 233);
             this.label_Amount.Name = "label_Amount";
             this.label_Amount.Size = new System.Drawing.Size(89, 25);
             this.label_Amount.TabIndex = 0;
@@ -279,12 +280,13 @@
             // 
             this.panel_ID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel_ID.BackColor = System.Drawing.Color.White;
             this.panel_ID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_ID.Controls.Add(this.txt_Id);
-            this.panel_ID.Location = new System.Drawing.Point(53, 122);
+            this.panel_ID.Location = new System.Drawing.Point(56, 83);
             this.panel_ID.Name = "panel_ID";
             this.panel_ID.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel_ID.Size = new System.Drawing.Size(295, 37);
+            this.panel_ID.Size = new System.Drawing.Size(296, 37);
             this.panel_ID.TabIndex = 8;
             this.panel_ID.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
@@ -297,10 +299,10 @@
             this.txt_Id.Location = new System.Drawing.Point(6, 7);
             this.txt_Id.Margin = new System.Windows.Forms.Padding(0);
             this.txt_Id.Name = "txt_Id";
-            this.txt_Id.Size = new System.Drawing.Size(286, 28);
+            this.txt_Id.Size = new System.Drawing.Size(285, 28);
             this.txt_Id.TabIndex = 0;
-            this.txt_Id.Enter += new System.EventHandler(this.txt_Enter);
-            this.txt_Id.Leave += new System.EventHandler(this.txt_Leave);
+            this.txt_Id.Enter += new System.EventHandler(this.txtbox_Enter);
+            this.txt_Id.Leave += new System.EventHandler(this.txtbox_Leave);
             // 
             // label_ID
             // 
@@ -309,7 +311,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_ID.Appearance.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label_ID.Appearance.Options.UseFont = true;
-            this.label_ID.Location = new System.Drawing.Point(57, 96);
+            this.label_ID.Location = new System.Drawing.Point(60, 57);
             this.label_ID.Name = "label_ID";
             this.label_ID.Size = new System.Drawing.Size(86, 25);
             this.label_ID.TabIndex = 0;
@@ -320,25 +322,26 @@
             this.dateTimePicker_ExpirationDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePicker_ExpirationDate.CalendarFont = new System.Drawing.Font("Arial", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.dateTimePicker_ExpirationDate.CustomFormat = " dd/M/yyyy";
-            this.dateTimePicker_ExpirationDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.70909F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dateTimePicker_ExpirationDate.CustomFormat = " dd/MM/yyyy";
+            this.dateTimePicker_ExpirationDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.32727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.dateTimePicker_ExpirationDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker_ExpirationDate.Location = new System.Drawing.Point(76, 301);
+            this.dateTimePicker_ExpirationDate.Location = new System.Drawing.Point(77, 259);
             this.dateTimePicker_ExpirationDate.MinDate = new System.DateTime(2001, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker_ExpirationDate.Name = "dateTimePicker_ExpirationDate";
-            this.dateTimePicker_ExpirationDate.Size = new System.Drawing.Size(298, 35);
-            this.dateTimePicker_ExpirationDate.TabIndex = 4;
+            this.dateTimePicker_ExpirationDate.Size = new System.Drawing.Size(286, 39);
+            this.dateTimePicker_ExpirationDate.TabIndex = 6;
             // 
             // panel_PricePerUnit
             // 
             this.panel_PricePerUnit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel_PricePerUnit.BackColor = System.Drawing.Color.White;
             this.panel_PricePerUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_PricePerUnit.Controls.Add(this.txt_PricePerUnit);
-            this.panel_PricePerUnit.Location = new System.Drawing.Point(76, 125);
+            this.panel_PricePerUnit.Location = new System.Drawing.Point(77, 86);
             this.panel_PricePerUnit.Name = "panel_PricePerUnit";
             this.panel_PricePerUnit.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel_PricePerUnit.Size = new System.Drawing.Size(301, 36);
+            this.panel_PricePerUnit.Size = new System.Drawing.Size(286, 36);
             this.panel_PricePerUnit.TabIndex = 100;
             this.panel_PricePerUnit.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
@@ -351,36 +354,37 @@
             this.txt_PricePerUnit.Location = new System.Drawing.Point(7, 6);
             this.txt_PricePerUnit.Margin = new System.Windows.Forms.Padding(0);
             this.txt_PricePerUnit.Name = "txt_PricePerUnit";
-            this.txt_PricePerUnit.Size = new System.Drawing.Size(283, 28);
-            this.txt_PricePerUnit.TabIndex = 5;
-            this.txt_PricePerUnit.Enter += new System.EventHandler(this.txt_Enter);
-            this.txt_PricePerUnit.Leave += new System.EventHandler(this.txt_Leave);
+            this.txt_PricePerUnit.Size = new System.Drawing.Size(270, 28);
+            this.txt_PricePerUnit.TabIndex = 2;
+            this.txt_PricePerUnit.Text = "0";
+            this.txt_PricePerUnit.Enter += new System.EventHandler(this.txtbox_Enter);
+            this.txt_PricePerUnit.Leave += new System.EventHandler(this.txtbox_Leave);
             // 
-            // labelControl_ProductionDay
+            // label_ProductionDay
             // 
-            this.labelControl_ProductionDay.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.label_ProductionDay.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl_ProductionDay.Appearance.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl_ProductionDay.Appearance.Options.UseFont = true;
-            this.labelControl_ProductionDay.Location = new System.Drawing.Point(81, 182);
-            this.labelControl_ProductionDay.Name = "labelControl_ProductionDay";
-            this.labelControl_ProductionDay.Size = new System.Drawing.Size(138, 25);
-            this.labelControl_ProductionDay.TabIndex = 0;
-            this.labelControl_ProductionDay.Text = "Ngày Sản Xuất";
+            this.label_ProductionDay.Appearance.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label_ProductionDay.Appearance.Options.UseFont = true;
+            this.label_ProductionDay.Location = new System.Drawing.Point(82, 143);
+            this.label_ProductionDay.Name = "label_ProductionDay";
+            this.label_ProductionDay.Size = new System.Drawing.Size(138, 25);
+            this.label_ProductionDay.TabIndex = 0;
+            this.label_ProductionDay.Text = "Ngày Sản Xuất";
             // 
-            // labelControl_ExpirationDate
+            // label_ExpirationDate
             // 
-            this.labelControl_ExpirationDate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.label_ExpirationDate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl_ExpirationDate.Appearance.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl_ExpirationDate.Appearance.Options.UseFont = true;
-            this.labelControl_ExpirationDate.Location = new System.Drawing.Point(81, 272);
-            this.labelControl_ExpirationDate.Name = "labelControl_ExpirationDate";
-            this.labelControl_ExpirationDate.Size = new System.Drawing.Size(130, 25);
-            this.labelControl_ExpirationDate.TabIndex = 0;
-            this.labelControl_ExpirationDate.Text = "Ngày Hết Hạn";
+            this.label_ExpirationDate.Appearance.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label_ExpirationDate.Appearance.Options.UseFont = true;
+            this.label_ExpirationDate.Location = new System.Drawing.Point(82, 233);
+            this.label_ExpirationDate.Name = "label_ExpirationDate";
+            this.label_ExpirationDate.Size = new System.Drawing.Size(130, 25);
+            this.label_ExpirationDate.TabIndex = 0;
+            this.label_ExpirationDate.Text = "Ngày Hết Hạn";
             // 
             // label_PricePerUnit
             // 
@@ -389,7 +393,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_PricePerUnit.Appearance.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label_PricePerUnit.Appearance.Options.UseFont = true;
-            this.label_PricePerUnit.Location = new System.Drawing.Point(81, 96);
+            this.label_PricePerUnit.Location = new System.Drawing.Point(82, 57);
             this.label_PricePerUnit.Name = "label_PricePerUnit";
             this.label_PricePerUnit.Size = new System.Drawing.Size(136, 25);
             this.label_PricePerUnit.TabIndex = 0;
@@ -399,33 +403,23 @@
             // 
             this.dateTimePicker_ProductionDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker_ProductionDate.CustomFormat = " dd/M/yyyy";
-            this.dateTimePicker_ProductionDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.70909F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dateTimePicker_ProductionDate.CustomFormat = " dd/MM/yyyy";
+            this.dateTimePicker_ProductionDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.32727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.dateTimePicker_ProductionDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker_ProductionDate.Location = new System.Drawing.Point(76, 214);
+            this.dateTimePicker_ProductionDate.Location = new System.Drawing.Point(77, 169);
             this.dateTimePicker_ProductionDate.MinDate = new System.DateTime(2001, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker_ProductionDate.Name = "dateTimePicker_ProductionDate";
-            this.dateTimePicker_ProductionDate.Size = new System.Drawing.Size(298, 35);
-            this.dateTimePicker_ProductionDate.TabIndex = 3;
-            // 
-            // groupBox_Input
-            // 
-            this.groupBox_Input.Controls.Add(this.splitContainer);
-            this.groupBox_Input.Controls.Add(this.panel_Buttons);
-            this.groupBox_Input.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox_Input.Location = new System.Drawing.Point(0, 0);
-            this.groupBox_Input.Name = "groupBox_Input";
-            this.groupBox_Input.Size = new System.Drawing.Size(891, 615);
-            this.groupBox_Input.TabIndex = 4;
-            this.groupBox_Input.TabStop = false;
+            this.dateTimePicker_ProductionDate.Size = new System.Drawing.Size(286, 39);
+            this.dateTimePicker_ProductionDate.TabIndex = 5;
             // 
             // frm_AddMedicine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(891, 615);
+            this.ClientSize = new System.Drawing.Size(892, 615);
+            this.Controls.Add(this.splitContainer);
+            this.Controls.Add(this.panel_Buttons);
             this.Controls.Add(this.panel_Title);
-            this.Controls.Add(this.groupBox_Input);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frm_AddMedicine";
             this.Text = "AddMedicine";
@@ -445,7 +439,6 @@
             this.panel_ID.PerformLayout();
             this.panel_PricePerUnit.ResumeLayout(false);
             this.panel_PricePerUnit.PerformLayout();
-            this.groupBox_Input.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -469,10 +462,9 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker_ExpirationDate;
         private System.Windows.Forms.Panel panel_PricePerUnit;
         private System.Windows.Forms.TextBox txt_PricePerUnit;
-        private DevExpress.XtraEditors.LabelControl labelControl_ProductionDay;
-        private DevExpress.XtraEditors.LabelControl labelControl_ExpirationDate;
+        private DevExpress.XtraEditors.LabelControl label_ProductionDay;
+        private DevExpress.XtraEditors.LabelControl label_ExpirationDate;
         private DevExpress.XtraEditors.LabelControl label_PricePerUnit;
         private System.Windows.Forms.DateTimePicker dateTimePicker_ProductionDate;
-        private System.Windows.Forms.GroupBox groupBox_Input;
     }
 }

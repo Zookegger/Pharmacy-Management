@@ -1,5 +1,5 @@
-<<<<<<<< Updated upstream:PharmacistUI/PharmacistUI/Home.cs
-﻿using System;
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -40,4 +40,4 @@ namespace login
         }
     }
 }
->>>>>>>> Stashed changes:Form_admin.cs
+

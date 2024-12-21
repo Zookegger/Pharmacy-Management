@@ -1,6 +1,6 @@
-﻿namespace login
+﻿namespace PharmacistUI
 {
-    partial class Form_admin
+    partial class Home
     {
         /// <summary>
         /// Required designer variable.

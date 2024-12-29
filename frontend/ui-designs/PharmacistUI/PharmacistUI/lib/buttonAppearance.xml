@@ -1,0 +1,22 @@
+﻿<XtraSerializer version="1.0" application="Appearances">
+  <property name="AppearancePressed" iskey="true" value="AppearancePressed">
+    <property name="Options" isnull="true" iskey="true">
+      <property name="UseFont">true</property>
+    </property>
+    <property name="Font">Tahoma, 11.7818184pt, style=Bold</property>
+  </property>
+  <property name="Appearance" iskey="true" value="Appearance">
+    <property name="Options" isnull="true" iskey="true">
+      <property name="UseBackColor">true</property>
+      <property name="UseFont">true</property>
+    </property>
+    <property name="BackColor">26, 141, 210</property>
+    <property name="Font">Tahoma, 13.7454548pt, style=Bold</property>
+  </property>
+  <property name="AppearanceHovered" iskey="true" value="AppearanceHovered">
+    <property name="Options" isnull="true" iskey="true">
+      <property name="UseFont">true</property>
+    </property>
+    <property name="Font">Tahoma, 15.7090912pt, style=Bold</property>
+  </property>
+</XtraSerializer>

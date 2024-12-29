@@ -23,7 +23,7 @@ jobs:
 
     - name: Install .NET Framework 4.8
       run: |
-        choco install dotnet4.8
+        choco install netfx-4.8-devpack
         
     - name: Restore dependencies
       run: dotnet restore

@@ -39,8 +39,6 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.checkButton1 = new DevExpress.XtraEditors.CheckButton();
-            this.checkButton2 = new DevExpress.XtraEditors.CheckButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -54,6 +52,8 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -71,7 +71,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(18, 0);
+            this.label1.Location = new System.Drawing.Point(22, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 38);
             this.label1.TabIndex = 0;
@@ -164,32 +164,6 @@
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
             this.pictureEdit1.Size = new System.Drawing.Size(268, 254);
             this.pictureEdit1.TabIndex = 15;
-            // 
-            // checkButton1
-            // 
-            this.checkButton1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(141)))), ((int)(((byte)(210)))));
-            this.checkButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkButton1.Appearance.Options.UseBackColor = true;
-            this.checkButton1.Appearance.Options.UseFont = true;
-            this.checkButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("checkButton1.ImageOptions.Image")));
-            this.checkButton1.Location = new System.Drawing.Point(120, 616);
-            this.checkButton1.Name = "checkButton1";
-            this.checkButton1.Size = new System.Drawing.Size(129, 43);
-            this.checkButton1.TabIndex = 16;
-            this.checkButton1.Text = "Cập Nhập";
-            // 
-            // checkButton2
-            // 
-            this.checkButton2.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(141)))), ((int)(((byte)(210)))));
-            this.checkButton2.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkButton2.Appearance.Options.UseBackColor = true;
-            this.checkButton2.Appearance.Options.UseFont = true;
-            this.checkButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("checkButton2.ImageOptions.Image")));
-            this.checkButton2.Location = new System.Drawing.Point(287, 616);
-            this.checkButton2.Name = "checkButton2";
-            this.checkButton2.Size = new System.Drawing.Size(129, 43);
-            this.checkButton2.TabIndex = 17;
-            this.checkButton2.Text = "Tải Lại";
             // 
             // panel4
             // 
@@ -314,7 +288,7 @@
             // splitContainer1
             // 
             this.splitContainer1.BackColor = System.Drawing.Color.DodgerBlue;
-            this.splitContainer1.Location = new System.Drawing.Point(137, 47);
+            this.splitContainer1.Location = new System.Drawing.Point(141, 47);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -331,6 +305,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.White;
+            this.splitContainer1.Panel2.Controls.Add(this.simpleButton2);
+            this.splitContainer1.Panel2.Controls.Add(this.simpleButton1);
             this.splitContainer1.Panel2.Controls.Add(this.label4);
             this.splitContainer1.Panel2.Controls.Add(this.panel3);
             this.splitContainer1.Panel2.Controls.Add(this.label6);
@@ -339,11 +315,39 @@
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.label8);
             this.splitContainer1.Panel2.Controls.Add(this.panel4);
-            this.splitContainer1.Panel2.Controls.Add(this.checkButton1);
-            this.splitContainer1.Panel2.Controls.Add(this.checkButton2);
             this.splitContainer1.Size = new System.Drawing.Size(1033, 734);
             this.splitContainer1.SplitterDistance = 515;
             this.splitContainer1.TabIndex = 29;
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(141)))), ((int)(((byte)(210)))));
+            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton2.Appearance.ForeColor = System.Drawing.Color.White;
+            this.simpleButton2.Appearance.Options.UseBackColor = true;
+            this.simpleButton2.Appearance.Options.UseFont = true;
+            this.simpleButton2.Appearance.Options.UseForeColor = true;
+            this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
+            this.simpleButton2.Location = new System.Drawing.Point(271, 646);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(158, 46);
+            this.simpleButton2.TabIndex = 29;
+            this.simpleButton2.Text = "Tải Lại";
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(141)))), ((int)(((byte)(210)))));
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton1.Appearance.ForeColor = System.Drawing.Color.White;
+            this.simpleButton1.Appearance.Options.UseBackColor = true;
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.Appearance.Options.UseForeColor = true;
+            this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.simpleButton1.Location = new System.Drawing.Point(72, 646);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(158, 46);
+            this.simpleButton1.TabIndex = 28;
+            this.simpleButton1.Text = "Cập Nhật";
             // 
             // UC_Hồ_Sơ
             // 
@@ -389,8 +393,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label8;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
-        private DevExpress.XtraEditors.CheckButton checkButton1;
-        private DevExpress.XtraEditors.CheckButton checkButton2;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Panel panel1;
@@ -404,5 +406,7 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }

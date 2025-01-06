@@ -39,6 +39,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -50,6 +52,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.SandyBrown;
+            this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label2);
@@ -92,6 +95,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label3);
@@ -161,6 +165,28 @@
             this.splitContainer1.SplitterDistance = 493;
             this.splitContainer1.TabIndex = 4;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Snow;
+            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label8.Location = new System.Drawing.Point(192, 461);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(16, 18);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "1";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Snow;
+            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label9.Location = new System.Drawing.Point(164, 470);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(16, 18);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "2";
+            // 
             // UC_BangDieuKhien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -196,5 +222,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }

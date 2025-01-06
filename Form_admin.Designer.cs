@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_admin));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.panel_Main = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.accordionControl_SidePanel = new DevExpress.XtraBars.Navigation.AccordionControl();
@@ -36,13 +36,19 @@
             this.accordionControlElement_Add = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement_Sell = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement_Edit = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement_LogOut = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl_SidePanel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel_Main
             // 
+            this.panel_Main.Controls.Add(this.pictureBox1);
             this.panel_Main.Controls.Add(this.label1);
             this.panel_Main.Controls.Add(this.accordionControl_SidePanel);
             this.panel_Main.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -55,7 +61,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(41, 28);
+            this.label1.Location = new System.Drawing.Point(165, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(109, 38);
             this.label1.TabIndex = 3;
@@ -63,6 +69,9 @@
             // 
             // accordionControl_SidePanel
             // 
+            this.accordionControl_SidePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.accordionControl_SidePanel.Appearance.AccordionControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(90)))), ((int)(((byte)(101)))));
             this.accordionControl_SidePanel.Appearance.AccordionControl.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.accordionControl_SidePanel.Appearance.AccordionControl.Options.UseBackColor = true;
@@ -79,8 +88,10 @@
             this.accordionControlElement_Add,
             this.accordionControlElement_Sell,
             this.accordionControlElement_Edit,
-            this.accordionControlElement_LogOut});
-            this.accordionControl_SidePanel.Location = new System.Drawing.Point(6, 95);
+            this.accordionControlElement1,
+            this.accordionControlElement2,
+            this.accordionControlElement3});
+            this.accordionControl_SidePanel.Location = new System.Drawing.Point(6, 104);
             this.accordionControl_SidePanel.Margin = new System.Windows.Forms.Padding(6);
             this.accordionControl_SidePanel.Name = "accordionControl_SidePanel";
             this.accordionControl_SidePanel.OptionsMinimizing.ElementHeight = 40;
@@ -128,6 +139,27 @@
             this.accordionControlElement_Edit.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionControlElement_Edit.Text = "Hồ Sơ";
             // 
+            // accordionControlElement1
+            // 
+            this.accordionControlElement1.Height = 70;
+            this.accordionControlElement1.Name = "accordionControlElement1";
+            this.accordionControlElement1.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement1.Text = "Quản Lý Kho";
+            // 
+            // accordionControlElement2
+            // 
+            this.accordionControlElement2.Height = 70;
+            this.accordionControlElement2.Name = "accordionControlElement2";
+            this.accordionControlElement2.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement2.Text = "Quản Lý Sale";
+            // 
+            // accordionControlElement3
+            // 
+            this.accordionControlElement3.Height = 70;
+            this.accordionControlElement3.Name = "accordionControlElement3";
+            this.accordionControlElement3.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement3.Text = "Đăng Xuất ";
+            // 
             // accordionControlElement_LogOut
             // 
             this.accordionControlElement_LogOut.Height = 70;
@@ -138,17 +170,28 @@
             this.accordionControlElement_LogOut.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionControlElement_LogOut.Text = "Đăng Xuất";
             // 
-            // Form_admin
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(59, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 84);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1089, 847);
             this.Controls.Add(this.panel_Main);
-            this.Name = "Form_admin";
+            this.Name = "Home";
             this.Text = "Form_admin";
             this.panel_Main.ResumeLayout(false);
             this.panel_Main.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl_SidePanel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -156,12 +199,16 @@
         #endregion
 
         private System.Windows.Forms.Panel panel_Main;
+        private System.Windows.Forms.Label label1;
         private DevExpress.XtraBars.Navigation.AccordionControl accordionControl_SidePanel;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_Home;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_Add;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_Sell;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_Edit;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement1;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement2;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement3;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_LogOut;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

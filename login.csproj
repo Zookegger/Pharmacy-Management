@@ -71,6 +71,18 @@
     <Compile Include="Admin\UC_Hồ Sơ.Designer.cs">
       <DependentUpon>UC_Hồ Sơ.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\UC_QuanLyKho.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\UC_QuanLyKho.Designer.cs">
+      <DependentUpon>UC_QuanLyKho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UC_QuanLySale.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\UC_QuanLySale.Designer.cs">
+      <DependentUpon>UC_QuanLySale.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\UC_ThemNguoiDung.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -95,6 +107,12 @@
     <Compile Include="Form_admin.Designer.cs">
       <DependentUpon>Form_admin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_ThongKe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ThongKe.Designer.cs">
+      <DependentUpon>Form_ThongKe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Admin\UC_BangDieuKhien.resx">
@@ -102,6 +120,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\UC_Hồ Sơ.resx">
       <DependentUpon>UC_Hồ Sơ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\UC_QuanLyKho.resx">
+      <DependentUpon>UC_QuanLyKho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\UC_QuanLySale.resx">
+      <DependentUpon>UC_QuanLySale.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\UC_ThemNguoiDung.resx">
       <DependentUpon>UC_ThemNguoiDung.cs</DependentUpon>
@@ -114,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_admin.resx">
       <DependentUpon>Form_admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ThongKe.resx">
+      <DependentUpon>Form_ThongKe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -1,5 +1,4 @@
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,28 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PharmacistUI { 
-
-    public partial class Home : Form
-    {
-        public Home()
-        {
-            InitializeComponent();
-        }
-    }
-}
-
-
-
-namespace login
+namespace login.Admin
 {
-    public partial class Form_admin : Form
+    public partial class UC_QuanLyKho : UserControl
     {
-        public Form_admin()
+        public UC_QuanLyKho()
         {
             InitializeComponent();
         }
-    
+
+       
     }
 }
-

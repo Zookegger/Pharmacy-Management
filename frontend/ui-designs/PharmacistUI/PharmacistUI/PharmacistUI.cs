@@ -64,9 +64,6 @@ namespace PharmacistUI
                 case "accordionControlElement_SellMedicine":
                     form = new frm_SellMedicine();
                     break;
-                case "accordionControlElement_ViewMedicine":
-                    form = new frm_ViewMedicine();
-                    break;
                 case "accordionControlElement_EditMedicine":
                     form = new frm_EditMedicine();
                     break;

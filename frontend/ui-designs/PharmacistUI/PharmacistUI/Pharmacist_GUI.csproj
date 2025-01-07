@@ -11,10 +11,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PharmacistUI</RootNamespace>
     <AssemblyName>PharmacistUI</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -98,10 +99,6 @@
     <Reference Include="Microsoft.SqlServer.Types, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.160.1000.6\lib\net462\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
-    <Reference Include="Pharmacist, Version=24.1.7.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\Pharmacist.dll</HintPath>
-    </Reference>
     <Reference Include="PharmacistUIColor, Version=24.1.7.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\PharmacistUIColor.dll</HintPath>
@@ -165,12 +162,6 @@
     <Compile Include="SellMedicine.Designer.cs">
       <DependentUpon>SellMedicine.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewMedicine.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ViewMedicine.Designer.cs">
-      <DependentUpon>ViewMedicine.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="AddMedicine.resx">
       <DependentUpon>AddMedicine.cs</DependentUpon>
     </EmbeddedResource>
@@ -192,12 +183,10 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SellMedicine.resx">
       <DependentUpon>SellMedicine.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ViewMedicine.resx">
-      <DependentUpon>ViewMedicine.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />

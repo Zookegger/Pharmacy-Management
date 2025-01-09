@@ -1,21 +1,21 @@
-﻿using Login_DAL;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HashingPassword;
+using System.Data.Entity.Validation;
+using Login_DAL.Models;
+using System.Data.Entity.Migrations;
+using System.Collections.Generic;
 
 namespace Login_BUS
 {
     public class LoginServices
     {
-        ModelPharmacyLogin modelDB = new ModelPharmacyLogin();
-        HashPassword hashPassword = new HashPassword();
+        private ModelPharmacyLogin loginDB = new ModelPharmacyLogin();
+        private HashPassword hashPassword = new HashPassword();
 
         public bool Login(String username, String password)
         {
-            var account = modelDB.TAIKHOAN.Where(x => x.TenTaiKhoan == username).FirstOrDefault();
+            var account = loginDB.TAIKHOAN.Where(x => x.TenTaiKhoan == username).FirstOrDefault();
             if (account == null)
             {
                 return false;
@@ -25,28 +25,30 @@ namespace Login_BUS
             return isPasswordValid;
         }
 
-        public void Register(string username, string password)
+        public void Register(string username, string password, string employeeId)
         {
-            if (modelDB.TAIKHOAN.Any(acc => acc.TenTaiKhoan == username))
+            if (loginDB.TAIKHOAN.Any(acc => acc.TenTaiKhoan == username))
             {
-                Console.WriteLine("Username already exists.");
+                System.Diagnostics.Debug.WriteLine("Username already exists.");
                 throw new Exception("Tên tài khoản đã được sử dụng.");
             }
 
+            var nhanvien = loginDB.NHANVIEN.Where(nv => nv.MaNhanVien == employeeId).FirstOrDefault();
             string hashedPassword = hashPassword.Hash(password);
 
             TAIKHOAN newAccount = new TAIKHOAN
             {
+                NHANVIEN = nhanvien,
                 TenTaiKhoan = username,
                 MatKhau = hashedPassword,
                 TrangThai = "Active",
                 LanCuoiCapNhat = DateTime.Now
             };
 
-            modelDB.TAIKHOAN.Add(newAccount);
-            modelDB.SaveChanges();
+            loginDB.TAIKHOAN.Add(newAccount);
+            loginDB.SaveChanges();
 
-            Console.WriteLine("Account created successfully.");
+            System.Diagnostics.Debug.WriteLine("Account created successfully.");
         }
     }
 }

@@ -56,8 +56,8 @@
     <Compile Include="Models\CHUCVU.cs" />
     <Compile Include="Models\ModelPharmacyLogin.cs" />
     <Compile Include="Models\NHANVIEN.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\TAIKHOAN.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

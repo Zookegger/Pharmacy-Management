@@ -49,6 +49,13 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="PharmacistUIColor, Version=24.1.7.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Pharmacist_GUI\lib\PharmacistUIColor.dll</HintPath>
+    </Reference>
+    <Reference Include="SkinPatch">
+      <HintPath>..\Pharmacist_GUI\lib\SkinPatch.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -98,6 +105,10 @@
     <ProjectReference Include="..\Login_BUS\Login_BUS.csproj">
       <Project>{fa62a6cf-1300-4907-9cf4-4e25e90df8c1}</Project>
       <Name>Login_BUS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pharmacist_GUI\Pharmacist_GUI.csproj">
+      <Project>{dbf3e577-ea3f-44fa-86ce-6a79c1e2bc15}</Project>
+      <Name>Pharmacist_GUI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

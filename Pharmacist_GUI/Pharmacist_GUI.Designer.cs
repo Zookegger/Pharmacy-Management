@@ -76,11 +76,12 @@
             this.accordionControl_SidePanel.Margin = new System.Windows.Forms.Padding(4);
             this.accordionControl_SidePanel.Name = "accordionControl_SidePanel";
             this.accordionControl_SidePanel.OptionsMinimizing.ElementHeight = 40;
+            this.accordionControl_SidePanel.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
             this.accordionControl_SidePanel.ScaleImages = DevExpress.Utils.DefaultBoolean.True;
             this.accordionControl_SidePanel.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Hidden;
             this.accordionControl_SidePanel.SelectElementMode = DevExpress.XtraBars.Navigation.SelectElementMode.MouseDown;
             this.accordionControl_SidePanel.ShowToolTips = false;
-            this.accordionControl_SidePanel.Size = new System.Drawing.Size(286, 758);
+            this.accordionControl_SidePanel.Size = new System.Drawing.Size(57, 758);
             this.accordionControl_SidePanel.TabIndex = 0;
             this.accordionControl_SidePanel.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             this.accordionControl_SidePanel.Click += new System.EventHandler(this.accordionControl_SidePanel_Click);
@@ -161,9 +162,9 @@
             // panel_Main
             // 
             this.panel_Main.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_Main.Location = new System.Drawing.Point(286, 0);
+            this.panel_Main.Location = new System.Drawing.Point(57, 0);
             this.panel_Main.Name = "panel_Main";
-            this.panel_Main.Size = new System.Drawing.Size(982, 758);
+            this.panel_Main.Size = new System.Drawing.Size(1211, 758);
             this.panel_Main.TabIndex = 1;
             // 
             // frm_PharmacistGUI

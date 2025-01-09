@@ -1,6 +1,6 @@
 ﻿namespace Pharmacist
 {
-    partial class frm_EditMedicine
+    partial class frm_ManageBatch
     {
         /// <summary>
         /// Required designer variable.
@@ -30,8 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.SplitContainer splitContainer;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_EditMedicine));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_ManageBatch));
             this.numUpDown_Quantity = new System.Windows.Forms.NumericUpDown();
             this.label_Name = new DevExpress.XtraEditors.LabelControl();
             this.panel_Name = new System.Windows.Forms.Panel();
@@ -49,8 +51,7 @@
             this.label_ExpirationDate = new DevExpress.XtraEditors.LabelControl();
             this.panel_Buttons = new System.Windows.Forms.Panel();
             this.panel_Functions = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt_SearchBar = new System.Windows.Forms.TextBox();
             this.label_SearchBar = new DevExpress.XtraEditors.LabelControl();
             this.groupControl_dgv = new DevExpress.XtraEditors.GroupControl();
             this.dgv_Batches = new System.Windows.Forms.DataGridView();
@@ -63,6 +64,7 @@
             this.panel_Title = new System.Windows.Forms.Panel();
             this.label_TitleAdd = new System.Windows.Forms.Label();
             this.alertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
+            this.btn_SearchForMedicine = new DevExpress.XtraEditors.SimpleButton();
             splitContainer = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(splitContainer)).BeginInit();
             splitContainer.Panel1.SuspendLayout();
@@ -91,6 +93,7 @@
             // splitContainer.Panel1
             // 
             splitContainer.Panel1.BackColor = System.Drawing.SystemColors.Control;
+            splitContainer.Panel1.Controls.Add(this.btn_SearchForMedicine);
             splitContainer.Panel1.Controls.Add(this.numUpDown_Quantity);
             splitContainer.Panel1.Controls.Add(this.label_Name);
             splitContainer.Panel1.Controls.Add(this.panel_Name);
@@ -108,7 +111,7 @@
             splitContainer.Panel2.Controls.Add(this.dateTimePicker_ProductionDate);
             splitContainer.Panel2.Controls.Add(this.label_ProductionDay);
             splitContainer.Panel2.Controls.Add(this.label_ExpirationDate);
-            splitContainer.Size = new System.Drawing.Size(1280, 193);
+            splitContainer.Size = new System.Drawing.Size(1280, 177);
             splitContainer.SplitterDistance = 632;
             splitContainer.SplitterWidth = 10;
             splitContainer.TabIndex = 103;
@@ -242,6 +245,7 @@
             this.btn_Delete.TabIndex = 112;
             this.btn_Delete.Text = "  Xóa";
             this.btn_Delete.ToolTip = "Xóa thuốc hoàn toàn khỏi cơ sở dữ liệu";
+            this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
             // 
             // btn_Add
             // 
@@ -283,6 +287,7 @@
             this.btn_Add.TabIndex = 110;
             this.btn_Add.Text = "Thêm";
             this.btn_Add.ToolTip = "Thêm thuốc vào cơ sở dữ liệu";
+            this.btn_Add.Click += new System.EventHandler(this.btn_Add_Click);
             // 
             // btn_Update
             // 
@@ -319,6 +324,7 @@
             this.btn_Update.TabIndex = 111;
             this.btn_Update.Text = " Sửa";
             this.btn_Update.ToolTip = "Cập nhật thông tin của thuốc trong cơ sở dữ liệu";
+            this.btn_Update.Click += new System.EventHandler(this.btn_Add_Click);
             // 
             // dateTimePicker_ExpirationDate
             // 
@@ -331,7 +337,7 @@
             this.dateTimePicker_ExpirationDate.Location = new System.Drawing.Point(177, 72);
             this.dateTimePicker_ExpirationDate.MinDate = new System.DateTime(2001, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker_ExpirationDate.Name = "dateTimePicker_ExpirationDate";
-            this.dateTimePicker_ExpirationDate.Size = new System.Drawing.Size(355, 31);
+            this.dateTimePicker_ExpirationDate.Size = new System.Drawing.Size(331, 31);
             this.dateTimePicker_ExpirationDate.TabIndex = 109;
             // 
             // dateTimePicker_ProductionDate
@@ -344,7 +350,7 @@
             this.dateTimePicker_ProductionDate.Location = new System.Drawing.Point(177, 20);
             this.dateTimePicker_ProductionDate.MinDate = new System.DateTime(2001, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker_ProductionDate.Name = "dateTimePicker_ProductionDate";
-            this.dateTimePicker_ProductionDate.Size = new System.Drawing.Size(355, 31);
+            this.dateTimePicker_ProductionDate.Size = new System.Drawing.Size(331, 31);
             this.dateTimePicker_ProductionDate.TabIndex = 108;
             // 
             // label_ProductionDay
@@ -378,59 +384,41 @@
             this.panel_Buttons.Controls.Add(this.panel_Functions);
             this.panel_Buttons.Controls.Add(this.groupControl_dgv);
             this.panel_Buttons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_Buttons.Location = new System.Drawing.Point(0, 266);
+            this.panel_Buttons.Location = new System.Drawing.Point(0, 250);
             this.panel_Buttons.Name = "panel_Buttons";
-            this.panel_Buttons.Size = new System.Drawing.Size(1280, 454);
+            this.panel_Buttons.Size = new System.Drawing.Size(1280, 470);
             this.panel_Buttons.TabIndex = 102;
             // 
             // panel_Functions
             // 
-            this.panel_Functions.Controls.Add(this.simpleButton2);
-            this.panel_Functions.Controls.Add(this.textBox1);
+            this.panel_Functions.Controls.Add(this.txt_SearchBar);
             this.panel_Functions.Controls.Add(this.label_SearchBar);
             this.panel_Functions.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_Functions.Location = new System.Drawing.Point(0, 0);
             this.panel_Functions.Name = "panel_Functions";
-            this.panel_Functions.Size = new System.Drawing.Size(1280, 56);
+            this.panel_Functions.Size = new System.Drawing.Size(1280, 41);
             this.panel_Functions.TabIndex = 115;
             // 
-            // simpleButton2
+            // txt_SearchBar
             // 
-            this.simpleButton2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.simpleButton2.Appearance.BackColor = System.Drawing.Color.Silver;
-            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.simpleButton2.Appearance.ForeColor = System.Drawing.Color.White;
-            this.simpleButton2.Appearance.Options.UseBackColor = true;
-            this.simpleButton2.Appearance.Options.UseFont = true;
-            this.simpleButton2.Appearance.Options.UseForeColor = true;
-            this.simpleButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.simpleButton2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton2.ImageOptions.SvgImage")));
-            this.simpleButton2.ImageOptions.SvgImageSize = new System.Drawing.Size(25, 25);
-            this.simpleButton2.Location = new System.Drawing.Point(15, 11);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(224, 34);
-            this.simpleButton2.TabIndex = 114;
-            this.simpleButton2.Text = "Điều chỉnh kho";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.818182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox1.Location = new System.Drawing.Point(1027, 16);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(233, 24);
-            this.textBox1.TabIndex = 2;
+            this.txt_SearchBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_SearchBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.818182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txt_SearchBar.Location = new System.Drawing.Point(1035, 6);
+            this.txt_SearchBar.Name = "txt_SearchBar";
+            this.txt_SearchBar.Size = new System.Drawing.Size(233, 24);
+            this.txt_SearchBar.TabIndex = 2;
+            this.txt_SearchBar.TextChanged += new System.EventHandler(this.txt_SearchBar_TextChanged);
             // 
             // label_SearchBar
             // 
-            this.label_SearchBar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label_SearchBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label_SearchBar.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F);
             this.label_SearchBar.Appearance.Options.UseFont = true;
-            this.label_SearchBar.Location = new System.Drawing.Point(910, 17);
+            this.label_SearchBar.Location = new System.Drawing.Point(918, 7);
             this.label_SearchBar.Name = "label_SearchBar";
-            this.label_SearchBar.Size = new System.Drawing.Size(111, 23);
+            this.label_SearchBar.Size = new System.Drawing.Size(121, 23);
             this.label_SearchBar.TabIndex = 1;
-            this.label_SearchBar.Text = "Tìm lô thuốc:";
+            this.label_SearchBar.Text = "Tìm Lô Thuốc:";
             // 
             // groupControl_dgv
             // 
@@ -440,9 +428,9 @@
             this.groupControl_dgv.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.groupControl_dgv.AppearanceCaption.Options.UseFont = true;
             this.groupControl_dgv.Controls.Add(this.dgv_Batches);
-            this.groupControl_dgv.Location = new System.Drawing.Point(15, 62);
+            this.groupControl_dgv.Location = new System.Drawing.Point(15, 47);
             this.groupControl_dgv.Name = "groupControl_dgv";
-            this.groupControl_dgv.Size = new System.Drawing.Size(1245, 380);
+            this.groupControl_dgv.Size = new System.Drawing.Size(1245, 411);
             this.groupControl_dgv.TabIndex = 1;
             this.groupControl_dgv.Text = "[ LÔ THUỐC ]";
             // 
@@ -451,15 +439,18 @@
             this.dgv_Batches.AllowUserToAddRows = false;
             this.dgv_Batches.AllowUserToDeleteRows = false;
             this.dgv_Batches.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 7.2F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_Batches.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgv_Batches.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+            this.dgv_Batches.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_Batches.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgv_Batches.ColumnHeadersHeight = 50;
+            this.dgv_Batches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv_Batches.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_BatchId,
             this.col_MedicineName,
@@ -467,14 +458,27 @@
             this.col_ProductionDate,
             this.col_ExpirationDate,
             this.col_BatchQuantity});
-            this.dgv_Batches.Cursor = System.Windows.Forms.Cursors.SizeWE;
+            this.dgv_Batches.Cursor = System.Windows.Forms.Cursors.Default;
             this.dgv_Batches.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_Batches.Location = new System.Drawing.Point(2, 26);
             this.dgv_Batches.Name = "dgv_Batches";
             this.dgv_Batches.ReadOnly = true;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_Batches.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgv_Batches.RowHeadersVisible = false;
             this.dgv_Batches.RowHeadersWidth = 47;
-            this.dgv_Batches.Size = new System.Drawing.Size(1241, 352);
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dgv_Batches.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgv_Batches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_Batches.Size = new System.Drawing.Size(1241, 383);
             this.dgv_Batches.TabIndex = 0;
+            this.dgv_Batches.Click += new System.EventHandler(this.dgv_Batches_Click);
             // 
             // col_BatchId
             // 
@@ -538,7 +542,15 @@
             this.label_TitleAdd.Text = " Quản Lý Lô Thuốc";
             this.label_TitleAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // frm_EditMedicine
+            // btn_SearchForMedicine
+            // 
+            this.btn_SearchForMedicine.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage")));
+            this.btn_SearchForMedicine.Location = new System.Drawing.Point(541, 66);
+            this.btn_SearchForMedicine.Name = "btn_SearchForMedicine";
+            this.btn_SearchForMedicine.Size = new System.Drawing.Size(41, 38);
+            this.btn_SearchForMedicine.TabIndex = 114;
+            // 
+            // frm_ManageBatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -547,8 +559,9 @@
             this.Controls.Add(splitContainer);
             this.Controls.Add(this.panel_Title);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frm_EditMedicine";
+            this.Name = "frm_ManageBatch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.frm_ManageBatch_Load);
             splitContainer.Panel1.ResumeLayout(false);
             splitContainer.Panel1.PerformLayout();
             splitContainer.Panel2.ResumeLayout(false);
@@ -589,14 +602,13 @@
         private System.Windows.Forms.Panel panel_Title;
         private DevExpress.XtraBars.Alerter.AlertControl alertControl;
         private System.Windows.Forms.DataGridView dgv_Batches;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_BatchId;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_MedicineName;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_ProviderName;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_ProductionDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_ExpirationDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_BatchQuantity;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_SearchBar;
         private DevExpress.XtraEditors.LabelControl label_SearchBar;
         private DevExpress.XtraEditors.SimpleButton btn_Delete;
         private DevExpress.XtraEditors.SimpleButton btn_Add;
@@ -604,5 +616,6 @@
         private DevExpress.XtraEditors.GroupControl groupControl_dgv;
         private System.Windows.Forms.Label label_TitleAdd;
         private DevExpress.XtraEditors.PanelControl panel_Functions;
+        private DevExpress.XtraEditors.SimpleButton btn_SearchForMedicine;
     }
 }

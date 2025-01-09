@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_ManageMedicine));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel_Title = new System.Windows.Forms.Panel();
             this.label_TitleAdd = new System.Windows.Forms.Label();
             this.panel_Buttons = new System.Windows.Forms.Panel();
@@ -49,7 +51,6 @@
             this.label_PricePerUnit = new DevExpress.XtraEditors.LabelControl();
             this.label_ID = new DevExpress.XtraEditors.LabelControl();
             this.panel_Description = new System.Windows.Forms.Panel();
-            this.richtxt_Description = new System.Windows.Forms.RichTextBox();
             this.label_Description = new DevExpress.XtraEditors.LabelControl();
             this.panel_Dosage = new System.Windows.Forms.Panel();
             this.txt_Dosage = new System.Windows.Forms.TextBox();
@@ -63,6 +64,7 @@
             this.col_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupControl_MedicineDatabase = new DevExpress.XtraEditors.GroupControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.txt_Description = new System.Windows.Forms.TextBox();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
@@ -131,7 +133,7 @@
             this.txt_SearchBox.Location = new System.Drawing.Point(555, 29);
             this.txt_SearchBox.Name = "txt_SearchBox";
             this.txt_SearchBox.Size = new System.Drawing.Size(229, 29);
-            this.txt_SearchBox.TabIndex = 6;
+            this.txt_SearchBox.TabIndex = 9;
             this.txt_SearchBox.TextChanged += new System.EventHandler(this.txt_SearchBox_TextChanged);
             // 
             // btn_Delete
@@ -296,7 +298,7 @@
             this.txt_PricePerUnit.Margin = new System.Windows.Forms.Padding(0);
             this.txt_PricePerUnit.Name = "txt_PricePerUnit";
             this.txt_PricePerUnit.Size = new System.Drawing.Size(406, 28);
-            this.txt_PricePerUnit.TabIndex = 1;
+            this.txt_PricePerUnit.TabIndex = 3;
             this.txt_PricePerUnit.Enter += new System.EventHandler(this.txtbox_Enter);
             this.txt_PricePerUnit.Leave += new System.EventHandler(this.txtbox_Leave);
             // 
@@ -324,7 +326,7 @@
             this.txt_Name.Margin = new System.Windows.Forms.Padding(0);
             this.txt_Name.Name = "txt_Name";
             this.txt_Name.Size = new System.Drawing.Size(406, 28);
-            this.txt_Name.TabIndex = 1;
+            this.txt_Name.TabIndex = 2;
             this.txt_Name.Enter += new System.EventHandler(this.txtbox_Enter);
             this.txt_Name.Leave += new System.EventHandler(this.txtbox_Leave);
             // 
@@ -401,26 +403,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel_Description.BackColor = System.Drawing.SystemColors.Window;
             this.panel_Description.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_Description.Controls.Add(this.richtxt_Description);
+            this.panel_Description.Controls.Add(this.txt_Description);
             this.panel_Description.Location = new System.Drawing.Point(161, 63);
             this.panel_Description.Name = "panel_Description";
-            this.panel_Description.Size = new System.Drawing.Size(405, 84);
+            this.panel_Description.Size = new System.Drawing.Size(393, 84);
             this.panel_Description.TabIndex = 105;
             this.panel_Description.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
-            // 
-            // richtxt_Description
-            // 
-            this.richtxt_Description.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.richtxt_Description.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richtxt_Description.DetectUrls = false;
-            this.richtxt_Description.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.12727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.richtxt_Description.Location = new System.Drawing.Point(3, 0);
-            this.richtxt_Description.Name = "richtxt_Description";
-            this.richtxt_Description.Size = new System.Drawing.Size(397, 82);
-            this.richtxt_Description.TabIndex = 103;
-            this.richtxt_Description.Text = "";
             // 
             // label_Description
             // 
@@ -445,7 +433,7 @@
             this.panel_Dosage.Location = new System.Drawing.Point(161, 4);
             this.panel_Dosage.Name = "panel_Dosage";
             this.panel_Dosage.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel_Dosage.Size = new System.Drawing.Size(405, 37);
+            this.panel_Dosage.Size = new System.Drawing.Size(393, 37);
             this.panel_Dosage.TabIndex = 101;
             this.panel_Dosage.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
@@ -458,8 +446,8 @@
             this.txt_Dosage.Location = new System.Drawing.Point(6, 7);
             this.txt_Dosage.Margin = new System.Windows.Forms.Padding(0);
             this.txt_Dosage.Name = "txt_Dosage";
-            this.txt_Dosage.Size = new System.Drawing.Size(394, 28);
-            this.txt_Dosage.TabIndex = 1;
+            this.txt_Dosage.Size = new System.Drawing.Size(382, 28);
+            this.txt_Dosage.TabIndex = 4;
             this.txt_Dosage.Enter += new System.EventHandler(this.txtbox_Enter);
             this.txt_Dosage.Leave += new System.EventHandler(this.txtbox_Leave);
             // 
@@ -480,13 +468,12 @@
             // 
             this.dgv_Medicine.AllowUserToAddRows = false;
             this.dgv_Medicine.AllowUserToDeleteRows = false;
-            this.dgv_Medicine.AllowUserToResizeColumns = false;
             this.dgv_Medicine.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_Medicine.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dgv_Medicine.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 7.2F);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -501,15 +488,26 @@
             this.PricePerUnit,
             this.col_Dosage,
             this.col_Description});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_Medicine.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_Medicine.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_Medicine.Location = new System.Drawing.Point(2, 26);
             this.dgv_Medicine.Name = "dgv_Medicine";
             this.dgv_Medicine.ReadOnly = true;
+            this.dgv_Medicine.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgv_Medicine.RowHeadersVisible = false;
             this.dgv_Medicine.RowHeadersWidth = 47;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dgv_Medicine.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_Medicine.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.dgv_Medicine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_Medicine.Size = new System.Drawing.Size(1252, 431);
+            this.dgv_Medicine.Size = new System.Drawing.Size(1252, 425);
             this.dgv_Medicine.TabIndex = 104;
             this.dgv_Medicine.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Medicine_CellClick);
             // 
@@ -565,7 +563,7 @@
             this.groupControl_MedicineDatabase.Controls.Add(this.dgv_Medicine);
             this.groupControl_MedicineDatabase.Location = new System.Drawing.Point(11, 303);
             this.groupControl_MedicineDatabase.Name = "groupControl_MedicineDatabase";
-            this.groupControl_MedicineDatabase.Size = new System.Drawing.Size(1256, 459);
+            this.groupControl_MedicineDatabase.Size = new System.Drawing.Size(1256, 453);
             this.groupControl_MedicineDatabase.TabIndex = 105;
             this.groupControl_MedicineDatabase.Text = "[Bảng Thuốc]";
             // 
@@ -591,6 +589,15 @@
             this.splitContainerControl1.Size = new System.Drawing.Size(1280, 64);
             this.splitContainerControl1.SplitterPosition = 473;
             this.splitContainerControl1.TabIndex = 10;
+            // 
+            // txt_Description
+            // 
+            this.txt_Description.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txt_Description.Location = new System.Drawing.Point(0, 0);
+            this.txt_Description.Multiline = true;
+            this.txt_Description.Name = "txt_Description";
+            this.txt_Description.Size = new System.Drawing.Size(391, 82);
+            this.txt_Description.TabIndex = 0;
             // 
             // frm_ManageMedicine
             // 
@@ -620,6 +627,7 @@
             this.panel_Id.ResumeLayout(false);
             this.panel_Id.PerformLayout();
             this.panel_Description.ResumeLayout(false);
+            this.panel_Description.PerformLayout();
             this.panel_Dosage.ResumeLayout(false);
             this.panel_Dosage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Medicine)).EndInit();
@@ -651,7 +659,6 @@
         private System.Windows.Forms.Panel panel_Dosage;
         private System.Windows.Forms.TextBox txt_Dosage;
         private DevExpress.XtraEditors.LabelControl label_Description;
-        private System.Windows.Forms.RichTextBox richtxt_Description;
         private DevExpress.XtraEditors.SimpleButton btn_Delete;
         private DevExpress.XtraEditors.LabelControl labelControl_SearchMedicine;
         private System.Windows.Forms.TextBox txt_SearchBox;
@@ -671,5 +678,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_Dosage;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_Description;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
+        private System.Windows.Forms.TextBox txt_Description;
     }
 }

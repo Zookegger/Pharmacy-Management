@@ -126,7 +126,7 @@ namespace Pharmacist
                 txt_Name.Text = row.Cells[1].Value.ToString();
                 txt_Dosage.Text = row.Cells[4].Value.ToString();
                 txt_PricePerUnit.Text = row.Cells[3].Value.ToString();
-                richtxt_Description.Text = row.Cells[5].Value.ToString();
+                txt_Description.Text = row.Cells[5].Value.ToString();
             }
         }
         private void btn_InsertUpdate_Click(object sender, EventArgs e)
@@ -141,7 +141,7 @@ namespace Pharmacist
                 String id = txt_Id.Text,
                                name = txt_Name.Text,
                                dosage = txt_Dosage.Text,
-                               description = richtxt_Description.Text;
+                               description = txt_Description.Text;
                 int pricePerUnit = 0;
 
                 System.Diagnostics.Debug.WriteLine($"Price: {label_PricePerUnit.Text}: {txt_PricePerUnit.Text}");
@@ -411,7 +411,7 @@ namespace Pharmacist
             txt_Name.Text = string.Empty;
             txt_Dosage.Text = string.Empty;
             txt_PricePerUnit.Text = "0";
-            richtxt_Description.Text = string.Empty;
+            txt_Description.Text = string.Empty;
         }
         private void txt_SearchBox_TextChanged(object sender, EventArgs e)
         {

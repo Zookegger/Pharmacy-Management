@@ -69,7 +69,7 @@ namespace Pharmacist
                     form = new frm_SellMedicine();
                     break;
                 case "accordionControlElement_EditMedicine":
-                    form = new frm_EditMedicine();
+                    form = new frm_ManageBatch();
                     break;
                 default:
                     throw new Exception($"Không tìm thấy form: frm_{btnName.Substring(24)}");

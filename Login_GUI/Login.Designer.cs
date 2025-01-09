@@ -149,9 +149,9 @@
             // pictureBox_Logo
             // 
             this.pictureBox_Logo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_Logo.Image")));
-            this.pictureBox_Logo.Location = new System.Drawing.Point(73, 81);
+            this.pictureBox_Logo.Location = new System.Drawing.Point(67, 118);
             this.pictureBox_Logo.Name = "pictureBox_Logo";
-            this.pictureBox_Logo.Size = new System.Drawing.Size(180, 168);
+            this.pictureBox_Logo.Size = new System.Drawing.Size(204, 199);
             this.pictureBox_Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_Logo.TabIndex = 1;
             this.pictureBox_Logo.TabStop = false;

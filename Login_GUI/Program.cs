@@ -4,6 +4,7 @@ using DevExpress.UserSkins;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Login
@@ -16,6 +17,10 @@ namespace Login
         [STAThread]
         static void Main()
         {
+            DevExpress.UserSkins.BonusSkins.Register();
+            Assembly asm = typeof(DevExpress.UserSkins.PharmacistUIColor.PharmacistUIColor).Assembly;
+            DevExpress.XtraEditors.WindowsFormsSettings.RegisterUserSkins(asm);
+            DevExpress.Skins.SkinManager.Default.RegisterAssembly(asm);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frm_Login());

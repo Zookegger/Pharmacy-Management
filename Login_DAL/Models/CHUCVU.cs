@@ -1,4 +1,4 @@
-namespace Login_DAL
+namespace Login_DAL.Models
 {
     using System;
     using System.Collections.Generic;

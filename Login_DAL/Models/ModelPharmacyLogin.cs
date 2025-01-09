@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 
-namespace Login_DAL
+namespace Login_DAL.Models
 {
     public partial class ModelPharmacyLogin : DbContext
     {
@@ -46,12 +46,6 @@ namespace Login_DAL
             modelBuilder.Entity<NHANVIEN>()
                 .HasMany(e => e.TAIKHOAN)
                 .WithRequired(e => e.NHANVIEN)
-                .HasForeignKey(e => e.MaNhanVien);
-
-            modelBuilder.Entity<NHANVIEN>()
-                .HasMany(e => e.TAIKHOAN1)
-                .WithRequired(e => e.NHANVIEN1)
-                .HasForeignKey(e => e.MaNhanVien)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<TAIKHOAN>()

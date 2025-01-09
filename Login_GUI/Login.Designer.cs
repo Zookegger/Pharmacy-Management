@@ -39,6 +39,7 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pictureBox_Logo = new System.Windows.Forms.PictureBox();
             this.checkBox_ShowPassword = new System.Windows.Forms.CheckBox();
+            this.label_SignIn = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Logo)).BeginInit();
@@ -59,7 +60,7 @@
             // txt_Username
             // 
             this.txt_Username.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_Username.Location = new System.Drawing.Point(503, 48);
+            this.txt_Username.Location = new System.Drawing.Point(504, 115);
             this.txt_Username.Name = "txt_Username";
             this.txt_Username.Size = new System.Drawing.Size(307, 28);
             this.txt_Username.TabIndex = 1;
@@ -67,7 +68,7 @@
             // txt_Password
             // 
             this.txt_Password.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_Password.Location = new System.Drawing.Point(503, 103);
+            this.txt_Password.Location = new System.Drawing.Point(504, 170);
             this.txt_Password.Name = "txt_Password";
             this.txt_Password.Size = new System.Drawing.Size(307, 28);
             this.txt_Password.TabIndex = 2;
@@ -82,7 +83,7 @@
             this.btn_Login.Appearance.Options.UseFont = true;
             this.btn_Login.Appearance.Options.UseForeColor = true;
             this.btn_Login.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_Login.ImageOptions.SvgImage")));
-            this.btn_Login.Location = new System.Drawing.Point(421, 209);
+            this.btn_Login.Location = new System.Drawing.Point(422, 276);
             this.btn_Login.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btn_Login.Name = "btn_Login";
             this.btn_Login.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
@@ -99,7 +100,7 @@
             this.btn_Exit.Appearance.Options.UseBackColor = true;
             this.btn_Exit.Appearance.Options.UseFont = true;
             this.btn_Exit.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_Exit.ImageOptions.SvgImage")));
-            this.btn_Exit.Location = new System.Drawing.Point(636, 209);
+            this.btn_Exit.Location = new System.Drawing.Point(637, 276);
             this.btn_Exit.Name = "btn_Exit";
             this.btn_Exit.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.btn_Exit.Size = new System.Drawing.Size(163, 59);
@@ -111,7 +112,7 @@
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(372, 51);
+            this.labelControl1.Location = new System.Drawing.Point(373, 118);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(119, 24);
             this.labelControl1.TabIndex = 4;
@@ -121,7 +122,7 @@
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(372, 107);
+            this.labelControl2.Location = new System.Drawing.Point(373, 174);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(81, 24);
             this.labelControl2.TabIndex = 4;
@@ -139,7 +140,7 @@
             this.panelControl1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.panelControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(341, 299);
+            this.panelControl1.Size = new System.Drawing.Size(341, 373);
             this.panelControl1.TabIndex = 5;
             // 
             // pictureBox_Logo
@@ -158,14 +159,24 @@
             this.checkBox_ShowPassword.FlatAppearance.BorderSize = 3;
             this.checkBox_ShowPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox_ShowPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.checkBox_ShowPassword.Location = new System.Drawing.Point(372, 151);
+            this.checkBox_ShowPassword.Location = new System.Drawing.Point(373, 218);
             this.checkBox_ShowPassword.Name = "checkBox_ShowPassword";
-            this.checkBox_ShowPassword.Size = new System.Drawing.Size(131, 26);
+            this.checkBox_ShowPassword.Size = new System.Drawing.Size(134, 28);
             this.checkBox_ShowPassword.TabIndex = 3;
             this.checkBox_ShowPassword.Text = "Hiển thị ký tự";
             this.checkBox_ShowPassword.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBox_ShowPassword.UseVisualStyleBackColor = false;
             this.checkBox_ShowPassword.CheckedChanged += new System.EventHandler(this.checkBox_ShowPassword_CheckedChanged);
+            // 
+            // label_SignIn
+            // 
+            this.label_SignIn.Appearance.Font = new System.Drawing.Font("Tahoma", 24.21818F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label_SignIn.Appearance.Options.UseFont = true;
+            this.label_SignIn.Location = new System.Drawing.Point(504, 30);
+            this.label_SignIn.Name = "label_SignIn";
+            this.label_SignIn.Size = new System.Drawing.Size(202, 45);
+            this.label_SignIn.TabIndex = 6;
+            this.label_SignIn.Text = "Đăng nhập";
             // 
             // frm_Login
             // 
@@ -173,7 +184,8 @@
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(849, 299);
+            this.ClientSize = new System.Drawing.Size(849, 373);
+            this.Controls.Add(this.label_SignIn);
             this.Controls.Add(this.checkBox_ShowPassword);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.labelControl2);
@@ -189,6 +201,7 @@
             this.Name = "frm_Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đăng nhập";
+            this.Load += new System.EventHandler(this.frm_Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
@@ -209,6 +222,7 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private System.Windows.Forms.PictureBox pictureBox_Logo;
         private System.Windows.Forms.CheckBox checkBox_ShowPassword;
+        private DevExpress.XtraEditors.LabelControl label_SignIn;
     }
 }
 

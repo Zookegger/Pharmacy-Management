@@ -1,4 +1,4 @@
-namespace Login_DAL
+namespace Login_DAL.Models
 {
     using System;
     using System.Collections.Generic;
@@ -13,7 +13,6 @@ namespace Login_DAL
         public NHANVIEN()
         {
             TAIKHOAN = new HashSet<TAIKHOAN>();
-            TAIKHOAN1 = new HashSet<TAIKHOAN>();
         }
 
         [Key]
@@ -59,8 +58,5 @@ namespace Login_DAL
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TAIKHOAN> TAIKHOAN { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TAIKHOAN> TAIKHOAN1 { get; set; }
     }
 }

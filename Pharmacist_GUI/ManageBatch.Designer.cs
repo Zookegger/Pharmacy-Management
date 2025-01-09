@@ -613,11 +613,21 @@
             // 
             // btn_ConfirmSelection
             // 
-            this.btn_ConfirmSelection.Location = new System.Drawing.Point(229, 7);
+            this.btn_ConfirmSelection.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Question;
+            this.btn_ConfirmSelection.Appearance.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btn_ConfirmSelection.Appearance.ForeColor = System.Drawing.Color.White;
+            this.btn_ConfirmSelection.Appearance.Options.UseBackColor = true;
+            this.btn_ConfirmSelection.Appearance.Options.UseFont = true;
+            this.btn_ConfirmSelection.Appearance.Options.UseForeColor = true;
+            this.btn_ConfirmSelection.Appearance.Options.UseTextOptions = true;
+            this.btn_ConfirmSelection.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.btn_ConfirmSelection.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.btn_ConfirmSelection.Location = new System.Drawing.Point(137, 6);
             this.btn_ConfirmSelection.Name = "btn_ConfirmSelection";
             this.btn_ConfirmSelection.Size = new System.Drawing.Size(86, 26);
             this.btn_ConfirmSelection.TabIndex = 0;
             this.btn_ConfirmSelection.Text = "Xác nhận";
+            this.btn_ConfirmSelection.Click += new System.EventHandler(this.btn_ConfirmSelection_Click);
             // 
             // txt_SearchMedicine
             // 
@@ -640,7 +650,12 @@
             // 
             // btn_Cancel
             // 
-            this.btn_Cancel.Location = new System.Drawing.Point(139, 7);
+            this.btn_Cancel.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Question;
+            this.btn_Cancel.Appearance.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btn_Cancel.Appearance.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.btn_Cancel.Appearance.Options.UseBackColor = true;
+            this.btn_Cancel.Appearance.Options.UseFont = true;
+            this.btn_Cancel.Location = new System.Drawing.Point(229, 6);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(86, 26);
             this.btn_Cancel.TabIndex = 0;

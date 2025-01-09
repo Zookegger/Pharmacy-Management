@@ -370,17 +370,22 @@ namespace Pharmacist
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
         }
-
-        private void btn_Cancel_Click(object sender, EventArgs e)
-        {
-            popupContainer_ListMedicineNames.Hide();
-        }
-
-        private void txt_SearchMedicine_TextChanged(object sender, EventArgs e)
+        private void btn_ConfirmSelection_Click(object sender, EventArgs e)
         {
             try
             {
+                System.Diagnostics.Debug.WriteLine($"Selected Item: {listBox_MedicineNames.SelectedItem}");
+                int itemIndex = listBox_MedicineNames.SelectedIndex;
+                System.Diagnostics.Debug.WriteLine($"Selected Index: {itemIndex}");
+
+
+                if (listBox_MedicineNames.SelectedItem == null || itemIndex == -1)
+                {
+                    throw new Exception("No medicine selected");
+                }
                 
+                txt_Name.Text = listBox_MedicineNames.GetItemText(itemIndex);
+                popupContainer_ListMedicineNames.Hide();
             }
             catch (Exception ex)
             {
@@ -396,5 +401,40 @@ namespace Pharmacist
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
         }
+        private void btn_Cancel_Click(object sender, EventArgs e)
+        {
+            popupContainer_ListMedicineNames.Hide();
+        }
+        private void txt_SearchMedicine_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                List<THUOC> medicines = null;
+                if (String.IsNullOrEmpty(txt_SearchMedicine.Text))
+                {
+                    medicines = medicineService.GetMedicineList();
+                } else
+                {
+                    medicines = medicineService.GetMedicineList(txt_SearchMedicine.Text);
+                }
+                listBox_MedicineNames.DataSource = medicines;
+                listBox_MedicineNames.ValueMember = "MaThuoc";
+                listBox_MedicineNames.DisplayMember = "TenThuoc";
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
+                {
+                    ShowErrorMessage(ex.ToString());
+                }
+                else
+                {
+                    ShowErrorMessage(ex.Message);
+                }
+                // Print to Output stream
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
+        }
+
     }
 }

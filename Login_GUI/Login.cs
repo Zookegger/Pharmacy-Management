@@ -146,15 +146,15 @@ namespace Login
                     {
                         case "Dược sĩ":
                             pharmacistGUI = new frm_PharmacistGUI();
-                            pharmacistGUI.FormClosed += (s, args) => this.Close();
-                            pharmacistGUI.Show();
+                            pharmacistGUI.FormClosed += (s, args) => this.Show();
                             this.Hide();
+                            pharmacistGUI.Show();
                             break;
                         case "Quản lý":
                             ManagerGUI = new frm_ManagerGUI();
-                            ManagerGUI.FormClosed += (s, args) => this.Close();
-                            ManagerGUI.Show();
+                            ManagerGUI.FormClosed += (s, args) => this.Show();
                             this.Hide();
+                            ManagerGUI.Show();
                             break;
                         case "Admin":
                             // Select Mode
@@ -168,17 +168,17 @@ namespace Login
                             if (dr == DialogResult.Yes)
                             {
                                 pharmacistGUI = new frm_PharmacistGUI();
-                                pharmacistGUI.FormClosed += (s, args) => this.Close();
-                                pharmacistGUI.Show();
+                                pharmacistGUI.FormClosed += (s, args) => this.Show();
                                 this.Hide();
+                                pharmacistGUI.Show();
                             }
                             // Open Manager GUI
                             else if (dr == DialogResult.No)
                             {
                                 ManagerGUI = new frm_ManagerGUI();
-                                ManagerGUI.FormClosed += (s, args) => this.Close();
-                                ManagerGUI.Show();
+                                ManagerGUI.FormClosed += (s, args) => this.Show();
                                 this.Hide();
+                                ManagerGUI.Show();
                             }
                             break;
                         default:
@@ -233,7 +233,7 @@ namespace Login
         {
             try
             {
-                System.Diagnostics.Debug.WriteLine($"Key Down: {e.KeyCode}");
+                //System.Diagnostics.Debug.WriteLine($"Key Down: {e.KeyCode}");
                 if (e.KeyCode == Keys.Enter)
                 {
                     Login(txt_Username.Text, txt_Password.Text);

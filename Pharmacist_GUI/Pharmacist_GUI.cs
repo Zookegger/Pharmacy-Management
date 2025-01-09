@@ -156,7 +156,9 @@ namespace Pharmacist
             // Get Result
             DialogResult dr = XtraMessageBox.Show(args);
             if (dr == DialogResult.OK)
-                Application.Exit();
+            {
+                this.Close();
+            }
         }
 
         private void LogOut_Args_Showing(object sender, XtraMessageShowingArgs e)

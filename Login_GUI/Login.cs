@@ -159,7 +159,7 @@ namespace Login
                         case "Admin":
                             // Select Mode
                             msgargs = new XtraMessageBoxArgs();
-                            msgargs.Text = "Chọn chế độ";
+                            msgargs.Text = "            Chọn chế độ";
                             msgargs.Buttons = new DialogResult[] { DialogResult.Yes, DialogResult.No, DialogResult.Cancel };
                             msgargs.Showing += Admin_Args_Showing;
 

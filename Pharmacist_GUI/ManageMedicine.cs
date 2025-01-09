@@ -133,7 +133,11 @@ namespace Pharmacist
         {
             try
             {
-                Button button = sender as Button;
+                SimpleButton button = sender as SimpleButton;
+                if (button == null)
+                {
+                    throw new NullReferenceException();
+                }
                 String id = txt_Id.Text,
                                name = txt_Name.Text,
                                dosage = txt_Dosage.Text,
@@ -246,6 +250,7 @@ namespace Pharmacist
                     default:
                         break;
                 }
+                BindGrid(medicineService.GetMedicineList());
             }
 
             catch (Exception ex)

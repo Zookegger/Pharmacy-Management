@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Login_DAL", "Login_DAL\Logi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashingPassword", "HashingPassword\HashingPassword.csproj", "{4F7FDF80-5140-4EA0-BBBC-5DE640A75DA2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manager_GUI", "Manager_GUI\Manager_GUI.csproj", "{B9D2E12E-6C08-42F9-80F4-C1D299519F78}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{4F7FDF80-5140-4EA0-BBBC-5DE640A75DA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F7FDF80-5140-4EA0-BBBC-5DE640A75DA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F7FDF80-5140-4EA0-BBBC-5DE640A75DA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9D2E12E-6C08-42F9-80F4-C1D299519F78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9D2E12E-6C08-42F9-80F4-C1D299519F78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9D2E12E-6C08-42F9-80F4-C1D299519F78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9D2E12E-6C08-42F9-80F4-C1D299519F78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -13,15 +13,17 @@ namespace Login_BUS
         private ModelPharmacyLogin loginDB = new ModelPharmacyLogin();
         private HashPassword hashPassword = new HashPassword();
 
-        public bool Login(String username, String password)
+        public bool Login(String username, String password, out string role)
         {
             var account = loginDB.TAIKHOAN.Where(x => x.TenTaiKhoan == username).FirstOrDefault();
             if (account == null)
             {
+                role = null;
                 return false;
             }
 
             bool isPasswordValid = hashPassword.Verify(password, account.MatKhau);
+            role = account.NHANVIEN.CHUCVU.TenChucVu;
             return isPasswordValid;
         }
 

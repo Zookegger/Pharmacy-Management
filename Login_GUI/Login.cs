@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using Login_BUS;
+using Manager_GUI;
 using PharmacistUI;
 using System;
 using System.Collections.Generic;
@@ -96,6 +97,36 @@ namespace Login
             e.Buttons[DialogResult.OK].Padding = new Padding(10);
         }
 
+        private void Admin_Args_Showing(object sender, XtraMessageShowingArgs e)
+        {
+            // Main form style
+            e.MessageBoxForm.StartPosition = FormStartPosition.CenterParent;
+            e.MessageBoxForm.FormBorderStyle = FormBorderStyle.None;
+            e.MessageBoxForm.Appearance.BackColor = ColorTranslator.FromHtml("#d6d6d6");
+            e.MessageBoxForm.Appearance.FontStyleDelta = FontStyle.Bold;
+            e.MessageBoxForm.Appearance.FontSizeDelta = 4;
+
+            // Text Message style
+            e.MessageBoxForm.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            e.MessageBoxForm.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+
+            // Yes button style
+            e.Buttons[DialogResult.Yes].Text = "Dược sĩ";
+            e.Buttons[DialogResult.Yes].Appearance.FontSizeDelta = 4;
+            e.Buttons[DialogResult.Yes].Appearance.FontStyleDelta = FontStyle.Bold;
+            e.Buttons[DialogResult.Yes].Padding = new Padding(10); // Vì một nguyên nhân nào đó nó set padding cho cả 2 nút thay vì chỉ set cho chính nó
+
+            // No button style
+            e.Buttons[DialogResult.No].Text = "Quản lý";
+            e.Buttons[DialogResult.No].Appearance.FontSizeDelta = 4;
+            e.Buttons[DialogResult.No].Appearance.FontStyleDelta = FontStyle.Bold;
+
+            // Cancel button style
+            e.Buttons[DialogResult.Cancel].Text = "Hủy";
+            e.Buttons[DialogResult.Cancel].Appearance.FontSizeDelta = 4;
+            e.Buttons[DialogResult.Cancel].Appearance.FontStyleDelta = FontStyle.Bold;
+        }
+
         private void btn_Login_Click(object sender, EventArgs e)
         {
             try
@@ -105,14 +136,59 @@ namespace Login
                 {
                     throw new Exception("Vui lòng nhập tên tài khoản và mật khẩu");
                 }
-
-                bool isLoginSuccess = loginServices.Login(txt_Username.Text, txt_Password.Text);
+                string role = string.Empty;
+                bool isLoginSuccess = loginServices.Login(txt_Username.Text, txt_Password.Text, out role);
                 if (isLoginSuccess)
                 {
-                    frm_PharmacistGUI pharmacistGUI = new frm_PharmacistGUI();
-                    pharmacistGUI.FormClosed += (s, args) => this.Close();
-                    pharmacistGUI.Show();
-                    this.Hide();
+                    frm_PharmacistGUI pharmacistGUI;
+                    frm_ManagerGUI ManagerGUI;
+                    XtraMessageBoxArgs msgargs;
+
+                    switch (role)
+                    {
+                        case "Dược sĩ":
+                            pharmacistGUI = new frm_PharmacistGUI();
+                            pharmacistGUI.FormClosed += (s, args) => this.Close();
+                            pharmacistGUI.Show();
+                            this.Hide();
+                            break;
+                        case "Quản lý":
+                            ManagerGUI = new frm_ManagerGUI();
+                            ManagerGUI.FormClosed += (s, args) => this.Close();
+                            ManagerGUI.Show();
+                            this.Hide();
+                            break;
+                        case "Admin":
+                            // Select Mode
+                            msgargs = new XtraMessageBoxArgs();
+                            msgargs.Text = "Chọn chế độ";
+                            msgargs.Buttons = new DialogResult[] { DialogResult.Yes, DialogResult.No, DialogResult.Cancel };
+                            msgargs.Showing += Admin_Args_Showing;
+           
+                            DialogResult dr = XtraMessageBox.Show(msgargs);
+                            if (dr == DialogResult.Yes)
+                            {
+                                pharmacistGUI = new frm_PharmacistGUI();
+                                pharmacistGUI.FormClosed += (s, args) => this.Close();
+                                pharmacistGUI.Show();
+                                this.Hide();
+                            }
+                            else if (dr == DialogResult.No)
+                            {
+                                ManagerGUI = new frm_ManagerGUI();
+                                ManagerGUI.FormClosed += (s, args) => this.Close();
+                                ManagerGUI.Show();
+                                this.Hide();
+                            }
+                            break;
+                        default:
+                            msgargs = new XtraMessageBoxArgs();
+                            msgargs.Text = "Tài khoản của bạn không có quyền truy cập";
+                            msgargs.Buttons = new DialogResult[] { DialogResult.OK };
+                            msgargs.Showing += Error_Args_Showing;
+                            XtraMessageBox.Show(msgargs);
+                            break;
+                    }
                 }
                 else
                 {

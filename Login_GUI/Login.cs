@@ -1,7 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using Login_BUS;
 using Manager_GUI;
-using PharmacistUI;
+using Pharmacist;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -127,11 +127,9 @@ namespace Login
             e.Buttons[DialogResult.Cancel].Appearance.FontStyleDelta = FontStyle.Bold;
         }
 
-        private void btn_Login_Click(object sender, EventArgs e)
+        void Login(String username, String password)
         {
-            try
-            {
-                String username = txt_Username.Text, password = txt_Password.Text;
+            try { 
                 if (String.IsNullOrEmpty(username) || String.IsNullOrEmpty(password))
                 {
                     throw new Exception("Vui lòng nhập tên tài khoản và mật khẩu");
@@ -164,7 +162,7 @@ namespace Login
                             msgargs.Text = "Chọn chế độ";
                             msgargs.Buttons = new DialogResult[] { DialogResult.Yes, DialogResult.No, DialogResult.Cancel };
                             msgargs.Showing += Admin_Args_Showing;
-           
+
                             DialogResult dr = XtraMessageBox.Show(msgargs);
                             if (dr == DialogResult.Yes)
                             {
@@ -194,7 +192,7 @@ namespace Login
                 {
                     XtraMessageBoxArgs args = new XtraMessageBoxArgs();
                     args.Text = "Tên tài khoản hoặc mật khẩu không hợp lệ";
-                    args.Buttons = new DialogResult[] { DialogResult.OK};
+                    args.Buttons = new DialogResult[] { DialogResult.OK };
                     args.Showing += Error_Args_Showing;
                     XtraMessageBox.Show(args);
                 }
@@ -209,8 +207,44 @@ namespace Login
             }
         }
 
+        private void btn_Login_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Login(txt_Username.Text, txt_Password.Text);
+            } 
+            catch (Exception ex)
+            {
+                XtraMessageBoxArgs args = new XtraMessageBoxArgs();
+                args.Text = ex.Message;
+                args.Buttons = new DialogResult[] { DialogResult.OK };
+                args.Showing += Error_Args_Showing;
+                XtraMessageBox.Show(args);
+            }
+        }
+
         private void frm_Login_Load(object sender, EventArgs e)
         {
+        }
+
+        private void btn_Login_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Debug.WriteLine($"Key Down: {e.KeyCode}");
+                if (e.KeyCode == Keys.Enter)
+                {
+                    Login(txt_Username.Text, txt_Password.Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBoxArgs args = new XtraMessageBoxArgs();
+                args.Text = ex.Message;
+                args.Buttons = new DialogResult[] { DialogResult.OK };
+                args.Showing += Error_Args_Showing;
+                XtraMessageBox.Show(args);
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace PharmacistUI
+namespace Pharmacist
 {
     internal static class Program
     {

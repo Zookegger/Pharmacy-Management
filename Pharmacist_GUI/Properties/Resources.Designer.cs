@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PharmacistUI.Properties {
+namespace Pharmacist.Properties {
     using System;
     
     

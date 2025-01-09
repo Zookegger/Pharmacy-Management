@@ -5,19 +5,17 @@ VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pharmacist_BUS", "Pharmacist_BUS\Pharmacist_BUS.csproj", "{3B1DDBA0-F35F-4BE8-AD66-CA1D8785E1EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pharmacist_DAL", "Pharmacist_DAL\Pharmacist_DAL.csproj", "{0FC82354-453C-4111-9D46-75E7F951AD3E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pharmacist_GUI", "Pharmacist_GUI\Pharmacist_GUI.csproj", "{DBF3E577-EA3F-44FA-86CE-6A79C1E2BC15}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Login_GUI", "Login_GUI\Login_GUI.csproj", "{4170C888-DCEA-4989-A67F-184B4C73BE56}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Login_BUS", "Login_BUS\Login_BUS.csproj", "{FA62A6CF-1300-4907-9CF4-4E25E90DF8C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Login_DAL", "Login_DAL\Login_DAL.csproj", "{1A9A749B-4D3C-430E-A7DE-2F24AA47FFB4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashingPassword", "HashingPassword\HashingPassword.csproj", "{4F7FDF80-5140-4EA0-BBBC-5DE640A75DA2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manager_GUI", "Manager_GUI\Manager_GUI.csproj", "{B9D2E12E-6C08-42F9-80F4-C1D299519F78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacistManagement_DAL", "PharmacistManagement_DAL\PharmacistManagement_DAL.csproj", "{043E02AA-2B3A-4FC0-9305-3C49553AD3D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +27,6 @@ Global
 		{3B1DDBA0-F35F-4BE8-AD66-CA1D8785E1EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B1DDBA0-F35F-4BE8-AD66-CA1D8785E1EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B1DDBA0-F35F-4BE8-AD66-CA1D8785E1EA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0FC82354-453C-4111-9D46-75E7F951AD3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0FC82354-453C-4111-9D46-75E7F951AD3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0FC82354-453C-4111-9D46-75E7F951AD3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0FC82354-453C-4111-9D46-75E7F951AD3E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DBF3E577-EA3F-44FA-86CE-6A79C1E2BC15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DBF3E577-EA3F-44FA-86CE-6A79C1E2BC15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBF3E577-EA3F-44FA-86CE-6A79C1E2BC15}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,10 +39,6 @@ Global
 		{FA62A6CF-1300-4907-9CF4-4E25E90DF8C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA62A6CF-1300-4907-9CF4-4E25E90DF8C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA62A6CF-1300-4907-9CF4-4E25E90DF8C1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1A9A749B-4D3C-430E-A7DE-2F24AA47FFB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A9A749B-4D3C-430E-A7DE-2F24AA47FFB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A9A749B-4D3C-430E-A7DE-2F24AA47FFB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A9A749B-4D3C-430E-A7DE-2F24AA47FFB4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4F7FDF80-5140-4EA0-BBBC-5DE640A75DA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4F7FDF80-5140-4EA0-BBBC-5DE640A75DA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F7FDF80-5140-4EA0-BBBC-5DE640A75DA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,6 +47,10 @@ Global
 		{B9D2E12E-6C08-42F9-80F4-C1D299519F78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9D2E12E-6C08-42F9-80F4-C1D299519F78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9D2E12E-6C08-42F9-80F4-C1D299519F78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{043E02AA-2B3A-4FC0-9305-3C49553AD3D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{043E02AA-2B3A-4FC0-9305-3C49553AD3D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{043E02AA-2B3A-4FC0-9305-3C49553AD3D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{043E02AA-2B3A-4FC0-9305-3C49553AD3D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

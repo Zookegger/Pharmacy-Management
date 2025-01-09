@@ -47,6 +47,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,6 +57,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\BANGLUONG.cs" />
+    <Compile Include="Model\CHITIETDONTHUOC.cs" />
+    <Compile Include="Model\CHUCVU.cs" />
+    <Compile Include="Model\DIEUCHINHKHO.cs" />
+    <Compile Include="Model\DONTHUOC.cs" />
+    <Compile Include="Model\GIAODICH.cs" />
+    <Compile Include="Model\KHACHHANG.cs" />
+    <Compile Include="Model\LOTHUOC.cs" />
+    <Compile Include="Model\ModelPharmacist.cs" />
+    <Compile Include="Model\NGUYENNHAN.cs" />
+    <Compile Include="Model\NHACUNGCAP.cs" />
+    <Compile Include="Model\NHANVIEN.cs" />
+    <Compile Include="Model\sysdiagrams.cs" />
+    <Compile Include="Model\THUOC.cs" />
+    <Compile Include="Model\TIEMTHUOCTAY.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

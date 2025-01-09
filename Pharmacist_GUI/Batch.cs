@@ -8,10 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PharmacistUI
+namespace Pharmacist
 {
     public partial class frm_EditMedicine : Form
     {
+        private MedicineService medicineService = new MedicineService();
+
         public frm_EditMedicine()
         {
             InitializeComponent();

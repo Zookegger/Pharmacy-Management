@@ -1,4 +1,4 @@
-﻿namespace PharmacistUI
+﻿namespace Pharmacist
 {
     partial class frm_ManageMedicine
     {
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_ManageMedicine));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel_Title = new System.Windows.Forms.Panel();
             this.label_TitleAdd = new System.Windows.Forms.Label();
             this.panel_Buttons = new System.Windows.Forms.Panel();
@@ -56,13 +56,13 @@
             this.txt_Dosage = new System.Windows.Forms.TextBox();
             this.label_Dosage = new DevExpress.XtraEditors.LabelControl();
             this.dgv_Medicine = new System.Windows.Forms.DataGridView();
-            this.groupControl_MedicineDatabase = new DevExpress.XtraEditors.GroupControl();
             this.MedicineID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MedicineName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PricePerUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_Dosage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupControl_MedicineDatabase = new DevExpress.XtraEditors.GroupControl();
             this.panel_Title.SuspendLayout();
             this.panel_Buttons.SuspendLayout();
             this.panel_SearchBar.SuspendLayout();
@@ -128,7 +128,7 @@
             this.labelControl_SearchMedicine.Appearance.Options.UseFont = true;
             this.labelControl_SearchMedicine.Location = new System.Drawing.Point(7, 26);
             this.labelControl_SearchMedicine.Name = "labelControl_SearchMedicine";
-            this.labelControl_SearchMedicine.Size = new System.Drawing.Size(91, 22);
+            this.labelControl_SearchMedicine.Size = new System.Drawing.Size(96, 23);
             this.labelControl_SearchMedicine.TabIndex = 9;
             this.labelControl_SearchMedicine.Text = "Tìm Thuốc:";
             // 
@@ -141,6 +141,7 @@
             this.txt_SearchBox.Name = "txt_SearchBox";
             this.txt_SearchBox.Size = new System.Drawing.Size(257, 29);
             this.txt_SearchBox.TabIndex = 6;
+            this.txt_SearchBox.TextChanged += new System.EventHandler(this.txt_SearchBox_TextChanged);
             // 
             // btn_Delete
             // 
@@ -168,6 +169,7 @@
             this.btn_Delete.TabIndex = 8;
             this.btn_Delete.Text = "  Xóa";
             this.btn_Delete.ToolTip = "Xóa thuốc hoàn toàn khỏi cơ sở dữ liệu";
+            this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
             // 
             // btn_Add
             // 
@@ -411,7 +413,7 @@
             this.panel_Description.Controls.Add(this.richtxt_Description);
             this.panel_Description.Location = new System.Drawing.Point(161, 63);
             this.panel_Description.Name = "panel_Description";
-            this.panel_Description.Size = new System.Drawing.Size(435, 84);
+            this.panel_Description.Size = new System.Drawing.Size(423, 84);
             this.panel_Description.TabIndex = 105;
             this.panel_Description.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
@@ -424,7 +426,7 @@
             this.richtxt_Description.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.12727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.richtxt_Description.Location = new System.Drawing.Point(3, 0);
             this.richtxt_Description.Name = "richtxt_Description";
-            this.richtxt_Description.Size = new System.Drawing.Size(427, 82);
+            this.richtxt_Description.Size = new System.Drawing.Size(415, 82);
             this.richtxt_Description.TabIndex = 103;
             this.richtxt_Description.Text = "";
             // 
@@ -451,7 +453,7 @@
             this.panel_Dosage.Location = new System.Drawing.Point(161, 4);
             this.panel_Dosage.Name = "panel_Dosage";
             this.panel_Dosage.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel_Dosage.Size = new System.Drawing.Size(435, 37);
+            this.panel_Dosage.Size = new System.Drawing.Size(423, 37);
             this.panel_Dosage.TabIndex = 101;
             this.panel_Dosage.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
@@ -464,7 +466,7 @@
             this.txt_Dosage.Location = new System.Drawing.Point(6, 7);
             this.txt_Dosage.Margin = new System.Windows.Forms.Padding(0);
             this.txt_Dosage.Name = "txt_Dosage";
-            this.txt_Dosage.Size = new System.Drawing.Size(424, 28);
+            this.txt_Dosage.Size = new System.Drawing.Size(412, 28);
             this.txt_Dosage.TabIndex = 1;
             this.txt_Dosage.Enter += new System.EventHandler(this.txtbox_Enter);
             this.txt_Dosage.Leave += new System.EventHandler(this.txtbox_Leave);
@@ -488,15 +490,16 @@
             this.dgv_Medicine.AllowUserToDeleteRows = false;
             this.dgv_Medicine.AllowUserToResizeColumns = false;
             this.dgv_Medicine.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_Medicine.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dgv_Medicine.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9.163636F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_Medicine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 7.2F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_Medicine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_Medicine.ColumnHeadersHeight = 50;
             this.dgv_Medicine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv_Medicine.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -516,20 +519,7 @@
             this.dgv_Medicine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_Medicine.Size = new System.Drawing.Size(1252, 431);
             this.dgv_Medicine.TabIndex = 104;
-            // 
-            // groupControl_MedicineDatabase
-            // 
-            this.groupControl_MedicineDatabase.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupControl_MedicineDatabase.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupControl_MedicineDatabase.AppearanceCaption.Options.UseFont = true;
-            this.groupControl_MedicineDatabase.Controls.Add(this.dgv_Medicine);
-            this.groupControl_MedicineDatabase.Location = new System.Drawing.Point(12, 297);
-            this.groupControl_MedicineDatabase.Name = "groupControl_MedicineDatabase";
-            this.groupControl_MedicineDatabase.Size = new System.Drawing.Size(1256, 459);
-            this.groupControl_MedicineDatabase.TabIndex = 105;
-            this.groupControl_MedicineDatabase.Text = "[Bảng Thuốc]";
+            this.dgv_Medicine.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Medicine_CellClick);
             // 
             // MedicineID
             // 
@@ -572,6 +562,20 @@
             this.col_Description.MinimumWidth = 6;
             this.col_Description.Name = "col_Description";
             this.col_Description.ReadOnly = true;
+            // 
+            // groupControl_MedicineDatabase
+            // 
+            this.groupControl_MedicineDatabase.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupControl_MedicineDatabase.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupControl_MedicineDatabase.AppearanceCaption.Options.UseFont = true;
+            this.groupControl_MedicineDatabase.Controls.Add(this.dgv_Medicine);
+            this.groupControl_MedicineDatabase.Location = new System.Drawing.Point(12, 297);
+            this.groupControl_MedicineDatabase.Name = "groupControl_MedicineDatabase";
+            this.groupControl_MedicineDatabase.Size = new System.Drawing.Size(1256, 459);
+            this.groupControl_MedicineDatabase.TabIndex = 105;
+            this.groupControl_MedicineDatabase.Text = "[Bảng Thuốc]";
             // 
             // frm_ManageMedicine
             // 

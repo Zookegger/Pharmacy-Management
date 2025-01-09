@@ -11,12 +11,12 @@ using System.Windows.Forms;
 using DevExpress.UserSkins.PharmacistUIColor;
 using DevExpress.LookAndFeel;
 using DevExpress.XtraBars.Navigation;
-using PharmacistUI;
-using PharmacistUI.Properties;
+using Pharmacist;
+using Pharmacist.Properties;
 using System.IO;
 using DevExpress.Utils.Svg;
 
-namespace PharmacistUI
+namespace Pharmacist
 {
     public partial class frm_PharmacistGUI : DevExpress.XtraEditors.XtraForm
     {

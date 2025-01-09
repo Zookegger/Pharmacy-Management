@@ -202,13 +202,13 @@
     <Content Include="lib\SkinPatch.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PharmacistManagement_DAL\PharmacistManagement_DAL.csproj">
+      <Project>{043E02AA-2B3A-4FC0-9305-3C49553AD3D8}</Project>
+      <Name>PharmacistManagement_DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Pharmacist_BUS\Pharmacist_BUS.csproj">
       <Project>{3b1ddba0-f35f-4be8-ad66-ca1d8785e1ea}</Project>
       <Name>Pharmacist_BUS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pharmacist_DAL\Pharmacist_DAL.csproj">
-      <Project>{0fc82354-453c-4111-9d46-75e7f951ad3e}</Project>
-      <Name>Pharmacist_DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

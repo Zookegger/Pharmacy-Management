@@ -1,4 +1,4 @@
-﻿namespace PharmacistUI
+﻿namespace Pharmacist
 {
     partial class frm_SellMedicine
     {

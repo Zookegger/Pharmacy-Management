@@ -2,28 +2,33 @@
 using System.Linq;
 using HashingPassword;
 using System.Data.Entity.Validation;
-using Login_DAL.Models;
 using System.Data.Entity.Migrations;
 using System.Collections.Generic;
+using PharmacistManagement_DAL.Model;
 
 namespace Login_BUS
 {
     public class LoginServices
     {
-        private ModelPharmacyLogin loginDB = new ModelPharmacyLogin();
+        private PharmacyManagementDB loginDB = new PharmacyManagementDB();
         private HashPassword hashPassword = new HashPassword();
 
         public bool Login(String username, String password, out string role)
         {
+            System.Diagnostics.Debug.WriteLine("Checking login credentials...");
+
             var account = loginDB.TAIKHOAN.Where(x => x.TenTaiKhoan == username).FirstOrDefault();
+            role = account.NHANVIEN.CHUCVU.TenChucVu;
+            System.Diagnostics.Debug.WriteLine($"Found account: {account.MaTaiKhoan}");
+            System.Diagnostics.Debug.WriteLine($"Role: {role}");
             if (account == null)
             {
                 role = null;
                 return false;
             }
-
+            System.Diagnostics.Debug.WriteLine($"Checking Password...");
             bool isPasswordValid = hashPassword.Verify(password, account.MatKhau);
-            role = account.NHANVIEN.CHUCVU.TenChucVu;
+            System.Diagnostics.Debug.WriteLine($"Password is valid: {isPasswordValid}");
             return isPasswordValid;
         }
 

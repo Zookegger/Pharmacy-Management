@@ -45,7 +45,7 @@ namespace Pharmacist
             }
             catch (Exception ex)
             {
-                if (String.IsNullOrEmpty(ex.InnerException.Message))
+                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
                 {
                     ShowErrorMessage(ex.ToString());
                 }
@@ -63,6 +63,8 @@ namespace Pharmacist
             try
             {
                 TextBox txt = sender as TextBox;
+                System.Diagnostics.Debug.WriteLine(txt);
+
                 if (txt?.Parent is Panel panel)
                 {
                     panel.Invalidate(); // Trigger a repaint of the panel when the textbox gains focus
@@ -70,7 +72,7 @@ namespace Pharmacist
             }
             catch (Exception ex)
             {
-                if (String.IsNullOrEmpty(ex.InnerException.Message))
+                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
                 {
                     ShowErrorMessage(ex.ToString());
                 }
@@ -87,6 +89,8 @@ namespace Pharmacist
             try
             {
                 TextBox txt = sender as TextBox;
+                System.Diagnostics.Debug.WriteLine(txt);
+
                 if (txt?.Parent is Panel panel)
                 {
                     panel.Invalidate(); // Trigger a repaint of the panel when the textbox loses focus
@@ -94,7 +98,7 @@ namespace Pharmacist
             }
             catch (Exception ex)
             {
-                if (String.IsNullOrEmpty(ex.InnerException.Message))
+                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
                 {
                     ShowErrorMessage(ex.ToString());
                 }
@@ -106,22 +110,69 @@ namespace Pharmacist
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
         }
+        private void btn_InsertUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
         private void btn_Delete_Click(object sender, EventArgs e)
         {
 
         }
-        private void btn_Add_Click(object sender, EventArgs e)
+        private void dgv_Batches_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
-        }
-        private void dgv_Batches_Click(object sender, EventArgs e)
-        {
-
+            try
+            {
+                txt_Id.Text = dgv_Batches.Rows[e.RowIndex].Cells[0].Value.ToString();
+                txt_Name.Text = dgv_Batches.Rows[e.RowIndex].Cells[1].Value.ToString();
+                
+                if (int.TryParse(dgv_Batches.Rows[e.RowIndex].Cells[5].Value.ToString(), out int quantity)) {
+                    numUpDown_Quantity.Value = quantity;
+                } else
+                {
+                    throw new Exception("Invalid quantity value");
+                }
+                System.Diagnostics.Debug.WriteLine($"{dgv_Batches.Rows[e.RowIndex].Cells[3].Value.ToString()} -> {Convert.ToDateTime(dgv_Batches.Rows[e.RowIndex].Cells[3].Value.ToString())}");
+                dateTimePicker_ProductionDate.Value = Convert.ToDateTime(dgv_Batches.Rows[e.RowIndex].Cells[3].Value.ToString());
+                System.Diagnostics.Debug.WriteLine($"{dgv_Batches.Rows[e.RowIndex].Cells[4].Value.ToString()} -> {Convert.ToDateTime(dgv_Batches.Rows[e.RowIndex].Cells[4].Value.ToString())}");
+                dateTimePicker_ExpirationDate.Value = Convert.ToDateTime(dgv_Batches.Rows[e.RowIndex].Cells[4].Value.ToString());
+            } 
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
+                {
+                    ShowErrorMessage(ex.ToString());
+                }
+                else
+                {
+                    ShowErrorMessage(ex.Message);
+                }
+                // Print to Output stream
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
         }
         private void frm_ManageBatch_Load(object sender, EventArgs e)
         {
             List<LOTHUOC> batches = batchService.GetBatchList();
             BindGrid(batches);
+        }
+        private void txt_SearchBar_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+            } catch (Exception ex)
+            {
+                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
+                {
+                    ShowErrorMessage(ex.ToString());
+                }
+                else
+                {
+                    ShowErrorMessage(ex.Message);
+                }
+                // Print to Output stream
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
         }
 
 
@@ -141,15 +192,31 @@ namespace Pharmacist
         }
         private void ShowMessageBox(String message, Icon icon = null) // set to = null or any default value to accept only 1 provided parameter
         {
-            XtraMessageBoxArgs args = new XtraMessageBoxArgs();
-            args.Text = message;
-            args.Buttons = new DialogResult[] { DialogResult.OK };
-            args.Showing += Error_Args_Showing;
-            if (icon != null)
+            try
             {
-                args.Icon = icon;
+                XtraMessageBoxArgs args = new XtraMessageBoxArgs();
+                args.Text = message;
+                args.Buttons = new DialogResult[] { DialogResult.OK };
+                args.Showing += Error_Args_Showing;
+                if (icon != null)
+                {
+                    args.Icon = icon;
+                }
+                XtraMessageBox.Show(args);
             }
-            XtraMessageBox.Show(args);
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
+                {
+                    ShowErrorMessage(ex.ToString());
+                }
+                else
+                {
+                    ShowErrorMessage(ex.Message);
+                }
+                // Print to Output stream
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
         }
         private void ShowErrorMessage(string errorMessage)
         {
@@ -247,7 +314,7 @@ namespace Pharmacist
             }
             catch (Exception ex)
             {
-                if (String.IsNullOrEmpty(ex.InnerException.Message))
+                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
                 {
                     ShowErrorMessage(ex.ToString());
                 }
@@ -259,24 +326,14 @@ namespace Pharmacist
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
         }
-
-        private void txt_SearchBar_TextChanged(object sender, EventArgs e)
+        private void ClearFields()
         {
-            try
-            {
-
-            } catch (Exception ex)
-            {
-                if (String.IsNullOrEmpty(ex.InnerException.Message))
-                {
-                    ShowErrorMessage(ex.ToString());
-                } else
-                {
-                    ShowErrorMessage(ex.Message);
-                }
-                // Print to Output stream
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
-            }
+            txt_Id.Text = string.Empty;
+            txt_Name.Text = string.Empty;
+            numUpDown_Quantity.Value = 0;
+            dateTimePicker_ProductionDate.Value = DateTime.Now;
+            dateTimePicker_ExpirationDate.Value = DateTime.Now;
         }
+
     }
 }

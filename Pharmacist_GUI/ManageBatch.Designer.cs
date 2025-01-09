@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.SplitContainer splitContainer;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_ManageBatch));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.btn_SearchForMedicine = new DevExpress.XtraEditors.SimpleButton();
             this.numUpDown_Quantity = new System.Windows.Forms.NumericUpDown();
             this.label_Name = new DevExpress.XtraEditors.LabelControl();
             this.panel_Name = new System.Windows.Forms.Panel();
@@ -64,7 +64,6 @@
             this.panel_Title = new System.Windows.Forms.Panel();
             this.label_TitleAdd = new System.Windows.Forms.Label();
             this.alertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
-            this.btn_SearchForMedicine = new DevExpress.XtraEditors.SimpleButton();
             splitContainer = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(splitContainer)).BeginInit();
             splitContainer.Panel1.SuspendLayout();
@@ -116,10 +115,23 @@
             splitContainer.SplitterWidth = 10;
             splitContainer.TabIndex = 103;
             // 
+            // btn_SearchForMedicine
+            // 
+            this.btn_SearchForMedicine.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_SearchForMedicine.ImageOptions.SvgImage")));
+            this.btn_SearchForMedicine.Location = new System.Drawing.Point(541, 66);
+            this.btn_SearchForMedicine.Name = "btn_SearchForMedicine";
+            this.btn_SearchForMedicine.Size = new System.Drawing.Size(41, 38);
+            this.btn_SearchForMedicine.TabIndex = 114;
+            // 
             // numUpDown_Quantity
             // 
             this.numUpDown_Quantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numUpDown_Quantity.Location = new System.Drawing.Point(132, 126);
+            this.numUpDown_Quantity.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
             this.numUpDown_Quantity.Name = "numUpDown_Quantity";
             this.numUpDown_Quantity.Size = new System.Drawing.Size(113, 31);
             this.numUpDown_Quantity.TabIndex = 113;
@@ -287,7 +299,7 @@
             this.btn_Add.TabIndex = 110;
             this.btn_Add.Text = "Thêm";
             this.btn_Add.ToolTip = "Thêm thuốc vào cơ sở dữ liệu";
-            this.btn_Add.Click += new System.EventHandler(this.btn_Add_Click);
+            this.btn_Add.Click += new System.EventHandler(this.btn_InsertUpdate_Click);
             // 
             // btn_Update
             // 
@@ -324,7 +336,7 @@
             this.btn_Update.TabIndex = 111;
             this.btn_Update.Text = " Sửa";
             this.btn_Update.ToolTip = "Cập nhật thông tin của thuốc trong cơ sở dữ liệu";
-            this.btn_Update.Click += new System.EventHandler(this.btn_Add_Click);
+            this.btn_Update.Click += new System.EventHandler(this.btn_InsertUpdate_Click);
             // 
             // dateTimePicker_ExpirationDate
             // 
@@ -337,7 +349,7 @@
             this.dateTimePicker_ExpirationDate.Location = new System.Drawing.Point(177, 72);
             this.dateTimePicker_ExpirationDate.MinDate = new System.DateTime(2001, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker_ExpirationDate.Name = "dateTimePicker_ExpirationDate";
-            this.dateTimePicker_ExpirationDate.Size = new System.Drawing.Size(331, 31);
+            this.dateTimePicker_ExpirationDate.Size = new System.Drawing.Size(319, 31);
             this.dateTimePicker_ExpirationDate.TabIndex = 109;
             // 
             // dateTimePicker_ProductionDate
@@ -350,7 +362,7 @@
             this.dateTimePicker_ProductionDate.Location = new System.Drawing.Point(177, 20);
             this.dateTimePicker_ProductionDate.MinDate = new System.DateTime(2001, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker_ProductionDate.Name = "dateTimePicker_ProductionDate";
-            this.dateTimePicker_ProductionDate.Size = new System.Drawing.Size(331, 31);
+            this.dateTimePicker_ProductionDate.Size = new System.Drawing.Size(319, 31);
             this.dateTimePicker_ProductionDate.TabIndex = 108;
             // 
             // label_ProductionDay
@@ -441,14 +453,14 @@
             this.dgv_Batches.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_Batches.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dgv_Batches.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_Batches.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 7.2F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_Batches.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_Batches.ColumnHeadersHeight = 50;
             this.dgv_Batches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv_Batches.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -463,22 +475,14 @@
             this.dgv_Batches.Location = new System.Drawing.Point(2, 26);
             this.dgv_Batches.Name = "dgv_Batches";
             this.dgv_Batches.ReadOnly = true;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_Batches.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv_Batches.RowHeadersVisible = false;
             this.dgv_Batches.RowHeadersWidth = 47;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.dgv_Batches.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dgv_Batches.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_Batches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_Batches.Size = new System.Drawing.Size(1241, 383);
             this.dgv_Batches.TabIndex = 0;
-            this.dgv_Batches.Click += new System.EventHandler(this.dgv_Batches_Click);
+            this.dgv_Batches.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Batches_CellClick);
             // 
             // col_BatchId
             // 
@@ -541,14 +545,6 @@
             this.label_TitleAdd.TabIndex = 0;
             this.label_TitleAdd.Text = " Quản Lý Lô Thuốc";
             this.label_TitleAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // btn_SearchForMedicine
-            // 
-            this.btn_SearchForMedicine.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage")));
-            this.btn_SearchForMedicine.Location = new System.Drawing.Point(541, 66);
-            this.btn_SearchForMedicine.Name = "btn_SearchForMedicine";
-            this.btn_SearchForMedicine.Size = new System.Drawing.Size(41, 38);
-            this.btn_SearchForMedicine.TabIndex = 114;
             // 
             // frm_ManageBatch
             // 

@@ -32,7 +32,7 @@ namespace Pharmacist
                 if (panel != null)
                 {
                     TextBox focusedTextBox = panel.Controls.OfType<TextBox>().FirstOrDefault(txt => txt.Focused);
-                    System.Diagnostics.Debug.WriteLine(focusedTextBox);
+                    System.Diagnostics.Debug.WriteLine($"panel_Paint: {focusedTextBox}");
                     if (focusedTextBox != null)
                     {
                         ControlPaint.DrawBorder(e.Graphics, panel.ClientRectangle, Color.DarkBlue, ButtonBorderStyle.Solid);
@@ -63,7 +63,7 @@ namespace Pharmacist
             try
             {
                 TextBox txt = sender as TextBox;
-                System.Diagnostics.Debug.WriteLine(txt);
+                System.Diagnostics.Debug.WriteLine($"txt_Enter: {txt}");
 
                 if (txt?.Parent is Panel panel)
                 {
@@ -89,7 +89,7 @@ namespace Pharmacist
             try
             {
                 TextBox txt = sender as TextBox;
-                System.Diagnostics.Debug.WriteLine(txt);
+                System.Diagnostics.Debug.WriteLine($"txt_Leave: {txt}");
 
                 if (txt?.Parent is Panel panel)
                 {
@@ -335,5 +335,66 @@ namespace Pharmacist
             dateTimePicker_ExpirationDate.Value = DateTime.Now;
         }
 
+        private void btn_SearchForMedicine_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<THUOC> medicines = medicineService.GetMedicineList();
+                if (medicines == null || medicines.Count == 0)
+                {
+                    throw new Exception("No medicine found");
+                }
+                listBox_MedicineNames.DataSource = medicines;
+                listBox_MedicineNames.ValueMember = "MaThuoc";
+                listBox_MedicineNames.DisplayMember = "TenThuoc";
+
+                // Debug
+                System.Diagnostics.Debug.WriteLine($"Medicine Found: {medicines.Count}");
+                foreach(var medicine in medicines)
+                {
+                    System.Diagnostics.Debug.WriteLine(medicine.TenThuoc);
+                }
+                popupContainer_ListMedicineNames.Show();
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
+                {
+                    ShowErrorMessage(ex.ToString());
+                }
+                else
+                {
+                    ShowErrorMessage(ex.Message);
+                }
+                // Print to Output stream
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
+        }
+
+        private void btn_Cancel_Click(object sender, EventArgs e)
+        {
+            popupContainer_ListMedicineNames.Hide();
+        }
+
+        private void txt_SearchMedicine_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
+                {
+                    ShowErrorMessage(ex.ToString());
+                }
+                else
+                {
+                    ShowErrorMessage(ex.Message);
+                }
+                // Print to Output stream
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
+        }
     }
 }

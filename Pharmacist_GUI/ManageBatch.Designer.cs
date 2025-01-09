@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.SplitContainer splitContainer;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_ManageBatch));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_SearchForMedicine = new DevExpress.XtraEditors.SimpleButton();
             this.numUpDown_Quantity = new System.Windows.Forms.NumericUpDown();
             this.label_Name = new DevExpress.XtraEditors.LabelControl();
@@ -64,6 +64,14 @@
             this.panel_Title = new System.Windows.Forms.Panel();
             this.label_TitleAdd = new System.Windows.Forms.Label();
             this.alertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
+            this.popupContainer_ListMedicineNames = new DevExpress.XtraEditors.PopupContainerControl();
+            this.listBox_MedicineNames = new DevExpress.XtraEditors.ListBoxControl();
+            this.poppanel_SearchMed = new DevExpress.XtraEditors.PanelControl();
+            this.poppanel_Buttons = new DevExpress.XtraEditors.PanelControl();
+            this.btn_ConfirmSelection = new DevExpress.XtraEditors.SimpleButton();
+            this.txt_SearchMedicine = new System.Windows.Forms.TextBox();
+            this.label_SearchName = new DevExpress.XtraEditors.LabelControl();
+            this.btn_Cancel = new DevExpress.XtraEditors.SimpleButton();
             splitContainer = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(splitContainer)).BeginInit();
             splitContainer.Panel1.SuspendLayout();
@@ -79,6 +87,13 @@
             this.groupControl_dgv.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Batches)).BeginInit();
             this.panel_Title.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.popupContainer_ListMedicineNames)).BeginInit();
+            this.popupContainer_ListMedicineNames.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listBox_MedicineNames)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.poppanel_SearchMed)).BeginInit();
+            this.poppanel_SearchMed.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.poppanel_Buttons)).BeginInit();
+            this.poppanel_Buttons.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer
@@ -117,11 +132,18 @@
             // 
             // btn_SearchForMedicine
             // 
+            this.btn_SearchForMedicine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_SearchForMedicine.AutoSize = true;
+            this.btn_SearchForMedicine.AutoWidthInLayoutControl = true;
+            this.btn_SearchForMedicine.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.TopCenter;
             this.btn_SearchForMedicine.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_SearchForMedicine.ImageOptions.SvgImage")));
-            this.btn_SearchForMedicine.Location = new System.Drawing.Point(541, 66);
+            this.btn_SearchForMedicine.Location = new System.Drawing.Point(544, 67);
+            this.btn_SearchForMedicine.MaximumSize = new System.Drawing.Size(40, 40);
+            this.btn_SearchForMedicine.MinimumSize = new System.Drawing.Size(40, 40);
             this.btn_SearchForMedicine.Name = "btn_SearchForMedicine";
-            this.btn_SearchForMedicine.Size = new System.Drawing.Size(41, 38);
+            this.btn_SearchForMedicine.Size = new System.Drawing.Size(40, 40);
             this.btn_SearchForMedicine.TabIndex = 114;
+            this.btn_SearchForMedicine.Click += new System.EventHandler(this.btn_SearchForMedicine_Click);
             // 
             // numUpDown_Quantity
             // 
@@ -453,14 +475,14 @@
             this.dgv_Batches.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_Batches.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dgv_Batches.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 7.2F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_Batches.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_Batches.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv_Batches.ColumnHeadersHeight = 50;
             this.dgv_Batches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv_Batches.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -477,8 +499,8 @@
             this.dgv_Batches.ReadOnly = true;
             this.dgv_Batches.RowHeadersVisible = false;
             this.dgv_Batches.RowHeadersWidth = 47;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.dgv_Batches.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dgv_Batches.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgv_Batches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_Batches.Size = new System.Drawing.Size(1241, 383);
             this.dgv_Batches.TabIndex = 0;
@@ -546,11 +568,91 @@
             this.label_TitleAdd.Text = " Quản Lý Lô Thuốc";
             this.label_TitleAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // popupContainer_ListMedicineNames
+            // 
+            this.popupContainer_ListMedicineNames.Controls.Add(this.listBox_MedicineNames);
+            this.popupContainer_ListMedicineNames.Controls.Add(this.poppanel_SearchMed);
+            this.popupContainer_ListMedicineNames.Controls.Add(this.poppanel_Buttons);
+            this.popupContainer_ListMedicineNames.Location = new System.Drawing.Point(256, 190);
+            this.popupContainer_ListMedicineNames.MaximumSize = new System.Drawing.Size(328, 312);
+            this.popupContainer_ListMedicineNames.MinimumSize = new System.Drawing.Size(328, 312);
+            this.popupContainer_ListMedicineNames.Name = "popupContainer_ListMedicineNames";
+            this.popupContainer_ListMedicineNames.Size = new System.Drawing.Size(328, 312);
+            this.popupContainer_ListMedicineNames.TabIndex = 115;
+            // 
+            // listBox_MedicineNames
+            // 
+            this.listBox_MedicineNames.Appearance.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.listBox_MedicineNames.Appearance.Options.UseFont = true;
+            this.listBox_MedicineNames.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBox_MedicineNames.Location = new System.Drawing.Point(0, 44);
+            this.listBox_MedicineNames.Name = "listBox_MedicineNames";
+            this.listBox_MedicineNames.Size = new System.Drawing.Size(328, 225);
+            this.listBox_MedicineNames.SortOrder = System.Windows.Forms.SortOrder.Ascending;
+            this.listBox_MedicineNames.TabIndex = 0;
+            // 
+            // poppanel_SearchMed
+            // 
+            this.poppanel_SearchMed.Controls.Add(this.label_SearchName);
+            this.poppanel_SearchMed.Controls.Add(this.txt_SearchMedicine);
+            this.poppanel_SearchMed.Dock = System.Windows.Forms.DockStyle.Top;
+            this.poppanel_SearchMed.Location = new System.Drawing.Point(0, 0);
+            this.poppanel_SearchMed.Name = "poppanel_SearchMed";
+            this.poppanel_SearchMed.Size = new System.Drawing.Size(328, 44);
+            this.poppanel_SearchMed.TabIndex = 1;
+            // 
+            // poppanel_Buttons
+            // 
+            this.poppanel_Buttons.Controls.Add(this.btn_Cancel);
+            this.poppanel_Buttons.Controls.Add(this.btn_ConfirmSelection);
+            this.poppanel_Buttons.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.poppanel_Buttons.Location = new System.Drawing.Point(0, 269);
+            this.poppanel_Buttons.Name = "poppanel_Buttons";
+            this.poppanel_Buttons.Size = new System.Drawing.Size(328, 43);
+            this.poppanel_Buttons.TabIndex = 2;
+            // 
+            // btn_ConfirmSelection
+            // 
+            this.btn_ConfirmSelection.Location = new System.Drawing.Point(229, 7);
+            this.btn_ConfirmSelection.Name = "btn_ConfirmSelection";
+            this.btn_ConfirmSelection.Size = new System.Drawing.Size(86, 26);
+            this.btn_ConfirmSelection.TabIndex = 0;
+            this.btn_ConfirmSelection.Text = "Xác nhận";
+            // 
+            // txt_SearchMedicine
+            // 
+            this.txt_SearchMedicine.Font = new System.Drawing.Font("Tahoma", 9.163636F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txt_SearchMedicine.Location = new System.Drawing.Point(151, 8);
+            this.txt_SearchMedicine.Name = "txt_SearchMedicine";
+            this.txt_SearchMedicine.Size = new System.Drawing.Size(164, 24);
+            this.txt_SearchMedicine.TabIndex = 0;
+            this.txt_SearchMedicine.TextChanged += new System.EventHandler(this.txt_SearchMedicine_TextChanged);
+            // 
+            // label_SearchName
+            // 
+            this.label_SearchName.Appearance.Font = new System.Drawing.Font("Tahoma", 9.163636F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label_SearchName.Appearance.Options.UseFont = true;
+            this.label_SearchName.Location = new System.Drawing.Point(91, 12);
+            this.label_SearchName.Name = "label_SearchName";
+            this.label_SearchName.Size = new System.Drawing.Size(54, 17);
+            this.label_SearchName.TabIndex = 1;
+            this.label_SearchName.Text = "Tìm Tên:";
+            // 
+            // btn_Cancel
+            // 
+            this.btn_Cancel.Location = new System.Drawing.Point(139, 7);
+            this.btn_Cancel.Name = "btn_Cancel";
+            this.btn_Cancel.Size = new System.Drawing.Size(86, 26);
+            this.btn_Cancel.TabIndex = 0;
+            this.btn_Cancel.Text = "Hủy";
+            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
+            // 
             // frm_ManageBatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.Controls.Add(this.popupContainer_ListMedicineNames);
             this.Controls.Add(this.panel_Buttons);
             this.Controls.Add(splitContainer);
             this.Controls.Add(this.panel_Title);
@@ -577,6 +679,14 @@
             this.groupControl_dgv.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Batches)).EndInit();
             this.panel_Title.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.popupContainer_ListMedicineNames)).EndInit();
+            this.popupContainer_ListMedicineNames.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.listBox_MedicineNames)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.poppanel_SearchMed)).EndInit();
+            this.poppanel_SearchMed.ResumeLayout(false);
+            this.poppanel_SearchMed.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.poppanel_Buttons)).EndInit();
+            this.poppanel_Buttons.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -613,5 +723,13 @@
         private System.Windows.Forms.Label label_TitleAdd;
         private DevExpress.XtraEditors.PanelControl panel_Functions;
         private DevExpress.XtraEditors.SimpleButton btn_SearchForMedicine;
+        private DevExpress.XtraEditors.PopupContainerControl popupContainer_ListMedicineNames;
+        private DevExpress.XtraEditors.ListBoxControl listBox_MedicineNames;
+        private DevExpress.XtraEditors.PanelControl poppanel_Buttons;
+        private DevExpress.XtraEditors.PanelControl poppanel_SearchMed;
+        private DevExpress.XtraEditors.SimpleButton btn_ConfirmSelection;
+        private DevExpress.XtraEditors.LabelControl label_SearchName;
+        private System.Windows.Forms.TextBox txt_SearchMedicine;
+        private DevExpress.XtraEditors.SimpleButton btn_Cancel;
     }
 }

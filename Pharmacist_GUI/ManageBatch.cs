@@ -110,9 +110,80 @@ namespace Pharmacist
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
         }
+
+        private bool AreFieldsEmpty()
+        {
+            if (String.IsNullOrEmpty(txt_Id.Text))
+            {
+                txt_Id.Focus();
+                return true;
+            }
+            if (String.IsNullOrEmpty(txt_Name.Text))
+            {
+                txt_Name.Focus();
+                return true;
+            }
+            return false;
+        }
         private void btn_InsertUpdate_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (AreFieldsEmpty())
+                {
+                    throw new Exception("Vui lòng điền đầy đủ thông tin");
+                }
+                if (sender as SimpleButton != null)
+                {
+                    if (String.IsNullOrEmpty(txt_Id.Text))
+                    {
+                        // Insert
+                        LOTHUOC batch = new LOTHUOC
+                        {
+                            MaThuoc = listBox_MedicineNames.SelectedValue.ToString(),
+                            SoLuong = Convert.ToInt32(numUpDown_Quantity.Value),
+                            NgaySanXuat = dateTimePicker_ProductionDate.Value,
+                            NgayHetHan = dateTimePicker_ExpirationDate.Value
+                        };
+                        batchService.AddOrUpdateBatch(batch);
+                        ShowMessageBox("Thêm lô thuốc thành công", GetIcon("success"));
+                    }
+                    else
+                    {
+                        // Update
+                        LOTHUOC batch = new LOTHUOC
+                        {
+                            MaLo = txt_Id.Text,
+                            MaThuoc = listBox_MedicineNames.SelectedValue.ToString(),
+                            SoLuong = Convert.ToInt32(numUpDown_Quantity.Value),
+                            NgaySanXuat = dateTimePicker_ProductionDate.Value,
+                            NgayHetHan = dateTimePicker_ExpirationDate.Value
+                        };
+                        batchService.AddOrUpdateBatch(batch);
+                        ShowMessageBox("Cập nhật lô thuốc thành công", GetIcon("success"));
+                    }
+                    List<LOTHUOC> batches = batchService.GetBatchList();
+                    BindGrid(batches);
+                    ClearFields();
+                }
+                else
+                {
+                    throw new Exception("Invalid sender type");
+                }
+            } 
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
+                {
+                    ShowErrorMessage(ex.ToString());
+                }
+                else
+                {
+                    ShowErrorMessage(ex.Message);
+                }
+                // Print to Output stream
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
         }
         private void btn_Delete_Click(object sender, EventArgs e)
         {

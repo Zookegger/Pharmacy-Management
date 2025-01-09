@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraRichEdit.Accessibility;
 using DevExpress.XtraRichEdit.Import.OpenXml;
 using PharmacistManagement_DAL.Model;
 using System;
@@ -129,6 +130,54 @@ namespace Pharmacist
                 txt_Description.Text = row.Cells[5].Value.ToString();
             }
         }
+
+        public void AddProviderToMedicine(THUOC Medicine)
+        {
+            try
+            {
+                using (PharmacyManagementDB db = new PharmacyManagementDB())
+                {
+
+                    MedicineService medicineService = new MedicineService();
+                    // Check if provider exists or batch exists
+                    List<LOTHUOC> batchList = db.LOTHUOC.ToList();
+                    var batch = batchList.FirstOrDefault(b => b.MaThuoc == Medicine.MaThuoc);
+                    // If batch exists which means provider exists then exit
+                    if (batch != null)
+                    {
+                        // Search for transaction that has the same batch and provider
+                        GIAODICH transaction = db.GIAODICH.FirstOrDefault(t => t.MaLo == batch.MaLo);
+                        System.Diagnostics.Debug.WriteLine($"Transaction: {transaction}");
+                        
+                        NHACUNGCAP provider = db.NHACUNGCAP.FirstOrDefault(p => p.MaNhaCungCap == transaction.MaNhaCungCap);
+                        System.Diagnostics.Debug.WriteLine($"Provider: {provider}");
+
+                        if (provider != null)
+                        {
+                            throw new Exception("Nhà cung cấp đã tồn tại!");
+                        }
+                    } 
+                    else
+                    {
+                        // Add new provider
+                        NHACUNGCAP newProvider = new NHACUNGCAP()
+                        {
+                            MaNhaCungCap = txt_ProviderId.Text,
+                            TenNhaCungCap = txt_ProviderName.Text,
+                            DiaChi = txt_ProviderAddress.Text,
+                            Email = txt_ProviderEmail.Text,
+                            SoDienThoai = txt_ProviderPhone.Text
+                        };
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage(ex.Message);
+            }
+        }
+
         private void btn_InsertUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -426,6 +475,31 @@ namespace Pharmacist
                 medicines = medicineService.GetMedicineList();
                 BindGrid(medicines);
             }
+        }
+
+        private void txt_SearchProvider_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+            } catch (Exception ex)
+            {
+                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
+                {
+                    ShowErrorMessage(ex.ToString());
+                }
+                else
+                {
+                    ShowErrorMessage(ex.Message);
+                }
+                // Print to Output stream
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
+        }
+
+        private void btn_InsertUpdateProvider_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

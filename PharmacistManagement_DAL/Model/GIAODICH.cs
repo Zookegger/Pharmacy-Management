@@ -10,7 +10,7 @@ namespace PharmacistManagement_DAL.Model
     public partial class GIAODICH
     {
         [Key]
-        [StringLength(10)]
+        [StringLength(11)]
         public string MaGiaoDich { get; set; }
 
         [StringLength(10)]

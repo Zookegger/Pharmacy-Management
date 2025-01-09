@@ -18,10 +18,7 @@ namespace PharmacistManagement_DAL.Model
 
         public int? Luong { get; set; }
 
-        [Column(TypeName = "timestamp")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [MaxLength(8)]
-        public byte[] LanCuoiCapNhat { get; set; }
+        public DateTime? LanCuoiCapNhat { get; set; }
 
         public virtual NHANVIEN NHANVIEN { get; set; }
     }

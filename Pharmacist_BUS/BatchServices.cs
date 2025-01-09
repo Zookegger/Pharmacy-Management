@@ -1,6 +1,7 @@
 ﻿using PharmacistManagement_DAL.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,19 +51,16 @@ namespace Pharmacist_BUS
                 transaction => transaction.NgayThucHien == date
             ).ToList();
         }
-
         public List<NHACUNGCAP> GetProviderList()
         {
             return pharmacistDB.NHACUNGCAP.ToList();
         }
-
         public GIAODICH GetTransaction(string search)
         {
             return pharmacistDB.GIAODICH.Where(
                 transaction => transaction.MaGiaoDich == search
             ).FirstOrDefault();
         }
-
         public NHACUNGCAP GetProvider(string medicineId)
         {
             return pharmacistDB.NHACUNGCAP.SqlQuery(
@@ -72,12 +70,16 @@ namespace Pharmacist_BUS
                 "WHERE NHACUNGCAP.MaNhaCungCap = (SELECT MaNhaCungCap FROM GIAODICH WHERE MaThuoc = @p0)", medicineId
             ).FirstOrDefault();
         }
-
         public NHACUNGCAP GetProvider(GIAODICH transaction)
         {
             return pharmacistDB.NHACUNGCAP.Where(
                 provider => provider.MaNhaCungCap == transaction.MaNhaCungCap
             ).FirstOrDefault();
+        }
+        public void AddOrUpdateBatch(LOTHUOC batch)
+        {
+            pharmacistDB.LOTHUOC.AddOrUpdate(batch);
+            pharmacistDB.SaveChanges();
         }
     }
 }

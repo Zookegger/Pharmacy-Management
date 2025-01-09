@@ -131,5 +131,11 @@ namespace Pharmacist
             pharmacistDB.THUOC.AddOrUpdate(medicine);
             pharmacistDB.SaveChanges();
         }
+
+        public void AddOrUpdateProvider(NHACUNGCAP provider)
+        {
+            pharmacistDB.NHACUNGCAP.AddOrUpdate(provider);
+            pharmacistDB.SaveChanges();
+        }
     }
 }

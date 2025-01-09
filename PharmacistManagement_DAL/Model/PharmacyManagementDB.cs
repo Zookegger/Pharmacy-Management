@@ -34,10 +34,6 @@ namespace PharmacistManagement_DAL.Model
                 .Property(e => e.MaNhanVien)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<BANGLUONG>()
-                .Property(e => e.LanCuoiCapNhat)
-                .IsFixedLength();
-
             modelBuilder.Entity<CHITIETDONTHUOC>()
                 .Property(e => e.MaDonThuoc)
                 .IsUnicode(false);

@@ -164,6 +164,7 @@ namespace Login
                             msgargs.Showing += Admin_Args_Showing;
 
                             DialogResult dr = XtraMessageBox.Show(msgargs);
+                            // Open Pharmacist GUI
                             if (dr == DialogResult.Yes)
                             {
                                 pharmacistGUI = new frm_PharmacistGUI();
@@ -171,6 +172,7 @@ namespace Login
                                 pharmacistGUI.Show();
                                 this.Hide();
                             }
+                            // Open Manager GUI
                             else if (dr == DialogResult.No)
                             {
                                 ManagerGUI = new frm_ManagerGUI();

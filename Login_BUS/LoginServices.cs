@@ -19,6 +19,7 @@ namespace Login_BUS
 
             var account = loginDB.TAIKHOAN.Where(x => x.TenTaiKhoan == username).FirstOrDefault();
             role = account.NHANVIEN.CHUCVU.TenChucVu;
+
             System.Diagnostics.Debug.WriteLine($"Found account: {account.MaTaiKhoan}");
             System.Diagnostics.Debug.WriteLine($"Role: {role}");
             if (account == null)

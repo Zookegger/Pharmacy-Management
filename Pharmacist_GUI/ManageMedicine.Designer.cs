@@ -33,7 +33,6 @@
             this.panel_Title = new System.Windows.Forms.Panel();
             this.label_TitleAdd = new System.Windows.Forms.Label();
             this.panel_Buttons = new System.Windows.Forms.Panel();
-            this.panel_SearchBar = new System.Windows.Forms.Panel();
             this.labelControl_SearchMedicine = new DevExpress.XtraEditors.LabelControl();
             this.txt_SearchBox = new System.Windows.Forms.TextBox();
             this.btn_Delete = new DevExpress.XtraEditors.SimpleButton();
@@ -51,7 +50,7 @@
             this.label_ID = new DevExpress.XtraEditors.LabelControl();
             this.panel_Description = new System.Windows.Forms.Panel();
             this.richtxt_Description = new System.Windows.Forms.RichTextBox();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.label_Description = new DevExpress.XtraEditors.LabelControl();
             this.panel_Dosage = new System.Windows.Forms.Panel();
             this.txt_Dosage = new System.Windows.Forms.TextBox();
             this.label_Dosage = new DevExpress.XtraEditors.LabelControl();
@@ -63,9 +62,8 @@
             this.col_Dosage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupControl_MedicineDatabase = new DevExpress.XtraEditors.GroupControl();
+            this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.panel_Title.SuspendLayout();
-            this.panel_Buttons.SuspendLayout();
-            this.panel_SearchBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -78,6 +76,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Medicine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl_MedicineDatabase)).BeginInit();
             this.groupControl_MedicineDatabase.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).BeginInit();
+            this.splitContainerControl1.Panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel2)).BeginInit();
+            this.splitContainerControl1.Panel2.SuspendLayout();
+            this.splitContainerControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_Title
@@ -102,31 +106,19 @@
             // 
             // panel_Buttons
             // 
-            this.panel_Buttons.Controls.Add(this.panel_SearchBar);
-            this.panel_Buttons.Controls.Add(this.btn_Delete);
-            this.panel_Buttons.Controls.Add(this.btn_Add);
-            this.panel_Buttons.Controls.Add(this.btn_Update);
+            this.panel_Buttons.AutoSize = true;
             this.panel_Buttons.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_Buttons.Location = new System.Drawing.Point(0, 239);
             this.panel_Buttons.Name = "panel_Buttons";
-            this.panel_Buttons.Size = new System.Drawing.Size(1280, 52);
+            this.panel_Buttons.Size = new System.Drawing.Size(1280, 0);
             this.panel_Buttons.TabIndex = 102;
-            // 
-            // panel_SearchBar
-            // 
-            this.panel_SearchBar.Controls.Add(this.labelControl_SearchMedicine);
-            this.panel_SearchBar.Controls.Add(this.txt_SearchBox);
-            this.panel_SearchBar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel_SearchBar.Location = new System.Drawing.Point(902, 0);
-            this.panel_SearchBar.Name = "panel_SearchBar";
-            this.panel_SearchBar.Size = new System.Drawing.Size(378, 52);
-            this.panel_SearchBar.TabIndex = 11;
             // 
             // labelControl_SearchMedicine
             // 
+            this.labelControl_SearchMedicine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelControl_SearchMedicine.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.labelControl_SearchMedicine.Appearance.Options.UseFont = true;
-            this.labelControl_SearchMedicine.Location = new System.Drawing.Point(7, 26);
+            this.labelControl_SearchMedicine.Location = new System.Drawing.Point(453, 30);
             this.labelControl_SearchMedicine.Name = "labelControl_SearchMedicine";
             this.labelControl_SearchMedicine.Size = new System.Drawing.Size(96, 23);
             this.labelControl_SearchMedicine.TabIndex = 9;
@@ -134,12 +126,11 @@
             // 
             // txt_SearchBox
             // 
-            this.txt_SearchBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_SearchBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_SearchBox.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_SearchBox.Location = new System.Drawing.Point(109, 20);
+            this.txt_SearchBox.Location = new System.Drawing.Point(555, 29);
             this.txt_SearchBox.Name = "txt_SearchBox";
-            this.txt_SearchBox.Size = new System.Drawing.Size(257, 29);
+            this.txt_SearchBox.Size = new System.Drawing.Size(229, 29);
             this.txt_SearchBox.TabIndex = 6;
             this.txt_SearchBox.TextChanged += new System.EventHandler(this.txt_SearchBox_TextChanged);
             // 
@@ -161,7 +152,7 @@
             this.btn_Delete.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
             this.btn_Delete.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_Delete.ImageOptions.SvgImage")));
             this.btn_Delete.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.Full;
-            this.btn_Delete.Location = new System.Drawing.Point(333, 6);
+            this.btn_Delete.Location = new System.Drawing.Point(323, 13);
             this.btn_Delete.MaximumSize = new System.Drawing.Size(141, 40);
             this.btn_Delete.MinimumSize = new System.Drawing.Size(141, 40);
             this.btn_Delete.Name = "btn_Delete";
@@ -203,7 +194,7 @@
             this.btn_Add.ImageOptions.ImageToTextIndent = 10;
             this.btn_Add.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_Add.ImageOptions.SvgImage")));
             this.btn_Add.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.Full;
-            this.btn_Add.Location = new System.Drawing.Point(22, 6);
+            this.btn_Add.Location = new System.Drawing.Point(12, 13);
             this.btn_Add.MaximumSize = new System.Drawing.Size(141, 40);
             this.btn_Add.MinimumSize = new System.Drawing.Size(141, 40);
             this.btn_Add.Name = "btn_Add";
@@ -211,7 +202,7 @@
             this.btn_Add.TabIndex = 6;
             this.btn_Add.Text = "Thêm";
             this.btn_Add.ToolTip = "Thêm thuốc vào cơ sở dữ liệu";
-            this.btn_Add.Click += new System.EventHandler(this.btn_Add_Click);
+            this.btn_Add.Click += new System.EventHandler(this.btn_InsertUpdate_Click);
             // 
             // btn_Update
             // 
@@ -239,7 +230,7 @@
             this.btn_Update.ImageOptions.ImageToTextIndent = 10;
             this.btn_Update.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_Update.ImageOptions.SvgImage")));
             this.btn_Update.ImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
-            this.btn_Update.Location = new System.Drawing.Point(177, 6);
+            this.btn_Update.Location = new System.Drawing.Point(167, 13);
             this.btn_Update.Margin = new System.Windows.Forms.Padding(0);
             this.btn_Update.MaximumSize = new System.Drawing.Size(141, 40);
             this.btn_Update.MinimumSize = new System.Drawing.Size(141, 40);
@@ -248,7 +239,7 @@
             this.btn_Update.TabIndex = 7;
             this.btn_Update.Text = " Sửa";
             this.btn_Update.ToolTip = "Cập nhật thông tin của thuốc trong cơ sở dữ liệu";
-            this.btn_Update.Click += new System.EventHandler(this.btn_Update_Click);
+            this.btn_Update.Click += new System.EventHandler(this.btn_InsertUpdate_Click);
             // 
             // splitContainer
             // 
@@ -272,7 +263,7 @@
             // 
             this.splitContainer.Panel2.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer.Panel2.Controls.Add(this.panel_Description);
-            this.splitContainer.Panel2.Controls.Add(this.labelControl1);
+            this.splitContainer.Panel2.Controls.Add(this.label_Description);
             this.splitContainer.Panel2.Controls.Add(this.panel_Dosage);
             this.splitContainer.Panel2.Controls.Add(this.label_Dosage);
             this.splitContainer.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
@@ -413,7 +404,7 @@
             this.panel_Description.Controls.Add(this.richtxt_Description);
             this.panel_Description.Location = new System.Drawing.Point(161, 63);
             this.panel_Description.Name = "panel_Description";
-            this.panel_Description.Size = new System.Drawing.Size(423, 84);
+            this.panel_Description.Size = new System.Drawing.Size(405, 84);
             this.panel_Description.TabIndex = 105;
             this.panel_Description.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
@@ -423,25 +414,26 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richtxt_Description.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richtxt_Description.DetectUrls = false;
             this.richtxt_Description.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.12727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.richtxt_Description.Location = new System.Drawing.Point(3, 0);
             this.richtxt_Description.Name = "richtxt_Description";
-            this.richtxt_Description.Size = new System.Drawing.Size(415, 82);
+            this.richtxt_Description.Size = new System.Drawing.Size(397, 82);
             this.richtxt_Description.TabIndex = 103;
             this.richtxt_Description.Text = "";
             // 
-            // labelControl1
+            // label_Description
             // 
-            this.labelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.label_Description.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(35, 81);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(47, 23);
-            this.labelControl1.TabIndex = 104;
-            this.labelControl1.Text = "Mô tả";
+            this.label_Description.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label_Description.Appearance.Options.UseFont = true;
+            this.label_Description.Location = new System.Drawing.Point(35, 81);
+            this.label_Description.Name = "label_Description";
+            this.label_Description.Size = new System.Drawing.Size(47, 23);
+            this.label_Description.TabIndex = 104;
+            this.label_Description.Text = "Mô tả";
             // 
             // panel_Dosage
             // 
@@ -453,7 +445,7 @@
             this.panel_Dosage.Location = new System.Drawing.Point(161, 4);
             this.panel_Dosage.Name = "panel_Dosage";
             this.panel_Dosage.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel_Dosage.Size = new System.Drawing.Size(423, 37);
+            this.panel_Dosage.Size = new System.Drawing.Size(405, 37);
             this.panel_Dosage.TabIndex = 101;
             this.panel_Dosage.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
@@ -466,7 +458,7 @@
             this.txt_Dosage.Location = new System.Drawing.Point(6, 7);
             this.txt_Dosage.Margin = new System.Windows.Forms.Padding(0);
             this.txt_Dosage.Name = "txt_Dosage";
-            this.txt_Dosage.Size = new System.Drawing.Size(412, 28);
+            this.txt_Dosage.Size = new System.Drawing.Size(394, 28);
             this.txt_Dosage.TabIndex = 1;
             this.txt_Dosage.Enter += new System.EventHandler(this.txtbox_Enter);
             this.txt_Dosage.Leave += new System.EventHandler(this.txtbox_Leave);
@@ -571,17 +563,41 @@
             this.groupControl_MedicineDatabase.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupControl_MedicineDatabase.AppearanceCaption.Options.UseFont = true;
             this.groupControl_MedicineDatabase.Controls.Add(this.dgv_Medicine);
-            this.groupControl_MedicineDatabase.Location = new System.Drawing.Point(12, 297);
+            this.groupControl_MedicineDatabase.Location = new System.Drawing.Point(11, 303);
             this.groupControl_MedicineDatabase.Name = "groupControl_MedicineDatabase";
             this.groupControl_MedicineDatabase.Size = new System.Drawing.Size(1256, 459);
             this.groupControl_MedicineDatabase.TabIndex = 105;
             this.groupControl_MedicineDatabase.Text = "[Bảng Thuốc]";
+            // 
+            // splitContainerControl1
+            // 
+            this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitContainerControl1.IsSplitterFixed = true;
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 239);
+            this.splitContainerControl1.Name = "splitContainerControl1";
+            // 
+            // splitContainerControl1.Panel1
+            // 
+            this.splitContainerControl1.Panel1.Controls.Add(this.btn_Add);
+            this.splitContainerControl1.Panel1.Controls.Add(this.btn_Update);
+            this.splitContainerControl1.Panel1.Controls.Add(this.btn_Delete);
+            this.splitContainerControl1.Panel1.Text = "Panel1";
+            // 
+            // splitContainerControl1.Panel2
+            // 
+            this.splitContainerControl1.Panel2.Controls.Add(this.labelControl_SearchMedicine);
+            this.splitContainerControl1.Panel2.Controls.Add(this.txt_SearchBox);
+            this.splitContainerControl1.Panel2.Text = "Panel2";
+            this.splitContainerControl1.Size = new System.Drawing.Size(1280, 64);
+            this.splitContainerControl1.SplitterPosition = 473;
+            this.splitContainerControl1.TabIndex = 10;
             // 
             // frm_ManageMedicine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 768);
+            this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.groupControl_MedicineDatabase);
             this.Controls.Add(this.panel_Buttons);
             this.Controls.Add(this.splitContainer);
@@ -591,9 +607,6 @@
             this.Text = "Quản Lý Thuốc";
             this.Load += new System.EventHandler(this.frm_AddMedicine_Load);
             this.panel_Title.ResumeLayout(false);
-            this.panel_Buttons.ResumeLayout(false);
-            this.panel_SearchBar.ResumeLayout(false);
-            this.panel_SearchBar.PerformLayout();
             this.splitContainer.Panel1.ResumeLayout(false);
             this.splitContainer.Panel1.PerformLayout();
             this.splitContainer.Panel2.ResumeLayout(false);
@@ -612,7 +625,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Medicine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl_MedicineDatabase)).EndInit();
             this.groupControl_MedicineDatabase.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).EndInit();
+            this.splitContainerControl1.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel2)).EndInit();
+            this.splitContainerControl1.Panel2.ResumeLayout(false);
+            this.splitContainerControl1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
+            this.splitContainerControl1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -629,10 +650,9 @@
         private DevExpress.XtraEditors.LabelControl label_Dosage;
         private System.Windows.Forms.Panel panel_Dosage;
         private System.Windows.Forms.TextBox txt_Dosage;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl label_Description;
         private System.Windows.Forms.RichTextBox richtxt_Description;
         private DevExpress.XtraEditors.SimpleButton btn_Delete;
-        private System.Windows.Forms.Panel panel_SearchBar;
         private DevExpress.XtraEditors.LabelControl labelControl_SearchMedicine;
         private System.Windows.Forms.TextBox txt_SearchBox;
         private System.Windows.Forms.DataGridView dgv_Medicine;
@@ -650,5 +670,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PricePerUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_Dosage;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_Description;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
     }
 }

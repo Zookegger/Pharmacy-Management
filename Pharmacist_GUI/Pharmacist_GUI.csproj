@@ -75,6 +75,7 @@
     <Reference Include="DevExpress.XtraTreeList.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeMap.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeMap.v24.1.UI, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraWizard.v24.1, Version=24.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
@@ -146,6 +147,12 @@
     <Compile Include="ManageBatch.Designer.cs">
       <DependentUpon>ManageBatch.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManageProviders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageProviders.Designer.cs">
+      <DependentUpon>ManageProviders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pharmacist_GUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManageBatch.resx">
       <DependentUpon>ManageBatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageProviders.resx">
+      <DependentUpon>ManageProviders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pharmacist_GUI.resx">
       <DependentUpon>Pharmacist_GUI.cs</DependentUpon>

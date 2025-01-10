@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit.Accessibility;
 using DevExpress.XtraRichEdit.Import.OpenXml;
+using Pharmacist;
 using PharmacistManagement_DAL.Model;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,10 @@ using System.Windows.Forms;
 
 namespace Pharmacist
 {
-    public partial class frm_ManageMedicine : Form
+    public partial class frm_ManageMedicine : DevExpress.XtraEditors.XtraForm
     {
-        private MedicineService medicineService = new MedicineService();
+        private readonly MedicineServices medicineService = new MedicineServices();
+        private readonly BatchServices batchServices = new BatchServices();
 
         public frm_ManageMedicine()
         {
@@ -128,53 +130,6 @@ namespace Pharmacist
                 txt_Dosage.Text = row.Cells[4].Value.ToString();
                 txt_PricePerUnit.Text = row.Cells[3].Value.ToString();
                 txt_Description.Text = row.Cells[5].Value.ToString();
-            }
-        }
-
-        public void AddProviderToMedicine(THUOC Medicine)
-        {
-            try
-            {
-                using (PharmacyManagementDB db = new PharmacyManagementDB())
-                {
-
-                    MedicineService medicineService = new MedicineService();
-                    // Check if provider exists or batch exists
-                    List<LOTHUOC> batchList = db.LOTHUOC.ToList();
-                    var batch = batchList.FirstOrDefault(b => b.MaThuoc == Medicine.MaThuoc);
-                    // If batch exists which means provider exists then exit
-                    if (batch != null)
-                    {
-                        // Search for transaction that has the same batch and provider
-                        GIAODICH transaction = db.GIAODICH.FirstOrDefault(t => t.MaLo == batch.MaLo);
-                        System.Diagnostics.Debug.WriteLine($"Transaction: {transaction}");
-                        
-                        NHACUNGCAP provider = db.NHACUNGCAP.FirstOrDefault(p => p.MaNhaCungCap == transaction.MaNhaCungCap);
-                        System.Diagnostics.Debug.WriteLine($"Provider: {provider}");
-
-                        if (provider != null)
-                        {
-                            throw new Exception("Nhà cung cấp đã tồn tại!");
-                        }
-                    } 
-                    else
-                    {
-                        // Add new provider
-                        NHACUNGCAP newProvider = new NHACUNGCAP()
-                        {
-                            MaNhaCungCap = txt_ProviderId.Text,
-                            TenNhaCungCap = txt_ProviderName.Text,
-                            DiaChi = txt_ProviderAddress.Text,
-                            Email = txt_ProviderEmail.Text,
-                            SoDienThoai = txt_ProviderPhone.Text
-                        };
-                        
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ShowErrorMessage(ex.Message);
             }
         }
 
@@ -318,7 +273,7 @@ namespace Pharmacist
                     if (dr == DialogResult.Yes)
                     {
 
-                        MedicineService medicineService = new MedicineService();
+                        MedicineServices medicineService = new MedicineServices();
                         medicineService.DeleteMedicineById(medicineId);
 
                         ShowMessageBox("Xóa thuốc thành công!", GetIcon("success"));
@@ -481,8 +436,14 @@ namespace Pharmacist
         {
             try
             {
-
-            } catch (Exception ex)
+                List<NHACUNGCAP> providers = batchServices.GetProviderList(txt_SearchProvider.Text);
+                if (String.IsNullOrEmpty(txt_SearchProvider.Text) || txt_SearchProvider.Text == null)
+                {
+                    providers = batchServices.GetProviderList();
+                }    
+                listBox_SelectProvider.DataSource = providers;
+            } 
+            catch (Exception ex)
             {
                 if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
                 {
@@ -499,7 +460,7 @@ namespace Pharmacist
 
         private void btn_InsertUpdateProvider_Click(object sender, EventArgs e)
         {
-
+            // Load to Provider form instead, show pass the args to this form inorder to select it
         }
     }
 }

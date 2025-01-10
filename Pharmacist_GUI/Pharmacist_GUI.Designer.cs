@@ -37,10 +37,13 @@
             this.accordionControlElement_ManageMedicine = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlSeparator4 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.accordionControlElement_EditMedicine = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement_ManageProviders = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlSeparator3 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.accordionControlElement_SellMedicine = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlSeparator1 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.accordionControlSeparator2 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.accordionControlElement_LogOut = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlSeparator5 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.accordionControlElement_UserProfile = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panel_Main = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl_SidePanel)).BeginInit();
@@ -67,21 +70,23 @@
             this.accordionControlElement_ManageMedicine,
             this.accordionControlSeparator4,
             this.accordionControlElement_EditMedicine,
+            this.accordionControlElement_ManageProviders,
             this.accordionControlSeparator3,
             this.accordionControlElement_SellMedicine,
+            this.accordionControlSeparator1,
             this.accordionControlSeparator2,
             this.accordionControlElement_LogOut,
+            this.accordionControlSeparator5,
             this.accordionControlElement_UserProfile});
             this.accordionControl_SidePanel.Location = new System.Drawing.Point(0, 0);
             this.accordionControl_SidePanel.Margin = new System.Windows.Forms.Padding(4);
             this.accordionControl_SidePanel.Name = "accordionControl_SidePanel";
             this.accordionControl_SidePanel.OptionsMinimizing.ElementHeight = 40;
-            this.accordionControl_SidePanel.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
             this.accordionControl_SidePanel.ScaleImages = DevExpress.Utils.DefaultBoolean.True;
             this.accordionControl_SidePanel.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Hidden;
             this.accordionControl_SidePanel.SelectElementMode = DevExpress.XtraBars.Navigation.SelectElementMode.MouseDown;
             this.accordionControl_SidePanel.ShowToolTips = false;
-            this.accordionControl_SidePanel.Size = new System.Drawing.Size(57, 758);
+            this.accordionControl_SidePanel.Size = new System.Drawing.Size(286, 758);
             this.accordionControl_SidePanel.TabIndex = 0;
             this.accordionControl_SidePanel.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             this.accordionControl_SidePanel.Click += new System.EventHandler(this.accordionControl_SidePanel_Click);
@@ -110,6 +115,15 @@
             this.accordionControlElement_EditMedicine.Text = "Quản Lý Lô Thuốc";
             this.accordionControlElement_EditMedicine.Click += new System.EventHandler(this.btn_SelectFunctions);
             // 
+            // accordionControlElement_ManageProviders
+            // 
+            this.accordionControlElement_ManageProviders.Height = 70;
+            this.accordionControlElement_ManageProviders.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement_ManageProviders.ImageOptions.SvgImage")));
+            this.accordionControlElement_ManageProviders.Name = "accordionControlElement_ManageProviders";
+            this.accordionControlElement_ManageProviders.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement_ManageProviders.Text = "Quản Lý Nhà Cung Cấp";
+            this.accordionControlElement_ManageProviders.Click += new System.EventHandler(this.btn_SelectFunctions);
+            // 
             // accordionControlSeparator3
             // 
             this.accordionControlSeparator3.Name = "accordionControlSeparator3";
@@ -123,6 +137,10 @@
             this.accordionControlElement_SellMedicine.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionControlElement_SellMedicine.Text = "Bán Thuốc";
             this.accordionControlElement_SellMedicine.Click += new System.EventHandler(this.btn_SelectFunctions);
+            // 
+            // accordionControlSeparator1
+            // 
+            this.accordionControlSeparator1.Name = "accordionControlSeparator1";
             // 
             // accordionControlSeparator2
             // 
@@ -141,6 +159,10 @@
             this.accordionControlElement_LogOut.SuperTip = superToolTip1;
             this.accordionControlElement_LogOut.Text = "Đăng Xuất";
             this.accordionControlElement_LogOut.Click += new System.EventHandler(this.btn_LogOut_Click);
+            // 
+            // accordionControlSeparator5
+            // 
+            this.accordionControlSeparator5.Name = "accordionControlSeparator5";
             // 
             // accordionControlElement_UserProfile
             // 
@@ -162,9 +184,9 @@
             // panel_Main
             // 
             this.panel_Main.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_Main.Location = new System.Drawing.Point(57, 0);
+            this.panel_Main.Location = new System.Drawing.Point(286, 0);
             this.panel_Main.Name = "panel_Main";
-            this.panel_Main.Size = new System.Drawing.Size(1211, 758);
+            this.panel_Main.Size = new System.Drawing.Size(982, 758);
             this.panel_Main.TabIndex = 1;
             // 
             // frm_PharmacistGUI
@@ -201,5 +223,8 @@
         private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator3;
         private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator2;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_UserProfile;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_ManageProviders;
+        private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator1;
+        private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator5;
     }
 }

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacist
 {
-    public class MedicineService
+    public class MedicineServices
     {
         private PharmacyManagementDB pharmacistDB = new PharmacyManagementDB();
         public List<THUOC> GetMedicineList()
@@ -26,6 +26,11 @@ namespace Pharmacist
                 med.MaThuoc.ToLower().Contains(search) ||
                 med.TenThuoc.ToLower().Contains(search) 
             ).ToList();
+        }
+
+        public THUOC GetMedicineByName(string name)
+        {
+            return pharmacistDB.THUOC.Where(med => med.TenThuoc == name).FirstOrDefault();
         }
 
         public THUOC GetMedicineById(string id)
@@ -131,7 +136,18 @@ namespace Pharmacist
             pharmacistDB.THUOC.AddOrUpdate(medicine);
             pharmacistDB.SaveChanges();
         }
-
+        public void UpdateMedicineQuantity(string medicineId, int newBatchQuantity)
+        {
+            THUOC medicine = pharmacistDB.THUOC.Where(med => med.MaThuoc == medicineId).FirstOrDefault();
+            if (medicine == null)
+            {
+                System.Diagnostics.Debug.WriteLine($"medicine: {medicine}");
+                throw new Exception("Không tìm thấy thuốc");
+            }
+            System.Diagnostics.Debug.WriteLine($"Found medicine: {medicine}");
+            medicine.SoLuongTon += newBatchQuantity;
+            pharmacistDB.SaveChanges();
+        }
         public void AddOrUpdateProvider(NHACUNGCAP provider)
         {
             pharmacistDB.NHACUNGCAP.AddOrUpdate(provider);

@@ -31,22 +31,22 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.SplitContainer splitContainer;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_ManageBatch));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_SearchForMedicine = new DevExpress.XtraEditors.SimpleButton();
-            this.numUpDown_Quantity = new System.Windows.Forms.NumericUpDown();
+            this.numUpDown_BatchQuantity = new System.Windows.Forms.NumericUpDown();
             this.label_Name = new DevExpress.XtraEditors.LabelControl();
             this.panel_Name = new System.Windows.Forms.Panel();
-            this.txt_Name = new System.Windows.Forms.TextBox();
+            this.txt_BatchName = new System.Windows.Forms.TextBox();
             this.label_Amount = new DevExpress.XtraEditors.LabelControl();
             this.panel_ID = new System.Windows.Forms.Panel();
-            this.txt_Id = new System.Windows.Forms.TextBox();
+            this.txt_BatchId = new System.Windows.Forms.TextBox();
             this.label_ID = new DevExpress.XtraEditors.LabelControl();
             this.btn_Delete = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Add = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Update = new DevExpress.XtraEditors.SimpleButton();
-            this.dateTimePicker_ExpirationDate = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker_ProductionDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_BatchExpirationDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_BatchProductionDate = new System.Windows.Forms.DateTimePicker();
             this.label_ProductionDay = new DevExpress.XtraEditors.LabelControl();
             this.label_ExpirationDate = new DevExpress.XtraEditors.LabelControl();
             this.panel_Buttons = new System.Windows.Forms.Panel();
@@ -67,19 +67,20 @@
             this.popupContainer_ListMedicineNames = new DevExpress.XtraEditors.PopupContainerControl();
             this.listBox_MedicineNames = new DevExpress.XtraEditors.ListBoxControl();
             this.poppanel_SearchMed = new DevExpress.XtraEditors.PanelControl();
-            this.poppanel_Buttons = new DevExpress.XtraEditors.PanelControl();
-            this.btn_ConfirmSelection = new DevExpress.XtraEditors.SimpleButton();
-            this.txt_SearchMedicine = new System.Windows.Forms.TextBox();
             this.label_SearchName = new DevExpress.XtraEditors.LabelControl();
+            this.txt_SearchMedicine = new System.Windows.Forms.TextBox();
+            this.poppanel_Buttons = new DevExpress.XtraEditors.PanelControl();
             this.btn_Cancel = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_ConfirmSelection = new DevExpress.XtraEditors.SimpleButton();
             this.popupContainerControl1 = new DevExpress.XtraEditors.PopupContainerControl();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.formAssistant1 = new DevExpress.XtraBars.FormAssistant();
             splitContainer = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(splitContainer)).BeginInit();
             splitContainer.Panel1.SuspendLayout();
             splitContainer.Panel2.SuspendLayout();
             splitContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numUpDown_Quantity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUpDown_BatchQuantity)).BeginInit();
             this.panel_Name.SuspendLayout();
             this.panel_ID.SuspendLayout();
             this.panel_Buttons.SuspendLayout();
@@ -112,7 +113,7 @@
             // 
             splitContainer.Panel1.BackColor = System.Drawing.SystemColors.Control;
             splitContainer.Panel1.Controls.Add(this.btn_SearchForMedicine);
-            splitContainer.Panel1.Controls.Add(this.numUpDown_Quantity);
+            splitContainer.Panel1.Controls.Add(this.numUpDown_BatchQuantity);
             splitContainer.Panel1.Controls.Add(this.label_Name);
             splitContainer.Panel1.Controls.Add(this.panel_Name);
             splitContainer.Panel1.Controls.Add(this.label_Amount);
@@ -125,8 +126,8 @@
             splitContainer.Panel2.Controls.Add(this.btn_Delete);
             splitContainer.Panel2.Controls.Add(this.btn_Add);
             splitContainer.Panel2.Controls.Add(this.btn_Update);
-            splitContainer.Panel2.Controls.Add(this.dateTimePicker_ExpirationDate);
-            splitContainer.Panel2.Controls.Add(this.dateTimePicker_ProductionDate);
+            splitContainer.Panel2.Controls.Add(this.dateTimePicker_BatchExpirationDate);
+            splitContainer.Panel2.Controls.Add(this.dateTimePicker_BatchProductionDate);
             splitContainer.Panel2.Controls.Add(this.label_ProductionDay);
             splitContainer.Panel2.Controls.Add(this.label_ExpirationDate);
             splitContainer.Size = new System.Drawing.Size(1280, 177);
@@ -149,18 +150,18 @@
             this.btn_SearchForMedicine.TabIndex = 114;
             this.btn_SearchForMedicine.Click += new System.EventHandler(this.btn_SearchForMedicine_Click);
             // 
-            // numUpDown_Quantity
+            // numUpDown_BatchQuantity
             // 
-            this.numUpDown_Quantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numUpDown_Quantity.Location = new System.Drawing.Point(132, 126);
-            this.numUpDown_Quantity.Maximum = new decimal(new int[] {
+            this.numUpDown_BatchQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numUpDown_BatchQuantity.Location = new System.Drawing.Point(132, 126);
+            this.numUpDown_BatchQuantity.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
-            this.numUpDown_Quantity.Name = "numUpDown_Quantity";
-            this.numUpDown_Quantity.Size = new System.Drawing.Size(113, 31);
-            this.numUpDown_Quantity.TabIndex = 113;
+            this.numUpDown_BatchQuantity.Name = "numUpDown_BatchQuantity";
+            this.numUpDown_BatchQuantity.Size = new System.Drawing.Size(113, 31);
+            this.numUpDown_BatchQuantity.TabIndex = 113;
             // 
             // label_Name
             // 
@@ -181,7 +182,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel_Name.BackColor = System.Drawing.Color.White;
             this.panel_Name.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_Name.Controls.Add(this.txt_Name);
+            this.panel_Name.Controls.Add(this.txt_BatchName);
             this.panel_Name.Location = new System.Drawing.Point(132, 67);
             this.panel_Name.Name = "panel_Name";
             this.panel_Name.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -189,19 +190,19 @@
             this.panel_Name.TabIndex = 111;
             this.panel_Name.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
-            // txt_Name
+            // txt_BatchName
             // 
-            this.txt_Name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txt_BatchName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_Name.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.70909F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_Name.Location = new System.Drawing.Point(6, 7);
-            this.txt_Name.Margin = new System.Windows.Forms.Padding(0);
-            this.txt_Name.Name = "txt_Name";
-            this.txt_Name.Size = new System.Drawing.Size(378, 28);
-            this.txt_Name.TabIndex = 1;
-            this.txt_Name.Enter += new System.EventHandler(this.txt_Enter);
-            this.txt_Name.Leave += new System.EventHandler(this.txt_Leave);
+            this.txt_BatchName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_BatchName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.70909F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txt_BatchName.Location = new System.Drawing.Point(6, 4);
+            this.txt_BatchName.Margin = new System.Windows.Forms.Padding(0);
+            this.txt_BatchName.Name = "txt_BatchName";
+            this.txt_BatchName.Size = new System.Drawing.Size(378, 28);
+            this.txt_BatchName.TabIndex = 1;
+            this.txt_BatchName.Enter += new System.EventHandler(this.txt_Enter);
+            this.txt_BatchName.Leave += new System.EventHandler(this.txt_Leave);
             // 
             // label_Amount
             // 
@@ -222,7 +223,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel_ID.BackColor = System.Drawing.Color.White;
             this.panel_ID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_ID.Controls.Add(this.txt_Id);
+            this.panel_ID.Controls.Add(this.txt_BatchId);
             this.panel_ID.Location = new System.Drawing.Point(132, 15);
             this.panel_ID.Name = "panel_ID";
             this.panel_ID.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -230,19 +231,19 @@
             this.panel_ID.TabIndex = 110;
             this.panel_ID.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
-            // txt_Id
+            // txt_BatchId
             // 
-            this.txt_Id.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txt_BatchId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_Id.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt_Id.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.70909F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_Id.Location = new System.Drawing.Point(6, 7);
-            this.txt_Id.Margin = new System.Windows.Forms.Padding(0);
-            this.txt_Id.Name = "txt_Id";
-            this.txt_Id.Size = new System.Drawing.Size(378, 28);
-            this.txt_Id.TabIndex = 0;
-            this.txt_Id.Enter += new System.EventHandler(this.txt_Enter);
-            this.txt_Id.Leave += new System.EventHandler(this.txt_Leave);
+            this.txt_BatchId.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_BatchId.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.70909F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txt_BatchId.Location = new System.Drawing.Point(6, 4);
+            this.txt_BatchId.Margin = new System.Windows.Forms.Padding(0);
+            this.txt_BatchId.Name = "txt_BatchId";
+            this.txt_BatchId.Size = new System.Drawing.Size(378, 28);
+            this.txt_BatchId.TabIndex = 0;
+            this.txt_BatchId.Enter += new System.EventHandler(this.txt_Enter);
+            this.txt_BatchId.Leave += new System.EventHandler(this.txt_Leave);
             // 
             // label_ID
             // 
@@ -364,32 +365,32 @@
             this.btn_Update.ToolTip = "Cập nhật thông tin của thuốc trong cơ sở dữ liệu";
             this.btn_Update.Click += new System.EventHandler(this.btn_InsertUpdate_Click);
             // 
-            // dateTimePicker_ExpirationDate
+            // dateTimePicker_BatchExpirationDate
             // 
-            this.dateTimePicker_ExpirationDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dateTimePicker_BatchExpirationDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker_ExpirationDate.CalendarFont = new System.Drawing.Font("Arial", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.dateTimePicker_ExpirationDate.CustomFormat = " dd/MM/yyyy";
-            this.dateTimePicker_ExpirationDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.dateTimePicker_ExpirationDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker_ExpirationDate.Location = new System.Drawing.Point(177, 72);
-            this.dateTimePicker_ExpirationDate.MinDate = new System.DateTime(2001, 1, 1, 0, 0, 0, 0);
-            this.dateTimePicker_ExpirationDate.Name = "dateTimePicker_ExpirationDate";
-            this.dateTimePicker_ExpirationDate.Size = new System.Drawing.Size(319, 31);
-            this.dateTimePicker_ExpirationDate.TabIndex = 109;
+            this.dateTimePicker_BatchExpirationDate.CalendarFont = new System.Drawing.Font("Arial", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dateTimePicker_BatchExpirationDate.CustomFormat = " dd/MM/yyyy";
+            this.dateTimePicker_BatchExpirationDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dateTimePicker_BatchExpirationDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker_BatchExpirationDate.Location = new System.Drawing.Point(177, 72);
+            this.dateTimePicker_BatchExpirationDate.MinDate = new System.DateTime(2001, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker_BatchExpirationDate.Name = "dateTimePicker_BatchExpirationDate";
+            this.dateTimePicker_BatchExpirationDate.Size = new System.Drawing.Size(295, 31);
+            this.dateTimePicker_BatchExpirationDate.TabIndex = 109;
             // 
-            // dateTimePicker_ProductionDate
+            // dateTimePicker_BatchProductionDate
             // 
-            this.dateTimePicker_ProductionDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dateTimePicker_BatchProductionDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker_ProductionDate.CustomFormat = " dd/MM/yyyy";
-            this.dateTimePicker_ProductionDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.dateTimePicker_ProductionDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker_ProductionDate.Location = new System.Drawing.Point(177, 20);
-            this.dateTimePicker_ProductionDate.MinDate = new System.DateTime(2001, 1, 1, 0, 0, 0, 0);
-            this.dateTimePicker_ProductionDate.Name = "dateTimePicker_ProductionDate";
-            this.dateTimePicker_ProductionDate.Size = new System.Drawing.Size(319, 31);
-            this.dateTimePicker_ProductionDate.TabIndex = 108;
+            this.dateTimePicker_BatchProductionDate.CustomFormat = " dd/MM/yyyy";
+            this.dateTimePicker_BatchProductionDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dateTimePicker_BatchProductionDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker_BatchProductionDate.Location = new System.Drawing.Point(177, 20);
+            this.dateTimePicker_BatchProductionDate.MinDate = new System.DateTime(2001, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker_BatchProductionDate.Name = "dateTimePicker_BatchProductionDate";
+            this.dateTimePicker_BatchProductionDate.Size = new System.Drawing.Size(295, 31);
+            this.dateTimePicker_BatchProductionDate.TabIndex = 108;
             // 
             // label_ProductionDay
             // 
@@ -479,14 +480,14 @@
             this.dgv_Batches.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_Batches.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dgv_Batches.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_Batches.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 7.2F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_Batches.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_Batches.ColumnHeadersHeight = 50;
             this.dgv_Batches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv_Batches.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -501,10 +502,12 @@
             this.dgv_Batches.Location = new System.Drawing.Point(2, 26);
             this.dgv_Batches.Name = "dgv_Batches";
             this.dgv_Batches.ReadOnly = true;
+            this.dgv_Batches.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgv_Batches.RowHeadersVisible = false;
-            this.dgv_Batches.RowHeadersWidth = 47;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.dgv_Batches.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            this.dgv_Batches.RowHeadersWidth = 50;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dgv_Batches.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgv_Batches.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Tahoma", 11.78182F);
             this.dgv_Batches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_Batches.Size = new System.Drawing.Size(1241, 383);
             this.dgv_Batches.TabIndex = 0;
@@ -594,6 +597,7 @@
             this.listBox_MedicineNames.Size = new System.Drawing.Size(328, 225);
             this.listBox_MedicineNames.SortOrder = System.Windows.Forms.SortOrder.Ascending;
             this.listBox_MedicineNames.TabIndex = 0;
+            this.listBox_MedicineNames.DoubleClick += new System.EventHandler(this.btn_ConfirmSelection_Click);
             // 
             // poppanel_SearchMed
             // 
@@ -605,6 +609,25 @@
             this.poppanel_SearchMed.Size = new System.Drawing.Size(328, 44);
             this.poppanel_SearchMed.TabIndex = 1;
             // 
+            // label_SearchName
+            // 
+            this.label_SearchName.Appearance.Font = new System.Drawing.Font("Tahoma", 9.163636F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label_SearchName.Appearance.Options.UseFont = true;
+            this.label_SearchName.Location = new System.Drawing.Point(91, 12);
+            this.label_SearchName.Name = "label_SearchName";
+            this.label_SearchName.Size = new System.Drawing.Size(54, 17);
+            this.label_SearchName.TabIndex = 1;
+            this.label_SearchName.Text = "Tìm Tên:";
+            // 
+            // txt_SearchMedicine
+            // 
+            this.txt_SearchMedicine.Font = new System.Drawing.Font("Tahoma", 9.163636F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txt_SearchMedicine.Location = new System.Drawing.Point(151, 8);
+            this.txt_SearchMedicine.Name = "txt_SearchMedicine";
+            this.txt_SearchMedicine.Size = new System.Drawing.Size(164, 24);
+            this.txt_SearchMedicine.TabIndex = 0;
+            this.txt_SearchMedicine.TextChanged += new System.EventHandler(this.txt_SearchMedicine_TextChanged);
+            // 
             // poppanel_Buttons
             // 
             this.poppanel_Buttons.Controls.Add(this.btn_Cancel);
@@ -614,6 +637,20 @@
             this.poppanel_Buttons.Name = "poppanel_Buttons";
             this.poppanel_Buttons.Size = new System.Drawing.Size(328, 43);
             this.poppanel_Buttons.TabIndex = 2;
+            // 
+            // btn_Cancel
+            // 
+            this.btn_Cancel.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Question;
+            this.btn_Cancel.Appearance.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btn_Cancel.Appearance.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.btn_Cancel.Appearance.Options.UseBackColor = true;
+            this.btn_Cancel.Appearance.Options.UseFont = true;
+            this.btn_Cancel.Location = new System.Drawing.Point(229, 6);
+            this.btn_Cancel.Name = "btn_Cancel";
+            this.btn_Cancel.Size = new System.Drawing.Size(86, 26);
+            this.btn_Cancel.TabIndex = 0;
+            this.btn_Cancel.Text = "Hủy";
+            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
             // 
             // btn_ConfirmSelection
             // 
@@ -632,39 +669,6 @@
             this.btn_ConfirmSelection.TabIndex = 0;
             this.btn_ConfirmSelection.Text = "Xác nhận";
             this.btn_ConfirmSelection.Click += new System.EventHandler(this.btn_ConfirmSelection_Click);
-            // 
-            // txt_SearchMedicine
-            // 
-            this.txt_SearchMedicine.Font = new System.Drawing.Font("Tahoma", 9.163636F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_SearchMedicine.Location = new System.Drawing.Point(151, 8);
-            this.txt_SearchMedicine.Name = "txt_SearchMedicine";
-            this.txt_SearchMedicine.Size = new System.Drawing.Size(164, 24);
-            this.txt_SearchMedicine.TabIndex = 0;
-            this.txt_SearchMedicine.TextChanged += new System.EventHandler(this.txt_SearchMedicine_TextChanged);
-            // 
-            // label_SearchName
-            // 
-            this.label_SearchName.Appearance.Font = new System.Drawing.Font("Tahoma", 9.163636F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label_SearchName.Appearance.Options.UseFont = true;
-            this.label_SearchName.Location = new System.Drawing.Point(91, 12);
-            this.label_SearchName.Name = "label_SearchName";
-            this.label_SearchName.Size = new System.Drawing.Size(54, 17);
-            this.label_SearchName.TabIndex = 1;
-            this.label_SearchName.Text = "Tìm Tên:";
-            // 
-            // btn_Cancel
-            // 
-            this.btn_Cancel.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Question;
-            this.btn_Cancel.Appearance.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btn_Cancel.Appearance.FontStyleDelta = System.Drawing.FontStyle.Bold;
-            this.btn_Cancel.Appearance.Options.UseBackColor = true;
-            this.btn_Cancel.Appearance.Options.UseFont = true;
-            this.btn_Cancel.Location = new System.Drawing.Point(229, 6);
-            this.btn_Cancel.Name = "btn_Cancel";
-            this.btn_Cancel.Size = new System.Drawing.Size(86, 26);
-            this.btn_Cancel.TabIndex = 0;
-            this.btn_Cancel.Text = "Hủy";
-            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
             // 
             // popupContainerControl1
             // 
@@ -702,7 +706,7 @@
             splitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(splitContainer)).EndInit();
             splitContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numUpDown_Quantity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUpDown_BatchQuantity)).EndInit();
             this.panel_Name.ResumeLayout(false);
             this.panel_Name.PerformLayout();
             this.panel_ID.ResumeLayout(false);
@@ -731,17 +735,17 @@
 
         #endregion
         private System.Windows.Forms.Panel panel_Buttons;
-        private System.Windows.Forms.DateTimePicker dateTimePicker_ExpirationDate;
-        private System.Windows.Forms.NumericUpDown numUpDown_Quantity;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_BatchExpirationDate;
+        private System.Windows.Forms.NumericUpDown numUpDown_BatchQuantity;
         private DevExpress.XtraEditors.LabelControl label_ProductionDay;
         private DevExpress.XtraEditors.LabelControl label_ExpirationDate;
-        private System.Windows.Forms.DateTimePicker dateTimePicker_ProductionDate;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_BatchProductionDate;
         private DevExpress.XtraEditors.LabelControl label_Name;
         private System.Windows.Forms.Panel panel_Name;
-        private System.Windows.Forms.TextBox txt_Name;
+        private System.Windows.Forms.TextBox txt_BatchName;
         private DevExpress.XtraEditors.LabelControl label_Amount;
         private System.Windows.Forms.Panel panel_ID;
-        private System.Windows.Forms.TextBox txt_Id;
+        private System.Windows.Forms.TextBox txt_BatchId;
         private DevExpress.XtraEditors.LabelControl label_ID;
         private System.Windows.Forms.Panel panel_Title;
         private DevExpress.XtraBars.Alerter.AlertControl alertControl;
@@ -771,5 +775,6 @@
         private DevExpress.XtraEditors.SimpleButton btn_Cancel;
         private DevExpress.XtraEditors.PopupContainerControl popupContainerControl1;
         private System.Windows.Forms.ComboBox comboBox1;
+        private DevExpress.XtraBars.FormAssistant formAssistant1;
     }
 }

@@ -42,7 +42,7 @@ namespace Pharmacist
                 this.Text = btn.Text.ToString();
         }
         // Initialize form cache for reopening old form instead of making a new form every single time it opens
-        private Dictionary<string, Form> formCache = new Dictionary<string, Form>();
+        private Dictionary<string, XtraForm> formCache = new Dictionary<string, XtraForm>();
         private void LoadForm(string btnName)
         {
             // If form is already open before, bring it to front instead of creating a new one
@@ -57,7 +57,7 @@ namespace Pharmacist
             }
 
             // Initialize form selector
-            Form form = null;
+            XtraForm form = null;
 
             // Select and add new form
             switch (btnName)
@@ -70,6 +70,9 @@ namespace Pharmacist
                     break;
                 case "accordionControlElement_EditMedicine":
                     form = new frm_ManageBatch();
+                    break;
+                case "accordionControlElement_ManageProviders":
+                    form = new frm_ManageProviders();
                     break;
                 default:
                     throw new Exception($"Không tìm thấy form: frm_{btnName.Substring(24)}");
@@ -125,6 +128,7 @@ namespace Pharmacist
                 // Get Selected Option
                 AccordionControlElement btn = sender as AccordionControlElement;
                 // Load corresponding form
+                System.Diagnostics.Debug.WriteLine($"Loading form: {btn.Name.ToString()}");
                 LoadForm(btn.Name.ToString());
                 // Change form's title
                 changeTitleName(btn, EventArgs.Empty);

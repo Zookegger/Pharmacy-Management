@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pharmacist_BUS
+namespace Pharmacist
 {
     public class BatchServices
     {
@@ -54,6 +54,13 @@ namespace Pharmacist_BUS
         public List<NHACUNGCAP> GetProviderList()
         {
             return pharmacistDB.NHACUNGCAP.ToList();
+        }
+        public List<NHACUNGCAP> GetProviderList(string search)
+        {
+            return pharmacistDB.NHACUNGCAP.Where(provider => 
+                provider.TenNhaCungCap == search ||
+                provider.MaNhaCungCap == search
+            ).ToList();
         }
         public GIAODICH GetTransaction(string search)
         {

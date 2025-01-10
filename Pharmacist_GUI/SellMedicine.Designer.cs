@@ -41,9 +41,11 @@
             this.splitContainerControl_MedicationInfo = new DevExpress.XtraEditors.SplitContainerControl();
             this.label_MedicineName = new DevExpress.XtraEditors.LabelControl();
             this.label_MedicineID = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.label_ProductionDate = new DevExpress.XtraEditors.LabelControl();
             this.txt_ID = new System.Windows.Forms.TextBox();
             this.txt_Name = new System.Windows.Forms.TextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker_ProductionDate = new System.Windows.Forms.DateTimePicker();
             this.label_TotalPrice = new DevExpress.XtraEditors.LabelControl();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -53,10 +55,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupControl_SellCart = new DevExpress.XtraEditors.GroupControl();
             this.panelControl_BottomCartControls = new DevExpress.XtraEditors.PanelControl();
-            this.roundedButton = new RoundedButton();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btn_Checkout = new DevExpress.XtraEditors.SimpleButton();
+            this.roundedButton = new RoundedButton();
             ((System.ComponentModel.ISupportInitialize)(this.panel_Title)).BeginInit();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_SellCart)).BeginInit();
@@ -80,7 +80,7 @@
             // 
             this.txt_SearchMediicine.Location = new System.Drawing.Point(58, 75);
             this.txt_SearchMediicine.Name = "txt_SearchMediicine";
-            this.txt_SearchMediicine.Size = new System.Drawing.Size(167, 20);
+            this.txt_SearchMediicine.Size = new System.Drawing.Size(167, 21);
             this.txt_SearchMediicine.TabIndex = 1;
             // 
             // panel_Title
@@ -115,7 +115,8 @@
             // 
             // dgv_SellCart
             // 
-            this.dgv_SellCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_SellCart.ColumnHeadersHeight = 50;
+            this.dgv_SellCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv_SellCart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_SellCart.Location = new System.Drawing.Point(2, 26);
             this.dgv_SellCart.Name = "dgv_SellCart";
@@ -248,6 +249,16 @@
             this.label_MedicineID.TabIndex = 21;
             this.label_MedicineID.Text = "ID Thuốc:";
             // 
+            // labelControl2
+            // 
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.labelControl2.Appearance.Options.UseFont = true;
+            this.labelControl2.Location = new System.Drawing.Point(35, 151);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(123, 24);
+            this.labelControl2.TabIndex = 19;
+            this.labelControl2.Text = "Ngày Hết Hạn:";
+            // 
             // label_ProductionDate
             // 
             this.label_ProductionDate.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -285,6 +296,20 @@
             this.txt_Name.ReadOnly = true;
             this.txt_Name.Size = new System.Drawing.Size(250, 28);
             this.txt_Name.TabIndex = 17;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Tahoma", 11.12727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker1.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.dateTimePicker1.Enabled = false;
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(173, 149);
+            this.dateTimePicker1.MinDate = new System.DateTime(2024, 12, 15, 0, 0, 0, 0);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(248, 28);
+            this.dateTimePicker1.TabIndex = 25;
             // 
             // dateTimePicker_ProductionDate
             // 
@@ -404,42 +429,6 @@
             this.panelControl_BottomCartControls.Size = new System.Drawing.Size(1012, 43);
             this.panelControl_BottomCartControls.TabIndex = 10;
             // 
-            // roundedButton
-            // 
-            this.roundedButton.BorderColor = System.Drawing.Color.CadetBlue;
-            this.roundedButton.BorderThickness = 1.75F;
-            this.roundedButton.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.roundedButton.CornerRadius = 20;
-            this.roundedButton.Location = new System.Drawing.Point(0, 0);
-            this.roundedButton.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.roundedButton.Name = "roundedButton";
-            this.roundedButton.Size = new System.Drawing.Size(86, 26);
-            this.roundedButton.TabIndex = 0;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Tahoma", 11.12727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker1.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.dateTimePicker1.Enabled = false;
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(173, 149);
-            this.dateTimePicker1.MinDate = new System.DateTime(2024, 12, 15, 0, 0, 0, 0);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(248, 28);
-            this.dateTimePicker1.TabIndex = 25;
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(35, 151);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(123, 24);
-            this.labelControl2.TabIndex = 19;
-            this.labelControl2.Text = "Ngày Hết Hạn:";
-            // 
             // btn_Checkout
             // 
             this.btn_Checkout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -456,6 +445,18 @@
             this.btn_Checkout.Size = new System.Drawing.Size(227, 38);
             this.btn_Checkout.TabIndex = 12;
             this.btn_Checkout.Text = "Thanh Toán";
+            // 
+            // roundedButton
+            // 
+            this.roundedButton.BorderColor = System.Drawing.Color.CadetBlue;
+            this.roundedButton.BorderThickness = 1.75F;
+            this.roundedButton.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.roundedButton.CornerRadius = 20;
+            this.roundedButton.Location = new System.Drawing.Point(0, 0);
+            this.roundedButton.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            this.roundedButton.Name = "roundedButton";
+            this.roundedButton.Size = new System.Drawing.Size(86, 26);
+            this.roundedButton.TabIndex = 0;
             // 
             // frm_SellMedicine
             // 

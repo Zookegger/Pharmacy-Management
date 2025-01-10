@@ -1,5 +1,5 @@
 ﻿using DevExpress.XtraEditors;
-using Pharmacist_BUS;
+using Pharmacist;
 using PharmacistManagement_DAL.Model;
 using System;
 using System.Collections.Generic;
@@ -14,9 +14,9 @@ using System.Windows.Forms;
 
 namespace Pharmacist
 {
-    public partial class frm_ManageBatch : Form
+    public partial class frm_ManageBatch : DevExpress.XtraEditors.XtraForm
     {
-        private MedicineService medicineService = new MedicineService();
+        private MedicineServices medicineService = new MedicineServices();
         private BatchServices batchService = new BatchServices();
         public frm_ManageBatch()
         {
@@ -24,6 +24,21 @@ namespace Pharmacist
         }
 
         /*------------------------ Event handlers ------------------------*/
+        private void HandleException(Exception ex)
+        {
+            if (ex.InnerException != null && string.IsNullOrEmpty(ex.InnerException.Message))
+            {
+                ShowErrorMessage(ex.ToString());
+            }
+            else
+            {
+                ShowErrorMessage(ex.Message);
+            }
+
+            // Print error details to the Debug output
+            System.Diagnostics.Debug.WriteLine(ex.ToString());
+        }
+
         private void panel_Paint(object sender, PaintEventArgs e)
         {
             try
@@ -45,16 +60,7 @@ namespace Pharmacist
             }
             catch (Exception ex)
             {
-                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
-                {
-                    ShowErrorMessage(ex.ToString());
-                }
-                else
-                {
-                    ShowErrorMessage(ex.Message);
-                }
-                // Print to Output stream
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                HandleException(ex);
             }
         }
         // Event handlers for textbox focus, to draw a border around the panel
@@ -72,16 +78,7 @@ namespace Pharmacist
             }
             catch (Exception ex)
             {
-                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
-                {
-                    ShowErrorMessage(ex.ToString());
-                }
-                else
-                {
-                    ShowErrorMessage(ex.Message);
-                }
-                // Print to Output stream
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                HandleException(ex);
             }
         }
         private void txt_Leave(object sender, EventArgs e)
@@ -98,91 +95,178 @@ namespace Pharmacist
             }
             catch (Exception ex)
             {
-                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
-                {
-                    ShowErrorMessage(ex.ToString());
-                }
-                else
-                {
-                    ShowErrorMessage(ex.Message);
-                }
-                // Print to Output stream
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                HandleException(ex);
             }
         }
 
         private bool AreFieldsEmpty()
         {
-            if (String.IsNullOrEmpty(txt_Id.Text))
+            if (String.IsNullOrEmpty(txt_BatchId.Text))
             {
-                txt_Id.Focus();
+                txt_BatchId.Focus();
                 return true;
             }
-            if (String.IsNullOrEmpty(txt_Name.Text))
+            if (String.IsNullOrEmpty(txt_BatchName.Text))
             {
-                txt_Name.Focus();
+                txt_BatchName.Focus();
                 return true;
             }
             return false;
         }
+
+        private void ValidateInputs(out int quantity)
+        {
+            quantity = 0;
+            // Check if values are valid
+            System.Diagnostics.Debug.WriteLine($"BatchID: {txt_BatchId.Text}");
+            if (String.IsNullOrEmpty(txt_BatchId.Text))
+            {
+                txt_BatchId.Focus();
+                throw new Exception("Chưa nhập mã lô");
+            }
+
+            System.Diagnostics.Debug.WriteLine($"Quantity: {quantity} ({int.TryParse(numUpDown_BatchQuantity.Value.ToString(), out quantity)})");
+            if (!int.TryParse(numUpDown_BatchQuantity.Value.ToString(), out quantity))
+            {
+                numUpDown_BatchQuantity.Focus();
+                throw new Exception("Số lượng không hợp lệ");
+            }
+
+            System.Diagnostics.Debug.WriteLine($"Production Date: {dateTimePicker_BatchProductionDate.Value}");
+            if (dateTimePicker_BatchProductionDate.Value > dateTimePicker_BatchExpirationDate.Value)
+            {
+                dateTimePicker_BatchProductionDate.Focus();
+                throw new Exception("Ngày sản xuất không thể sau ngày hết hạn");
+            }
+
+            System.Diagnostics.Debug.WriteLine($"Expiration Date: {dateTimePicker_BatchExpirationDate.Value}");
+            if (dateTimePicker_BatchExpirationDate.Value <= DateTime.Now)
+            {
+                dateTimePicker_BatchExpirationDate.Focus();
+                throw new Exception("Ngày hết hạn không thể trước ngày hiện tại");
+            }
+        }
+
+        private void InsertBatch(int quantity)
+        {
+            // Insert
+            String medicineId = listBox_MedicineNames.SelectedValue.ToString();
+            if (String.IsNullOrEmpty(medicineId))
+            {
+                // Validate selected medicine
+                if (String.IsNullOrEmpty(txt_BatchName.Text))
+                {
+                    System.Diagnostics.Debug.WriteLine($"Selected Medicine Name: {listBox_MedicineNames.SelectedValue}");
+                    System.Diagnostics.Debug.WriteLine($"Medicine Name in textbox: {txt_BatchName.Text}");
+                    throw new Exception("Vui lòng chọn thuốc");
+                } else
+                {
+                    medicineId = medicineService.GetMedicineByName(txt_BatchName.Text).MaThuoc;
+                }
+            }
+            
+            // Create and validate the batch object
+            var batch = new LOTHUOC
+            {
+                MaThuoc = medicineId,
+                SoLuong = quantity,
+                NgaySanXuat = dateTimePicker_BatchProductionDate.Value,
+                NgayHetHan = dateTimePicker_BatchExpirationDate.Value
+            };
+            if (batch == null)
+            {
+                System.Diagnostics.Debug.WriteLine($"Oject batch: {batch}");
+                throw new Exception($"Object batch is null");
+            }
+
+            // Add the new batch
+            batchService.AddOrUpdateBatch(batch);
+            ShowMessageBox("Thêm lô thuốc thành công", GetIcon("success"));
+        }
+
+        private void UpdateBatch(int quantity)
+        {
+            // Update
+            LOTHUOC batch = null;
+            if (listBox_MedicineNames.SelectedItems.Count > 0 && !String.IsNullOrEmpty(txt_BatchId.Text))
+            {
+                batch = new LOTHUOC{
+                    MaLo = txt_BatchId.Text,
+                    MaThuoc = listBox_MedicineNames.SelectedValue.ToString(),
+                    SoLuong = quantity,
+                    NgaySanXuat = dateTimePicker_BatchProductionDate.Value,
+                    NgayHetHan = dateTimePicker_BatchExpirationDate.Value
+                };
+            } else
+            {
+                string medicineId = medicineService.GetMedicineByName(txt_BatchName.Text).MaThuoc;
+                batch = new LOTHUOC
+                {
+                    MaLo = txt_BatchId.Text,
+                    MaThuoc = medicineId,
+                    SoLuong = quantity,
+                    NgaySanXuat = dateTimePicker_BatchProductionDate.Value,
+                    NgayHetHan = dateTimePicker_BatchExpirationDate.Value
+                };
+            }
+
+            System.Diagnostics.Debug.WriteLine($"Batch: {batch}");
+
+            batchService.AddOrUpdateBatch(batch);
+            ShowMessageBox("Cập nhật lô thuốc thành công", GetIcon("success"));
+        }
+
         private void btn_InsertUpdate_Click(object sender, EventArgs e)
         {
             try
             {
+                // Step 1: Validate if required fields are empty
                 if (AreFieldsEmpty())
                 {
                     throw new Exception("Vui lòng điền đầy đủ thông tin");
                 }
-                if (sender as SimpleButton != null)
-                {
-                    if (String.IsNullOrEmpty(txt_Id.Text))
-                    {
-                        // Insert
-                        LOTHUOC batch = new LOTHUOC
-                        {
-                            MaThuoc = listBox_MedicineNames.SelectedValue.ToString(),
-                            SoLuong = Convert.ToInt32(numUpDown_Quantity.Value),
-                            NgaySanXuat = dateTimePicker_ProductionDate.Value,
-                            NgayHetHan = dateTimePicker_ExpirationDate.Value
-                        };
-                        batchService.AddOrUpdateBatch(batch);
-                        ShowMessageBox("Thêm lô thuốc thành công", GetIcon("success"));
-                    }
-                    else
-                    {
-                        // Update
-                        LOTHUOC batch = new LOTHUOC
-                        {
-                            MaLo = txt_Id.Text,
-                            MaThuoc = listBox_MedicineNames.SelectedValue.ToString(),
-                            SoLuong = Convert.ToInt32(numUpDown_Quantity.Value),
-                            NgaySanXuat = dateTimePicker_ProductionDate.Value,
-                            NgayHetHan = dateTimePicker_ExpirationDate.Value
-                        };
-                        batchService.AddOrUpdateBatch(batch);
-                        ShowMessageBox("Cập nhật lô thuốc thành công", GetIcon("success"));
-                    }
-                    List<LOTHUOC> batches = batchService.GetBatchList();
-                    BindGrid(batches);
-                    ClearFields();
-                }
-                else
+                // Check if sender is a valid button
+                if (sender as SimpleButton == null)
                 {
                     throw new Exception("Invalid sender type");
                 }
-            } 
-            catch (Exception ex)
-            {
-                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
+
+                // Step 2: Perform input validation for batch details
+                int quantity = 0;
+                ValidateInputs(out quantity);
+
+                // Step 3: Check if this is an Insert or Update operation based on txt_Id
+                if (String.IsNullOrEmpty(txt_BatchId.Text))
                 {
-                    ShowErrorMessage(ex.ToString());
+                    InsertBatch(quantity);
                 }
                 else
                 {
-                    ShowErrorMessage(ex.Message);
+                    UpdateBatch(quantity);
                 }
-                // Print to Output stream
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+
+                string medicineId = string.Empty;
+                if (listBox_MedicineNames.SelectedItems.Count > 0 && !String.IsNullOrEmpty(txt_BatchId.Text))
+                {
+                    medicineId = listBox_MedicineNames.SelectedValue.ToString();
+                }
+                else
+                {
+                    medicineId = medicineService.GetMedicineByName(txt_BatchName.Text).MaThuoc;
+                }
+
+                // Update the quantity of the medicine
+                medicineService.UpdateMedicineQuantity(medicineId, quantity);
+
+                // Step 4: Refresh the batch list in the grid and clear input fields
+                List<LOTHUOC> batches = batchService.GetBatchList();
+                BindGrid(batches);
+                ClearFields();
+
+            } 
+            catch (Exception ex)
+            {
+                HandleException(ex);
             }
         }
         private void btn_Delete_Click(object sender, EventArgs e)
@@ -193,36 +277,29 @@ namespace Pharmacist
         {
             try
             {
-                txt_Id.Text = dgv_Batches.Rows[e.RowIndex].Cells[0].Value.ToString();
-                txt_Name.Text = dgv_Batches.Rows[e.RowIndex].Cells[1].Value.ToString();
+                txt_BatchId.Text = dgv_Batches.Rows[e.RowIndex].Cells[0].Value.ToString();
+                txt_BatchName.Text = dgv_Batches.Rows[e.RowIndex].Cells[1].Value.ToString();
                 
                 if (int.TryParse(dgv_Batches.Rows[e.RowIndex].Cells[5].Value.ToString(), out int quantity)) {
-                    numUpDown_Quantity.Value = quantity;
+                    numUpDown_BatchQuantity.Value = quantity;
                 } else
                 {
                     throw new Exception("Invalid quantity value");
                 }
                 System.Diagnostics.Debug.WriteLine($"{dgv_Batches.Rows[e.RowIndex].Cells[3].Value.ToString()} -> {Convert.ToDateTime(dgv_Batches.Rows[e.RowIndex].Cells[3].Value.ToString())}");
-                dateTimePicker_ProductionDate.Value = Convert.ToDateTime(dgv_Batches.Rows[e.RowIndex].Cells[3].Value.ToString());
+                dateTimePicker_BatchProductionDate.Value = Convert.ToDateTime(dgv_Batches.Rows[e.RowIndex].Cells[3].Value.ToString());
                 System.Diagnostics.Debug.WriteLine($"{dgv_Batches.Rows[e.RowIndex].Cells[4].Value.ToString()} -> {Convert.ToDateTime(dgv_Batches.Rows[e.RowIndex].Cells[4].Value.ToString())}");
-                dateTimePicker_ExpirationDate.Value = Convert.ToDateTime(dgv_Batches.Rows[e.RowIndex].Cells[4].Value.ToString());
+                dateTimePicker_BatchExpirationDate.Value = Convert.ToDateTime(dgv_Batches.Rows[e.RowIndex].Cells[4].Value.ToString());
             } 
             catch (Exception ex)
             {
-                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
-                {
-                    ShowErrorMessage(ex.ToString());
-                }
-                else
-                {
-                    ShowErrorMessage(ex.Message);
-                }
-                // Print to Output stream
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                HandleException(ex);
             }
         }
         private void frm_ManageBatch_Load(object sender, EventArgs e)
         {
+            dgv_Batches.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 10f, FontStyle.Bold);
+
             List<LOTHUOC> batches = batchService.GetBatchList();
             BindGrid(batches);
         }
@@ -233,16 +310,7 @@ namespace Pharmacist
 
             } catch (Exception ex)
             {
-                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
-                {
-                    ShowErrorMessage(ex.ToString());
-                }
-                else
-                {
-                    ShowErrorMessage(ex.Message);
-                }
-                // Print to Output stream
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                HandleException(ex);
             }
         }
 
@@ -277,16 +345,7 @@ namespace Pharmacist
             }
             catch (Exception ex)
             {
-                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
-                {
-                    ShowErrorMessage(ex.ToString());
-                }
-                else
-                {
-                    ShowErrorMessage(ex.Message);
-                }
-                // Print to Output stream
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                HandleException(ex);
             }
         }
         private void ShowErrorMessage(string errorMessage)
@@ -385,25 +444,16 @@ namespace Pharmacist
             }
             catch (Exception ex)
             {
-                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
-                {
-                    ShowErrorMessage(ex.ToString());
-                }
-                else
-                {
-                    ShowErrorMessage(ex.Message);
-                }
-                // Print to Output stream
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                HandleException(ex);
             }
         }
         private void ClearFields()
         {
-            txt_Id.Text = string.Empty;
-            txt_Name.Text = string.Empty;
-            numUpDown_Quantity.Value = 0;
-            dateTimePicker_ProductionDate.Value = DateTime.Now;
-            dateTimePicker_ExpirationDate.Value = DateTime.Now;
+            txt_BatchId.Text = string.Empty;
+            txt_BatchName.Text = string.Empty;
+            numUpDown_BatchQuantity.Value = 0;
+            dateTimePicker_BatchProductionDate.Value = DateTime.Now;
+            dateTimePicker_BatchExpirationDate.Value = DateTime.Now;
         }
 
         private void btn_SearchForMedicine_Click(object sender, EventArgs e)
@@ -429,16 +479,7 @@ namespace Pharmacist
             }
             catch (Exception ex)
             {
-                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
-                {
-                    ShowErrorMessage(ex.ToString());
-                }
-                else
-                {
-                    ShowErrorMessage(ex.Message);
-                }
-                // Print to Output stream
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                HandleException(ex);
             }
         }
         private void btn_ConfirmSelection_Click(object sender, EventArgs e)
@@ -455,21 +496,12 @@ namespace Pharmacist
                     throw new Exception("No medicine selected");
                 }
                 
-                txt_Name.Text = listBox_MedicineNames.GetItemText(itemIndex);
+                txt_BatchName.Text = listBox_MedicineNames.GetItemText(itemIndex);
                 popupContainer_ListMedicineNames.Hide();
             }
             catch (Exception ex)
             {
-                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
-                {
-                    ShowErrorMessage(ex.ToString());
-                }
-                else
-                {
-                    ShowErrorMessage(ex.Message);
-                }
-                // Print to Output stream
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                HandleException(ex);
             }
         }
         private void btn_Cancel_Click(object sender, EventArgs e)
@@ -494,18 +526,8 @@ namespace Pharmacist
             }
             catch (Exception ex)
             {
-                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
-                {
-                    ShowErrorMessage(ex.ToString());
-                }
-                else
-                {
-                    ShowErrorMessage(ex.Message);
-                }
-                // Print to Output stream
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                HandleException(ex);
             }
         }
-
     }
 }

@@ -41,8 +41,8 @@
             this.accordionControlElement_Bill = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement_personnel = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement4 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement_acount = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement_transaction = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement_UserProfile = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement_LogOut = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panel_Main = new System.Windows.Forms.Panel();
@@ -72,7 +72,7 @@
             this.accordionControlSeparator2,
             this.accordionControlElement1,
             this.accordionControlElement3,
-            this.accordionControlElement2,
+            this.accordionControlElement_transaction,
             this.accordionControlElement_UserProfile,
             this.accordionControlElement_LogOut});
             this.accordionControl_SidePanel.Location = new System.Drawing.Point(0, 0);
@@ -120,7 +120,7 @@
             // 
             this.accordionControlElement3.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionControlElement_personnel,
-            this.accordionControlElement4});
+            this.accordionControlElement_acount});
             this.accordionControlElement3.Expanded = true;
             this.accordionControlElement3.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement3.ImageOptions.SvgImage")));
             this.accordionControlElement3.Name = "accordionControlElement3";
@@ -135,19 +135,21 @@
             this.accordionControlElement_personnel.Text = "Nhân viên";
             this.accordionControlElement_personnel.Click += new System.EventHandler(this.btn_Personel);
             // 
-            // accordionControlElement4
+            // accordionControlElement_acount
             // 
-            this.accordionControlElement4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement4.ImageOptions.SvgImage")));
-            this.accordionControlElement4.Name = "accordionControlElement4";
-            this.accordionControlElement4.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement4.Text = "Tài khoản";
+            this.accordionControlElement_acount.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement4.ImageOptions.SvgImage")));
+            this.accordionControlElement_acount.Name = "accordionControlElement_acount";
+            this.accordionControlElement_acount.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement_acount.Text = "Tài khoản";
+            this.accordionControlElement_acount.Click += new System.EventHandler(this.btn_account);
             // 
-            // accordionControlElement2
+            // accordionControlElement_transaction
             // 
-            this.accordionControlElement2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement2.ImageOptions.SvgImage")));
-            this.accordionControlElement2.Name = "accordionControlElement2";
-            this.accordionControlElement2.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement2.Text = "Giao dịch";
+            this.accordionControlElement_transaction.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement2.ImageOptions.SvgImage")));
+            this.accordionControlElement_transaction.Name = "accordionControlElement_transaction";
+            this.accordionControlElement_transaction.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement_transaction.Text = "Giao dịch";
+            this.accordionControlElement_transaction.Click += new System.EventHandler(this.btn_transaction);
             // 
             // accordionControlElement_UserProfile
             // 
@@ -217,13 +219,13 @@
         private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator2;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement1;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_Bill;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement2;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_transaction;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_UserProfile;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_LogOut;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_personnel;
         private System.Windows.Forms.Panel panel_Main;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement3;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement4;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement_acount;
     }
 }
 

@@ -64,6 +64,12 @@ namespace Manager_GUI
                 case "accordionControlElement_personnel":
                     form = new frm_Personel();
                     break;
+                case "accordionControlElement_acount":
+                    form = new frm_Account();
+                    break;
+                case "accordionControlElement_transaction":
+                    form = new frm_Transaction();
+                    break;
                 // Add other cases here if needed
                 default:
                     throw new Exception($"Không tìm thấy form: frm_{btnName.Substring(24)}");
@@ -252,6 +258,60 @@ namespace Manager_GUI
         private void accordionControlElement3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_account(object sender, EventArgs e)
+        {
+            try
+            {
+                // Get Selected Option
+                AccordionControlElement btn = sender as AccordionControlElement;
+                // Load corresponding form
+                LoadForm(btn.Name.ToString());
+                // Change form's title
+                changeTitleName(btn, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                Icon errorIcon = null;
+                try
+                {
+                    errorIcon = GetIcon("error");
+                }
+                catch (FileNotFoundException fnfe)
+                {
+                    XtraMessageBox.Show($"Error loading icon{fnfe.Message}");
+                    errorIcon = SystemIcons.Error;
+                }
+                ShowMessageBox(ex.Message, errorIcon);
+            }
+        }
+
+        private void btn_transaction(object sender, EventArgs e)
+        {
+            try
+            {
+                // Get Selected Option
+                AccordionControlElement btn = sender as AccordionControlElement;
+                // Load corresponding form
+                LoadForm(btn.Name.ToString());
+                // Change form's title
+                changeTitleName(btn, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                Icon errorIcon = null;
+                try
+                {
+                    errorIcon = GetIcon("error");
+                }
+                catch (FileNotFoundException fnfe)
+                {
+                    XtraMessageBox.Show($"Error loading icon{fnfe.Message}");
+                    errorIcon = SystemIcons.Error;
+                }
+                ShowMessageBox(ex.Message, errorIcon);
+            }
         }
     }
 }

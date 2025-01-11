@@ -129,12 +129,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdjustBatch.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AdjustBatch.Designer.cs">
-      <DependentUpon>AdjustBatch.cs</DependentUpon>
-    </Compile>
     <Compile Include="ManageMedicine.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +164,12 @@
     <Compile Include="SellMedicine.Designer.cs">
       <DependentUpon>SellMedicine.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserProfile.Designer.cs">
+      <DependentUpon>UserProfile.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ManageMedicine.resx">
       <DependentUpon>ManageMedicine.cs</DependentUpon>
     </EmbeddedResource>
@@ -195,6 +195,9 @@
     </Compile>
     <EmbeddedResource Include="SellMedicine.resx">
       <DependentUpon>SellMedicine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserProfile.resx">
+      <DependentUpon>UserProfile.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />

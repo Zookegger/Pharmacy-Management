@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace PharmacistUI
 {
-    public partial class AdjustBatch : DevExpress.XtraEditors.XtraForm
+    public partial class frm_UserProfile : DevExpress.XtraEditors.XtraForm
     {
-        public AdjustBatch()
+        public frm_UserProfile()
         {
             InitializeComponent();
         }

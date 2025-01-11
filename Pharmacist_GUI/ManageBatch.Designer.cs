@@ -70,11 +70,17 @@
             this.label_SearchName = new DevExpress.XtraEditors.LabelControl();
             this.txt_SearchMedicine = new System.Windows.Forms.TextBox();
             this.poppanel_Buttons = new DevExpress.XtraEditors.PanelControl();
-            this.btn_Cancel = new DevExpress.XtraEditors.SimpleButton();
-            this.btn_ConfirmSelection = new DevExpress.XtraEditors.SimpleButton();
-            this.popupContainerControl1 = new DevExpress.XtraEditors.PopupContainerControl();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btn_CancelSelectionMedicine = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_ConfirmSelectionMedicine = new DevExpress.XtraEditors.SimpleButton();
             this.formAssistant1 = new DevExpress.XtraBars.FormAssistant();
+            this.popupContainer_SelectProvider = new DevExpress.XtraEditors.PopupContainerControl();
+            this.listBox_SelectProvider = new DevExpress.XtraEditors.ListBoxControl();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.btn_CancelProvider = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_ConfỉrmProviderSelection = new DevExpress.XtraEditors.SimpleButton();
+            this.panelControl_PopupTitle = new DevExpress.XtraEditors.PanelControl();
+            this.txt_SearchProvider = new System.Windows.Forms.TextBox();
+            this.label_SearchProvider = new DevExpress.XtraEditors.LabelControl();
             splitContainer = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(splitContainer)).BeginInit();
             splitContainer.Panel1.SuspendLayout();
@@ -97,8 +103,13 @@
             this.poppanel_SearchMed.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.poppanel_Buttons)).BeginInit();
             this.poppanel_Buttons.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl1)).BeginInit();
-            this.popupContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.popupContainer_SelectProvider)).BeginInit();
+            this.popupContainer_SelectProvider.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listBox_SelectProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl_PopupTitle)).BeginInit();
+            this.panelControl_PopupTitle.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer
@@ -376,7 +387,7 @@
             this.dateTimePicker_BatchExpirationDate.Location = new System.Drawing.Point(177, 72);
             this.dateTimePicker_BatchExpirationDate.MinDate = new System.DateTime(2001, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker_BatchExpirationDate.Name = "dateTimePicker_BatchExpirationDate";
-            this.dateTimePicker_BatchExpirationDate.Size = new System.Drawing.Size(295, 31);
+            this.dateTimePicker_BatchExpirationDate.Size = new System.Drawing.Size(283, 31);
             this.dateTimePicker_BatchExpirationDate.TabIndex = 109;
             // 
             // dateTimePicker_BatchProductionDate
@@ -389,7 +400,7 @@
             this.dateTimePicker_BatchProductionDate.Location = new System.Drawing.Point(177, 20);
             this.dateTimePicker_BatchProductionDate.MinDate = new System.DateTime(2001, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker_BatchProductionDate.Name = "dateTimePicker_BatchProductionDate";
-            this.dateTimePicker_BatchProductionDate.Size = new System.Drawing.Size(295, 31);
+            this.dateTimePicker_BatchProductionDate.Size = new System.Drawing.Size(283, 31);
             this.dateTimePicker_BatchProductionDate.TabIndex = 108;
             // 
             // label_ProductionDay
@@ -630,68 +641,133 @@
             // 
             // poppanel_Buttons
             // 
-            this.poppanel_Buttons.Controls.Add(this.btn_Cancel);
-            this.poppanel_Buttons.Controls.Add(this.btn_ConfirmSelection);
+            this.poppanel_Buttons.Controls.Add(this.btn_CancelSelectionMedicine);
+            this.poppanel_Buttons.Controls.Add(this.btn_ConfirmSelectionMedicine);
             this.poppanel_Buttons.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.poppanel_Buttons.Location = new System.Drawing.Point(0, 269);
             this.poppanel_Buttons.Name = "poppanel_Buttons";
             this.poppanel_Buttons.Size = new System.Drawing.Size(328, 43);
             this.poppanel_Buttons.TabIndex = 2;
             // 
-            // btn_Cancel
+            // btn_CancelSelectionMedicine
             // 
-            this.btn_Cancel.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Question;
-            this.btn_Cancel.Appearance.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btn_Cancel.Appearance.FontStyleDelta = System.Drawing.FontStyle.Bold;
-            this.btn_Cancel.Appearance.Options.UseBackColor = true;
-            this.btn_Cancel.Appearance.Options.UseFont = true;
-            this.btn_Cancel.Location = new System.Drawing.Point(229, 6);
-            this.btn_Cancel.Name = "btn_Cancel";
-            this.btn_Cancel.Size = new System.Drawing.Size(86, 26);
-            this.btn_Cancel.TabIndex = 0;
-            this.btn_Cancel.Text = "Hủy";
-            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
+            this.btn_CancelSelectionMedicine.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Question;
+            this.btn_CancelSelectionMedicine.Appearance.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btn_CancelSelectionMedicine.Appearance.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.btn_CancelSelectionMedicine.Appearance.Options.UseBackColor = true;
+            this.btn_CancelSelectionMedicine.Appearance.Options.UseFont = true;
+            this.btn_CancelSelectionMedicine.Location = new System.Drawing.Point(229, 6);
+            this.btn_CancelSelectionMedicine.Name = "btn_CancelSelectionMedicine";
+            this.btn_CancelSelectionMedicine.Size = new System.Drawing.Size(86, 26);
+            this.btn_CancelSelectionMedicine.TabIndex = 0;
+            this.btn_CancelSelectionMedicine.Text = "Hủy";
+            this.btn_CancelSelectionMedicine.Click += new System.EventHandler(this.btn_Cancel_Click);
             // 
-            // btn_ConfirmSelection
+            // btn_ConfirmSelectionMedicine
             // 
-            this.btn_ConfirmSelection.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Question;
-            this.btn_ConfirmSelection.Appearance.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btn_ConfirmSelection.Appearance.ForeColor = System.Drawing.Color.White;
-            this.btn_ConfirmSelection.Appearance.Options.UseBackColor = true;
-            this.btn_ConfirmSelection.Appearance.Options.UseFont = true;
-            this.btn_ConfirmSelection.Appearance.Options.UseForeColor = true;
-            this.btn_ConfirmSelection.Appearance.Options.UseTextOptions = true;
-            this.btn_ConfirmSelection.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.btn_ConfirmSelection.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.btn_ConfirmSelection.Location = new System.Drawing.Point(137, 6);
-            this.btn_ConfirmSelection.Name = "btn_ConfirmSelection";
-            this.btn_ConfirmSelection.Size = new System.Drawing.Size(86, 26);
-            this.btn_ConfirmSelection.TabIndex = 0;
-            this.btn_ConfirmSelection.Text = "Xác nhận";
-            this.btn_ConfirmSelection.Click += new System.EventHandler(this.btn_ConfirmSelection_Click);
+            this.btn_ConfirmSelectionMedicine.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Question;
+            this.btn_ConfirmSelectionMedicine.Appearance.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btn_ConfirmSelectionMedicine.Appearance.ForeColor = System.Drawing.Color.White;
+            this.btn_ConfirmSelectionMedicine.Appearance.Options.UseBackColor = true;
+            this.btn_ConfirmSelectionMedicine.Appearance.Options.UseFont = true;
+            this.btn_ConfirmSelectionMedicine.Appearance.Options.UseForeColor = true;
+            this.btn_ConfirmSelectionMedicine.Appearance.Options.UseTextOptions = true;
+            this.btn_ConfirmSelectionMedicine.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.btn_ConfirmSelectionMedicine.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.btn_ConfirmSelectionMedicine.Location = new System.Drawing.Point(137, 6);
+            this.btn_ConfirmSelectionMedicine.Name = "btn_ConfirmSelectionMedicine";
+            this.btn_ConfirmSelectionMedicine.Size = new System.Drawing.Size(86, 26);
+            this.btn_ConfirmSelectionMedicine.TabIndex = 0;
+            this.btn_ConfirmSelectionMedicine.Text = "Xác nhận";
+            this.btn_ConfirmSelectionMedicine.Click += new System.EventHandler(this.btn_ConfirmSelection_Click);
             // 
-            // popupContainerControl1
+            // popupContainer_SelectProvider
             // 
-            this.popupContainerControl1.Controls.Add(this.comboBox1);
-            this.popupContainerControl1.Location = new System.Drawing.Point(366, 160);
-            this.popupContainerControl1.Name = "popupContainerControl1";
-            this.popupContainerControl1.Size = new System.Drawing.Size(542, 414);
-            this.popupContainerControl1.TabIndex = 3;
+            this.popupContainer_SelectProvider.Controls.Add(this.listBox_SelectProvider);
+            this.popupContainer_SelectProvider.Controls.Add(this.panelControl2);
+            this.popupContainer_SelectProvider.Controls.Add(this.panelControl_PopupTitle);
+            this.popupContainer_SelectProvider.Location = new System.Drawing.Point(444, 118);
+            this.popupContainer_SelectProvider.Name = "popupContainer_SelectProvider";
+            this.popupContainer_SelectProvider.Size = new System.Drawing.Size(393, 485);
+            this.popupContainer_SelectProvider.TabIndex = 116;
             // 
-            // comboBox1
+            // listBox_SelectProvider
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(224, 189);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 0;
+            this.listBox_SelectProvider.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBox_SelectProvider.Location = new System.Drawing.Point(0, 56);
+            this.listBox_SelectProvider.Name = "listBox_SelectProvider";
+            this.listBox_SelectProvider.Size = new System.Drawing.Size(393, 375);
+            this.listBox_SelectProvider.TabIndex = 3;
+            // 
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.btn_CancelProvider);
+            this.panelControl2.Controls.Add(this.btn_ConfỉrmProviderSelection);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelControl2.Location = new System.Drawing.Point(0, 431);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(393, 54);
+            this.panelControl2.TabIndex = 2;
+            // 
+            // btn_CancelProvider
+            // 
+            this.btn_CancelProvider.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btn_CancelProvider.Appearance.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btn_CancelProvider.Appearance.Options.UseBackColor = true;
+            this.btn_CancelProvider.Appearance.Options.UseFont = true;
+            this.btn_CancelProvider.Location = new System.Drawing.Point(293, 7);
+            this.btn_CancelProvider.Name = "btn_CancelProvider";
+            this.btn_CancelProvider.Size = new System.Drawing.Size(86, 37);
+            this.btn_CancelProvider.TabIndex = 0;
+            this.btn_CancelProvider.Text = "Hủy";
+            // 
+            // btn_ConfỉrmProviderSelection
+            // 
+            this.btn_ConfỉrmProviderSelection.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btn_ConfỉrmProviderSelection.Appearance.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btn_ConfỉrmProviderSelection.Appearance.Options.UseBackColor = true;
+            this.btn_ConfỉrmProviderSelection.Appearance.Options.UseFont = true;
+            this.btn_ConfỉrmProviderSelection.Location = new System.Drawing.Point(201, 7);
+            this.btn_ConfỉrmProviderSelection.Name = "btn_ConfỉrmProviderSelection";
+            this.btn_ConfỉrmProviderSelection.Size = new System.Drawing.Size(86, 37);
+            this.btn_ConfỉrmProviderSelection.TabIndex = 0;
+            this.btn_ConfỉrmProviderSelection.Text = "Xác nhận";
+            // 
+            // panelControl_PopupTitle
+            // 
+            this.panelControl_PopupTitle.Controls.Add(this.txt_SearchProvider);
+            this.panelControl_PopupTitle.Controls.Add(this.label_SearchProvider);
+            this.panelControl_PopupTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl_PopupTitle.Location = new System.Drawing.Point(0, 0);
+            this.panelControl_PopupTitle.Name = "panelControl_PopupTitle";
+            this.panelControl_PopupTitle.Size = new System.Drawing.Size(393, 56);
+            this.panelControl_PopupTitle.TabIndex = 1;
+            // 
+            // txt_SearchProvider
+            // 
+            this.txt_SearchProvider.Font = new System.Drawing.Font("Tahoma", 11.12727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txt_SearchProvider.Location = new System.Drawing.Point(212, 15);
+            this.txt_SearchProvider.Name = "txt_SearchProvider";
+            this.txt_SearchProvider.Size = new System.Drawing.Size(176, 28);
+            this.txt_SearchProvider.TabIndex = 1;
+            this.txt_SearchProvider.TextChanged += new System.EventHandler(this.txt_SearchProvider_TextChanged);
+            // 
+            // label_SearchProvider
+            // 
+            this.label_SearchProvider.Appearance.Font = new System.Drawing.Font("Tahoma", 11.12727F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label_SearchProvider.Appearance.Options.UseFont = true;
+            this.label_SearchProvider.Location = new System.Drawing.Point(50, 17);
+            this.label_SearchProvider.Name = "label_SearchProvider";
+            this.label_SearchProvider.Size = new System.Drawing.Size(156, 21);
+            this.label_SearchProvider.TabIndex = 0;
+            this.label_SearchProvider.Text = "Tìm nhà cung cấp:";
             // 
             // frm_ManageBatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 720);
-            this.Controls.Add(this.popupContainerControl1);
+            this.Controls.Add(this.popupContainer_SelectProvider);
             this.Controls.Add(this.popupContainer_ListMedicineNames);
             this.Controls.Add(this.panel_Buttons);
             this.Controls.Add(splitContainer);
@@ -727,8 +803,14 @@
             this.poppanel_SearchMed.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.poppanel_Buttons)).EndInit();
             this.poppanel_Buttons.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl1)).EndInit();
-            this.popupContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.popupContainer_SelectProvider)).EndInit();
+            this.popupContainer_SelectProvider.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.listBox_SelectProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl_PopupTitle)).EndInit();
+            this.panelControl_PopupTitle.ResumeLayout(false);
+            this.panelControl_PopupTitle.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -769,12 +851,18 @@
         private DevExpress.XtraEditors.ListBoxControl listBox_MedicineNames;
         private DevExpress.XtraEditors.PanelControl poppanel_Buttons;
         private DevExpress.XtraEditors.PanelControl poppanel_SearchMed;
-        private DevExpress.XtraEditors.SimpleButton btn_ConfirmSelection;
+        private DevExpress.XtraEditors.SimpleButton btn_ConfirmSelectionMedicine;
         private DevExpress.XtraEditors.LabelControl label_SearchName;
         private System.Windows.Forms.TextBox txt_SearchMedicine;
-        private DevExpress.XtraEditors.SimpleButton btn_Cancel;
-        private DevExpress.XtraEditors.PopupContainerControl popupContainerControl1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private DevExpress.XtraEditors.SimpleButton btn_CancelSelectionMedicine;
         private DevExpress.XtraBars.FormAssistant formAssistant1;
+        private DevExpress.XtraEditors.PopupContainerControl popupContainer_SelectProvider;
+        private DevExpress.XtraEditors.ListBoxControl listBox_SelectProvider;
+        private DevExpress.XtraEditors.PanelControl panelControl2;
+        private DevExpress.XtraEditors.SimpleButton btn_CancelProvider;
+        private DevExpress.XtraEditors.SimpleButton btn_ConfỉrmProviderSelection;
+        private DevExpress.XtraEditors.PanelControl panelControl_PopupTitle;
+        private System.Windows.Forms.TextBox txt_SearchProvider;
+        private DevExpress.XtraEditors.LabelControl label_SearchProvider;
     }
 }

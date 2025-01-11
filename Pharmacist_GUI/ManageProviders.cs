@@ -23,33 +23,22 @@ namespace Pharmacist
         public frm_ManageProviders()
         {
             InitializeComponent();
-            // Set up grid view. Load in data
-            gridControl_data.DataSource = providerServices.GetProviderTable();
         }
-        private Icon GetIcon(string iconName)
+        
+        // Exception handling
+        private void HandleException(Exception ex)
         {
-            string iconPath = Path.Combine(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..")), $"icon/{iconName}_icon.ico");
-
-            if (File.Exists(iconPath))
+            if (ex.InnerException != null && string.IsNullOrEmpty(ex.InnerException.Message))
             {
-                return new Icon(iconPath);
+                ShowErrorMessage(ex.ToString());
             }
             else
             {
-                throw new FileNotFoundException($"Icon file {iconName}_icon.ico not found in icon directory");
+                ShowErrorMessage(ex.Message);
             }
-        }
-        private void ShowMessageBox(String message, Icon icon = null) // set to = null or any default value to accept only 1 provided parameter
-        {
-            XtraMessageBoxArgs args = new XtraMessageBoxArgs();
-            args.Text = message;
-            args.Buttons = new DialogResult[] { DialogResult.OK };
-            args.Showing += Error_Args_Showing;
-            if (icon != null)
-            {
-                args.Icon = icon;
-            }
-            XtraMessageBox.Show(args);
+
+            // Print error details to the Debug output
+            System.Diagnostics.Debug.WriteLine(ex.ToString());
         }
         private void ShowErrorMessage(string errorMessage)
         {
@@ -64,6 +53,39 @@ namespace Pharmacist
                 errorIcon = SystemIcons.Error;
             }
             ShowMessageBox(errorMessage, errorIcon);
+        }
+        private void Error_Args_Showing(object sender, XtraMessageShowingArgs e)
+        {
+            // MessageBox Appearance
+            e.MessageBoxForm.StartPosition = FormStartPosition.CenterParent;
+            e.MessageBoxForm.FormBorderStyle = FormBorderStyle.None;
+            e.MessageBoxForm.Appearance.BackColor = ColorTranslator.FromHtml("#d6d6d6");
+            e.MessageBoxForm.Appearance.FontStyleDelta = FontStyle.Bold;
+            e.MessageBoxForm.Appearance.FontSizeDelta = 4;
+
+            // Error Message style
+            e.MessageBoxForm.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            e.MessageBoxForm.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+
+            // Ok button style
+            e.Buttons[DialogResult.OK].Text = "OK";
+            e.Buttons[DialogResult.OK].Appearance.FontSizeDelta = 4;
+            e.Buttons[DialogResult.OK].Appearance.FontStyleDelta = FontStyle.Bold;
+            e.Buttons[DialogResult.OK].Padding = new Padding(10);
+        }
+
+        // Custom MessageBox
+        private void ShowMessageBox(String message, Icon icon = null) // set to = null or any default value to accept only 1 provided parameter
+        {
+            XtraMessageBoxArgs args = new XtraMessageBoxArgs();
+            args.Text = message;
+            args.Buttons = new DialogResult[] { DialogResult.OK };
+            args.Showing += Error_Args_Showing;
+            if (icon != null)
+            {
+                args.Icon = icon;
+            }
+            XtraMessageBox.Show(args);
         }
         private void Add_Args_Showing(object sender, XtraMessageShowingArgs e)
         {
@@ -89,25 +111,6 @@ namespace Pharmacist
             e.Buttons[DialogResult.Cancel].Appearance.FontSizeDelta = 4;
             e.Buttons[DialogResult.Cancel].Appearance.FontStyleDelta = FontStyle.Bold;
         }
-        private void Error_Args_Showing(object sender, XtraMessageShowingArgs e)
-        {
-            // MessageBox Appearance
-            e.MessageBoxForm.StartPosition = FormStartPosition.CenterParent;
-            e.MessageBoxForm.FormBorderStyle = FormBorderStyle.None;
-            e.MessageBoxForm.Appearance.BackColor = ColorTranslator.FromHtml("#d6d6d6");
-            e.MessageBoxForm.Appearance.FontStyleDelta = FontStyle.Bold;
-            e.MessageBoxForm.Appearance.FontSizeDelta = 4;
-
-            // Error Message style
-            e.MessageBoxForm.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            e.MessageBoxForm.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-
-            // Ok button style
-            e.Buttons[DialogResult.OK].Text = "OK";
-            e.Buttons[DialogResult.OK].Appearance.FontSizeDelta = 4;
-            e.Buttons[DialogResult.OK].Appearance.FontStyleDelta = FontStyle.Bold;
-            e.Buttons[DialogResult.OK].Padding = new Padding(10);
-        }
         private void View_Args_Showing(object sender, XtraMessageShowingArgs e)
         {
             // Main form style
@@ -126,79 +129,21 @@ namespace Pharmacist
             e.Buttons[DialogResult.OK].Appearance.FontSizeDelta = 4;
             e.Buttons[DialogResult.OK].Appearance.FontStyleDelta = FontStyle.Bold;
         }
-        private void panel_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
+        // Event Handlers
         private void frm_ManageProviders_Load(object sender, EventArgs e)
         {
             try
             {
                 //dgv_Providers.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 10f, FontStyle.Bold);
                 List<NHACUNGCAP> providers = providerServices.GetProviders();
-                //BindGrid(providers);
+                BindGrid();
             } 
             catch (Exception ex)
             {
-                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
-                {
-                    ShowErrorMessage(ex.ToString());
-                }
-                else
-                {
-                    ShowErrorMessage(ex.Message);
-                }
-                // Print to Output stream
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                HandleException(ex);
             }
         }
-        private void AddProviderToMedicine(THUOC Medicine)
-        {
-            try
-            {
-                using (PharmacyManagementDB db = new PharmacyManagementDB())
-                {
-
-                    MedicineServices medicineService = new MedicineServices();
-                    // Check if provider exists or batch exists
-                    List<LOTHUOC> batchList = db.LOTHUOC.ToList();
-                    var batch = batchList.FirstOrDefault(b => b.MaThuoc == Medicine.MaThuoc);
-                    // If batch exists which means provider exists then exit
-                    if (batch != null)
-                    {
-                        // Search for transaction that has the same batch and provider
-                        GIAODICH transaction = db.GIAODICH.FirstOrDefault(t => t.MaLo == batch.MaLo);
-                        System.Diagnostics.Debug.WriteLine($"Transaction: {transaction}");
-                        
-                        NHACUNGCAP provider = db.NHACUNGCAP.FirstOrDefault(p => p.MaNhaCungCap == transaction.MaNhaCungCap);
-                        System.Diagnostics.Debug.WriteLine($"Provider: {provider}");
-
-                        if (provider != null)
-                        {
-                            throw new Exception("Nhà cung cấp đã tồn tại!");
-                        }
-                    } 
-                    else
-                    {
-                        // Add new provider
-                        NHACUNGCAP newProvider = new NHACUNGCAP()
-                        {
-                            MaNhaCungCap = txt_ProviderId.Text,
-                            TenNhaCungCap = txt_ProviderName.Text,
-                            DiaChi = txt_ProviderAddress.Text,
-                            Email = txt_ProviderEmail.Text,
-                            SoDienThoai = txt_ProviderPhone.Text
-                        };
-                        
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ShowErrorMessage(ex.Message);
-            }
-        }
-
         private void gridView_Providers_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
             try
@@ -214,16 +159,151 @@ namespace Pharmacist
             } 
             catch (Exception ex)
             {
-                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
+                HandleException(ex);
+            }
+        }
+        private void btn_RefreshGrid_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BindGrid();
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+        }
+        private void btn_ClearFields_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ClearFields();
+            } catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+        }
+        private void btn_InsertUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!(sender is SimpleButton))
                 {
-                    ShowErrorMessage(ex.ToString());
+                    throw new Exception("Invalid Sender, expected SimpleButton");
                 }
-                else
+                SimpleButton btn = sender as SimpleButton;
+
+                switch (btn.Name)
                 {
-                    ShowErrorMessage(ex.Message);
+                    case "btn_Insert":
+                        InsertProvider();
+                        break;
+                    case "btn_Update":
+                        UpdateProvider();
+                        break;
+                    default:
+                        throw new Exception("Invalid Button");
                 }
-                // Print to Output stream
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+
+                BindGrid();
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+        }
+        private void btn_Delete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+        }
+        // Custom Methods
+        private void ClearFields()
+        {
+            txt_ProviderId.Text = string.Empty;
+            txt_ProviderName.Text = string.Empty;
+            txt_ProviderAddress.Text = string.Empty;
+            txt_ProviderEmail.Text = string.Empty;
+            txt_ProviderPhone.Text = string.Empty;
+        }
+        private void ValidateFields()
+        {
+            if (string.IsNullOrEmpty(txt_ProviderName.Text))
+            {
+                throw new Exception("Tên nhà cung cấp không được để trống");
+            }
+            if (string.IsNullOrEmpty(txt_ProviderAddress.Text))
+            {
+                throw new Exception("Địa chỉ nhà cung cấp không được để trống");
+            }
+            if (string.IsNullOrEmpty(txt_ProviderEmail.Text))
+            {
+                throw new Exception("Email nhà cung cấp không được để trống");
+            }
+            if (string.IsNullOrEmpty(txt_ProviderPhone.Text))
+            {
+                throw new Exception("Số điện thoại nhà cung cấp không được để trống");
+            }
+            if (txt_ProviderPhone.Text.Length != 10)
+            {
+                throw new Exception("Số điện thoại không hợp lệ");
+            }
+        }
+        private void InsertProvider()
+        {
+            ValidateFields();
+            NHACUNGCAP provider = new NHACUNGCAP
+            {
+                MaNhaCungCap = txt_ProviderId.Text,
+                TenNhaCungCap = txt_ProviderName.Text,
+                DiaChi = txt_ProviderAddress.Text,
+                Email = txt_ProviderEmail.Text,
+                SoDienThoai = txt_ProviderPhone.Text
+            };
+            providerServices.InsertProvider(provider);
+            ShowMessageBox("Thêm thông tin thành công");
+        }
+        private void UpdateProvider()
+        {
+            ValidateFields();
+            NHACUNGCAP updatedProvider = new NHACUNGCAP
+            {
+                MaNhaCungCap = txt_ProviderId.Text,
+                TenNhaCungCap = txt_ProviderName.Text,
+                DiaChi = txt_ProviderAddress.Text,
+                Email = txt_ProviderEmail.Text,
+                SoDienThoai = txt_ProviderPhone.Text
+            };
+            providerServices.UpdateProvider(updatedProvider);
+            ShowMessageBox("Cập nhật thông tin thành công");
+        }
+        private void DeleteProvider()
+        {
+            ValidateFields();
+            providerServices.DeleteProvider(txt_ProviderId.Text);
+            ShowMessageBox("Xóa thông tin thành công");
+        }
+        private void BindGrid()
+        {
+            gridControl_data.DataSource = providerServices.GetProviderTable();
+        }
+        private Icon GetIcon(string iconName)
+        {
+            string iconPath = Path.Combine(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..")), $"icon/{iconName}_icon.ico");
+
+            if (File.Exists(iconPath))
+            {
+                return new Icon(iconPath);
+            }
+            else
+            {
+                throw new FileNotFoundException($"Icon file {iconName}_icon.ico not found in icon directory");
             }
         }
     }

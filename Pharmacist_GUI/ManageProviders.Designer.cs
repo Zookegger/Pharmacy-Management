@@ -50,7 +50,9 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelControl_Title = new DevExpress.XtraEditors.LabelControl();
             this.panelControl_Title = new DevExpress.XtraEditors.PanelControl();
+            this.btn_ClearFields = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl_dgv = new DevExpress.XtraEditors.GroupControl();
+            this.btn_RefreshGrid = new DevExpress.XtraEditors.SimpleButton();
             this.gridControl_data = new DevExpress.XtraGrid.GridControl();
             this.gridView_Providers = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
@@ -193,7 +195,6 @@
             this.splitContainer.Panel2.Controls.Add(this.label_ProviderPhone);
             this.splitContainer.Panel2.Controls.Add(this.panel1);
             this.splitContainer.Panel2.Controls.Add(this.panel2);
-            this.splitContainer.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             this.splitContainer.Size = new System.Drawing.Size(1278, 174);
             this.splitContainer.SplitterDistance = 631;
             this.splitContainer.SplitterWidth = 10;
@@ -278,6 +279,7 @@
             this.btn_Add.TabIndex = 109;
             this.btn_Add.Text = "Thêm";
             this.btn_Add.ToolTip = "Thêm thuốc vào cơ sở dữ liệu";
+            this.btn_Add.Click += new System.EventHandler(this.btn_InsertUpdate_Click);
             // 
             // btn_Update
             // 
@@ -314,6 +316,7 @@
             this.btn_Update.TabIndex = 110;
             this.btn_Update.Text = " Sửa";
             this.btn_Update.ToolTip = "Cập nhật thông tin của thuốc trong cơ sở dữ liệu";
+            this.btn_Update.Click += new System.EventHandler(this.btn_InsertUpdate_Click);
             // 
             // btn_Delete
             // 
@@ -341,6 +344,7 @@
             this.btn_Delete.TabIndex = 111;
             this.btn_Delete.Text = "  Xóa";
             this.btn_Delete.ToolTip = "Xóa thuốc hoàn toàn khỏi cơ sở dữ liệu";
+            this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
             // 
             // panel1
             // 
@@ -352,7 +356,7 @@
             this.panel1.Location = new System.Drawing.Point(231, 71);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel1.Size = new System.Drawing.Size(340, 37);
+            this.panel1.Size = new System.Drawing.Size(262, 37);
             this.panel1.TabIndex = 108;
             // 
             // panel2
@@ -365,7 +369,7 @@
             this.panel2.Location = new System.Drawing.Point(231, 17);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel2.Size = new System.Drawing.Size(340, 37);
+            this.panel2.Size = new System.Drawing.Size(262, 37);
             this.panel2.TabIndex = 107;
             // 
             // labelControl_Title
@@ -385,6 +389,7 @@
             // 
             // panelControl_Title
             // 
+            this.panelControl_Title.Controls.Add(this.btn_ClearFields);
             this.panelControl_Title.Controls.Add(this.labelControl_Title);
             this.panelControl_Title.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl_Title.Location = new System.Drawing.Point(0, 0);
@@ -392,17 +397,65 @@
             this.panelControl_Title.Size = new System.Drawing.Size(1278, 64);
             this.panelControl_Title.TabIndex = 25;
             // 
+            // btn_ClearFields
+            // 
+            this.btn_ClearFields.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_ClearFields.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btn_ClearFields.Appearance.Options.UseFont = true;
+            this.btn_ClearFields.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btn_ClearFields.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_ClearFields.ImageOptions.SvgImage")));
+            this.btn_ClearFields.ImageOptions.SvgImageSize = new System.Drawing.Size(25, 25);
+            this.btn_ClearFields.Location = new System.Drawing.Point(1124, 12);
+            this.btn_ClearFields.Name = "btn_ClearFields";
+            this.btn_ClearFields.Size = new System.Drawing.Size(142, 39);
+            this.btn_ClearFields.TabIndex = 108;
+            this.btn_ClearFields.Text = "  Làm sạch";
+            this.btn_ClearFields.Click += new System.EventHandler(this.btn_ClearFields_Click);
+            // 
             // groupControl_dgv
             // 
             this.groupControl_dgv.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold);
             this.groupControl_dgv.AppearanceCaption.Options.UseFont = true;
+            this.groupControl_dgv.Controls.Add(this.btn_RefreshGrid);
             this.groupControl_dgv.Controls.Add(this.gridControl_data);
             this.groupControl_dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl_dgv.Location = new System.Drawing.Point(0, 238);
             this.groupControl_dgv.Name = "groupControl_dgv";
             this.groupControl_dgv.Size = new System.Drawing.Size(1278, 445);
             this.groupControl_dgv.TabIndex = 107;
-            this.groupControl_dgv.Text = "[ Danh Sách Nhà Cung Cáp ]";
+            this.groupControl_dgv.Text = "[ Danh Sách Nhà Cung Cấp ]";
+            // 
+            // btn_RefreshGrid
+            // 
+            this.btn_RefreshGrid.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_RefreshGrid.Appearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btn_RefreshGrid.Appearance.Options.UseBackColor = true;
+            this.btn_RefreshGrid.Appearance.Options.UseBorderColor = true;
+            this.btn_RefreshGrid.Appearance.Options.UseForeColor = true;
+            this.btn_RefreshGrid.AppearanceHovered.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.btn_RefreshGrid.AppearanceHovered.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.btn_RefreshGrid.AppearanceHovered.ForeColor = System.Drawing.Color.Black;
+            this.btn_RefreshGrid.AppearanceHovered.Options.UseBackColor = true;
+            this.btn_RefreshGrid.AppearanceHovered.Options.UseBorderColor = true;
+            this.btn_RefreshGrid.AppearanceHovered.Options.UseForeColor = true;
+            this.btn_RefreshGrid.AppearancePressed.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btn_RefreshGrid.AppearancePressed.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btn_RefreshGrid.AppearancePressed.ForeColor = System.Drawing.Color.White;
+            this.btn_RefreshGrid.AppearancePressed.Options.UseBackColor = true;
+            this.btn_RefreshGrid.AppearancePressed.Options.UseBorderColor = true;
+            this.btn_RefreshGrid.AppearancePressed.Options.UseForeColor = true;
+            this.btn_RefreshGrid.AutoSize = true;
+            this.btn_RefreshGrid.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
+            this.btn_RefreshGrid.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.TopCenter;
+            this.btn_RefreshGrid.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_RefreshGrid.ImageOptions.SvgImage")));
+            this.btn_RefreshGrid.ImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
+            this.btn_RefreshGrid.Location = new System.Drawing.Point(12, 29);
+            this.btn_RefreshGrid.MaximumSize = new System.Drawing.Size(30, 30);
+            this.btn_RefreshGrid.MinimumSize = new System.Drawing.Size(30, 30);
+            this.btn_RefreshGrid.Name = "btn_RefreshGrid";
+            this.btn_RefreshGrid.Size = new System.Drawing.Size(30, 30);
+            this.btn_RefreshGrid.TabIndex = 107;
+            this.btn_RefreshGrid.Click += new System.EventHandler(this.btn_RefreshGrid_Click);
             // 
             // gridControl_data
             // 
@@ -418,12 +471,20 @@
             // 
             // gridView_Providers
             // 
-            this.gridView_Providers.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.gridView_Providers.Appearance.FocusedCell.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.gridView_Providers.Appearance.FocusedCell.Options.UseFont = true;
+            this.gridView_Providers.Appearance.FocusedRow.Font = new System.Drawing.Font("Tahoma", 11.12727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.gridView_Providers.Appearance.FocusedRow.Options.UseFont = true;
+            this.gridView_Providers.Appearance.HeaderPanel.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.gridView_Providers.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.gridView_Providers.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.White;
+            this.gridView_Providers.Appearance.HeaderPanel.Options.UseBackColor = true;
             this.gridView_Providers.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridView_Providers.Appearance.HeaderPanel.Options.UseForeColor = true;
             this.gridView_Providers.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.gridView_Providers.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView_Providers.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridView_Providers.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.gridView_Providers.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 11.12727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.gridView_Providers.Appearance.Row.Options.UseFont = true;
             this.gridView_Providers.Appearance.SelectedRow.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.gridView_Providers.Appearance.SelectedRow.BorderColor = System.Drawing.Color.Black;
@@ -438,7 +499,10 @@
             this.gridView_Providers.GroupPanelText = " ";
             this.gridView_Providers.Name = "gridView_Providers";
             this.gridView_Providers.OptionsBehavior.Editable = false;
+            this.gridView_Providers.OptionsBehavior.ReadOnly = true;
             this.gridView_Providers.OptionsView.ShowFooter = true;
+            this.gridView_Providers.OptionsView.ShowIndicator = false;
+            this.gridView_Providers.PaintStyleName = "UltraFlat";
             this.gridView_Providers.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView_Providers_RowCellClick);
             // 
             // frm_ManageProviders
@@ -474,6 +538,7 @@
             this.panelControl_Title.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl_dgv)).EndInit();
             this.groupControl_dgv.ResumeLayout(false);
+            this.groupControl_dgv.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl_data)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView_Providers)).EndInit();
             this.ResumeLayout(false);
@@ -506,5 +571,7 @@
         private DevExpress.XtraEditors.GroupControl groupControl_dgv;
         private DevExpress.XtraGrid.GridControl gridControl_data;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView_Providers;
+        private DevExpress.XtraEditors.SimpleButton btn_RefreshGrid;
+        private DevExpress.XtraEditors.SimpleButton btn_ClearFields;
     }
 }

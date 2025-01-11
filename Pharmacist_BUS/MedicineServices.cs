@@ -13,12 +13,34 @@ namespace Pharmacist
 {
     public class MedicineServices
     {
-        private PharmacyManagementDB pharmacistDB = new PharmacyManagementDB();
+        private readonly PharmacyManagementDB pharmacistDB = new PharmacyManagementDB();
         public List<THUOC> GetMedicineList()
         {
             return pharmacistDB.THUOC.ToList();
         }
-
+        public DataTable GetMedicineTable()
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Mã Thuốc", typeof(string));
+            table.Columns.Add("Tên Thuốc", typeof(string));
+            table.Columns.Add("Giá Đơn Vị", typeof(string));
+            table.Columns.Add("Liều Thuốc", typeof(string));
+            table.Columns.Add("Mô Tả", typeof(String));
+            table.Columns.Add("Số Lượng Tồn", typeof(int));
+            foreach (THUOC medicine in GetMedicineList())
+            {
+                table.Rows.Add(medicine.MaThuoc, medicine.TenThuoc, medicine.GiaDonVi, medicine.LieuThuoc, medicine.MoTa, medicine.SoLuongTon);
+                System.Diagnostics.Debug.WriteLine($"Added medicine:\n" +
+                    $"\t{medicine.MaThuoc},\n" +
+                    $"\t{medicine.TenThuoc},\n" +
+                    $"\t{medicine.GiaDonVi}\n" +
+                    $"\t{medicine.LieuThuoc}\n" +
+                    $"\t{medicine.MoTa}\n" +
+                    $"\t{medicine.SoLuongTon}\n"
+                );
+            }
+            return table;
+        }
         public List<THUOC> GetMedicineList(string search)
         {
             search = search.ToLower();
@@ -27,17 +49,14 @@ namespace Pharmacist
                 med.TenThuoc.ToLower().Contains(search) 
             ).ToList();
         }
-
         public THUOC GetMedicineByName(string name)
         {
             return pharmacistDB.THUOC.Where(med => med.TenThuoc == name).FirstOrDefault();
         }
-
         public THUOC GetMedicineById(string id)
         {
             return pharmacistDB.THUOC.Where(med => med.MaThuoc == id).FirstOrDefault();
         }
-
         public void DeleteMedicineById(string id)
         {
             try
@@ -124,13 +143,11 @@ namespace Pharmacist
                 throw; // Re-throw the exception
             }
         }
-
         public void AddMedicine(THUOC medicine)
         {
             pharmacistDB.THUOC.Add(medicine);
             pharmacistDB.SaveChanges();
         }
-
         public void UpdateMedicine(THUOC medicine)
         {
             pharmacistDB.THUOC.AddOrUpdate(medicine);

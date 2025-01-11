@@ -28,15 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_ManageMedicine));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel_Title = new System.Windows.Forms.Panel();
             this.label_TitleAdd = new System.Windows.Forms.Label();
             this.panel_Buttons = new System.Windows.Forms.Panel();
-            this.labelControl_SearchMedicine = new DevExpress.XtraEditors.LabelControl();
-            this.txt_SearchBox = new System.Windows.Forms.TextBox();
             this.btn_Delete = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Add = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Update = new DevExpress.XtraEditors.SimpleButton();
@@ -56,24 +52,18 @@
             this.panel_Dosage = new System.Windows.Forms.Panel();
             this.txt_Dosage = new System.Windows.Forms.TextBox();
             this.label_Dosage = new DevExpress.XtraEditors.LabelControl();
-            this.dgv_Medicine = new System.Windows.Forms.DataGridView();
-            this.MedicineID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MedicineName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PricePerUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_Dosage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupControl_MedicineDatabase = new DevExpress.XtraEditors.GroupControl();
+            this.btn_RefreshGrid = new DevExpress.XtraEditors.SimpleButton();
+            this.dgv_Medicine = new DevExpress.XtraGrid.GridControl();
+            this.medicineBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colMaThuoc = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTenThuoc = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colGiaDonVi = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colLieuThuoc = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSoLuongTon = new DevExpress.XtraGrid.Columns.GridColumn();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.popupContainer_SelectProvider = new DevExpress.XtraEditors.PopupContainerControl();
-            this.listBox_SelectProvider = new DevExpress.XtraEditors.ListBoxControl();
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.btn_Cancel = new DevExpress.XtraEditors.SimpleButton();
-            this.btn_InsertProvider = new DevExpress.XtraEditors.SimpleButton();
-            this.btn_Confỉrm = new DevExpress.XtraEditors.SimpleButton();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.txt_SearchProvider = new System.Windows.Forms.TextBox();
-            this.label_SearchProvider = new DevExpress.XtraEditors.LabelControl();
+            this.btn_ClearFields = new DevExpress.XtraEditors.SimpleButton();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
@@ -84,22 +74,17 @@
             this.panel_Id.SuspendLayout();
             this.panel_Description.SuspendLayout();
             this.panel_Dosage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Medicine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl_MedicineDatabase)).BeginInit();
             this.groupControl_MedicineDatabase.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Medicine)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.medicineBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).BeginInit();
             this.splitContainerControl1.Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel2)).BeginInit();
             this.splitContainerControl1.Panel2.SuspendLayout();
             this.splitContainerControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.popupContainer_SelectProvider)).BeginInit();
-            this.popupContainer_SelectProvider.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listBox_SelectProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_Title
@@ -130,27 +115,6 @@
             this.panel_Buttons.Name = "panel_Buttons";
             this.panel_Buttons.Size = new System.Drawing.Size(1280, 0);
             this.panel_Buttons.TabIndex = 102;
-            // 
-            // labelControl_SearchMedicine
-            // 
-            this.labelControl_SearchMedicine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl_SearchMedicine.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl_SearchMedicine.Appearance.Options.UseFont = true;
-            this.labelControl_SearchMedicine.Location = new System.Drawing.Point(453, 30);
-            this.labelControl_SearchMedicine.Name = "labelControl_SearchMedicine";
-            this.labelControl_SearchMedicine.Size = new System.Drawing.Size(96, 23);
-            this.labelControl_SearchMedicine.TabIndex = 9;
-            this.labelControl_SearchMedicine.Text = "Tìm Thuốc:";
-            // 
-            // txt_SearchBox
-            // 
-            this.txt_SearchBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_SearchBox.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_SearchBox.Location = new System.Drawing.Point(555, 29);
-            this.txt_SearchBox.Name = "txt_SearchBox";
-            this.txt_SearchBox.Size = new System.Drawing.Size(229, 29);
-            this.txt_SearchBox.TabIndex = 9;
-            this.txt_SearchBox.TextChanged += new System.EventHandler(this.txt_SearchBox_TextChanged);
             // 
             // btn_Delete
             // 
@@ -263,7 +227,6 @@
             // 
             this.splitContainer.BackColor = System.Drawing.Color.DodgerBlue;
             this.splitContainer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitContainer.IsSplitterFixed = true;
             this.splitContainer.Location = new System.Drawing.Point(0, 73);
             this.splitContainer.Name = "splitContainer";
             // 
@@ -286,7 +249,7 @@
             this.splitContainer.Panel2.Controls.Add(this.label_Dosage);
             this.splitContainer.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             this.splitContainer.Size = new System.Drawing.Size(1280, 166);
-            this.splitContainer.SplitterDistance = 631;
+            this.splitContainer.SplitterDistance = 637;
             this.splitContainer.SplitterWidth = 10;
             this.splitContainer.TabIndex = 103;
             // 
@@ -300,7 +263,7 @@
             this.panel_PricePerUnit.Location = new System.Drawing.Point(155, 118);
             this.panel_PricePerUnit.Name = "panel_PricePerUnit";
             this.panel_PricePerUnit.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel_PricePerUnit.Size = new System.Drawing.Size(417, 37);
+            this.panel_PricePerUnit.Size = new System.Drawing.Size(423, 37);
             this.panel_PricePerUnit.TabIndex = 103;
             this.panel_PricePerUnit.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
@@ -313,7 +276,7 @@
             this.txt_PricePerUnit.Location = new System.Drawing.Point(6, 4);
             this.txt_PricePerUnit.Margin = new System.Windows.Forms.Padding(0);
             this.txt_PricePerUnit.Name = "txt_PricePerUnit";
-            this.txt_PricePerUnit.Size = new System.Drawing.Size(406, 29);
+            this.txt_PricePerUnit.Size = new System.Drawing.Size(412, 29);
             this.txt_PricePerUnit.TabIndex = 3;
             this.txt_PricePerUnit.Enter += new System.EventHandler(this.txtbox_Enter);
             this.txt_PricePerUnit.Leave += new System.EventHandler(this.txtbox_Leave);
@@ -328,7 +291,7 @@
             this.panel_Name.Location = new System.Drawing.Point(155, 64);
             this.panel_Name.Name = "panel_Name";
             this.panel_Name.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel_Name.Size = new System.Drawing.Size(417, 37);
+            this.panel_Name.Size = new System.Drawing.Size(423, 37);
             this.panel_Name.TabIndex = 103;
             this.panel_Name.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
@@ -341,7 +304,7 @@
             this.txt_Name.Location = new System.Drawing.Point(6, 3);
             this.txt_Name.Margin = new System.Windows.Forms.Padding(0);
             this.txt_Name.Name = "txt_Name";
-            this.txt_Name.Size = new System.Drawing.Size(406, 29);
+            this.txt_Name.Size = new System.Drawing.Size(412, 29);
             this.txt_Name.TabIndex = 2;
             this.txt_Name.Enter += new System.EventHandler(this.txtbox_Enter);
             this.txt_Name.Leave += new System.EventHandler(this.txtbox_Leave);
@@ -356,7 +319,7 @@
             this.panel_Id.Location = new System.Drawing.Point(155, 12);
             this.panel_Id.Name = "panel_Id";
             this.panel_Id.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel_Id.Size = new System.Drawing.Size(417, 37);
+            this.panel_Id.Size = new System.Drawing.Size(423, 37);
             this.panel_Id.TabIndex = 102;
             this.panel_Id.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
@@ -369,7 +332,7 @@
             this.txt_Id.Location = new System.Drawing.Point(6, 4);
             this.txt_Id.Margin = new System.Windows.Forms.Padding(0);
             this.txt_Id.Name = "txt_Id";
-            this.txt_Id.Size = new System.Drawing.Size(406, 29);
+            this.txt_Id.Size = new System.Drawing.Size(412, 29);
             this.txt_Id.TabIndex = 1;
             this.txt_Id.Enter += new System.EventHandler(this.txtbox_Enter);
             this.txt_Id.Leave += new System.EventHandler(this.txtbox_Leave);
@@ -420,9 +383,9 @@
             this.panel_Description.BackColor = System.Drawing.SystemColors.Window;
             this.panel_Description.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_Description.Controls.Add(this.txt_Description);
-            this.panel_Description.Location = new System.Drawing.Point(161, 63);
+            this.panel_Description.Location = new System.Drawing.Point(151, 72);
             this.panel_Description.Name = "panel_Description";
-            this.panel_Description.Size = new System.Drawing.Size(369, 84);
+            this.panel_Description.Size = new System.Drawing.Size(346, 75);
             this.panel_Description.TabIndex = 105;
             this.panel_Description.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
@@ -433,7 +396,7 @@
             this.txt_Description.Location = new System.Drawing.Point(0, 0);
             this.txt_Description.Multiline = true;
             this.txt_Description.Name = "txt_Description";
-            this.txt_Description.Size = new System.Drawing.Size(367, 82);
+            this.txt_Description.Size = new System.Drawing.Size(344, 73);
             this.txt_Description.TabIndex = 0;
             // 
             // label_Description
@@ -443,7 +406,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_Description.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label_Description.Appearance.Options.UseFont = true;
-            this.label_Description.Location = new System.Drawing.Point(35, 81);
+            this.label_Description.Location = new System.Drawing.Point(42, 64);
             this.label_Description.Name = "label_Description";
             this.label_Description.Size = new System.Drawing.Size(47, 23);
             this.label_Description.TabIndex = 104;
@@ -456,10 +419,10 @@
             this.panel_Dosage.BackColor = System.Drawing.Color.White;
             this.panel_Dosage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_Dosage.Controls.Add(this.txt_Dosage);
-            this.panel_Dosage.Location = new System.Drawing.Point(161, 4);
+            this.panel_Dosage.Location = new System.Drawing.Point(152, 12);
             this.panel_Dosage.Name = "panel_Dosage";
             this.panel_Dosage.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel_Dosage.Size = new System.Drawing.Size(369, 37);
+            this.panel_Dosage.Size = new System.Drawing.Size(345, 37);
             this.panel_Dosage.TabIndex = 101;
             this.panel_Dosage.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
@@ -472,7 +435,7 @@
             this.txt_Dosage.Location = new System.Drawing.Point(7, 3);
             this.txt_Dosage.Margin = new System.Windows.Forms.Padding(0);
             this.txt_Dosage.Name = "txt_Dosage";
-            this.txt_Dosage.Size = new System.Drawing.Size(358, 29);
+            this.txt_Dosage.Size = new System.Drawing.Size(455, 29);
             this.txt_Dosage.TabIndex = 4;
             this.txt_Dosage.Enter += new System.EventHandler(this.txtbox_Enter);
             this.txt_Dosage.Leave += new System.EventHandler(this.txtbox_Leave);
@@ -484,100 +447,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_Dosage.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label_Dosage.Appearance.Options.UseFont = true;
-            this.label_Dosage.Location = new System.Drawing.Point(35, 11);
+            this.label_Dosage.Location = new System.Drawing.Point(42, 18);
             this.label_Dosage.Name = "label_Dosage";
             this.label_Dosage.Size = new System.Drawing.Size(88, 23);
             this.label_Dosage.TabIndex = 102;
             this.label_Dosage.Text = "Liều lượng";
-            // 
-            // dgv_Medicine
-            // 
-            this.dgv_Medicine.AllowUserToAddRows = false;
-            this.dgv_Medicine.AllowUserToDeleteRows = false;
-            this.dgv_Medicine.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv_Medicine.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-            this.dgv_Medicine.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_Medicine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgv_Medicine.ColumnHeadersHeight = 50;
-            this.dgv_Medicine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgv_Medicine.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.MedicineID,
-            this.MedicineName,
-            this.Amount,
-            this.PricePerUnit,
-            this.col_Dosage,
-            this.col_Description});
-            this.dgv_Medicine.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_Medicine.Location = new System.Drawing.Point(2, 26);
-            this.dgv_Medicine.Name = "dgv_Medicine";
-            this.dgv_Medicine.ReadOnly = true;
-            this.dgv_Medicine.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_Medicine.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgv_Medicine.RowHeadersVisible = false;
-            this.dgv_Medicine.RowHeadersWidth = 47;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.dgv_Medicine.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgv_Medicine.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.dgv_Medicine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_Medicine.Size = new System.Drawing.Size(1252, 425);
-            this.dgv_Medicine.TabIndex = 104;
-            this.dgv_Medicine.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Medicine_CellClick);
-            // 
-            // MedicineID
-            // 
-            this.MedicineID.HeaderText = "ID Thuốc";
-            this.MedicineID.MinimumWidth = 6;
-            this.MedicineID.Name = "MedicineID";
-            this.MedicineID.ReadOnly = true;
-            // 
-            // MedicineName
-            // 
-            this.MedicineName.HeaderText = "Tên Thuốc";
-            this.MedicineName.MinimumWidth = 6;
-            this.MedicineName.Name = "MedicineName";
-            this.MedicineName.ReadOnly = true;
-            // 
-            // Amount
-            // 
-            this.Amount.HeaderText = "Số lượng";
-            this.Amount.MinimumWidth = 6;
-            this.Amount.Name = "Amount";
-            this.Amount.ReadOnly = true;
-            // 
-            // PricePerUnit
-            // 
-            this.PricePerUnit.HeaderText = "Giá mỗi đơn vị";
-            this.PricePerUnit.MinimumWidth = 6;
-            this.PricePerUnit.Name = "PricePerUnit";
-            this.PricePerUnit.ReadOnly = true;
-            // 
-            // col_Dosage
-            // 
-            this.col_Dosage.HeaderText = "Liều lượng";
-            this.col_Dosage.MinimumWidth = 6;
-            this.col_Dosage.Name = "col_Dosage";
-            this.col_Dosage.ReadOnly = true;
-            // 
-            // col_Description
-            // 
-            this.col_Description.HeaderText = "Mô Tả";
-            this.col_Description.MinimumWidth = 6;
-            this.col_Description.Name = "col_Description";
-            this.col_Description.ReadOnly = true;
             // 
             // groupControl_MedicineDatabase
             // 
@@ -586,12 +460,141 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupControl_MedicineDatabase.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupControl_MedicineDatabase.AppearanceCaption.Options.UseFont = true;
+            this.groupControl_MedicineDatabase.Controls.Add(this.btn_RefreshGrid);
             this.groupControl_MedicineDatabase.Controls.Add(this.dgv_Medicine);
             this.groupControl_MedicineDatabase.Location = new System.Drawing.Point(11, 303);
             this.groupControl_MedicineDatabase.Name = "groupControl_MedicineDatabase";
             this.groupControl_MedicineDatabase.Size = new System.Drawing.Size(1256, 453);
             this.groupControl_MedicineDatabase.TabIndex = 105;
             this.groupControl_MedicineDatabase.Text = "[Bảng Thuốc]";
+            // 
+            // btn_RefreshGrid
+            // 
+            this.btn_RefreshGrid.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_RefreshGrid.Appearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btn_RefreshGrid.Appearance.Options.UseBackColor = true;
+            this.btn_RefreshGrid.Appearance.Options.UseBorderColor = true;
+            this.btn_RefreshGrid.Appearance.Options.UseForeColor = true;
+            this.btn_RefreshGrid.AppearanceHovered.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.btn_RefreshGrid.AppearanceHovered.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.btn_RefreshGrid.AppearanceHovered.ForeColor = System.Drawing.Color.Black;
+            this.btn_RefreshGrid.AppearanceHovered.Options.UseBackColor = true;
+            this.btn_RefreshGrid.AppearanceHovered.Options.UseBorderColor = true;
+            this.btn_RefreshGrid.AppearanceHovered.Options.UseForeColor = true;
+            this.btn_RefreshGrid.AppearancePressed.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btn_RefreshGrid.AppearancePressed.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btn_RefreshGrid.AppearancePressed.ForeColor = System.Drawing.Color.White;
+            this.btn_RefreshGrid.AppearancePressed.Options.UseBackColor = true;
+            this.btn_RefreshGrid.AppearancePressed.Options.UseBorderColor = true;
+            this.btn_RefreshGrid.AppearancePressed.Options.UseForeColor = true;
+            this.btn_RefreshGrid.AutoSize = true;
+            this.btn_RefreshGrid.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
+            this.btn_RefreshGrid.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.TopCenter;
+            this.btn_RefreshGrid.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_RefreshGrid.ImageOptions.SvgImage")));
+            this.btn_RefreshGrid.ImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
+            this.btn_RefreshGrid.Location = new System.Drawing.Point(11, 29);
+            this.btn_RefreshGrid.MaximumSize = new System.Drawing.Size(30, 30);
+            this.btn_RefreshGrid.MinimumSize = new System.Drawing.Size(30, 30);
+            this.btn_RefreshGrid.Name = "btn_RefreshGrid";
+            this.btn_RefreshGrid.Size = new System.Drawing.Size(30, 30);
+            this.btn_RefreshGrid.TabIndex = 106;
+            this.btn_RefreshGrid.Click += new System.EventHandler(this.btn_RefreshGrid_Click);
+            // 
+            // dgv_Medicine
+            // 
+            this.dgv_Medicine.DataSource = this.medicineBindingSource;
+            this.dgv_Medicine.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_Medicine.Location = new System.Drawing.Point(2, 26);
+            this.dgv_Medicine.MainView = this.gridView;
+            this.dgv_Medicine.Name = "dgv_Medicine";
+            this.dgv_Medicine.Size = new System.Drawing.Size(1252, 425);
+            this.dgv_Medicine.TabIndex = 105;
+            this.dgv_Medicine.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView});
+            // 
+            // medicineBindingSource
+            // 
+            this.medicineBindingSource.DataSource = typeof(PharmacistManagement_DAL.Model.THUOC);
+            // 
+            // gridView
+            // 
+            this.gridView.Appearance.FocusedRow.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.gridView.Appearance.FocusedRow.Options.UseFont = true;
+            this.gridView.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.gridView.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridView.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridView.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.gridView.Appearance.Row.Options.UseFont = true;
+            this.gridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colMaThuoc,
+            this.colTenThuoc,
+            this.colGiaDonVi,
+            this.colLieuThuoc,
+            this.colSoLuongTon});
+            this.gridView.GridControl = this.dgv_Medicine;
+            this.gridView.GroupPanelText = " ";
+            this.gridView.Name = "gridView";
+            this.gridView.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView_RowCellClick);
+            // 
+            // colMaThuoc
+            // 
+            this.colMaThuoc.FieldName = "Mã Thuốc";
+            this.colMaThuoc.MinWidth = 23;
+            this.colMaThuoc.Name = "colMaThuoc";
+            this.colMaThuoc.OptionsColumn.ReadOnly = true;
+            this.colMaThuoc.Visible = true;
+            this.colMaThuoc.VisibleIndex = 0;
+            this.colMaThuoc.Width = 204;
+            // 
+            // colTenThuoc
+            // 
+            this.colTenThuoc.FieldName = "Tên Thuốc";
+            this.colTenThuoc.MinWidth = 23;
+            this.colTenThuoc.Name = "colTenThuoc";
+            this.colTenThuoc.OptionsColumn.ReadOnly = true;
+            this.colTenThuoc.Visible = true;
+            this.colTenThuoc.VisibleIndex = 1;
+            this.colTenThuoc.Width = 204;
+            // 
+            // colGiaDonVi
+            // 
+            this.colGiaDonVi.DisplayFormat.FormatString = "n0";
+            this.colGiaDonVi.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colGiaDonVi.FieldName = "Giá Đơn Vị";
+            this.colGiaDonVi.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colGiaDonVi.MinWidth = 23;
+            this.colGiaDonVi.Name = "colGiaDonVi";
+            this.colGiaDonVi.OptionsColumn.ReadOnly = true;
+            this.colGiaDonVi.SortMode = DevExpress.XtraGrid.ColumnSortMode.Value;
+            this.colGiaDonVi.UnboundDataType = typeof(long);
+            this.colGiaDonVi.Visible = true;
+            this.colGiaDonVi.VisibleIndex = 2;
+            this.colGiaDonVi.Width = 204;
+            // 
+            // colLieuThuoc
+            // 
+            this.colLieuThuoc.FieldName = "Liều Thuốc";
+            this.colLieuThuoc.MinWidth = 23;
+            this.colLieuThuoc.Name = "colLieuThuoc";
+            this.colLieuThuoc.OptionsColumn.ReadOnly = true;
+            this.colLieuThuoc.Visible = true;
+            this.colLieuThuoc.VisibleIndex = 3;
+            this.colLieuThuoc.Width = 184;
+            // 
+            // colSoLuongTon
+            // 
+            this.colSoLuongTon.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colSoLuongTon.FieldName = "Số Lượng Tồn";
+            this.colSoLuongTon.MinWidth = 23;
+            this.colSoLuongTon.Name = "colSoLuongTon";
+            this.colSoLuongTon.OptionsColumn.ReadOnly = true;
+            this.colSoLuongTon.SortMode = DevExpress.XtraGrid.ColumnSortMode.Value;
+            this.colSoLuongTon.UnboundDataType = typeof(long);
+            this.colSoLuongTon.Visible = true;
+            this.colSoLuongTon.VisibleIndex = 4;
+            this.colSoLuongTon.Width = 217;
             // 
             // splitContainerControl1
             // 
@@ -609,114 +612,32 @@
             // 
             // splitContainerControl1.Panel2
             // 
-            this.splitContainerControl1.Panel2.Controls.Add(this.labelControl_SearchMedicine);
-            this.splitContainerControl1.Panel2.Controls.Add(this.txt_SearchBox);
+            this.splitContainerControl1.Panel2.Controls.Add(this.btn_ClearFields);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(1280, 64);
             this.splitContainerControl1.SplitterPosition = 473;
             this.splitContainerControl1.TabIndex = 10;
             // 
-            // popupContainer_SelectProvider
+            // btn_ClearFields
             // 
-            this.popupContainer_SelectProvider.Controls.Add(this.listBox_SelectProvider);
-            this.popupContainer_SelectProvider.Controls.Add(this.panelControl2);
-            this.popupContainer_SelectProvider.Controls.Add(this.panelControl1);
-            this.popupContainer_SelectProvider.Location = new System.Drawing.Point(469, 129);
-            this.popupContainer_SelectProvider.Name = "popupContainer_SelectProvider";
-            this.popupContainer_SelectProvider.Size = new System.Drawing.Size(393, 485);
-            this.popupContainer_SelectProvider.TabIndex = 10;
-            // 
-            // listBox_SelectProvider
-            // 
-            this.listBox_SelectProvider.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox_SelectProvider.Location = new System.Drawing.Point(0, 56);
-            this.listBox_SelectProvider.Name = "listBox_SelectProvider";
-            this.listBox_SelectProvider.Size = new System.Drawing.Size(393, 375);
-            this.listBox_SelectProvider.TabIndex = 3;
-            // 
-            // panelControl2
-            // 
-            this.panelControl2.Controls.Add(this.btn_Cancel);
-            this.panelControl2.Controls.Add(this.btn_InsertProvider);
-            this.panelControl2.Controls.Add(this.btn_Confỉrm);
-            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl2.Location = new System.Drawing.Point(0, 431);
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(393, 54);
-            this.panelControl2.TabIndex = 2;
-            // 
-            // btn_Cancel
-            // 
-            this.btn_Cancel.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btn_Cancel.Appearance.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btn_Cancel.Appearance.Options.UseBackColor = true;
-            this.btn_Cancel.Appearance.Options.UseFont = true;
-            this.btn_Cancel.Location = new System.Drawing.Point(293, 7);
-            this.btn_Cancel.Name = "btn_Cancel";
-            this.btn_Cancel.Size = new System.Drawing.Size(86, 37);
-            this.btn_Cancel.TabIndex = 0;
-            this.btn_Cancel.Text = "Hủy";
-            // 
-            // btn_InsertProvider
-            // 
-            this.btn_InsertProvider.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btn_InsertProvider.Appearance.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btn_InsertProvider.Appearance.Options.UseBackColor = true;
-            this.btn_InsertProvider.Appearance.Options.UseFont = true;
-            this.btn_InsertProvider.Location = new System.Drawing.Point(13, 7);
-            this.btn_InsertProvider.Name = "btn_InsertProvider";
-            this.btn_InsertProvider.Size = new System.Drawing.Size(107, 37);
-            this.btn_InsertProvider.TabIndex = 0;
-            this.btn_InsertProvider.Text = "Thêm NCC";
-            this.btn_InsertProvider.Click += new System.EventHandler(this.btn_InsertUpdateProvider_Click);
-            // 
-            // btn_Confỉrm
-            // 
-            this.btn_Confỉrm.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btn_Confỉrm.Appearance.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btn_Confỉrm.Appearance.Options.UseBackColor = true;
-            this.btn_Confỉrm.Appearance.Options.UseFont = true;
-            this.btn_Confỉrm.Location = new System.Drawing.Point(201, 7);
-            this.btn_Confỉrm.Name = "btn_Confỉrm";
-            this.btn_Confỉrm.Size = new System.Drawing.Size(86, 37);
-            this.btn_Confỉrm.TabIndex = 0;
-            this.btn_Confỉrm.Text = "Xác nhận";
-            // 
-            // panelControl1
-            // 
-            this.panelControl1.Controls.Add(this.txt_SearchProvider);
-            this.panelControl1.Controls.Add(this.label_SearchProvider);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl1.Location = new System.Drawing.Point(0, 0);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(393, 56);
-            this.panelControl1.TabIndex = 1;
-            // 
-            // txt_SearchProvider
-            // 
-            this.txt_SearchProvider.Font = new System.Drawing.Font("Tahoma", 11.12727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_SearchProvider.Location = new System.Drawing.Point(212, 15);
-            this.txt_SearchProvider.Name = "txt_SearchProvider";
-            this.txt_SearchProvider.Size = new System.Drawing.Size(176, 28);
-            this.txt_SearchProvider.TabIndex = 1;
-            this.txt_SearchProvider.TextChanged += new System.EventHandler(this.txt_SearchProvider_TextChanged);
-            // 
-            // label_SearchProvider
-            // 
-            this.label_SearchProvider.Appearance.Font = new System.Drawing.Font("Tahoma", 11.12727F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label_SearchProvider.Appearance.Options.UseFont = true;
-            this.label_SearchProvider.Location = new System.Drawing.Point(50, 17);
-            this.label_SearchProvider.Name = "label_SearchProvider";
-            this.label_SearchProvider.Size = new System.Drawing.Size(156, 21);
-            this.label_SearchProvider.TabIndex = 0;
-            this.label_SearchProvider.Text = "Tìm nhà cung cấp:";
+            this.btn_ClearFields.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_ClearFields.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btn_ClearFields.Appearance.Options.UseFont = true;
+            this.btn_ClearFields.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btn_ClearFields.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_ClearFields.ImageOptions.SvgImage")));
+            this.btn_ClearFields.ImageOptions.SvgImageSize = new System.Drawing.Size(25, 25);
+            this.btn_ClearFields.Location = new System.Drawing.Point(641, 13);
+            this.btn_ClearFields.Name = "btn_ClearFields";
+            this.btn_ClearFields.Size = new System.Drawing.Size(142, 39);
+            this.btn_ClearFields.TabIndex = 0;
+            this.btn_ClearFields.Text = "  Làm sạch";
+            this.btn_ClearFields.Click += new System.EventHandler(this.btn_ClearFields_Click);
             // 
             // frm_ManageMedicine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 768);
-            this.Controls.Add(this.popupContainer_SelectProvider);
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.groupControl_MedicineDatabase);
             this.Controls.Add(this.panel_Buttons);
@@ -743,24 +664,18 @@
             this.panel_Description.PerformLayout();
             this.panel_Dosage.ResumeLayout(false);
             this.panel_Dosage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Medicine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl_MedicineDatabase)).EndInit();
             this.groupControl_MedicineDatabase.ResumeLayout(false);
+            this.groupControl_MedicineDatabase.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Medicine)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.medicineBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).EndInit();
             this.splitContainerControl1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel2)).EndInit();
             this.splitContainerControl1.Panel2.ResumeLayout(false);
-            this.splitContainerControl1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.popupContainer_SelectProvider)).EndInit();
-            this.popupContainer_SelectProvider.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.listBox_SelectProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            this.panelControl1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -781,9 +696,6 @@
         private System.Windows.Forms.TextBox txt_Dosage;
         private DevExpress.XtraEditors.LabelControl label_Description;
         private DevExpress.XtraEditors.SimpleButton btn_Delete;
-        private DevExpress.XtraEditors.LabelControl labelControl_SearchMedicine;
-        private System.Windows.Forms.TextBox txt_SearchBox;
-        private System.Windows.Forms.DataGridView dgv_Medicine;
         private System.Windows.Forms.Panel panel_Description;
         private System.Windows.Forms.Panel panel_Id;
         private System.Windows.Forms.TextBox txt_Id;
@@ -792,22 +704,17 @@
         private System.Windows.Forms.Panel panel_Name;
         private System.Windows.Forms.TextBox txt_Name;
         private DevExpress.XtraEditors.GroupControl groupControl_MedicineDatabase;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MedicineID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MedicineName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PricePerUnit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_Dosage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_Description;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private System.Windows.Forms.TextBox txt_Description;
-        private DevExpress.XtraEditors.PopupContainerControl popupContainer_SelectProvider;
-        private DevExpress.XtraEditors.ListBoxControl listBox_SelectProvider;
-        private DevExpress.XtraEditors.PanelControl panelControl2;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private System.Windows.Forms.TextBox txt_SearchProvider;
-        private DevExpress.XtraEditors.LabelControl label_SearchProvider;
-        private DevExpress.XtraEditors.SimpleButton btn_Confỉrm;
-        private DevExpress.XtraEditors.SimpleButton btn_Cancel;
-        private DevExpress.XtraEditors.SimpleButton btn_InsertProvider;
+        private DevExpress.XtraGrid.GridControl dgv_Medicine;
+        private System.Windows.Forms.BindingSource medicineBindingSource;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView;
+        private DevExpress.XtraGrid.Columns.GridColumn colMaThuoc;
+        private DevExpress.XtraGrid.Columns.GridColumn colTenThuoc;
+        private DevExpress.XtraGrid.Columns.GridColumn colGiaDonVi;
+        private DevExpress.XtraGrid.Columns.GridColumn colLieuThuoc;
+        private DevExpress.XtraGrid.Columns.GridColumn colSoLuongTon;
+        private DevExpress.XtraEditors.SimpleButton btn_ClearFields;
+        private DevExpress.XtraEditors.SimpleButton btn_RefreshGrid;
     }
 }

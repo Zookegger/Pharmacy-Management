@@ -1,6 +1,6 @@
 ﻿namespace PharmacistUI
 {
-    partial class AdjustBatch
+    partial class frm_UserProfile
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // frm_UserProfile
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "AdjustBatch";
+            this.ClientSize = new System.Drawing.Size(298, 263);
+            this.Name = "frm_UserProfile";
+            this.Text = "UserProfile";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -89,7 +89,6 @@
             this.accordionControl_SidePanel.Size = new System.Drawing.Size(286, 758);
             this.accordionControl_SidePanel.TabIndex = 0;
             this.accordionControl_SidePanel.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
-            this.accordionControl_SidePanel.Click += new System.EventHandler(this.accordionControl_SidePanel_Click);
             // 
             // accordionControlElement_ManageMedicine
             // 
@@ -179,7 +178,6 @@
             superToolTip2.Items.Add(toolTipItem2);
             this.accordionControlElement_UserProfile.SuperTip = superToolTip2;
             this.accordionControlElement_UserProfile.Text = "Hồ sơ người dùng";
-            this.accordionControlElement_UserProfile.Click += new System.EventHandler(this.accordionControlElement_UserProfile_Click);
             // 
             // panel_Main
             // 

@@ -10,12 +10,18 @@ namespace Pharmacist_BUS
 {
     public class ProviderServices
     {
-        private PharmacyManagementDB db = new PharmacyManagementDB();
+        private readonly PharmacyManagementDB db = new PharmacyManagementDB();
         public List<NHACUNGCAP> GetProviders()
         {
             return db.NHACUNGCAP.ToList();
+        }     
+        public List<NHACUNGCAP> GetProviders(string search)
+        {
+            return db.NHACUNGCAP.Where(provider => 
+                provider.MaNhaCungCap.ToLower().Contains(search.ToLower()) ||
+                provider.TenNhaCungCap.ToLower().Contains(search.ToLower())
+            ).ToList();
         }
-        
         public DataTable GetProviderTable()
         {
             DataTable table = new DataTable();
@@ -30,13 +36,38 @@ namespace Pharmacist_BUS
             }
             return table;
         }
-
-        public List<NHACUNGCAP> GetProviders(string search)
+        public void InsertProvider(NHACUNGCAP provider)
         {
-            return db.NHACUNGCAP.Where(provider => 
-                provider.MaNhaCungCap.ToLower().Contains(search.ToLower()) ||
-                provider.TenNhaCungCap.ToLower().Contains(search.ToLower())
-            ).ToList();
+            db.NHACUNGCAP.Add(provider);
+            db.SaveChanges();
+        }
+        public void UpdateProvider(NHACUNGCAP provider)
+        {
+            NHACUNGCAP oldProvider = db.NHACUNGCAP.Find(provider.MaNhaCungCap);
+            if (oldProvider != null)
+            {
+                oldProvider.TenNhaCungCap = provider.TenNhaCungCap;
+                oldProvider.DiaChi = provider.DiaChi;
+                oldProvider.Email = provider.Email;
+                oldProvider.SoDienThoai = provider.SoDienThoai;
+                db.SaveChanges();
+            } else
+            {
+                throw new Exception("Không tìm thấy nhà cung cấp");
+            }
+        }
+        public void DeleteProvider(string providerId)
+        {
+            NHACUNGCAP provider = db.NHACUNGCAP.Find(providerId);
+            if (provider != null)
+            {
+                db.NHACUNGCAP.Remove(provider);
+                db.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("Không tìm thấy nhà cung cấp");
+            }
         }
     }
 }

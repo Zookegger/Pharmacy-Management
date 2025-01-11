@@ -15,6 +15,7 @@ using Pharmacist;
 using Pharmacist.Properties;
 using System.IO;
 using DevExpress.Utils.Svg;
+using PharmacistUI;
 
 namespace Pharmacist
 {
@@ -73,6 +74,9 @@ namespace Pharmacist
                     break;
                 case "accordionControlElement_ManageProviders":
                     form = new frm_ManageProviders();
+                    break;
+                case "accordionControlElement_UserProfile":
+                    form = new frm_UserProfile();
                     break;
                 default:
                     throw new Exception($"Không tìm thấy form: frm_{btnName.Substring(24)}");
@@ -211,11 +215,6 @@ namespace Pharmacist
         }
 
         private void accordionControlElement_UserProfile_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void accordionControl_SidePanel_Click(object sender, EventArgs e)
         {
 
         }

@@ -48,5 +48,10 @@ namespace Manager_GUI
 
             
         }
+
+        private void dgv_Personel_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

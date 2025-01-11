@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_ManagerGUI));
-            DevExpress.Utils.SuperToolTip superToolTip15 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem15 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip16 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem16 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
             this.accordionControl_SidePanel = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accordionControlSeparator4 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.accordionControlSeparator3 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.accordionControlSeparator2 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement_Bill = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement_personnel = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement4 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement_UserProfile = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement_LogOut = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panel_Main = new System.Windows.Forms.Panel();
-            this.accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement4 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl_SidePanel)).BeginInit();
             this.SuspendLayout();
             // 
@@ -116,6 +116,17 @@
             this.accordionControlElement_Bill.Text = "Hóa đơn";
             this.accordionControlElement_Bill.Click += new System.EventHandler(this.btn_bill);
             // 
+            // accordionControlElement3
+            // 
+            this.accordionControlElement3.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordionControlElement_personnel,
+            this.accordionControlElement4});
+            this.accordionControlElement3.Expanded = true;
+            this.accordionControlElement3.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement3.ImageOptions.SvgImage")));
+            this.accordionControlElement3.Name = "accordionControlElement3";
+            this.accordionControlElement3.Text = "Nhân sự";
+            this.accordionControlElement3.Click += new System.EventHandler(this.accordionControlElement3_Click);
+            // 
             // accordionControlElement_personnel
             // 
             this.accordionControlElement_personnel.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement_personnel.ImageOptions.SvgImage")));
@@ -123,6 +134,13 @@
             this.accordionControlElement_personnel.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionControlElement_personnel.Text = "Nhân viên";
             this.accordionControlElement_personnel.Click += new System.EventHandler(this.btn_Personel);
+            // 
+            // accordionControlElement4
+            // 
+            this.accordionControlElement4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement4.ImageOptions.SvgImage")));
+            this.accordionControlElement4.Name = "accordionControlElement4";
+            this.accordionControlElement4.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement4.Text = "Tài khoản";
             // 
             // accordionControlElement2
             // 
@@ -142,9 +160,9 @@
             this.accordionControlElement_UserProfile.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement_UserProfile.ImageOptions.SvgImage")));
             this.accordionControlElement_UserProfile.Name = "accordionControlElement_UserProfile";
             this.accordionControlElement_UserProfile.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipItem15.Text = "Xem thông tiin hồ sơ của người dùng hiện tại";
-            superToolTip15.Items.Add(toolTipItem15);
-            this.accordionControlElement_UserProfile.SuperTip = superToolTip15;
+            toolTipItem1.Text = "Xem thông tiin hồ sơ của người dùng hiện tại";
+            superToolTip1.Items.Add(toolTipItem1);
+            this.accordionControlElement_UserProfile.SuperTip = superToolTip1;
             this.accordionControlElement_UserProfile.Text = "Hồ sơ người dùng";
             // 
             // accordionControlElement_LogOut
@@ -155,9 +173,9 @@
             this.accordionControlElement_LogOut.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.Full;
             this.accordionControlElement_LogOut.Name = "accordionControlElement_LogOut";
             this.accordionControlElement_LogOut.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            toolTipItem16.Text = "Đăng xuất tài khoản người dùng hiện tại";
-            superToolTip16.Items.Add(toolTipItem16);
-            this.accordionControlElement_LogOut.SuperTip = superToolTip16;
+            toolTipItem2.Text = "Đăng xuất tài khoản người dùng hiện tại";
+            superToolTip2.Items.Add(toolTipItem2);
+            this.accordionControlElement_LogOut.SuperTip = superToolTip2;
             this.accordionControlElement_LogOut.Text = "Đăng Xuất";
             this.accordionControlElement_LogOut.Click += new System.EventHandler(this.btn_LogOut_Click);
             // 
@@ -168,24 +186,6 @@
             this.panel_Main.Name = "panel_Main";
             this.panel_Main.Size = new System.Drawing.Size(859, 795);
             this.panel_Main.TabIndex = 2;
-            // 
-            // accordionControlElement3
-            // 
-            this.accordionControlElement3.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.accordionControlElement_personnel,
-            this.accordionControlElement4});
-            this.accordionControlElement3.Expanded = true;
-            this.accordionControlElement3.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement3.ImageOptions.SvgImage")));
-            this.accordionControlElement3.Name = "accordionControlElement3";
-            this.accordionControlElement3.Text = "Nhân sự";
-            this.accordionControlElement3.Click += new System.EventHandler(this.accordionControlElement3_Click);
-            // 
-            // accordionControlElement4
-            // 
-            this.accordionControlElement4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement4.ImageOptions.SvgImage")));
-            this.accordionControlElement4.Name = "accordionControlElement4";
-            this.accordionControlElement4.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement4.Text = "Tài khoản";
             // 
             // frm_ManagerGUI
             // 

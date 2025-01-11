@@ -51,8 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountServices.cs" />
     <Compile Include="ManagerServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransacsionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

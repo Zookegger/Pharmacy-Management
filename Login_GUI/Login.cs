@@ -142,21 +142,21 @@ namespace Login
                     frm_ManagerGUI ManagerGUI;
                     XtraMessageBoxArgs msgargs;
 
-                    switch (role)
+                    switch (role.ToLower())
                     {
-                        case "Dược sĩ":
+                        case "dược sĩ":
                             pharmacistGUI = new frm_PharmacistGUI();
                             pharmacistGUI.FormClosed += (s, args) => this.Show();
                             this.Hide();
                             pharmacistGUI.Show();
                             break;
-                        case "Quản lý":
+                        case "quản lý":
                             ManagerGUI = new frm_ManagerGUI();
                             ManagerGUI.FormClosed += (s, args) => this.Show();
                             this.Hide();
                             ManagerGUI.Show();
                             break;
-                        case "Admin":
+                        case "admin":
                             // Select Mode
                             msgargs = new XtraMessageBoxArgs();
                             msgargs.Text = "            Chọn chế độ";

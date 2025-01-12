@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_SellMedicine));
             this.txt_SearchMedicine = new System.Windows.Forms.TextBox();
             this.panel_Title = new DevExpress.XtraEditors.PanelControl();
             this.label_Title = new System.Windows.Forms.Label();
@@ -56,6 +59,7 @@
             this.txt_TotalPrice = new System.Windows.Forms.TextBox();
             this.groupControl_SellCart = new DevExpress.XtraEditors.GroupControl();
             this.panelControl_BottomCartControls = new DevExpress.XtraEditors.PanelControl();
+            this.check_SaveCustomerInfo = new System.Windows.Forms.CheckBox();
             this.btn_Checkout = new DevExpress.XtraEditors.SimpleButton();
             this.dgv_SellCart = new System.Windows.Forms.DataGridView();
             this.col_MedicineId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,6 +69,42 @@
             this.col_Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_TotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.roundedButton = new RoundedButton();
+            this.popupContainerControl_Receipt = new DevExpress.XtraEditors.PopupContainerControl();
+            this.panel_PopupTitle = new System.Windows.Forms.Panel();
+            this.panel_MainReceipt = new System.Windows.Forms.Panel();
+            this.groupControl_ReceiptContent = new DevExpress.XtraEditors.GroupControl();
+            this.gridControl = new DevExpress.XtraGrid.GridControl();
+            this.cHITIETDONTHUOCBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gridView_ReceiptDetail = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colMaDonThuoc = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMaThuoc = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSoLuong = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNgayHetHan = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDONTHUOC = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTHUOC = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.groupControl_CustomerInfo = new DevExpress.XtraEditors.GroupControl();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.labelControl_Email = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl_PhoneNumber = new DevExpress.XtraEditors.LabelControl();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label_CustomerName = new DevExpress.XtraEditors.LabelControl();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.labelControl_Address = new DevExpress.XtraEditors.LabelControl();
+            this.panel_ReceiptInfo = new DevExpress.XtraEditors.PanelControl();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.label_Employee = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl_ReceiptId = new DevExpress.XtraEditors.LabelControl();
+            this.txt_ = new System.Windows.Forms.TextBox();
+            this.txt_EmployeeMade = new System.Windows.Forms.TextBox();
+            this.txt_ReceiptId = new System.Windows.Forms.TextBox();
+            this.panel_ReceiptTitle = new System.Windows.Forms.Panel();
+            this.label_Receipt = new DevExpress.XtraEditors.LabelControl();
+            this.panel_ReceiptButton = new System.Windows.Forms.Panel();
+            this.btn_SkipPrint = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_PrintReceipt = new DevExpress.XtraEditors.SimpleButton();
+            this.printDocument = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             ((System.ComponentModel.ISupportInitialize)(this.panel_Title)).BeginInit();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listBox_AvailableMedicine)).BeginInit();
@@ -82,6 +122,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl_BottomCartControls)).BeginInit();
             this.panelControl_BottomCartControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_SellCart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl_Receipt)).BeginInit();
+            this.popupContainerControl_Receipt.SuspendLayout();
+            this.panel_PopupTitle.SuspendLayout();
+            this.panel_MainReceipt.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl_ReceiptContent)).BeginInit();
+            this.groupControl_ReceiptContent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cHITIETDONTHUOCBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView_ReceiptDetail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl_CustomerInfo)).BeginInit();
+            this.groupControl_CustomerInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panel_ReceiptInfo)).BeginInit();
+            this.panel_ReceiptInfo.SuspendLayout();
+            this.panel_ReceiptTitle.SuspendLayout();
+            this.panel_ReceiptButton.SuspendLayout();
             this.SuspendLayout();
             // 
             // txt_SearchMedicine
@@ -116,7 +171,7 @@
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(12, 74);
+            this.labelControl1.Location = new System.Drawing.Point(12, 75);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(40, 22);
             this.labelControl1.TabIndex = 3;
@@ -164,7 +219,7 @@
             this.btn_AddToCart.Appearance.Options.UseBackColor = true;
             this.btn_AddToCart.Appearance.Options.UseFont = true;
             this.btn_AddToCart.Appearance.Options.UseForeColor = true;
-            this.btn_AddToCart.Location = new System.Drawing.Point(168, 143);
+            this.btn_AddToCart.Location = new System.Drawing.Point(166, 143);
             this.btn_AddToCart.Name = "btn_AddToCart";
             this.btn_AddToCart.Size = new System.Drawing.Size(287, 38);
             this.btn_AddToCart.TabIndex = 10;
@@ -197,9 +252,9 @@
             this.group_MedicationInfo.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.group_MedicationInfo.AppearanceCaption.Options.UseFont = true;
             this.group_MedicationInfo.Controls.Add(this.splitContainerControl_MedicationInfo);
-            this.group_MedicationInfo.Location = new System.Drawing.Point(242, 75);
+            this.group_MedicationInfo.Location = new System.Drawing.Point(244, 75);
             this.group_MedicationInfo.Name = "group_MedicationInfo";
-            this.group_MedicationInfo.Size = new System.Drawing.Size(1018, 222);
+            this.group_MedicationInfo.Size = new System.Drawing.Size(1016, 222);
             this.group_MedicationInfo.TabIndex = 12;
             this.group_MedicationInfo.Text = "[Thông Tin Thuốc]";
             // 
@@ -234,7 +289,7 @@
             this.splitContainerControl_MedicationInfo.Panel2.Controls.Add(this.numUpDown_BuyAmount);
             this.splitContainerControl_MedicationInfo.Panel2.Controls.Add(this.txt_TotalPrice);
             this.splitContainerControl_MedicationInfo.Panel2.Text = "Panel2";
-            this.splitContainerControl_MedicationInfo.Size = new System.Drawing.Size(1014, 194);
+            this.splitContainerControl_MedicationInfo.Size = new System.Drawing.Size(1012, 194);
             this.splitContainerControl_MedicationInfo.SplitterPosition = 470;
             this.splitContainerControl_MedicationInfo.TabIndex = 0;
             // 
@@ -345,7 +400,7 @@
             this.txt_PricePerUnit.MaximumSize = new System.Drawing.Size(300, 28);
             this.txt_PricePerUnit.Name = "txt_PricePerUnit";
             this.txt_PricePerUnit.ReadOnly = true;
-            this.txt_PricePerUnit.Size = new System.Drawing.Size(287, 29);
+            this.txt_PricePerUnit.Size = new System.Drawing.Size(285, 29);
             this.txt_PricePerUnit.TabIndex = 15;
             // 
             // labelControl3
@@ -399,7 +454,7 @@
             this.txt_TotalPrice.MaximumSize = new System.Drawing.Size(300, 28);
             this.txt_TotalPrice.Name = "txt_TotalPrice";
             this.txt_TotalPrice.ReadOnly = true;
-            this.txt_TotalPrice.Size = new System.Drawing.Size(287, 29);
+            this.txt_TotalPrice.Size = new System.Drawing.Size(285, 29);
             this.txt_TotalPrice.TabIndex = 14;
             // 
             // groupControl_SellCart
@@ -420,6 +475,7 @@
             // panelControl_BottomCartControls
             // 
             this.panelControl_BottomCartControls.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl_BottomCartControls.Controls.Add(this.check_SaveCustomerInfo);
             this.panelControl_BottomCartControls.Controls.Add(this.btn_Checkout);
             this.panelControl_BottomCartControls.Controls.Add(this.txt_TotalCartPrice);
             this.panelControl_BottomCartControls.Controls.Add(this.btn_Discard);
@@ -429,6 +485,17 @@
             this.panelControl_BottomCartControls.Name = "panelControl_BottomCartControls";
             this.panelControl_BottomCartControls.Size = new System.Drawing.Size(1012, 43);
             this.panelControl_BottomCartControls.TabIndex = 10;
+            // 
+            // check_SaveCustomerInfo
+            // 
+            this.check_SaveCustomerInfo.AutoSize = true;
+            this.check_SaveCustomerInfo.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.check_SaveCustomerInfo.Location = new System.Drawing.Point(505, 13);
+            this.check_SaveCustomerInfo.Name = "check_SaveCustomerInfo";
+            this.check_SaveCustomerInfo.Size = new System.Drawing.Size(193, 22);
+            this.check_SaveCustomerInfo.TabIndex = 13;
+            this.check_SaveCustomerInfo.Text = "Lưu thông tin khách hàng";
+            this.check_SaveCustomerInfo.UseVisualStyleBackColor = true;
             // 
             // btn_Checkout
             // 
@@ -446,19 +513,20 @@
             this.btn_Checkout.Size = new System.Drawing.Size(227, 38);
             this.btn_Checkout.TabIndex = 12;
             this.btn_Checkout.Text = "Thanh Toán";
+            this.btn_Checkout.Click += new System.EventHandler(this.btn_Checkout_Click);
             // 
             // dgv_SellCart
             // 
             this.dgv_SellCart.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_SellCart.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 7.2F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_SellCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Tahoma", 7.2F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_SellCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgv_SellCart.ColumnHeadersHeight = 50;
             this.dgv_SellCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv_SellCart.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -471,16 +539,19 @@
             this.dgv_SellCart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_SellCart.Location = new System.Drawing.Point(2, 26);
             this.dgv_SellCart.Name = "dgv_SellCart";
+            this.dgv_SellCart.RowHeadersVisible = false;
             this.dgv_SellCart.RowHeadersWidth = 47;
             this.dgv_SellCart.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.dgv_SellCart.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dgv_SellCart.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgv_SellCart.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_SellCart.Size = new System.Drawing.Size(1012, 374);
             this.dgv_SellCart.TabIndex = 6;
             // 
             // col_MedicineId
             // 
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Tahoma", 11.12727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.col_MedicineId.DefaultCellStyle = dataGridViewCellStyle8;
             this.col_MedicineId.HeaderText = "ID Thuốc";
             this.col_MedicineId.MinimumWidth = 6;
             this.col_MedicineId.Name = "col_MedicineId";
@@ -527,11 +598,342 @@
             this.roundedButton.Size = new System.Drawing.Size(86, 26);
             this.roundedButton.TabIndex = 0;
             // 
+            // popupContainerControl_Receipt
+            // 
+            this.popupContainerControl_Receipt.Controls.Add(this.panel_PopupTitle);
+            this.popupContainerControl_Receipt.Controls.Add(this.panel_ReceiptButton);
+            this.popupContainerControl_Receipt.Location = new System.Drawing.Point(370, 11);
+            this.popupContainerControl_Receipt.Name = "popupContainerControl_Receipt";
+            this.popupContainerControl_Receipt.Size = new System.Drawing.Size(668, 684);
+            this.popupContainerControl_Receipt.TabIndex = 14;
+            // 
+            // panel_PopupTitle
+            // 
+            this.panel_PopupTitle.Controls.Add(this.panel_MainReceipt);
+            this.panel_PopupTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_PopupTitle.Location = new System.Drawing.Point(0, 0);
+            this.panel_PopupTitle.Name = "panel_PopupTitle";
+            this.panel_PopupTitle.Size = new System.Drawing.Size(668, 635);
+            this.panel_PopupTitle.TabIndex = 0;
+            // 
+            // panel_MainReceipt
+            // 
+            this.panel_MainReceipt.Controls.Add(this.groupControl_ReceiptContent);
+            this.panel_MainReceipt.Controls.Add(this.groupControl_CustomerInfo);
+            this.panel_MainReceipt.Controls.Add(this.panel_ReceiptInfo);
+            this.panel_MainReceipt.Controls.Add(this.panel_ReceiptTitle);
+            this.panel_MainReceipt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_MainReceipt.Location = new System.Drawing.Point(0, 0);
+            this.panel_MainReceipt.Name = "panel_MainReceipt";
+            this.panel_MainReceipt.Size = new System.Drawing.Size(668, 635);
+            this.panel_MainReceipt.TabIndex = 0;
+            // 
+            // groupControl_ReceiptContent
+            // 
+            this.groupControl_ReceiptContent.Controls.Add(this.gridControl);
+            this.groupControl_ReceiptContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl_ReceiptContent.Location = new System.Drawing.Point(0, 180);
+            this.groupControl_ReceiptContent.Name = "groupControl_ReceiptContent";
+            this.groupControl_ReceiptContent.Size = new System.Drawing.Size(668, 455);
+            this.groupControl_ReceiptContent.TabIndex = 7;
+            this.groupControl_ReceiptContent.Text = "Thông tin đơn thuốc";
+            // 
+            // gridControl
+            // 
+            this.gridControl.DataSource = this.cHITIETDONTHUOCBindingSource;
+            this.gridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl.Location = new System.Drawing.Point(2, 26);
+            this.gridControl.MainView = this.gridView_ReceiptDetail;
+            this.gridControl.Name = "gridControl";
+            this.gridControl.Size = new System.Drawing.Size(664, 427);
+            this.gridControl.TabIndex = 0;
+            this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView_ReceiptDetail});
+            // 
+            // cHITIETDONTHUOCBindingSource
+            // 
+            this.cHITIETDONTHUOCBindingSource.DataSource = typeof(PharmacistManagement_DAL.Model.CHITIETDONTHUOC);
+            // 
+            // gridView_ReceiptDetail
+            // 
+            this.gridView_ReceiptDetail.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colMaDonThuoc,
+            this.colMaThuoc,
+            this.colSoLuong,
+            this.colNgayHetHan,
+            this.colDONTHUOC,
+            this.colTHUOC});
+            this.gridView_ReceiptDetail.GridControl = this.gridControl;
+            this.gridView_ReceiptDetail.Name = "gridView_ReceiptDetail";
+            this.gridView_ReceiptDetail.OptionsView.ShowGroupPanel = false;
+            // 
+            // colMaDonThuoc
+            // 
+            this.colMaDonThuoc.FieldName = "MaDonThuoc";
+            this.colMaDonThuoc.MinWidth = 23;
+            this.colMaDonThuoc.Name = "colMaDonThuoc";
+            this.colMaDonThuoc.Visible = true;
+            this.colMaDonThuoc.VisibleIndex = 0;
+            this.colMaDonThuoc.Width = 86;
+            // 
+            // colMaThuoc
+            // 
+            this.colMaThuoc.FieldName = "MaThuoc";
+            this.colMaThuoc.MinWidth = 23;
+            this.colMaThuoc.Name = "colMaThuoc";
+            this.colMaThuoc.Visible = true;
+            this.colMaThuoc.VisibleIndex = 1;
+            this.colMaThuoc.Width = 86;
+            // 
+            // colSoLuong
+            // 
+            this.colSoLuong.FieldName = "SoLuong";
+            this.colSoLuong.MinWidth = 23;
+            this.colSoLuong.Name = "colSoLuong";
+            this.colSoLuong.Visible = true;
+            this.colSoLuong.VisibleIndex = 2;
+            this.colSoLuong.Width = 86;
+            // 
+            // colNgayHetHan
+            // 
+            this.colNgayHetHan.FieldName = "NgayHetHan";
+            this.colNgayHetHan.MinWidth = 23;
+            this.colNgayHetHan.Name = "colNgayHetHan";
+            this.colNgayHetHan.Visible = true;
+            this.colNgayHetHan.VisibleIndex = 3;
+            this.colNgayHetHan.Width = 86;
+            // 
+            // colDONTHUOC
+            // 
+            this.colDONTHUOC.FieldName = "DONTHUOC";
+            this.colDONTHUOC.MinWidth = 23;
+            this.colDONTHUOC.Name = "colDONTHUOC";
+            this.colDONTHUOC.Visible = true;
+            this.colDONTHUOC.VisibleIndex = 4;
+            this.colDONTHUOC.Width = 86;
+            // 
+            // colTHUOC
+            // 
+            this.colTHUOC.FieldName = "THUOC";
+            this.colTHUOC.MinWidth = 23;
+            this.colTHUOC.Name = "colTHUOC";
+            this.colTHUOC.Visible = true;
+            this.colTHUOC.VisibleIndex = 5;
+            this.colTHUOC.Width = 86;
+            // 
+            // groupControl_CustomerInfo
+            // 
+            this.groupControl_CustomerInfo.Controls.Add(this.textBox1);
+            this.groupControl_CustomerInfo.Controls.Add(this.labelControl_Email);
+            this.groupControl_CustomerInfo.Controls.Add(this.labelControl_PhoneNumber);
+            this.groupControl_CustomerInfo.Controls.Add(this.textBox2);
+            this.groupControl_CustomerInfo.Controls.Add(this.textBox5);
+            this.groupControl_CustomerInfo.Controls.Add(this.label_CustomerName);
+            this.groupControl_CustomerInfo.Controls.Add(this.textBox4);
+            this.groupControl_CustomerInfo.Controls.Add(this.labelControl_Address);
+            this.groupControl_CustomerInfo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupControl_CustomerInfo.Location = new System.Drawing.Point(0, 79);
+            this.groupControl_CustomerInfo.Name = "groupControl_CustomerInfo";
+            this.groupControl_CustomerInfo.Size = new System.Drawing.Size(668, 101);
+            this.groupControl_CustomerInfo.TabIndex = 6;
+            this.groupControl_CustomerInfo.Text = "Thông tin khách hàng";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(132, 33);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(188, 21);
+            this.textBox1.TabIndex = 2;
+            // 
+            // labelControl_Email
+            // 
+            this.labelControl_Email.Location = new System.Drawing.Point(349, 71);
+            this.labelControl_Email.Name = "labelControl_Email";
+            this.labelControl_Email.Size = new System.Drawing.Size(28, 13);
+            this.labelControl_Email.TabIndex = 3;
+            this.labelControl_Email.Text = "Email:";
+            // 
+            // labelControl_PhoneNumber
+            // 
+            this.labelControl_PhoneNumber.Location = new System.Drawing.Point(349, 39);
+            this.labelControl_PhoneNumber.Name = "labelControl_PhoneNumber";
+            this.labelControl_PhoneNumber.Size = new System.Drawing.Size(62, 13);
+            this.labelControl_PhoneNumber.TabIndex = 3;
+            this.labelControl_PhoneNumber.Text = "Số điện thoại";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(132, 67);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(188, 21);
+            this.textBox2.TabIndex = 2;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(422, 67);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(208, 21);
+            this.textBox5.TabIndex = 2;
+            // 
+            // label_CustomerName
+            // 
+            this.label_CustomerName.Location = new System.Drawing.Point(30, 39);
+            this.label_CustomerName.Name = "label_CustomerName";
+            this.label_CustomerName.Size = new System.Drawing.Size(76, 13);
+            this.label_CustomerName.TabIndex = 3;
+            this.label_CustomerName.Text = "Tên khách hàng";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(422, 33);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(208, 21);
+            this.textBox4.TabIndex = 2;
+            // 
+            // labelControl_Address
+            // 
+            this.labelControl_Address.Location = new System.Drawing.Point(30, 71);
+            this.labelControl_Address.Name = "labelControl_Address";
+            this.labelControl_Address.Size = new System.Drawing.Size(32, 13);
+            this.labelControl_Address.TabIndex = 3;
+            this.labelControl_Address.Text = "Địa chỉ";
+            // 
+            // panel_ReceiptInfo
+            // 
+            this.panel_ReceiptInfo.Appearance.BorderColor = System.Drawing.Color.Black;
+            this.panel_ReceiptInfo.Appearance.Options.UseBorderColor = true;
+            this.panel_ReceiptInfo.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.panel_ReceiptInfo.Controls.Add(this.labelControl5);
+            this.panel_ReceiptInfo.Controls.Add(this.label_Employee);
+            this.panel_ReceiptInfo.Controls.Add(this.labelControl_ReceiptId);
+            this.panel_ReceiptInfo.Controls.Add(this.txt_);
+            this.panel_ReceiptInfo.Controls.Add(this.txt_EmployeeMade);
+            this.panel_ReceiptInfo.Controls.Add(this.txt_ReceiptId);
+            this.panel_ReceiptInfo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_ReceiptInfo.Location = new System.Drawing.Point(0, 47);
+            this.panel_ReceiptInfo.Name = "panel_ReceiptInfo";
+            this.panel_ReceiptInfo.Size = new System.Drawing.Size(668, 32);
+            this.panel_ReceiptInfo.TabIndex = 5;
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Location = new System.Drawing.Point(439, 9);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(42, 13);
+            this.labelControl5.TabIndex = 1;
+            this.labelControl5.Text = "Ngày lập";
+            // 
+            // label_Employee
+            // 
+            this.label_Employee.Location = new System.Drawing.Point(202, 9);
+            this.label_Employee.Name = "label_Employee";
+            this.label_Employee.Size = new System.Drawing.Size(65, 13);
+            this.label_Employee.TabIndex = 1;
+            this.label_Employee.Text = "Nhân viên lập";
+            // 
+            // labelControl_ReceiptId
+            // 
+            this.labelControl_ReceiptId.Location = new System.Drawing.Point(10, 9);
+            this.labelControl_ReceiptId.Name = "labelControl_ReceiptId";
+            this.labelControl_ReceiptId.Size = new System.Drawing.Size(65, 13);
+            this.labelControl_ReceiptId.TabIndex = 1;
+            this.labelControl_ReceiptId.Text = "Mã đơn thuốc";
+            // 
+            // txt_
+            // 
+            this.txt_.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_.Location = new System.Drawing.Point(487, 9);
+            this.txt_.Name = "txt_";
+            this.txt_.Size = new System.Drawing.Size(176, 14);
+            this.txt_.TabIndex = 0;
+            // 
+            // txt_EmployeeMade
+            // 
+            this.txt_EmployeeMade.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_EmployeeMade.Location = new System.Drawing.Point(273, 9);
+            this.txt_EmployeeMade.Name = "txt_EmployeeMade";
+            this.txt_EmployeeMade.Size = new System.Drawing.Size(139, 14);
+            this.txt_EmployeeMade.TabIndex = 0;
+            // 
+            // txt_ReceiptId
+            // 
+            this.txt_ReceiptId.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_ReceiptId.Location = new System.Drawing.Point(81, 9);
+            this.txt_ReceiptId.Name = "txt_ReceiptId";
+            this.txt_ReceiptId.Size = new System.Drawing.Size(89, 14);
+            this.txt_ReceiptId.TabIndex = 0;
+            // 
+            // panel_ReceiptTitle
+            // 
+            this.panel_ReceiptTitle.Controls.Add(this.label_Receipt);
+            this.panel_ReceiptTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_ReceiptTitle.Location = new System.Drawing.Point(0, 0);
+            this.panel_ReceiptTitle.Name = "panel_ReceiptTitle";
+            this.panel_ReceiptTitle.Size = new System.Drawing.Size(668, 47);
+            this.panel_ReceiptTitle.TabIndex = 8;
+            // 
+            // label_Receipt
+            // 
+            this.label_Receipt.Appearance.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label_Receipt.Appearance.Options.UseFont = true;
+            this.label_Receipt.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
+            this.label_Receipt.LineColor = System.Drawing.Color.Black;
+            this.label_Receipt.LineLocation = DevExpress.XtraEditors.LineLocation.Bottom;
+            this.label_Receipt.LineOrientation = DevExpress.XtraEditors.LabelLineOrientation.Horizontal;
+            this.label_Receipt.LineStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            this.label_Receipt.LineVisible = true;
+            this.label_Receipt.Location = new System.Drawing.Point(240, 12);
+            this.label_Receipt.Name = "label_Receipt";
+            this.label_Receipt.Size = new System.Drawing.Size(185, 28);
+            this.label_Receipt.TabIndex = 0;
+            this.label_Receipt.Text = "Chi tiết đơn thuốc";
+            // 
+            // panel_ReceiptButton
+            // 
+            this.panel_ReceiptButton.Controls.Add(this.btn_SkipPrint);
+            this.panel_ReceiptButton.Controls.Add(this.btn_PrintReceipt);
+            this.panel_ReceiptButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel_ReceiptButton.Location = new System.Drawing.Point(0, 635);
+            this.panel_ReceiptButton.Name = "panel_ReceiptButton";
+            this.panel_ReceiptButton.Size = new System.Drawing.Size(668, 49);
+            this.panel_ReceiptButton.TabIndex = 1;
+            // 
+            // btn_SkipPrint
+            // 
+            this.btn_SkipPrint.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btn_SkipPrint.Appearance.Options.UseFont = true;
+            this.btn_SkipPrint.Location = new System.Drawing.Point(461, 10);
+            this.btn_SkipPrint.Name = "btn_SkipPrint";
+            this.btn_SkipPrint.Size = new System.Drawing.Size(187, 30);
+            this.btn_SkipPrint.TabIndex = 0;
+            this.btn_SkipPrint.Text = "Bỏ qua";
+            // 
+            // btn_PrintReceipt
+            // 
+            this.btn_PrintReceipt.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btn_PrintReceipt.Appearance.Options.UseFont = true;
+            this.btn_PrintReceipt.Location = new System.Drawing.Point(19, 10);
+            this.btn_PrintReceipt.Name = "btn_PrintReceipt";
+            this.btn_PrintReceipt.Size = new System.Drawing.Size(177, 30);
+            this.btn_PrintReceipt.TabIndex = 0;
+            this.btn_PrintReceipt.Text = "Xuất hóa đơn";
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
+            // 
             // frm_SellMedicine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.Controls.Add(this.popupContainerControl_Receipt);
             this.Controls.Add(this.groupControl_SellCart);
             this.Controls.Add(this.group_MedicationInfo);
             this.Controls.Add(this.listBox_AvailableMedicine);
@@ -564,6 +966,24 @@
             this.panelControl_BottomCartControls.ResumeLayout(false);
             this.panelControl_BottomCartControls.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_SellCart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl_Receipt)).EndInit();
+            this.popupContainerControl_Receipt.ResumeLayout(false);
+            this.panel_PopupTitle.ResumeLayout(false);
+            this.panel_MainReceipt.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl_ReceiptContent)).EndInit();
+            this.groupControl_ReceiptContent.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cHITIETDONTHUOCBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView_ReceiptDetail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl_CustomerInfo)).EndInit();
+            this.groupControl_CustomerInfo.ResumeLayout(false);
+            this.groupControl_CustomerInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panel_ReceiptInfo)).EndInit();
+            this.panel_ReceiptInfo.ResumeLayout(false);
+            this.panel_ReceiptInfo.PerformLayout();
+            this.panel_ReceiptTitle.ResumeLayout(false);
+            this.panel_ReceiptTitle.PerformLayout();
+            this.panel_ReceiptButton.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -599,11 +1019,48 @@
         private System.Windows.Forms.ComboBox cbb_ProductionDate;
         private System.Windows.Forms.TextBox txt_ExpDate;
         private System.Windows.Forms.DataGridView dgv_SellCart;
+        private System.Windows.Forms.CheckBox check_SaveCustomerInfo;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_MedicineId;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_MedicineName;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_ProdDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_ExpDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_TotalPrice;
+        private DevExpress.XtraEditors.PopupContainerControl popupContainerControl_Receipt;
+        private System.Windows.Forms.Panel panel_PopupTitle;
+        private DevExpress.XtraEditors.LabelControl label_Receipt;
+        private System.Drawing.Printing.PrintDocument printDocument;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private DevExpress.XtraEditors.GroupControl groupControl_CustomerInfo;
+        private System.Windows.Forms.TextBox textBox1;
+        private DevExpress.XtraEditors.LabelControl labelControl_Email;
+        private DevExpress.XtraEditors.LabelControl labelControl_PhoneNumber;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox5;
+        private DevExpress.XtraEditors.LabelControl label_CustomerName;
+        private System.Windows.Forms.TextBox textBox4;
+        private DevExpress.XtraEditors.LabelControl labelControl_Address;
+        private DevExpress.XtraEditors.PanelControl panel_ReceiptInfo;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
+        private DevExpress.XtraEditors.LabelControl label_Employee;
+        private DevExpress.XtraEditors.LabelControl labelControl_ReceiptId;
+        private System.Windows.Forms.TextBox txt_;
+        private System.Windows.Forms.TextBox txt_EmployeeMade;
+        private System.Windows.Forms.TextBox txt_ReceiptId;
+        private System.Windows.Forms.Panel panel_MainReceipt;
+        private DevExpress.XtraEditors.GroupControl groupControl_ReceiptContent;
+        private System.Windows.Forms.Panel panel_ReceiptTitle;
+        private System.Windows.Forms.Panel panel_ReceiptButton;
+        private DevExpress.XtraGrid.GridControl gridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView_ReceiptDetail;
+        private DevExpress.XtraEditors.SimpleButton btn_SkipPrint;
+        private DevExpress.XtraEditors.SimpleButton btn_PrintReceipt;
+        private System.Windows.Forms.BindingSource cHITIETDONTHUOCBindingSource;
+        private DevExpress.XtraGrid.Columns.GridColumn colMaDonThuoc;
+        private DevExpress.XtraGrid.Columns.GridColumn colMaThuoc;
+        private DevExpress.XtraGrid.Columns.GridColumn colSoLuong;
+        private DevExpress.XtraGrid.Columns.GridColumn colNgayHetHan;
+        private DevExpress.XtraGrid.Columns.GridColumn colDONTHUOC;
+        private DevExpress.XtraGrid.Columns.GridColumn colTHUOC;
     }
 }

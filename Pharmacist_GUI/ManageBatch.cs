@@ -326,7 +326,6 @@ namespace Pharmacist
                 int itemIndex = listBox_MedicineNames.SelectedIndex;
                 System.Diagnostics.Debug.WriteLine($"Selected Index: {itemIndex}");
 
-
                 if (listBox_MedicineNames.SelectedItem == null || itemIndex == -1)
                 {
                     throw new Exception("No medicine selected");

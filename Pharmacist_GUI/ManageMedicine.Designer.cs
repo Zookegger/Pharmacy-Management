@@ -111,7 +111,7 @@
             // 
             this.panel_Buttons.AutoSize = true;
             this.panel_Buttons.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_Buttons.Location = new System.Drawing.Point(0, 239);
+            this.panel_Buttons.Location = new System.Drawing.Point(0, 303);
             this.panel_Buttons.Name = "panel_Buttons";
             this.panel_Buttons.Size = new System.Drawing.Size(1280, 0);
             this.panel_Buttons.TabIndex = 102;
@@ -264,7 +264,7 @@
             this.panel_PricePerUnit.Name = "panel_PricePerUnit";
             this.panel_PricePerUnit.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.panel_PricePerUnit.Size = new System.Drawing.Size(423, 37);
-            this.panel_PricePerUnit.TabIndex = 103;
+            this.panel_PricePerUnit.TabIndex = 104;
             this.panel_PricePerUnit.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
             // txt_PricePerUnit
@@ -385,8 +385,8 @@
             this.panel_Description.Controls.Add(this.txt_Description);
             this.panel_Description.Location = new System.Drawing.Point(151, 72);
             this.panel_Description.Name = "panel_Description";
-            this.panel_Description.Size = new System.Drawing.Size(346, 75);
-            this.panel_Description.TabIndex = 105;
+            this.panel_Description.Size = new System.Drawing.Size(310, 75);
+            this.panel_Description.TabIndex = 106;
             this.panel_Description.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
             // txt_Description
@@ -396,8 +396,8 @@
             this.txt_Description.Location = new System.Drawing.Point(0, 0);
             this.txt_Description.Multiline = true;
             this.txt_Description.Name = "txt_Description";
-            this.txt_Description.Size = new System.Drawing.Size(344, 73);
-            this.txt_Description.TabIndex = 0;
+            this.txt_Description.Size = new System.Drawing.Size(308, 73);
+            this.txt_Description.TabIndex = 5;
             // 
             // label_Description
             // 
@@ -422,8 +422,8 @@
             this.panel_Dosage.Location = new System.Drawing.Point(152, 12);
             this.panel_Dosage.Name = "panel_Dosage";
             this.panel_Dosage.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel_Dosage.Size = new System.Drawing.Size(345, 37);
-            this.panel_Dosage.TabIndex = 101;
+            this.panel_Dosage.Size = new System.Drawing.Size(309, 37);
+            this.panel_Dosage.TabIndex = 105;
             this.panel_Dosage.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
             // txt_Dosage
@@ -435,7 +435,7 @@
             this.txt_Dosage.Location = new System.Drawing.Point(7, 3);
             this.txt_Dosage.Margin = new System.Windows.Forms.Padding(0);
             this.txt_Dosage.Name = "txt_Dosage";
-            this.txt_Dosage.Size = new System.Drawing.Size(455, 29);
+            this.txt_Dosage.Size = new System.Drawing.Size(419, 29);
             this.txt_Dosage.TabIndex = 4;
             this.txt_Dosage.Enter += new System.EventHandler(this.txtbox_Enter);
             this.txt_Dosage.Leave += new System.EventHandler(this.txtbox_Leave);
@@ -455,16 +455,14 @@
             // 
             // groupControl_MedicineDatabase
             // 
-            this.groupControl_MedicineDatabase.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupControl_MedicineDatabase.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupControl_MedicineDatabase.AppearanceCaption.Options.UseFont = true;
             this.groupControl_MedicineDatabase.Controls.Add(this.btn_RefreshGrid);
             this.groupControl_MedicineDatabase.Controls.Add(this.dgv_Medicine);
-            this.groupControl_MedicineDatabase.Location = new System.Drawing.Point(11, 303);
+            this.groupControl_MedicineDatabase.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl_MedicineDatabase.Location = new System.Drawing.Point(0, 303);
             this.groupControl_MedicineDatabase.Name = "groupControl_MedicineDatabase";
-            this.groupControl_MedicineDatabase.Size = new System.Drawing.Size(1256, 453);
+            this.groupControl_MedicineDatabase.Size = new System.Drawing.Size(1280, 465);
             this.groupControl_MedicineDatabase.TabIndex = 105;
             this.groupControl_MedicineDatabase.Text = "[Bảng Thuốc]";
             // 
@@ -492,8 +490,8 @@
             this.btn_RefreshGrid.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.TopCenter;
             this.btn_RefreshGrid.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_RefreshGrid.ImageOptions.SvgImage")));
             this.btn_RefreshGrid.ImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
-            this.btn_RefreshGrid.Location = new System.Drawing.Point(11, 29);
-            this.btn_RefreshGrid.MaximumSize = new System.Drawing.Size(30, 30);
+            this.btn_RefreshGrid.Location = new System.Drawing.Point(2, 29);
+            this.btn_RefreshGrid.MaximumSize = new System.Drawing.Size(36, 36);
             this.btn_RefreshGrid.MinimumSize = new System.Drawing.Size(30, 30);
             this.btn_RefreshGrid.Name = "btn_RefreshGrid";
             this.btn_RefreshGrid.Size = new System.Drawing.Size(30, 30);
@@ -507,7 +505,7 @@
             this.dgv_Medicine.Location = new System.Drawing.Point(2, 26);
             this.dgv_Medicine.MainView = this.gridView;
             this.dgv_Medicine.Name = "dgv_Medicine";
-            this.dgv_Medicine.Size = new System.Drawing.Size(1252, 425);
+            this.dgv_Medicine.Size = new System.Drawing.Size(1276, 437);
             this.dgv_Medicine.TabIndex = 105;
             this.dgv_Medicine.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView});
@@ -521,7 +519,9 @@
             this.gridView.Appearance.FocusedRow.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.gridView.Appearance.FocusedRow.Options.UseFont = true;
             this.gridView.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.gridView.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.Black;
             this.gridView.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridView.Appearance.HeaderPanel.Options.UseForeColor = true;
             this.gridView.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.gridView.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -629,7 +629,7 @@
             this.btn_ClearFields.Location = new System.Drawing.Point(641, 13);
             this.btn_ClearFields.Name = "btn_ClearFields";
             this.btn_ClearFields.Size = new System.Drawing.Size(142, 39);
-            this.btn_ClearFields.TabIndex = 0;
+            this.btn_ClearFields.TabIndex = 9;
             this.btn_ClearFields.Text = "  Làm sạch";
             this.btn_ClearFields.Click += new System.EventHandler(this.btn_ClearFields_Click);
             // 
@@ -638,15 +638,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 768);
-            this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.groupControl_MedicineDatabase);
             this.Controls.Add(this.panel_Buttons);
+            this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.panel_Title);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frm_ManageMedicine";
             this.Text = "Quản Lý Thuốc";
-            this.Load += new System.EventHandler(this.frm_AddMedicine_Load);
+            this.Load += new System.EventHandler(this.frm_ManageMedicine_Load);
             this.panel_Title.ResumeLayout(false);
             this.splitContainer.Panel1.ResumeLayout(false);
             this.splitContainer.Panel1.PerformLayout();

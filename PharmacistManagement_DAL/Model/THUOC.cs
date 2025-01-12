@@ -13,7 +13,6 @@ namespace PharmacistManagement_DAL.Model
         public THUOC()
         {
             CHITIETDONTHUOC = new HashSet<CHITIETDONTHUOC>();
-            DIEUCHINHKHO = new HashSet<DIEUCHINHKHO>();
             LOTHUOC = new HashSet<LOTHUOC>();
         }
 
@@ -31,16 +30,13 @@ namespace PharmacistManagement_DAL.Model
         [StringLength(50)]
         public string LieuThuoc { get; set; }
 
-        [StringLength(125)]
+        [StringLength(300)]
         public string MoTa { get; set; }
 
         public int SoLuongTon { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETDONTHUOC> CHITIETDONTHUOC { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DIEUCHINHKHO> DIEUCHINHKHO { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LOTHUOC> LOTHUOC { get; set; }

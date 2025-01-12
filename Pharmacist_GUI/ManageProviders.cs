@@ -75,6 +75,20 @@ namespace Pharmacist
         }
 
         // Custom MessageBox
+        private void ShowSuccessMessage(string message)
+        {
+            Icon sucessIcon = null;
+            try
+            {
+                sucessIcon = GetIcon("success");
+            }
+            catch (FileNotFoundException fnfe)
+            {
+                XtraMessageBox.Show($"Error loading icon{fnfe.Message}");
+                sucessIcon = SystemIcons.Error;
+            }
+            ShowMessageBox(message, sucessIcon);
+        }
         private void ShowMessageBox(String message, Icon icon = null) // set to = null or any default value to accept only 1 provided parameter
         {
             XtraMessageBoxArgs args = new XtraMessageBoxArgs();
@@ -129,7 +143,53 @@ namespace Pharmacist
             e.Buttons[DialogResult.OK].Appearance.FontSizeDelta = 4;
             e.Buttons[DialogResult.OK].Appearance.FontStyleDelta = FontStyle.Bold;
         }
+        private void Confirm_Args_Showing(object sender, XtraMessageShowingArgs e)
+        {
+            // Main form style
+            e.MessageBoxForm.StartPosition = FormStartPosition.CenterParent;
+            e.MessageBoxForm.FormBorderStyle = FormBorderStyle.None;
+            e.MessageBoxForm.Appearance.BackColor = ColorTranslator.FromHtml("#d6d6d6");
+            e.MessageBoxForm.Appearance.FontStyleDelta = FontStyle.Bold;
+            e.MessageBoxForm.Appearance.FontSizeDelta = 4;
 
+            // Text Message style
+            e.MessageBoxForm.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            e.MessageBoxForm.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+
+            // Yes button style
+            e.Buttons[DialogResult.Yes].Text = "Xác nhận";
+            e.Buttons[DialogResult.Yes].Appearance.FontSizeDelta = 4;
+            e.Buttons[DialogResult.Yes].Appearance.FontStyleDelta = FontStyle.Bold;
+            e.Buttons[DialogResult.Yes].Padding = new Padding(10); // Vì một nguyên nhân nào đó nó set padding cho cả 2 nút thay vì chỉ set cho chính nó
+
+            // No button style
+            e.Buttons[DialogResult.No].Text = "Hủy";
+            e.Buttons[DialogResult.No].Appearance.FontSizeDelta = 4;
+            e.Buttons[DialogResult.No].Appearance.FontStyleDelta = FontStyle.Bold;
+        }
+        private DialogResult ShowConfirmationMessage(string message)
+        {
+            try
+            {
+                Icon icon = GetIcon("question");
+
+                XtraMessageBoxArgs args = new XtraMessageBoxArgs();
+                args.Text = message;
+                args.Buttons = new DialogResult[] { DialogResult.Yes, DialogResult.No };
+                args.Showing += Confirm_Args_Showing;
+                if (icon != null)
+                {
+                    args.Icon = icon;
+                }
+                return XtraMessageBox.Show(args);
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+                return DialogResult.No;
+            }
+        }
+        
         // Event Handlers
         private void frm_ManageProviders_Load(object sender, EventArgs e)
         {
@@ -199,12 +259,12 @@ namespace Pharmacist
                         InsertProvider();
                         break;
                     case "btn_Update":
+                        ShowConfirmationMessage("Bạn có chắc là muốn cập nhật không?");
                         UpdateProvider();
                         break;
                     default:
                         throw new Exception("Invalid Button");
                 }
-
                 BindGrid();
             }
             catch (Exception ex)
@@ -214,16 +274,19 @@ namespace Pharmacist
         }
         private void btn_Delete_Click(object sender, EventArgs e)
         {
+            // Get all transaction done by providers, delete them and then delete the batch they provide
+            // And then delete provider
             try
             {
-
+                DeleteProvider();
             }
             catch (Exception ex)
             {
                 HandleException(ex);
             }
         }
-        // Custom Methods
+
+        // Methods
         private void ClearFields()
         {
             txt_ProviderId.Text = string.Empty;
@@ -260,34 +323,35 @@ namespace Pharmacist
             ValidateFields();
             NHACUNGCAP provider = new NHACUNGCAP
             {
-                MaNhaCungCap = txt_ProviderId.Text,
+                MaNhaCungCap = txt_ProviderId.Text.ToUpper(),
                 TenNhaCungCap = txt_ProviderName.Text,
                 DiaChi = txt_ProviderAddress.Text,
                 Email = txt_ProviderEmail.Text,
                 SoDienThoai = txt_ProviderPhone.Text
             };
             providerServices.InsertProvider(provider);
-            ShowMessageBox("Thêm thông tin thành công");
+            ShowSuccessMessage("Thêm thông tin thành công");
         }
         private void UpdateProvider()
         {
             ValidateFields();
             NHACUNGCAP updatedProvider = new NHACUNGCAP
             {
-                MaNhaCungCap = txt_ProviderId.Text,
+                MaNhaCungCap = txt_ProviderId.Text.ToUpper(),
                 TenNhaCungCap = txt_ProviderName.Text,
                 DiaChi = txt_ProviderAddress.Text,
                 Email = txt_ProviderEmail.Text,
                 SoDienThoai = txt_ProviderPhone.Text
             };
             providerServices.UpdateProvider(updatedProvider);
-            ShowMessageBox("Cập nhật thông tin thành công");
+
+            ShowSuccessMessage("Cập nhật thông tin thành công");
         }
         private void DeleteProvider()
         {
-            ValidateFields();
-            providerServices.DeleteProvider(txt_ProviderId.Text);
-            ShowMessageBox("Xóa thông tin thành công");
+            string providerId = txt_ProviderId.Text.ToUpper();
+            batchServices.DeleteTransactionByProvider(providerId);
+            ShowSuccessMessage("Xóa thành công!");
         }
         private void BindGrid()
         {

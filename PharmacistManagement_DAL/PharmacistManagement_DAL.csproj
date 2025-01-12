@@ -76,16 +76,13 @@
     <Compile Include="Model\BANGLUONG.cs" />
     <Compile Include="Model\CHITIETDONTHUOC.cs" />
     <Compile Include="Model\CHUCVU.cs" />
-    <Compile Include="Model\DIEUCHINHKHO.cs" />
     <Compile Include="Model\DONTHUOC.cs" />
     <Compile Include="Model\GIAODICH.cs" />
     <Compile Include="Model\KHACHHANG.cs" />
     <Compile Include="Model\LOTHUOC.cs" />
-    <Compile Include="Model\NGUYENNHAN.cs" />
     <Compile Include="Model\NHACUNGCAP.cs" />
     <Compile Include="Model\NHANVIEN.cs" />
     <Compile Include="Model\PharmacyManagementDB.cs" />
-    <Compile Include="Model\sysdiagrams.cs" />
     <Compile Include="Model\TAIKHOAN.cs" />
     <Compile Include="Model\THUOC.cs" />
     <Compile Include="Model\TIEMTHUOCTAY.cs" />

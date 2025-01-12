@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using PharmacistManagement_DAL.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,8 @@ namespace Pharmacist
 {
     public partial class frm_SellMedicine : DevExpress.XtraEditors.XtraForm
     {
+        private readonly MedicineServices medicineServices = new MedicineServices();
+        private readonly BatchServices batchServices = new BatchServices();
         public frm_SellMedicine()
         {
             InitializeComponent();
@@ -25,8 +28,16 @@ namespace Pharmacist
 
         private void frm_SellMedicine_Load(object sender, EventArgs e)
         {
+            FillList();
         }
 
+        private void FillList()
+        {
+            THUOC tHUOC = new THUOC();
+            listBox_AvailableMedicine.DataSource = medicineServices.GetMedicineList();
+            listBox_AvailableMedicine.DisplayMember = "TenThuoc";
+            listBox_AvailableMedicine.ValueMember = "MaThuoc";
+        }
         // Handle exception and show error message
         private void HandleException(Exception ex)
         {
@@ -148,6 +159,163 @@ namespace Pharmacist
             e.Buttons[DialogResult.OK].Text = "OK";
             e.Buttons[DialogResult.OK].Appearance.FontSizeDelta = 4;
             e.Buttons[DialogResult.OK].Appearance.FontStyleDelta = FontStyle.Bold;
+        }
+
+        private void txt_SearchMedicine_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                listBox_AvailableMedicine.Items.Clear();
+                var newList = medicineServices.GetMedicineList(txt_SearchMedicine.Text);
+                listBox_AvailableMedicine.DataSource = newList;
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+        }
+
+        private void FillFields(string medicineId)
+        {
+            THUOC medicine = medicineServices.GetMedicineById(medicineId);
+
+            if (medicine != null)
+            {
+                List<LOTHUOC> batchList = batchServices.GetBatchList(medicine.MaThuoc);
+                if (batchList == null || batchList.Count == 0)
+                {
+                    ShowMessageBox("Không có lô tương ứng với thuốc");
+                    return;
+                }
+
+                txt_ID.Text = medicine.MaThuoc;
+                txt_Name.Text = medicine.TenThuoc;
+                cbb_ProductionDate.DataSource = batchList;
+                cbb_ProductionDate.DisplayMember = "NgaySanXuat";
+                cbb_ProductionDate.ValueMember = "MaLo";
+                
+                cbb_ProductionDate.SelectedIndex = batchList.Count > 0 ? 0 : -1;
+
+                txt_PricePerUnit.Text = medicine.GiaDonVi.ToString();
+                txt_TotalPrice.Text = (numUpDown_BuyAmount.Value * medicine.GiaDonVi).ToString();
+
+                if (cbb_ProductionDate.SelectedIndex != -1)
+                {
+                    LOTHUOC selectedBatch = (LOTHUOC)cbb_ProductionDate.SelectedItem;
+                    if (selectedBatch != null)
+                    {
+                        DateTime? expirationDate = batchServices.GetExpiration(cbb_ProductionDate.SelectedValue.ToString(), selectedBatch.NgaySanXuat);
+                        System.Diagnostics.Debug.WriteLine($"Exp Date: {expirationDate?.ToString("dd/MM/yyyy")}");
+                        txt_ExpDate.Text = expirationDate?.ToString("dd/MM/yyyy");
+                    }
+                }
+                else
+                {
+                    txt_ExpDate.Text = "Invalid Date";
+                }
+            }
+            else
+            {
+                ShowMessageBox("Không tìm thấy thuốc");
+            }
+        }
+
+        private void listBox_AvailableMedicine_Click(object sender, EventArgs e)
+        {
+            if (listBox_AvailableMedicine.SelectedItems.Count > 0)
+            {
+                string medicineId = listBox_AvailableMedicine.SelectedValue.ToString();
+                FillFields(medicineId);
+            }
+        }
+
+        private void numUpDown_BuyAmount_ValueChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txt_ID.Text) && !string.IsNullOrEmpty(txt_Name.Text) && !string.IsNullOrEmpty(txt_PricePerUnit.Text))
+            {
+                THUOC medicine = medicineServices.GetMedicineById(txt_ID.Text);
+                txt_TotalPrice.Text = (numUpDown_BuyAmount.Value * medicine.GiaDonVi).ToString();
+            }
+        }
+
+        private void cbb_ProductionDate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private long totalCartPrice = 0;
+        private void btn_AddToCart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!String.IsNullOrEmpty(txt_ID.Text) && !String.IsNullOrEmpty(cbb_ProductionDate.Text))
+                {
+
+                    bool itemExists = false;
+
+                    int unitPrice = int.Parse(txt_PricePerUnit.Text.ToString());
+                    int quantityToAdd = (int)numUpDown_BuyAmount.Value;
+                    int itemTotalPrice = unitPrice * quantityToAdd;
+
+                    // Iterate through rows to check if the item already exists in the cart
+                    foreach (DataGridViewRow row in dgv_SellCart.Rows)
+                    {
+                        if (row.Cells[0].Value != null && row.Cells[2].Value != null &&
+                            row.Cells[0].Value.ToString() == txt_ID.Text && // Match ID
+                            row.Cells[2].Value.ToString() == cbb_ProductionDate.Text) // Match Production Date
+                        {
+                            // Update quantity and total price
+                            int existingQuantity = int.Parse(row.Cells[4].Value.ToString());
+                            int newQuantity = existingQuantity + quantityToAdd;
+                            row.Cells[4].Value = newQuantity;
+
+                            int oldTotalPrice = int.Parse(row.Cells[5].Value.ToString());
+                            row.Cells[5].Value = (newQuantity * unitPrice);
+
+                            totalCartPrice += (newQuantity * unitPrice) - oldTotalPrice;
+
+                            itemExists = true;
+                            break;
+                        }
+                    }
+
+                    // If the item is not already in the cart, add it as a new row
+                    if (!itemExists)
+                    {
+                        int rowIndex = dgv_SellCart.Rows.Add();
+                        dgv_SellCart.Rows[rowIndex].Cells[0].Value = txt_ID.Text; // ID
+                        dgv_SellCart.Rows[rowIndex].Cells[1].Value = txt_Name.Text; // Name
+                        dgv_SellCart.Rows[rowIndex].Cells[2].Value = cbb_ProductionDate.Text; // Production Date
+                        dgv_SellCart.Rows[rowIndex].Cells[3].Value = txt_ExpDate.Text; // Expiration Date
+                        dgv_SellCart.Rows[rowIndex].Cells[4].Value = numUpDown_BuyAmount.Value; // Quantity
+                        dgv_SellCart.Rows[rowIndex].Cells[5].Value = txt_TotalPrice.Text; // Total Price
+
+                        totalCartPrice += (long)itemTotalPrice;
+                    }
+
+                    txt_TotalCartPrice.Text = totalCartPrice.ToString();
+                }
+                else
+                {
+                    ShowErrorMessage("Please select a valid item and production date.");
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+        }
+
+        private void btn_Discard_Click(object sender, EventArgs e)
+        {
+            if (dgv_SellCart.SelectedRows.Count > 0)
+            {
+                for (int i = dgv_SellCart.SelectedRows.Count - 1; i >= 0 ; i--)
+                {
+                    int index = dgv_SellCart.Rows.IndexOf(dgv_SellCart.SelectedRows[i]);
+                    dgv_SellCart.Rows.RemoveAt(i);
+                }
+            }
         }
     }
 }

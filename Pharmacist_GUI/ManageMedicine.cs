@@ -28,12 +28,9 @@ namespace Pharmacist
         public frm_ManageMedicine()
         {
             InitializeComponent();
-            BindGrid();
         }
-
-
         // Event handlers
-        private void frm_AddMedicine_Load(object sender, EventArgs e)
+        private void frm_ManageMedicine_Load(object sender, EventArgs e)
         {
             try
             {
@@ -52,8 +49,7 @@ namespace Pharmacist
                         }
                     }
                 }
-        
-                List<THUOC> medicines = medicineService.GetMedicineList();
+                BindGrid();
             } 
             catch (Exception ex)
             {
@@ -199,21 +195,11 @@ namespace Pharmacist
         {
             try
             {
-                String medicineId = txt_Id.Text;
+                string medicineId = txt_Id.Text;
                 if (!String.IsNullOrEmpty(medicineId))
                 {
-                    DialogResult dr = MessageBox.Show("Bạn có chắc chắn muốn xóa thuốc này?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (dr == DialogResult.Yes)
-                    {
-
-                        MedicineServices medicineService = new MedicineServices();
-                        medicineService.DeleteMedicineById(medicineId);
-
-                        ShowMessageBox("Xóa thuốc thành công!", GetIcon("success"));
-                        ClearText();
-                        List<THUOC> medicines = medicineService.GetMedicineList();
-                    }
-                    BindGrid();
+                    THUOC medicine = medicineService.GetMedicineById(medicineId);
+                    DeleteMedicine(medicine);
                 }
                 else
                 {
@@ -230,7 +216,7 @@ namespace Pharmacist
                     }
                 }
                 System.Diagnostics.Debug.WriteLine($"DbEntityValidationException: {ex.ToString()}");
-                throw new Exception(ex.Message); // Re-throw the exception if needed
+                throw new Exception(ex.ToString()); // Re-throw the exception if needed
             }
             catch (Exception ex)
             {
@@ -284,7 +270,7 @@ namespace Pharmacist
             try
             {
                 BindGrid();
-                ShowMessageBox("Dữ liệu đã được cập nhật!", GetIcon("success"));
+                ShowSuccessMessage("Dữ liệu đã được cập nhật!");
             } catch (Exception ex)
             {
                 ShowErrorMessage(ex.Message);
@@ -331,29 +317,76 @@ namespace Pharmacist
             }
             ShowMessageBox(errorMessage, errorIcon);
         }
-        private void Add_Args_Showing(object sender, XtraMessageShowingArgs e)
+        private void ShowSuccessMessage(string message)
         {
-            // Main form style
-            e.MessageBoxForm.StartPosition = FormStartPosition.CenterParent;
-            e.MessageBoxForm.FormBorderStyle = FormBorderStyle.None;
-            e.MessageBoxForm.Appearance.BackColor = ColorTranslator.FromHtml("#d6d6d6");
-            e.MessageBoxForm.Appearance.FontStyleDelta = FontStyle.Bold;
-            e.MessageBoxForm.Appearance.FontSizeDelta = 4;
+            Icon sucessIcon = null;
+            try
+            {
+                sucessIcon = GetIcon("success");
+            }
+            catch (FileNotFoundException fnfe)
+            {
+                XtraMessageBox.Show($"Error loading icon{fnfe.Message}");
+                sucessIcon = SystemIcons.Error;
+            }
+            ShowMessageBox(message, sucessIcon);
+        }
+        private DialogResult ShowConfirmationMessage(string message)
+        {
+            try
+            {
+                Icon icon = null;
+                //Icon icon = GetIcon("question");
 
-            // Text Message style
-            e.MessageBoxForm.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            e.MessageBoxForm.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+                XtraMessageBoxArgs args = new XtraMessageBoxArgs();
+                args.Text = message;
+                args.Buttons = new DialogResult[] { DialogResult.Yes, DialogResult.No };
+                args.Showing += Confirm_Args_Showing;
+                if (icon != null)
+                {
+                    args.Icon = icon;
+                }
+                XtraMessageBox.Show(args);
+                return DialogResult.Yes;
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+                return DialogResult.No;
+            }
+        }
+        private void Confirm_Args_Showing(object sender, XtraMessageShowingArgs e)
+        {
+            if (e.MessageBoxForm != null)
+            {
+                // Proceed with customizations
+            
+                // Main form style
+                e.MessageBoxForm.StartPosition = FormStartPosition.CenterParent;
+                e.MessageBoxForm.FormBorderStyle = FormBorderStyle.None;
+                e.MessageBoxForm.Appearance.BackColor = ColorTranslator.FromHtml("#d6d6d6");
+                e.MessageBoxForm.Appearance.FontStyleDelta = FontStyle.Bold;
+                e.MessageBoxForm.Appearance.FontSizeDelta = 4;
 
-            // Ok button style
-            e.Buttons[DialogResult.OK].Text = "Đăng xuất";
-            e.Buttons[DialogResult.OK].Appearance.FontSizeDelta = 4;
-            e.Buttons[DialogResult.OK].Appearance.FontStyleDelta = FontStyle.Bold;
-            e.Buttons[DialogResult.OK].Padding = new Padding(10); // Vì một nguyên nhân nào đó nó set padding cho cả 2 nút thay vì chỉ set cho chính nó
+                // Text Message style
+                e.MessageBoxForm.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                e.MessageBoxForm.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 
-            // Cancel button style
-            e.Buttons[DialogResult.Cancel].Text = "Hủy";
-            e.Buttons[DialogResult.Cancel].Appearance.FontSizeDelta = 4;
-            e.Buttons[DialogResult.Cancel].Appearance.FontStyleDelta = FontStyle.Bold;
+                // Ok button style
+                e.Buttons[DialogResult.Yes].Text = "Xác nhận";
+                e.Buttons[DialogResult.Yes].Appearance.FontSizeDelta = 4;
+                e.Buttons[DialogResult.Yes].Appearance.FontStyleDelta = FontStyle.Bold;
+                e.Buttons[DialogResult.Yes].Padding = new Padding(10); // Vì một nguyên nhân nào đó nó set padding cho cả 2 nút thay vì chỉ set cho chính nó
+
+                // Cancel button style
+                e.Buttons[DialogResult.No].Text = "Hủy";
+                e.Buttons[DialogResult.No].Appearance.FontSizeDelta = 4;
+                e.Buttons[DialogResult.No].Appearance.FontStyleDelta = FontStyle.Bold;
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("MessageBoxForm is null.");
+            }
         }
         private void Error_Args_Showing(object sender, XtraMessageShowingArgs e)
         {
@@ -392,6 +425,7 @@ namespace Pharmacist
             e.Buttons[DialogResult.OK].Appearance.FontSizeDelta = 4;
             e.Buttons[DialogResult.OK].Appearance.FontStyleDelta = FontStyle.Bold;
         }
+        
         // Functions
         private void BindGrid()
         {
@@ -421,101 +455,123 @@ namespace Pharmacist
         }
         private void ValidateInputs(out String id, out String name, out String dosage, out String description, out int pricePerUnit)
         {
-            id = txt_Id.Text;
+            id = txt_Id.Text.ToUpper();
             name = txt_Name.Text;
             dosage = txt_Dosage.Text;
             description = txt_Description.Text;
             pricePerUnit = 0;
 
-            System.Diagnostics.Debug.WriteLine($"Price: {label_PricePerUnit.Text}: {txt_PricePerUnit.Text}");
-            System.Diagnostics.Debug.WriteLine($"Price: {label_PricePerUnit}(Parsed): {pricePerUnit}");
-            if (!Int32.TryParse(txt_PricePerUnit.Text, out pricePerUnit))
-            {
-                System.Diagnostics.Debug.WriteLine("Price: Giá thuốc không hợp lệ!");
-                throw new Exception("Giá thuốc không hợp lệ!");
-            }
-
-            System.Diagnostics.Debug.WriteLine($"Medicine ID: {label_ID.Text}: {txt_Id.Text}");
+            System.Diagnostics.Debug.WriteLine($"Medicine ID: {id}");
             if (String.IsNullOrEmpty(id))
             {
                 System.Diagnostics.Debug.WriteLine($"Chưa nhập phần {label_ID.Text}, Vui lòng điền đầy đủ thông tin!");
+                txt_Id.Focus();
                 throw new Exception($"Chưa nhập phần {label_ID.Text}, Vui lòng điền đầy đủ thông tin!");
             }
 
-            System.Diagnostics.Debug.WriteLine($"Medicine Name: {label_Name.Text}: {name}");
+            System.Diagnostics.Debug.WriteLine($"Medicine Name: {name}");
             if (String.IsNullOrEmpty(name))
             {
                 System.Diagnostics.Debug.WriteLine($"Chưa nhập phần {label_Name.Text}, Vui lòng điền đầy đủ thông tin!");
+                txt_Name.Focus();
                 throw new Exception($"Chưa nhập phần {label_Name.Text}, Vui lòng điền đầy đủ thông tin!");
             }
 
-            System.Diagnostics.Debug.WriteLine($"Medicine Name: {label_Dosage.Text}: {name}");
+            System.Diagnostics.Debug.WriteLine($"Price: {txt_PricePerUnit.Text}");
+            if (!Int32.TryParse(txt_PricePerUnit.Text, out pricePerUnit))
+            {
+                System.Diagnostics.Debug.WriteLine($"Price (Parsed): {pricePerUnit}");
+                System.Diagnostics.Debug.WriteLine("Price: Giá thuốc không hợp lệ!");
+                txt_PricePerUnit.Focus();
+                throw new Exception("Giá thuốc không hợp lệ!");
+            }
+            System.Diagnostics.Debug.WriteLine($"Price (Parsed): {pricePerUnit}");
+
+            System.Diagnostics.Debug.WriteLine($"Medicine Dosage: {dosage}");
             if (String.IsNullOrEmpty(dosage))
             {
                 System.Diagnostics.Debug.WriteLine($"Chưa nhập {label_Dosage}, Vui lòng điền đầy đủ thông tin!");
+                txt_Dosage.Focus();
                 throw new Exception($"Chưa nhập phần {label_Dosage}, Vui lòng điền đầy đủ thông tin!");
             }
-
-            System.Diagnostics.Debug.WriteLine($"Medicine Description: {label_Description.Text}: {description}");
-
+            System.Diagnostics.Debug.WriteLine($"Medicine Description: {description}");
         }
         private void InsertMedicine(THUOC medicine)
         {
             System.Diagnostics.Debug.WriteLine("Adding Medicine...");
 
-
             System.Diagnostics.Debug.WriteLine($"Medicine: " +
-                $"{medicine.MaThuoc}, " +
-                $"{medicine.TenThuoc}, " +
-                $"{medicine.LieuThuoc}, " +
-                $"{medicine.MoTa}, " +
-                $"{medicine.GiaDonVi}, " +
-                $"{medicine.SoLuongTon}"
+                $"Medicine ID: {medicine.MaThuoc}\n" +
+                $"Medicine Name: {medicine.TenThuoc}\n" +
+                $"Dosage: {medicine.LieuThuoc}\n" +
+                $"Price per unit: {medicine.GiaDonVi}\n" +
+                $"Stock quantity: {medicine.SoLuongTon}\n" +
+                $"Description: {medicine.MoTa}"
             );
 
-            System.Diagnostics.Debug.WriteLine("Adding Medicine...");
-            medicineService.AddMedicine(medicine);
+            System.Diagnostics.Debug.WriteLine("Adding Medicine to database");
+            medicineService.AddOrUpdateMedicine(medicine);
 
             System.Diagnostics.Debug.WriteLine("Medicine added successfully!");
             ShowMessageBox("Thêm thuốc thành công!", GetIcon("success"));
         }
         private void UpdateMedicine(THUOC medicine)
         {
-            System.Diagnostics.Debug.WriteLine("Updating Medicine...");
-
-            var medicineToUpdate = medicineService.GetMedicineById(medicine.MaThuoc);
-            if (medicineToUpdate != null)
+            DialogResult dr = ShowConfirmationMessage("Bạn có chắc là muốn cập nhật không?");
+            if (dr == DialogResult.Yes)
             {
-                if (medicineToUpdate.TenThuoc != medicine.TenThuoc ||
-                    medicineToUpdate.LieuThuoc != medicine.LieuThuoc ||
-                    medicineToUpdate.MoTa != medicine.MoTa ||
-                    medicineToUpdate.GiaDonVi != medicine.GiaDonVi)
+                System.Diagnostics.Debug.WriteLine("Updating Medicine...");
+
+                var medicineToUpdate = medicineService.GetMedicineById(medicine.MaThuoc);
+                if (medicineToUpdate != null)
                 {
-                    medicineToUpdate.TenThuoc = medicine.TenThuoc;
-                    medicineToUpdate.LieuThuoc = medicine.LieuThuoc;
-                    medicineToUpdate.MoTa = medicine.MoTa;
-                    medicineToUpdate.GiaDonVi = medicine.GiaDonVi;
+                    if (medicineToUpdate.TenThuoc != medicine.TenThuoc ||
+                        medicineToUpdate.LieuThuoc != medicine.LieuThuoc ||
+                        medicineToUpdate.MoTa != medicine.MoTa ||
+                        medicineToUpdate.GiaDonVi != medicine.GiaDonVi)
+                    {
+                        medicineToUpdate.TenThuoc = medicine.TenThuoc;
+                        medicineToUpdate.LieuThuoc = medicine.LieuThuoc;
+                        medicineToUpdate.MoTa = medicine.MoTa;
+                        medicineToUpdate.GiaDonVi = medicine.GiaDonVi;
 
-                    System.Diagnostics.Debug.WriteLine($"Medicine: " +
-                        $"{medicineToUpdate.MaThuoc}, " +
-                        $"{medicineToUpdate.TenThuoc}, " +
-                        $"{medicineToUpdate.LieuThuoc}, " +
-                        $"{medicineToUpdate.MoTa}, " +
-                        $"{medicineToUpdate.GiaDonVi}, " +
-                        $"{medicineToUpdate.SoLuongTon}"
-                    );
+                        System.Diagnostics.Debug.WriteLine($"Updating Medicine: " +
+                            $"Medicine ID: {medicineToUpdate.MaThuoc}\n" +
+                            $"Medicine Name: {medicineToUpdate.TenThuoc}\n" +
+                            $"Dosage: {medicineToUpdate.LieuThuoc}\n" +
+                            $"Price per unit: {medicineToUpdate.GiaDonVi}\n" +
+                            $"Stock quantity: {medicineToUpdate.SoLuongTon}\n" +
+                            $"Description: {medicineToUpdate.MoTa}" 
+                        );
 
-                    System.Diagnostics.Debug.WriteLine("Updating Medicine...");
-                    medicineService.UpdateMedicine(medicineToUpdate);
+                        medicineService.AddOrUpdateMedicine(medicineToUpdate);
 
-                    System.Diagnostics.Debug.WriteLine("Medicine updated successfully!");
-                    ShowMessageBox("Cập nhật thuốc thành công!", GetIcon("success"));
+                        System.Diagnostics.Debug.WriteLine("Medicine updated successfully!");
+                        ShowMessageBox("Cập nhật thuốc thành công!", GetIcon("success"));
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.WriteLine("No changes detected, skipping update...");
+                        throw new Exception("Không có thay đổi nào được phát hiện, bỏ qua cập nhật!");
+                    }
                 }
-                else
-                {
-                    System.Diagnostics.Debug.WriteLine("No changes detected, skipping update...");
-                    throw new Exception("Không có thay đổi nào được phát hiện, bỏ qua cập nhật!");
-                }
+            }
+        }
+        private void DeleteMedicine(THUOC medicine) {
+            if (medicine == null) 
+            {
+                throw new ArgumentNullException("Không tìm thấy thuốc cần xóa");
+            }
+            
+            DialogResult dr = ShowConfirmationMessage("Bạn có chắc chắn muốn xóa thuốc này?");
+            if (dr == DialogResult.Yes)
+            {
+                MedicineServices medicineService = new MedicineServices();
+                medicineService.DeleteMedicineById(medicine.MaThuoc);
+
+                ShowMessageBox("Xóa thuốc thành công!", GetIcon("success"));
+                ClearText();
+                BindGrid();
             }
         }
     }

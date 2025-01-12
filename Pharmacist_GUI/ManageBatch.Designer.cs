@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.SplitContainer splitContainer;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_ManageBatch));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_SearchForMedicine = new DevExpress.XtraEditors.SimpleButton();
             this.numUpDown_BatchQuantity = new System.Windows.Forms.NumericUpDown();
             this.label_Name = new DevExpress.XtraEditors.LabelControl();
@@ -43,24 +41,24 @@
             this.txt_BatchId = new System.Windows.Forms.TextBox();
             this.label_ID = new DevExpress.XtraEditors.LabelControl();
             this.btn_Delete = new DevExpress.XtraEditors.SimpleButton();
-            this.btn_Add = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_Insert = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Update = new DevExpress.XtraEditors.SimpleButton();
             this.dateTimePicker_BatchExpirationDate = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker_BatchProductionDate = new System.Windows.Forms.DateTimePicker();
             this.label_ProductionDay = new DevExpress.XtraEditors.LabelControl();
             this.label_ExpirationDate = new DevExpress.XtraEditors.LabelControl();
             this.panel_Buttons = new System.Windows.Forms.Panel();
-            this.panel_Functions = new DevExpress.XtraEditors.PanelControl();
-            this.txt_SearchBar = new System.Windows.Forms.TextBox();
-            this.label_SearchBar = new DevExpress.XtraEditors.LabelControl();
             this.groupControl_dgv = new DevExpress.XtraEditors.GroupControl();
-            this.dgv_Batches = new System.Windows.Forms.DataGridView();
-            this.col_BatchId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_MedicineName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_ProviderName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_ProductionDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_ExpirationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_BatchQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_RefreshGrid = new DevExpress.XtraEditors.SimpleButton();
+            this.gridControl = new DevExpress.XtraGrid.GridControl();
+            this.BatchBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dgv_Batches = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colMaLo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colProviderName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMaThuoc = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNgaySanXuat = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNgayHetHan = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSoLuong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel_Title = new System.Windows.Forms.Panel();
             this.label_TitleAdd = new System.Windows.Forms.Label();
             this.alertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
@@ -90,10 +88,10 @@
             this.panel_Name.SuspendLayout();
             this.panel_ID.SuspendLayout();
             this.panel_Buttons.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panel_Functions)).BeginInit();
-            this.panel_Functions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl_dgv)).BeginInit();
             this.groupControl_dgv.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BatchBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Batches)).BeginInit();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.popupContainer_ListMedicineNames)).BeginInit();
@@ -135,7 +133,7 @@
             // 
             splitContainer.Panel2.BackColor = System.Drawing.SystemColors.Control;
             splitContainer.Panel2.Controls.Add(this.btn_Delete);
-            splitContainer.Panel2.Controls.Add(this.btn_Add);
+            splitContainer.Panel2.Controls.Add(this.btn_Insert);
             splitContainer.Panel2.Controls.Add(this.btn_Update);
             splitContainer.Panel2.Controls.Add(this.dateTimePicker_BatchExpirationDate);
             splitContainer.Panel2.Controls.Add(this.dateTimePicker_BatchProductionDate);
@@ -297,47 +295,47 @@
             this.btn_Delete.ToolTip = "Xóa thuốc hoàn toàn khỏi cơ sở dữ liệu";
             this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
             // 
-            // btn_Add
+            // btn_Insert
             // 
-            this.btn_Add.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btn_Insert.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_Add.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btn_Add.Appearance.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Bold);
-            this.btn_Add.Appearance.ForeColor = System.Drawing.Color.White;
-            this.btn_Add.Appearance.Options.UseBackColor = true;
-            this.btn_Add.Appearance.Options.UseFont = true;
-            this.btn_Add.Appearance.Options.UseForeColor = true;
-            this.btn_Add.AppearanceDisabled.BackColor = System.Drawing.Color.Silver;
-            this.btn_Add.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btn_Add.AppearanceDisabled.Options.UseBackColor = true;
-            this.btn_Add.AppearanceDisabled.Options.UseFont = true;
-            this.btn_Add.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(141)))), ((int)(((byte)(210)))));
-            this.btn_Add.AppearanceHovered.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold);
-            this.btn_Add.AppearanceHovered.ForeColor = System.Drawing.Color.White;
-            this.btn_Add.AppearanceHovered.Options.UseBackColor = true;
-            this.btn_Add.AppearanceHovered.Options.UseFont = true;
-            this.btn_Add.AppearanceHovered.Options.UseForeColor = true;
-            this.btn_Add.AppearancePressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(141)))), ((int)(((byte)(210)))));
-            this.btn_Add.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 7.2F, System.Drawing.FontStyle.Bold);
-            this.btn_Add.AppearancePressed.ForeColor = System.Drawing.Color.White;
-            this.btn_Add.AppearancePressed.Options.UseBackColor = true;
-            this.btn_Add.AppearancePressed.Options.UseFont = true;
-            this.btn_Add.AppearancePressed.Options.UseForeColor = true;
-            this.btn_Add.AutoWidthInLayoutControl = true;
-            this.btn_Add.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Add.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btn_Add.ImageOptions.ImageToTextIndent = 10;
-            this.btn_Add.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_Add.ImageOptions.SvgImage")));
-            this.btn_Add.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.Full;
-            this.btn_Add.Location = new System.Drawing.Point(35, 126);
-            this.btn_Add.MaximumSize = new System.Drawing.Size(141, 40);
-            this.btn_Add.MinimumSize = new System.Drawing.Size(141, 40);
-            this.btn_Add.Name = "btn_Add";
-            this.btn_Add.Size = new System.Drawing.Size(141, 40);
-            this.btn_Add.TabIndex = 110;
-            this.btn_Add.Text = "Thêm";
-            this.btn_Add.ToolTip = "Thêm thuốc vào cơ sở dữ liệu";
-            this.btn_Add.Click += new System.EventHandler(this.btn_InsertUpdate_Click);
+            this.btn_Insert.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btn_Insert.Appearance.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Bold);
+            this.btn_Insert.Appearance.ForeColor = System.Drawing.Color.White;
+            this.btn_Insert.Appearance.Options.UseBackColor = true;
+            this.btn_Insert.Appearance.Options.UseFont = true;
+            this.btn_Insert.Appearance.Options.UseForeColor = true;
+            this.btn_Insert.AppearanceDisabled.BackColor = System.Drawing.Color.Silver;
+            this.btn_Insert.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btn_Insert.AppearanceDisabled.Options.UseBackColor = true;
+            this.btn_Insert.AppearanceDisabled.Options.UseFont = true;
+            this.btn_Insert.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(141)))), ((int)(((byte)(210)))));
+            this.btn_Insert.AppearanceHovered.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold);
+            this.btn_Insert.AppearanceHovered.ForeColor = System.Drawing.Color.White;
+            this.btn_Insert.AppearanceHovered.Options.UseBackColor = true;
+            this.btn_Insert.AppearanceHovered.Options.UseFont = true;
+            this.btn_Insert.AppearanceHovered.Options.UseForeColor = true;
+            this.btn_Insert.AppearancePressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(141)))), ((int)(((byte)(210)))));
+            this.btn_Insert.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 7.2F, System.Drawing.FontStyle.Bold);
+            this.btn_Insert.AppearancePressed.ForeColor = System.Drawing.Color.White;
+            this.btn_Insert.AppearancePressed.Options.UseBackColor = true;
+            this.btn_Insert.AppearancePressed.Options.UseFont = true;
+            this.btn_Insert.AppearancePressed.Options.UseForeColor = true;
+            this.btn_Insert.AutoWidthInLayoutControl = true;
+            this.btn_Insert.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_Insert.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btn_Insert.ImageOptions.ImageToTextIndent = 10;
+            this.btn_Insert.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_Insert.ImageOptions.SvgImage")));
+            this.btn_Insert.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.Full;
+            this.btn_Insert.Location = new System.Drawing.Point(35, 126);
+            this.btn_Insert.MaximumSize = new System.Drawing.Size(141, 40);
+            this.btn_Insert.MinimumSize = new System.Drawing.Size(141, 40);
+            this.btn_Insert.Name = "btn_Insert";
+            this.btn_Insert.Size = new System.Drawing.Size(141, 40);
+            this.btn_Insert.TabIndex = 110;
+            this.btn_Insert.Text = "Thêm";
+            this.btn_Insert.ToolTip = "Thêm thuốc vào cơ sở dữ liệu";
+            this.btn_Insert.Click += new System.EventHandler(this.btn_InsertUpdate_Click);
             // 
             // btn_Update
             // 
@@ -387,7 +385,7 @@
             this.dateTimePicker_BatchExpirationDate.Location = new System.Drawing.Point(177, 72);
             this.dateTimePicker_BatchExpirationDate.MinDate = new System.DateTime(2001, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker_BatchExpirationDate.Name = "dateTimePicker_BatchExpirationDate";
-            this.dateTimePicker_BatchExpirationDate.Size = new System.Drawing.Size(283, 31);
+            this.dateTimePicker_BatchExpirationDate.Size = new System.Drawing.Size(301, 31);
             this.dateTimePicker_BatchExpirationDate.TabIndex = 109;
             // 
             // dateTimePicker_BatchProductionDate
@@ -400,7 +398,7 @@
             this.dateTimePicker_BatchProductionDate.Location = new System.Drawing.Point(177, 20);
             this.dateTimePicker_BatchProductionDate.MinDate = new System.DateTime(2001, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker_BatchProductionDate.Name = "dateTimePicker_BatchProductionDate";
-            this.dateTimePicker_BatchProductionDate.Size = new System.Drawing.Size(283, 31);
+            this.dateTimePicker_BatchProductionDate.Size = new System.Drawing.Size(301, 31);
             this.dateTimePicker_BatchProductionDate.TabIndex = 108;
             // 
             // label_ProductionDay
@@ -431,7 +429,6 @@
             // 
             // panel_Buttons
             // 
-            this.panel_Buttons.Controls.Add(this.panel_Functions);
             this.panel_Buttons.Controls.Add(this.groupControl_dgv);
             this.panel_Buttons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_Buttons.Location = new System.Drawing.Point(0, 250);
@@ -439,132 +436,155 @@
             this.panel_Buttons.Size = new System.Drawing.Size(1280, 470);
             this.panel_Buttons.TabIndex = 102;
             // 
-            // panel_Functions
-            // 
-            this.panel_Functions.Controls.Add(this.txt_SearchBar);
-            this.panel_Functions.Controls.Add(this.label_SearchBar);
-            this.panel_Functions.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_Functions.Location = new System.Drawing.Point(0, 0);
-            this.panel_Functions.Name = "panel_Functions";
-            this.panel_Functions.Size = new System.Drawing.Size(1280, 41);
-            this.panel_Functions.TabIndex = 115;
-            // 
-            // txt_SearchBar
-            // 
-            this.txt_SearchBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_SearchBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.818182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_SearchBar.Location = new System.Drawing.Point(1035, 6);
-            this.txt_SearchBar.Name = "txt_SearchBar";
-            this.txt_SearchBar.Size = new System.Drawing.Size(233, 24);
-            this.txt_SearchBar.TabIndex = 2;
-            this.txt_SearchBar.TextChanged += new System.EventHandler(this.txt_SearchBar_TextChanged);
-            // 
-            // label_SearchBar
-            // 
-            this.label_SearchBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_SearchBar.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F);
-            this.label_SearchBar.Appearance.Options.UseFont = true;
-            this.label_SearchBar.Location = new System.Drawing.Point(918, 7);
-            this.label_SearchBar.Name = "label_SearchBar";
-            this.label_SearchBar.Size = new System.Drawing.Size(121, 23);
-            this.label_SearchBar.TabIndex = 1;
-            this.label_SearchBar.Text = "Tìm Lô Thuốc:";
-            // 
             // groupControl_dgv
             // 
-            this.groupControl_dgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupControl_dgv.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.groupControl_dgv.AppearanceCaption.Options.UseFont = true;
-            this.groupControl_dgv.Controls.Add(this.dgv_Batches);
-            this.groupControl_dgv.Location = new System.Drawing.Point(15, 47);
+            this.groupControl_dgv.Controls.Add(this.btn_RefreshGrid);
+            this.groupControl_dgv.Controls.Add(this.gridControl);
+            this.groupControl_dgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl_dgv.Location = new System.Drawing.Point(0, 0);
             this.groupControl_dgv.Name = "groupControl_dgv";
-            this.groupControl_dgv.Size = new System.Drawing.Size(1245, 411);
+            this.groupControl_dgv.Size = new System.Drawing.Size(1280, 470);
             this.groupControl_dgv.TabIndex = 1;
             this.groupControl_dgv.Text = "[ LÔ THUỐC ]";
             // 
+            // btn_RefreshGrid
+            // 
+            this.btn_RefreshGrid.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_RefreshGrid.Appearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btn_RefreshGrid.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.btn_RefreshGrid.Appearance.Options.UseBackColor = true;
+            this.btn_RefreshGrid.Appearance.Options.UseBorderColor = true;
+            this.btn_RefreshGrid.Appearance.Options.UseForeColor = true;
+            this.btn_RefreshGrid.AppearanceHovered.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.btn_RefreshGrid.AppearanceHovered.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.btn_RefreshGrid.AppearanceHovered.ForeColor = System.Drawing.Color.Black;
+            this.btn_RefreshGrid.AppearanceHovered.Options.UseBackColor = true;
+            this.btn_RefreshGrid.AppearanceHovered.Options.UseBorderColor = true;
+            this.btn_RefreshGrid.AppearanceHovered.Options.UseForeColor = true;
+            this.btn_RefreshGrid.AppearancePressed.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btn_RefreshGrid.AppearancePressed.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btn_RefreshGrid.AppearancePressed.ForeColor = System.Drawing.Color.White;
+            this.btn_RefreshGrid.AppearancePressed.Options.UseBackColor = true;
+            this.btn_RefreshGrid.AppearancePressed.Options.UseBorderColor = true;
+            this.btn_RefreshGrid.AppearancePressed.Options.UseForeColor = true;
+            this.btn_RefreshGrid.AutoSize = true;
+            this.btn_RefreshGrid.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
+            this.btn_RefreshGrid.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.TopCenter;
+            this.btn_RefreshGrid.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_RefreshGrid.ImageOptions.SvgImage")));
+            this.btn_RefreshGrid.ImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
+            this.btn_RefreshGrid.Location = new System.Drawing.Point(0, 26);
+            this.btn_RefreshGrid.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.btn_RefreshGrid.MaximumSize = new System.Drawing.Size(36, 36);
+            this.btn_RefreshGrid.MinimumSize = new System.Drawing.Size(30, 30);
+            this.btn_RefreshGrid.Name = "btn_RefreshGrid";
+            this.btn_RefreshGrid.Size = new System.Drawing.Size(30, 30);
+            this.btn_RefreshGrid.TabIndex = 107;
+            this.btn_RefreshGrid.TabStop = false;
+            this.btn_RefreshGrid.Click += new System.EventHandler(this.btn_RefreshGrid_Click);
+            // 
+            // gridControl
+            // 
+            this.gridControl.DataSource = this.BatchBindingSource;
+            this.gridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl.Location = new System.Drawing.Point(2, 26);
+            this.gridControl.MainView = this.dgv_Batches;
+            this.gridControl.Name = "gridControl";
+            this.gridControl.Size = new System.Drawing.Size(1276, 442);
+            this.gridControl.TabIndex = 1;
+            this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.dgv_Batches});
+            // 
+            // BatchBindingSource
+            // 
+            this.BatchBindingSource.DataSource = typeof(PharmacistManagement_DAL.Model.LOTHUOC);
+            // 
             // dgv_Batches
             // 
-            this.dgv_Batches.AllowUserToAddRows = false;
-            this.dgv_Batches.AllowUserToDeleteRows = false;
-            this.dgv_Batches.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv_Batches.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-            this.dgv_Batches.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 7.2F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_Batches.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgv_Batches.ColumnHeadersHeight = 50;
-            this.dgv_Batches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgv_Batches.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.col_BatchId,
-            this.col_MedicineName,
-            this.col_ProviderName,
-            this.col_ProductionDate,
-            this.col_ExpirationDate,
-            this.col_BatchQuantity});
-            this.dgv_Batches.Cursor = System.Windows.Forms.Cursors.Default;
-            this.dgv_Batches.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_Batches.Location = new System.Drawing.Point(2, 26);
+            this.dgv_Batches.Appearance.FocusedRow.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dgv_Batches.Appearance.FocusedRow.Options.UseFont = true;
+            this.dgv_Batches.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dgv_Batches.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.Black;
+            this.dgv_Batches.Appearance.HeaderPanel.Options.UseFont = true;
+            this.dgv_Batches.Appearance.HeaderPanel.Options.UseForeColor = true;
+            this.dgv_Batches.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.dgv_Batches.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.dgv_Batches.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.dgv_Batches.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dgv_Batches.Appearance.Row.Options.UseFont = true;
+            this.dgv_Batches.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colMaLo,
+            this.colProviderName,
+            this.colMaThuoc,
+            this.colNgaySanXuat,
+            this.colNgayHetHan,
+            this.colSoLuong});
+            this.dgv_Batches.GridControl = this.gridControl;
+            this.dgv_Batches.GroupPanelText = " ";
             this.dgv_Batches.Name = "dgv_Batches";
-            this.dgv_Batches.ReadOnly = true;
-            this.dgv_Batches.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgv_Batches.RowHeadersVisible = false;
-            this.dgv_Batches.RowHeadersWidth = 50;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.dgv_Batches.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgv_Batches.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Tahoma", 11.78182F);
-            this.dgv_Batches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_Batches.Size = new System.Drawing.Size(1241, 383);
-            this.dgv_Batches.TabIndex = 0;
-            this.dgv_Batches.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Batches_CellClick);
+            this.dgv_Batches.OptionsBehavior.ReadOnly = true;
+            this.dgv_Batches.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.dgv_Batches_RowCellClick);
             // 
-            // col_BatchId
+            // colMaLo
             // 
-            this.col_BatchId.HeaderText = "Mã Lô Thuốc";
-            this.col_BatchId.MinimumWidth = 6;
-            this.col_BatchId.Name = "col_BatchId";
-            this.col_BatchId.ReadOnly = true;
+            this.colMaLo.Caption = "Mã Lô";
+            this.colMaLo.FieldName = "BatchId";
+            this.colMaLo.MinWidth = 23;
+            this.colMaLo.Name = "colMaLo";
+            this.colMaLo.Visible = true;
+            this.colMaLo.VisibleIndex = 0;
+            this.colMaLo.Width = 86;
             // 
-            // col_MedicineName
+            // colProviderName
             // 
-            this.col_MedicineName.HeaderText = "Tên Thuốc";
-            this.col_MedicineName.MinimumWidth = 6;
-            this.col_MedicineName.Name = "col_MedicineName";
-            this.col_MedicineName.ReadOnly = true;
+            this.colProviderName.Caption = "Nhà Cung Cấp";
+            this.colProviderName.FieldName = "ProviderName";
+            this.colProviderName.MinWidth = 23;
+            this.colProviderName.Name = "colProviderName";
+            this.colProviderName.Visible = true;
+            this.colProviderName.VisibleIndex = 2;
+            this.colProviderName.Width = 86;
             // 
-            // col_ProviderName
+            // colMaThuoc
             // 
-            this.col_ProviderName.HeaderText = "Nhà cung cấp";
-            this.col_ProviderName.MinimumWidth = 6;
-            this.col_ProviderName.Name = "col_ProviderName";
-            this.col_ProviderName.ReadOnly = true;
+            this.colMaThuoc.Caption = "Tên Thuốc";
+            this.colMaThuoc.FieldName = "MedicineName";
+            this.colMaThuoc.MinWidth = 23;
+            this.colMaThuoc.Name = "colMaThuoc";
+            this.colMaThuoc.Visible = true;
+            this.colMaThuoc.VisibleIndex = 1;
+            this.colMaThuoc.Width = 86;
             // 
-            // col_ProductionDate
+            // colNgaySanXuat
             // 
-            this.col_ProductionDate.HeaderText = "Ngày sản xuất";
-            this.col_ProductionDate.MinimumWidth = 6;
-            this.col_ProductionDate.Name = "col_ProductionDate";
-            this.col_ProductionDate.ReadOnly = true;
+            this.colNgaySanXuat.Caption = "Ngày Sản Xuất";
+            this.colNgaySanXuat.FieldName = "ProdDate";
+            this.colNgaySanXuat.MinWidth = 23;
+            this.colNgaySanXuat.Name = "colNgaySanXuat";
+            this.colNgaySanXuat.Visible = true;
+            this.colNgaySanXuat.VisibleIndex = 3;
+            this.colNgaySanXuat.Width = 86;
             // 
-            // col_ExpirationDate
+            // colNgayHetHan
             // 
-            this.col_ExpirationDate.HeaderText = "Hạn sử dụng";
-            this.col_ExpirationDate.MinimumWidth = 6;
-            this.col_ExpirationDate.Name = "col_ExpirationDate";
-            this.col_ExpirationDate.ReadOnly = true;
+            this.colNgayHetHan.Caption = "Ngày Hết Hạn";
+            this.colNgayHetHan.FieldName = "ExpDate";
+            this.colNgayHetHan.MinWidth = 23;
+            this.colNgayHetHan.Name = "colNgayHetHan";
+            this.colNgayHetHan.Visible = true;
+            this.colNgayHetHan.VisibleIndex = 4;
+            this.colNgayHetHan.Width = 86;
             // 
-            // col_BatchQuantity
+            // colSoLuong
             // 
-            this.col_BatchQuantity.HeaderText = "Số lượng";
-            this.col_BatchQuantity.MinimumWidth = 6;
-            this.col_BatchQuantity.Name = "col_BatchQuantity";
-            this.col_BatchQuantity.ReadOnly = true;
+            this.colSoLuong.Caption = "Sô Lượng";
+            this.colSoLuong.FieldName = "Quantity";
+            this.colSoLuong.MinWidth = 23;
+            this.colSoLuong.Name = "colSoLuong";
+            this.colSoLuong.Visible = true;
+            this.colSoLuong.VisibleIndex = 5;
+            this.colSoLuong.Width = 86;
             // 
             // panel_Title
             // 
@@ -693,6 +713,8 @@
             // 
             // listBox_SelectProvider
             // 
+            this.listBox_SelectProvider.Appearance.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.listBox_SelectProvider.Appearance.Options.UseFont = true;
             this.listBox_SelectProvider.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox_SelectProvider.Location = new System.Drawing.Point(0, 56);
             this.listBox_SelectProvider.Name = "listBox_SelectProvider";
@@ -788,11 +810,11 @@
             this.panel_ID.ResumeLayout(false);
             this.panel_ID.PerformLayout();
             this.panel_Buttons.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panel_Functions)).EndInit();
-            this.panel_Functions.ResumeLayout(false);
-            this.panel_Functions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl_dgv)).EndInit();
             this.groupControl_dgv.ResumeLayout(false);
+            this.groupControl_dgv.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BatchBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Batches)).EndInit();
             this.panel_Title.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.popupContainer_ListMedicineNames)).EndInit();
@@ -831,21 +853,11 @@
         private DevExpress.XtraEditors.LabelControl label_ID;
         private System.Windows.Forms.Panel panel_Title;
         private DevExpress.XtraBars.Alerter.AlertControl alertControl;
-        private System.Windows.Forms.DataGridView dgv_Batches;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_BatchId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_MedicineName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_ProviderName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_ProductionDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_ExpirationDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_BatchQuantity;
-        private System.Windows.Forms.TextBox txt_SearchBar;
-        private DevExpress.XtraEditors.LabelControl label_SearchBar;
         private DevExpress.XtraEditors.SimpleButton btn_Delete;
-        private DevExpress.XtraEditors.SimpleButton btn_Add;
+        private DevExpress.XtraEditors.SimpleButton btn_Insert;
         private DevExpress.XtraEditors.SimpleButton btn_Update;
         private DevExpress.XtraEditors.GroupControl groupControl_dgv;
         private System.Windows.Forms.Label label_TitleAdd;
-        private DevExpress.XtraEditors.PanelControl panel_Functions;
         private DevExpress.XtraEditors.SimpleButton btn_SearchForMedicine;
         private DevExpress.XtraEditors.PopupContainerControl popupContainer_ListMedicineNames;
         private DevExpress.XtraEditors.ListBoxControl listBox_MedicineNames;
@@ -864,5 +876,15 @@
         private DevExpress.XtraEditors.PanelControl panelControl_PopupTitle;
         private System.Windows.Forms.TextBox txt_SearchProvider;
         private DevExpress.XtraEditors.LabelControl label_SearchProvider;
+        private DevExpress.XtraGrid.GridControl gridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView dgv_Batches;
+        private System.Windows.Forms.BindingSource BatchBindingSource;
+        private DevExpress.XtraGrid.Columns.GridColumn colMaLo;
+        private DevExpress.XtraGrid.Columns.GridColumn colMaThuoc;
+        private DevExpress.XtraGrid.Columns.GridColumn colNgaySanXuat;
+        private DevExpress.XtraGrid.Columns.GridColumn colNgayHetHan;
+        private DevExpress.XtraGrid.Columns.GridColumn colSoLuong;
+        private DevExpress.XtraEditors.SimpleButton btn_RefreshGrid;
+        private DevExpress.XtraGrid.Columns.GridColumn colProviderName;
     }
 }

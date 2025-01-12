@@ -15,15 +15,12 @@ namespace PharmacistManagement_DAL.Model
         public virtual DbSet<BANGLUONG> BANGLUONG { get; set; }
         public virtual DbSet<CHITIETDONTHUOC> CHITIETDONTHUOC { get; set; }
         public virtual DbSet<CHUCVU> CHUCVU { get; set; }
-        public virtual DbSet<DIEUCHINHKHO> DIEUCHINHKHO { get; set; }
         public virtual DbSet<DONTHUOC> DONTHUOC { get; set; }
         public virtual DbSet<GIAODICH> GIAODICH { get; set; }
         public virtual DbSet<KHACHHANG> KHACHHANG { get; set; }
         public virtual DbSet<LOTHUOC> LOTHUOC { get; set; }
-        public virtual DbSet<NGUYENNHAN> NGUYENNHAN { get; set; }
         public virtual DbSet<NHACUNGCAP> NHACUNGCAP { get; set; }
         public virtual DbSet<NHANVIEN> NHANVIEN { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TAIKHOAN> TAIKHOAN { get; set; }
         public virtual DbSet<THUOC> THUOC { get; set; }
         public virtual DbSet<TIEMTHUOCTAY> TIEMTHUOCTAY { get; set; }
@@ -50,18 +47,6 @@ namespace PharmacistManagement_DAL.Model
                 .HasMany(e => e.NHANVIEN)
                 .WithRequired(e => e.CHUCVU)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<DIEUCHINHKHO>()
-                .Property(e => e.MaDieuChinh)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<DIEUCHINHKHO>()
-                .Property(e => e.MaThuoc)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<DIEUCHINHKHO>()
-                .Property(e => e.MaNguyenNhan)
-                .IsUnicode(false);
 
             modelBuilder.Entity<DONTHUOC>()
                 .Property(e => e.MaDonThuoc)
@@ -113,15 +98,6 @@ namespace PharmacistManagement_DAL.Model
                 .Property(e => e.MaThuoc)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<NGUYENNHAN>()
-                .Property(e => e.MaNguyenNhan)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<NGUYENNHAN>()
-                .HasMany(e => e.DIEUCHINHKHO)
-                .WithRequired(e => e.NGUYENNHAN)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<NHACUNGCAP>()
                 .Property(e => e.MaNhaCungCap)
                 .IsUnicode(false);
@@ -171,11 +147,6 @@ namespace PharmacistManagement_DAL.Model
 
             modelBuilder.Entity<THUOC>()
                 .HasMany(e => e.CHITIETDONTHUOC)
-                .WithRequired(e => e.THUOC)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<THUOC>()
-                .HasMany(e => e.DIEUCHINHKHO)
                 .WithRequired(e => e.THUOC)
                 .WillCascadeOnDelete(false);
 

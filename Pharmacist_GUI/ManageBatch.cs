@@ -11,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
 
 namespace Pharmacist
 {
@@ -21,15 +23,14 @@ namespace Pharmacist
         public frm_ManageBatch()
         {
             InitializeComponent();
+            btn_RefreshGrid.LookAndFeel.SetSkinStyle("Flat");
         }
 
         /*------------------------ Event handlers ------------------------*/
         private void frm_ManageBatch_Load(object sender, EventArgs e)
         {
-            dgv_Batches.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 10f, FontStyle.Bold);
-
             List<LOTHUOC> batches = batchServices.GetBatchList();
-            BindGrid(batches);
+            BindGrid();
             BindList();
         }
         private void panel_Paint(object sender, PaintEventArgs e)
@@ -113,16 +114,8 @@ namespace Pharmacist
                 int quantity = 0;
                 ValidateInputs(out quantity);
 
-                // Step 4: Prompt the user to select a provider for the batch.
-                // This ensures that the batch is associated with a provider.
-                NHACUNGCAP provider = await GetProviderFromUserAsync();
-                if (provider == null)
-                {
-                    throw new Exception("Vui lòng chọn nhà cung cấp!");
-                }
-
-                // Step 5: Determine if the operation is Insert or Update based on the button clicked
-                Button button = sender as Button;
+                // Step 4: Determine if the operation is Insert or Update based on the button clicked
+                SimpleButton button = sender as SimpleButton;
                 System.Diagnostics.Debug.WriteLine($"Button: {button.Name}");
                 
                 if (button == null)
@@ -131,7 +124,7 @@ namespace Pharmacist
                 }
                 LOTHUOC batch = batchServices.GetBatchById(txt_BatchId.Text);
                 string transactionType = string.Empty;
-                // Step 6: Handle Insert or Update operation based on button name
+                // Step 5: Handle Insert or Update operation based on button name
                 switch (button.Name)
                 {
                     case "btn_Insert":
@@ -144,7 +137,7 @@ namespace Pharmacist
                             {
                                 throw new Exception("Mã lô đã tồn tại");
                             }
-                            InsertBatch(quantity); // Proceed with inserting the batch.
+                            InsertBatch(quantity, out batch); // Proceed with inserting the batch.
                         } 
                         else
                         {
@@ -152,24 +145,36 @@ namespace Pharmacist
                         }
                         break;
                     case "btn_Update":
-                        transactionType = "Cập nhật";
-                        // For Update: Ensure batch ID is entered, then check if it exists
-                        if (String.IsNullOrEmpty(txt_BatchId.Text)) 
+                        DialogResult dr = ShowConfirmationMessage("Bạn có chắc là muốn cập nhật không?");
+                        if (dr == DialogResult.Yes)
                         {
-                            throw new Exception("Chưa nhập mã lô cần cập nhật");
+                            transactionType = "Cập nhật";
+                            // For Update: Ensure batch ID is entered, then check if it exists
+                            if (String.IsNullOrEmpty(txt_BatchId.Text)) 
+                            {
+                                throw new Exception("Chưa nhập mã lô cần cập nhật");
+                            }
+                            if (batch == null)
+                            {
+                                throw new Exception("Không tìm thấy lô thuốc cần cập nhật");
+                            } 
+                            else
+                            {
+                                UpdateBatch(quantity, out batch);
+                            }
                         }
-                        if (batch == null)
-                        {
-                            throw new Exception("Không tìm thấy lô thuốc cần cập nhật");
-                        } 
                         else
                         {
-                            UpdateBatch(quantity);
+                            ShowSuccessMessage("Hủy thành công!");
+                            return;
                         }
                         break;
+                    default:
+                        throw new Exception("Invalid button name");
                 }
+                /*-------------------------------------------------*/         
 
-                // Step 7: Determine the medicine ID (from either the list box or batch name) and ensure it exists
+                // Step 6: Determine the medicine ID (from either the list box or batch name) and ensure it exists
                 string medicineId = string.Empty;
                 if (listBox_MedicineNames.SelectedItems.Count > 0 && !String.IsNullOrEmpty(txt_BatchId.Text))
                 {
@@ -182,52 +187,96 @@ namespace Pharmacist
                     medicineId = medicineServices.GetMedicineByName(txt_BatchName.Text).MaThuoc;
                 }
 
-                // Step 8: Fetch the medicine by its ID and ensure it exists in the system
+                // Step 7: Fetch the medicine by its ID and ensure it exists in the system
                 var medicine = medicineServices.GetMedicineById(medicineId);
                 if (medicine == null)
                 {
                     throw new Exception("Không tìm thấy thuốc");
                 }
-                medicineId = medicine.MaThuoc;
+                /*-------------------------------------------------*/
 
-                // Step 9: Update the quantity of the medicine in the system
-                medicineServices.UpdateMedicineQuantity(medicineId, quantity);
+                // Step 8: Update the quantity of the medicine in the system
+                medicineServices.UpdateMedicineQuantity(medicine.MaThuoc, quantity);
 
-                // Step 10: Create new transaction from this batch
+                // Step 9: Prompt the user to select a provider for the batch.
+                // This ensures that the batch is associated with a provider.
+                NHACUNGCAP provider = await GetProviderFromUserAsync();
+                if (provider == null)
+                {
+                    throw new Exception("Vui lòng chọn nhà cung cấp!");
+                }
+                // Step 10: Add or Update Batch
+                batchServices.AddOrUpdateBatch(batch);
+
+                // Step 11: Create new transaction from this batch
                 batchServices.CreateNewTransaction(batch, provider, transactionType);
+
+                if (transactionType == "Cập nhật")
+                {
+                    ShowMessageBox("Cập nhật lô thuốc thành công", GetIcon("success"));
+                } else
+                {
+                    ShowMessageBox("Thêm lô thuốc thành công", GetIcon("success"));
+                }
 
                 // Step 10: Refresh the batch list in the grid and clear input fields
                 List<LOTHUOC> batches = batchServices.GetBatchList();
-                BindGrid(batches);
+                BindGrid();
                 ClearFields();
-            } 
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var validationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                    }
+                }
+            }
             catch (Exception ex)
             {
                 HandleException(ex);
             }
         }
+        // Get Batch ID, then use the quantity in the transaction to update quantity then delete from transaction. THEN delete from batch
         private void btn_Delete_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void dgv_Batches_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                txt_BatchId.Text = dgv_Batches.Rows[e.RowIndex].Cells[0].Value.ToString();
-                txt_BatchName.Text = dgv_Batches.Rows[e.RowIndex].Cells[1].Value.ToString();
-                
-                if (int.TryParse(dgv_Batches.Rows[e.RowIndex].Cells[5].Value.ToString(), out int quantity)) {
-                    numUpDown_BatchQuantity.Value = quantity;
-                } else
+                DialogResult dr = ShowConfirmationMessage("Bạn có chắc là muốn xóa không?");
+                if (dr == DialogResult.Yes)
                 {
-                    throw new Exception("Invalid quantity value");
+                    // Step 1: Validate if the sender is a valid button (Check if sender is of type SimpleButton)
+                    // Check if sender is a valid button
+                    if (sender as SimpleButton == null)
+                    {
+                        throw new Exception("Invalid sender type");
+                    }
+                    // Step 2: Validate if batch id has been provided
+                    if (String.IsNullOrEmpty(txt_BatchId.Text) || txt_BatchId.Text == null)
+                    {
+                        throw new Exception("Chưa nhập mã lô cần xóa");
+                    }
+                    // Step 3: Check if information for the batch exists
+                    LOTHUOC batch = batchServices.GetBatchById(txt_BatchId.Text);
+                    if (batch == null)
+                    {
+                        throw new Exception("Không tìm thấy lô thuốc cần xóa");
+                    }
+                    // Step 4: Update quantity on medicine table
+                    medicineServices.UpdateMedicineQuantity(batch.MaThuoc, batch.SoLuong * -1);
+
+                    // Step 5: Delete transaction from database
+                    batchServices.DeleteTransaction(batch.MaLo);
+
+                    // Step 6: Delete batch from database
+                    batchServices.DeleteBatch(batch.MaLo);
+
+                    // Step 7: Confirm and reload grid
+                    ShowMessageBox("", GetIcon("success"));
                 }
-                System.Diagnostics.Debug.WriteLine($"{dgv_Batches.Rows[e.RowIndex].Cells[3].Value.ToString()} -> {Convert.ToDateTime(dgv_Batches.Rows[e.RowIndex].Cells[3].Value.ToString())}");
-                dateTimePicker_BatchProductionDate.Value = Convert.ToDateTime(dgv_Batches.Rows[e.RowIndex].Cells[3].Value.ToString());
-                System.Diagnostics.Debug.WriteLine($"{dgv_Batches.Rows[e.RowIndex].Cells[4].Value.ToString()} -> {Convert.ToDateTime(dgv_Batches.Rows[e.RowIndex].Cells[4].Value.ToString())}");
-                dateTimePicker_BatchExpirationDate.Value = Convert.ToDateTime(dgv_Batches.Rows[e.RowIndex].Cells[4].Value.ToString());
-            } 
+            }
             catch (Exception ex)
             {
                 HandleException(ex);
@@ -316,7 +365,54 @@ namespace Pharmacist
                 HandleException(ex);
             }
         }
-
+        private void txt_SearchProvider_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                List<NHACUNGCAP> providers = batchServices.GetProviderList(txt_SearchProvider.Text);
+                if (String.IsNullOrEmpty(txt_SearchProvider.Text) || txt_SearchProvider.Text == null)
+                {
+                    providers = batchServices.GetProviderList();
+                }
+                listBox_SelectProvider.DataSource = providers;
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
+                {
+                    ShowErrorMessage(ex.ToString());
+                }
+                else
+                {
+                    ShowErrorMessage(ex.Message);
+                }
+                // Print to Output stream
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
+        }
+        private void btn_RefreshGrid_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BindGrid();
+                ShowSuccessMessage("Dữ liệu đã được cập nhật!");    
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+        }
+        private void dgv_Batches_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        {
+            if (e.RowHandle >= 0)
+            {
+                txt_BatchId.Text = dgv_Batches.GetRowCellValue(e.RowHandle, "BatchId").ToString();
+                txt_BatchName.Text = dgv_Batches.GetRowCellValue(e.RowHandle, "MedicineName").ToString();
+                numUpDown_BatchQuantity.Value = int.Parse(dgv_Batches.GetRowCellValue(e.RowHandle, "Quantity").ToString());
+                dateTimePicker_BatchProductionDate.Value = Convert.ToDateTime(dgv_Batches.GetRowCellValue(e.RowHandle, "ProdDate"));
+                dateTimePicker_BatchExpirationDate.Value = Convert.ToDateTime(dgv_Batches.GetRowCellValue(e.RowHandle, "ExpDate"));
+            }
+        }
 
         /*------------------------ Helper methods ------------------------*/
         private void HandleException(Exception ex)
@@ -379,7 +475,43 @@ namespace Pharmacist
             }
             ShowMessageBox(errorMessage, errorIcon);
         }
-        private void Add_Args_Showing(object sender, XtraMessageShowingArgs e)
+        private void ShowSuccessMessage(string message)
+        {
+            Icon sucessIcon = null;
+            try
+            {
+                sucessIcon = GetIcon("success");
+            }
+            catch (FileNotFoundException fnfe)
+            {
+                XtraMessageBox.Show($"Error loading icon{fnfe.Message}");
+                sucessIcon = SystemIcons.Error;
+            }
+            ShowMessageBox(message, sucessIcon);
+        }
+        private DialogResult ShowConfirmationMessage(string message)
+        {
+            try
+            {
+                Icon icon = GetIcon("question");
+
+                XtraMessageBoxArgs args = new XtraMessageBoxArgs();
+                args.Text = message;
+                args.Buttons = new DialogResult[] { DialogResult.Yes, DialogResult.No };
+                args.Showing += Confirm_Args_Showing;
+                if (icon != null)
+                {
+                    args.Icon = icon;
+                }
+                return XtraMessageBox.Show(args);
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+                return DialogResult.No;
+            }
+        }
+        private void Confirm_Args_Showing(object sender, XtraMessageShowingArgs e)
         {
             // Main form style
             e.MessageBoxForm.StartPosition = FormStartPosition.CenterParent;
@@ -392,16 +524,16 @@ namespace Pharmacist
             e.MessageBoxForm.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             e.MessageBoxForm.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
 
-            // Ok button style
-            e.Buttons[DialogResult.OK].Text = "Đăng xuất";
-            e.Buttons[DialogResult.OK].Appearance.FontSizeDelta = 4;
-            e.Buttons[DialogResult.OK].Appearance.FontStyleDelta = FontStyle.Bold;
-            e.Buttons[DialogResult.OK].Padding = new Padding(10); // Vì một nguyên nhân nào đó nó set padding cho cả 2 nút thay vì chỉ set cho chính nó
+            // Yes button style
+            e.Buttons[DialogResult.Yes].Text = "Xác nhận";
+            e.Buttons[DialogResult.Yes].Appearance.FontSizeDelta = 4;
+            e.Buttons[DialogResult.Yes].Appearance.FontStyleDelta = FontStyle.Bold;
+            e.Buttons[DialogResult.Yes].Padding = new Padding(10); // Vì một nguyên nhân nào đó nó set padding cho cả 2 nút thay vì chỉ set cho chính nó
 
-            // Cancel button style
-            e.Buttons[DialogResult.Cancel].Text = "Hủy";
-            e.Buttons[DialogResult.Cancel].Appearance.FontSizeDelta = 4;
-            e.Buttons[DialogResult.Cancel].Appearance.FontStyleDelta = FontStyle.Bold;
+            // No button style
+            e.Buttons[DialogResult.No].Text = "Hủy";
+            e.Buttons[DialogResult.No].Appearance.FontSizeDelta = 4;
+            e.Buttons[DialogResult.No].Appearance.FontStyleDelta = FontStyle.Bold;
         }
         private void Error_Args_Showing(object sender, XtraMessageShowingArgs e)
         {
@@ -446,24 +578,11 @@ namespace Pharmacist
             listBox_SelectProvider.DisplayMember = "TenNhaCungCap";
             listBox_SelectProvider.ValueMember = "MaNhaCungCap";
         }
-        private void BindGrid(List<LOTHUOC> batches)
+        private void BindGrid()
         {
             try
             {
-                dgv_Batches.Rows.Clear();
-                foreach (LOTHUOC batch in batches)
-                {
-                    int rowIndex = dgv_Batches.Rows.Add();
-                    dgv_Batches.Rows[rowIndex].Cells[0].Value = batch.MaLo;
-                    String medicineName = medicineServices.GetMedicineById(batch.MaThuoc).TenThuoc;
-                    dgv_Batches.Rows[rowIndex].Cells[1].Value = medicineName;
-
-                    var provider = batchServices.GetProvider(batch.MaThuoc);
-                    dgv_Batches.Rows[rowIndex].Cells[2].Value = provider != null ? provider.TenNhaCungCap.ToString() : "";
-                    dgv_Batches.Rows[rowIndex].Cells[3].Value = batch.NgaySanXuat.ToShortDateString();
-                    dgv_Batches.Rows[rowIndex].Cells[4].Value = batch.NgayHetHan.ToShortDateString();
-                    dgv_Batches.Rows[rowIndex].Cells[5].Value = batch.SoLuong;
-                }
+                gridControl.DataSource = batchServices.GetBatchTable();
             }
             catch (Exception ex)
             {
@@ -524,7 +643,7 @@ namespace Pharmacist
                 throw new Exception("Ngày hết hạn không thể trước ngày hiện tại");
             }
         }
-        private void InsertBatch(int quantity)
+        private void InsertBatch(int quantity, out LOTHUOC newBatch)
         {
             // Insert
             String medicineId = listBox_MedicineNames.SelectedValue.ToString();
@@ -544,32 +663,30 @@ namespace Pharmacist
             }
 
             // Create and validate the batch object
-            var batch = new LOTHUOC
+            newBatch = new LOTHUOC
             {
+                MaLo = txt_BatchId.Text.ToUpper(),
                 MaThuoc = medicineId,
                 SoLuong = quantity,
                 NgaySanXuat = dateTimePicker_BatchProductionDate.Value,
                 NgayHetHan = dateTimePicker_BatchExpirationDate.Value
             };
-            if (batch == null)
+            if (newBatch == null)
             {
-                System.Diagnostics.Debug.WriteLine($"Oject batch: {batch}");
+                System.Diagnostics.Debug.WriteLine($"Oject batch: {newBatch}");
                 throw new Exception($"Object batch is null");
             }
 
-            // Add the new batch
-            batchServices.AddOrUpdateBatch(batch);
-            ShowMessageBox("Thêm lô thuốc thành công", GetIcon("success"));
+            batchServices.AddOrUpdateBatch(newBatch);
         }
-        private void UpdateBatch(int quantity)
+        private void UpdateBatch(int quantity, out LOTHUOC updatedBatch)
         {
             // Update
-            LOTHUOC batch = null;
             if (listBox_MedicineNames.SelectedItems.Count > 0 && !String.IsNullOrEmpty(txt_BatchId.Text))
             {
-                batch = new LOTHUOC
+                updatedBatch = new LOTHUOC
                 {
-                    MaLo = txt_BatchId.Text,
+                    MaLo = txt_BatchId.Text.ToUpper(),
                     MaThuoc = listBox_MedicineNames.SelectedValue.ToString(),
                     SoLuong = quantity,
                     NgaySanXuat = dateTimePicker_BatchProductionDate.Value,
@@ -579,9 +696,9 @@ namespace Pharmacist
             else
             {
                 string medicineId = medicineServices.GetMedicineByName(txt_BatchName.Text).MaThuoc;
-                batch = new LOTHUOC
+                updatedBatch = new LOTHUOC
                 {
-                    MaLo = txt_BatchId.Text,
+                    MaLo = txt_BatchId.Text.ToUpper(),
                     MaThuoc = medicineId,
                     SoLuong = quantity,
                     NgaySanXuat = dateTimePicker_BatchProductionDate.Value,
@@ -589,10 +706,8 @@ namespace Pharmacist
                 };
             }
 
-            System.Diagnostics.Debug.WriteLine($"Batch: {batch}");
+            System.Diagnostics.Debug.WriteLine($"Batch: {updatedBatch}");
 
-            batchServices.AddOrUpdateBatch(batch);
-            ShowMessageBox("Cập nhật lô thuốc thành công", GetIcon("success"));
         }
         private async Task<NHACUNGCAP> GetProviderFromUserAsync()
         {
@@ -641,32 +756,6 @@ namespace Pharmacist
             await providerSelectedEvent.Task;
 
             return selectedProvider;
-        }
-
-        private void txt_SearchProvider_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                List<NHACUNGCAP> providers = batchServices.GetProviderList(txt_SearchProvider.Text);
-                if (String.IsNullOrEmpty(txt_SearchProvider.Text) || txt_SearchProvider.Text == null)
-                {
-                    providers = batchServices.GetProviderList();
-                }
-                listBox_SelectProvider.DataSource = providers;
-            }
-            catch (Exception ex)
-            {
-                if (ex.InnerException != null && String.IsNullOrEmpty(ex.InnerException.Message))
-                {
-                    ShowErrorMessage(ex.ToString());
-                }
-                else
-                {
-                    ShowErrorMessage(ex.Message);
-                }
-                // Print to Output stream
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
-            }
         }
     }
 }

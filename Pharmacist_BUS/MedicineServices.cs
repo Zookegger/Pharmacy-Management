@@ -95,14 +95,6 @@ namespace Pharmacist
                     }
                     pharmacistDB.LOTHUOC.RemoveRange(batches);
 
-                    // Handle references in DIEUCHINHKHO table
-                    var treatmentDetails = pharmacistDB.DIEUCHINHKHO.Where(dck => dck.MaThuoc == id).ToList();
-                    foreach (var detail in treatmentDetails)
-                    {
-                        System.Diagnostics.Debug.WriteLine($"Deleting DIEUCHINHKHO reference: {detail.MaThuoc}");
-                    }
-                    pharmacistDB.DIEUCHINHKHO.RemoveRange(treatmentDetails);
-
                     // Now delete the medicine itself
                     System.Diagnostics.Debug.WriteLine($"Deleting medicine: {medicine.MaThuoc}, {medicine.TenThuoc}");
                     pharmacistDB.THUOC.Remove(medicine);
@@ -143,26 +135,51 @@ namespace Pharmacist
                 throw; // Re-throw the exception
             }
         }
-        public void AddMedicine(THUOC medicine)
+        public void AddOrUpdateMedicine(THUOC medicine)
         {
-            pharmacistDB.THUOC.Add(medicine);
-            pharmacistDB.SaveChanges();
-        }
-        public void UpdateMedicine(THUOC medicine)
-        {
-            pharmacistDB.THUOC.AddOrUpdate(medicine);
-            pharmacistDB.SaveChanges();
+            try
+            {
+                pharmacistDB.THUOC.AddOrUpdate(medicine);
+                System.Diagnostics.Debug.WriteLine("Saving changes...");
+                pharmacistDB.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var validationError in ex.EntityValidationErrors)
+                {
+                    foreach (var error in validationError.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Property: {error.PropertyName}, Error: {error.ErrorMessage}");
+                    }
+                }
+                throw; // Re-throw the exception if needed
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                throw;
+            }
         }
         public void UpdateMedicineQuantity(string medicineId, int newBatchQuantity)
         {
+            System.Diagnostics.Debug.WriteLine("Updating stock quantity...");
+            System.Diagnostics.Debug.WriteLine("Searching for medicine to update stock...");
             THUOC medicine = pharmacistDB.THUOC.Where(med => med.MaThuoc == medicineId).FirstOrDefault();
             if (medicine == null)
             {
-                System.Diagnostics.Debug.WriteLine($"medicine: {medicine}");
+                System.Diagnostics.Debug.WriteLine("Found no medicine");
                 throw new Exception("Không tìm thấy thuốc");
             }
-            System.Diagnostics.Debug.WriteLine($"Found medicine: {medicine}");
+            System.Diagnostics.Debug.WriteLine($"Found medicine:\n" +
+                $"MedicineID: {medicine.MaThuoc}\n" +
+                $"MedicineName: {medicine.TenThuoc}\n" +
+                $"Price per unit: {medicine.GiaDonVi}\n" +
+                $"Quantity: {medicine.SoLuongTon}\n" +
+                $"Description: {medicine.MoTa}\n"
+            );
             medicine.SoLuongTon += newBatchQuantity;
+
+            System.Diagnostics.Debug.WriteLine("Saving changes...");
             pharmacistDB.SaveChanges();
         }
         public void AddOrUpdateProvider(NHACUNGCAP provider)

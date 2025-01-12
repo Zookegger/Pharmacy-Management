@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label_Account = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,9 +48,9 @@
             this.txt_Password = new System.Windows.Forms.TextBox();
             this.txt_Status = new System.Windows.Forms.TextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.date_update = new System.Windows.Forms.DateTimePicker();
-            this.txt_Idperson = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.txt_Idperson = new System.Windows.Forms.TextBox();
+            this.date_update = new System.Windows.Forms.DateTimePicker();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.btn_Update = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Delete = new DevExpress.XtraEditors.SimpleButton();
@@ -144,14 +144,14 @@
             this.dgv_Account.AllowUserToResizeColumns = false;
             this.dgv_Account.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_Account.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 7.8F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_Account.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 7.8F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_Account.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_Account.ColumnHeadersHeight = 50;
             this.dgv_Account.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv_Account.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -247,7 +247,7 @@
             // splitContainer1
             // 
             this.splitContainer1.BackColor = System.Drawing.Color.DodgerBlue;
-            this.splitContainer1.Location = new System.Drawing.Point(8, 74);
+            this.splitContainer1.Location = new System.Drawing.Point(10, 69);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -273,21 +273,6 @@
             this.splitContainer1.SplitterDistance = 639;
             this.splitContainer1.TabIndex = 122;
             // 
-            // date_update
-            // 
-            this.date_update.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.date_update.Location = new System.Drawing.Point(203, 108);
-            this.date_update.Name = "date_update";
-            this.date_update.Size = new System.Drawing.Size(450, 22);
-            this.date_update.TabIndex = 7;
-            // 
-            // txt_Idperson
-            // 
-            this.txt_Idperson.Location = new System.Drawing.Point(200, 20);
-            this.txt_Idperson.Name = "txt_Idperson";
-            this.txt_Idperson.Size = new System.Drawing.Size(453, 22);
-            this.txt_Idperson.TabIndex = 8;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -297,6 +282,21 @@
             this.label6.Size = new System.Drawing.Size(131, 24);
             this.label6.TabIndex = 6;
             this.label6.Text = "Mã Nhân viên";
+            // 
+            // txt_Idperson
+            // 
+            this.txt_Idperson.Location = new System.Drawing.Point(200, 20);
+            this.txt_Idperson.Name = "txt_Idperson";
+            this.txt_Idperson.Size = new System.Drawing.Size(453, 22);
+            this.txt_Idperson.TabIndex = 8;
+            // 
+            // date_update
+            // 
+            this.date_update.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.date_update.Location = new System.Drawing.Point(203, 108);
+            this.date_update.Name = "date_update";
+            this.date_update.Size = new System.Drawing.Size(450, 22);
+            this.date_update.TabIndex = 7;
             // 
             // panelControl1
             // 

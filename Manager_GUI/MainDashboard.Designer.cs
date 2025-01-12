@@ -103,6 +103,7 @@
             // 
             this.accordionControlElement1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionControlElement_Bill});
+            this.accordionControlElement1.Height = 70;
             this.accordionControlElement1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement1.ImageOptions.SvgImage")));
             this.accordionControlElement1.Name = "accordionControlElement1";
             this.accordionControlElement1.Text = "Thống kê";
@@ -122,6 +123,7 @@
             this.accordionControlElement_personnel,
             this.accordionControlElement_acount});
             this.accordionControlElement3.Expanded = true;
+            this.accordionControlElement3.Height = 70;
             this.accordionControlElement3.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement3.ImageOptions.SvgImage")));
             this.accordionControlElement3.Name = "accordionControlElement3";
             this.accordionControlElement3.Text = "Nhân sự";
@@ -129,6 +131,7 @@
             // 
             // accordionControlElement_personnel
             // 
+            this.accordionControlElement_personnel.Height = 70;
             this.accordionControlElement_personnel.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement_personnel.ImageOptions.SvgImage")));
             this.accordionControlElement_personnel.Name = "accordionControlElement_personnel";
             this.accordionControlElement_personnel.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
@@ -137,7 +140,8 @@
             // 
             // accordionControlElement_acount
             // 
-            this.accordionControlElement_acount.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement4.ImageOptions.SvgImage")));
+            this.accordionControlElement_acount.Height = 70;
+            this.accordionControlElement_acount.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement_acount.ImageOptions.SvgImage")));
             this.accordionControlElement_acount.Name = "accordionControlElement_acount";
             this.accordionControlElement_acount.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionControlElement_acount.Text = "Tài khoản";
@@ -145,7 +149,8 @@
             // 
             // accordionControlElement_transaction
             // 
-            this.accordionControlElement_transaction.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement2.ImageOptions.SvgImage")));
+            this.accordionControlElement_transaction.Height = 70;
+            this.accordionControlElement_transaction.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement_transaction.ImageOptions.SvgImage")));
             this.accordionControlElement_transaction.Name = "accordionControlElement_transaction";
             this.accordionControlElement_transaction.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionControlElement_transaction.Text = "Giao dịch";
@@ -166,6 +171,7 @@
             superToolTip1.Items.Add(toolTipItem1);
             this.accordionControlElement_UserProfile.SuperTip = superToolTip1;
             this.accordionControlElement_UserProfile.Text = "Hồ sơ người dùng";
+            this.accordionControlElement_UserProfile.Click += new System.EventHandler(this.accordionControlElement_UserProfile_Click);
             // 
             // accordionControlElement_LogOut
             // 

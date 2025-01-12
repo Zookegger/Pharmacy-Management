@@ -24,9 +24,9 @@ namespace Manager_GUI
         private void frm_ManagerGUI_Load(object sender, EventArgs e)
         {
             // Uncomment these lines to test loading the form on load
-             accordionControl_SidePanel.AllowItemSelection = true;
-             accordionControl_SidePanel.SelectedElement = accordionControlElement_Bill;
-             LoadForm("accordionControlElement_Bill");
+            accordionControl_SidePanel.AllowItemSelection = true;
+            accordionControl_SidePanel.SelectedElement = accordionControlElement_Bill;
+            LoadForm("accordionControlElement_Bill");
         }
 
         private void changeTitleName(object sender, EventArgs args)
@@ -69,6 +69,9 @@ namespace Manager_GUI
                     break;
                 case "accordionControlElement_transaction":
                     form = new frm_Transaction();
+                    break;
+                case "accordionControlElement_UserProfile":
+                    form = new frm_UserProfile();
                     break;
                 // Add other cases here if needed
                 default:
@@ -288,6 +291,33 @@ namespace Manager_GUI
         }
 
         private void btn_transaction(object sender, EventArgs e)
+        {
+            try
+            {
+                // Get Selected Option
+                AccordionControlElement btn = sender as AccordionControlElement;
+                // Load corresponding form
+                LoadForm(btn.Name.ToString());
+                // Change form's title
+                changeTitleName(btn, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                Icon errorIcon = null;
+                try
+                {
+                    errorIcon = GetIcon("error");
+                }
+                catch (FileNotFoundException fnfe)
+                {
+                    XtraMessageBox.Show($"Error loading icon{fnfe.Message}");
+                    errorIcon = SystemIcons.Error;
+                }
+                ShowMessageBox(ex.Message, errorIcon);
+            }
+        }
+
+        private void accordionControlElement_UserProfile_Click(object sender, EventArgs e)
         {
             try
             {

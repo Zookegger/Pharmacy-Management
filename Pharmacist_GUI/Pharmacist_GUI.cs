@@ -213,10 +213,5 @@ namespace Pharmacist
             e.Buttons[DialogResult.OK].Appearance.FontStyleDelta = FontStyle.Bold;
             e.Buttons[DialogResult.OK].Padding = new Padding(10);
         }
-
-        private void accordionControlElement_UserProfile_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

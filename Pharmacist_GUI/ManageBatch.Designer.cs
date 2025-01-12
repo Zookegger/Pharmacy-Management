@@ -385,7 +385,7 @@
             this.dateTimePicker_BatchExpirationDate.Location = new System.Drawing.Point(177, 72);
             this.dateTimePicker_BatchExpirationDate.MinDate = new System.DateTime(2001, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker_BatchExpirationDate.Name = "dateTimePicker_BatchExpirationDate";
-            this.dateTimePicker_BatchExpirationDate.Size = new System.Drawing.Size(301, 31);
+            this.dateTimePicker_BatchExpirationDate.Size = new System.Drawing.Size(295, 31);
             this.dateTimePicker_BatchExpirationDate.TabIndex = 109;
             // 
             // dateTimePicker_BatchProductionDate
@@ -398,7 +398,7 @@
             this.dateTimePicker_BatchProductionDate.Location = new System.Drawing.Point(177, 20);
             this.dateTimePicker_BatchProductionDate.MinDate = new System.DateTime(2001, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker_BatchProductionDate.Name = "dateTimePicker_BatchProductionDate";
-            this.dateTimePicker_BatchProductionDate.Size = new System.Drawing.Size(301, 31);
+            this.dateTimePicker_BatchProductionDate.Size = new System.Drawing.Size(295, 31);
             this.dateTimePicker_BatchProductionDate.TabIndex = 108;
             // 
             // label_ProductionDay
@@ -474,7 +474,7 @@
             this.btn_RefreshGrid.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.TopCenter;
             this.btn_RefreshGrid.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_RefreshGrid.ImageOptions.SvgImage")));
             this.btn_RefreshGrid.ImageOptions.SvgImageSize = new System.Drawing.Size(20, 20);
-            this.btn_RefreshGrid.Location = new System.Drawing.Point(0, 26);
+            this.btn_RefreshGrid.Location = new System.Drawing.Point(0, 29);
             this.btn_RefreshGrid.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btn_RefreshGrid.MaximumSize = new System.Drawing.Size(36, 36);
             this.btn_RefreshGrid.MinimumSize = new System.Drawing.Size(30, 30);
@@ -733,7 +733,7 @@
             // 
             // btn_CancelProvider
             // 
-            this.btn_CancelProvider.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btn_CancelProvider.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(115)))), ((int)(((byte)(188)))));
             this.btn_CancelProvider.Appearance.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btn_CancelProvider.Appearance.Options.UseBackColor = true;
             this.btn_CancelProvider.Appearance.Options.UseFont = true;
@@ -745,7 +745,7 @@
             // 
             // btn_ConfỉrmProviderSelection
             // 
-            this.btn_ConfỉrmProviderSelection.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btn_ConfỉrmProviderSelection.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(115)))), ((int)(((byte)(188)))));
             this.btn_ConfỉrmProviderSelection.Appearance.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btn_ConfỉrmProviderSelection.Appearance.Options.UseBackColor = true;
             this.btn_ConfỉrmProviderSelection.Appearance.Options.UseFont = true;

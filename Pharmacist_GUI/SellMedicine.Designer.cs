@@ -105,6 +105,9 @@
             this.btn_PrintReceipt = new DevExpress.XtraEditors.SimpleButton();
             this.printDocument = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.panel_ReceiptTotal = new System.Windows.Forms.Panel();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label_Total = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.panel_Title)).BeginInit();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listBox_AvailableMedicine)).BeginInit();
@@ -137,6 +140,7 @@
             this.panel_ReceiptInfo.SuspendLayout();
             this.panel_ReceiptTitle.SuspendLayout();
             this.panel_ReceiptButton.SuspendLayout();
+            this.panel_ReceiptTotal.SuspendLayout();
             this.SuspendLayout();
             // 
             // txt_SearchMedicine
@@ -630,6 +634,7 @@
             // 
             // groupControl_ReceiptContent
             // 
+            this.groupControl_ReceiptContent.Controls.Add(this.panel_ReceiptTotal);
             this.groupControl_ReceiptContent.Controls.Add(this.gridControl);
             this.groupControl_ReceiptContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl_ReceiptContent.Location = new System.Drawing.Point(0, 180);
@@ -928,6 +933,33 @@
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
             // 
+            // panel_ReceiptTotal
+            // 
+            this.panel_ReceiptTotal.Controls.Add(this.label_Total);
+            this.panel_ReceiptTotal.Controls.Add(this.textBox3);
+            this.panel_ReceiptTotal.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel_ReceiptTotal.Location = new System.Drawing.Point(2, 424);
+            this.panel_ReceiptTotal.Name = "panel_ReceiptTotal";
+            this.panel_ReceiptTotal.Size = new System.Drawing.Size(664, 29);
+            this.panel_ReceiptTotal.TabIndex = 1;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(504, 5);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(142, 21);
+            this.textBox3.TabIndex = 0;
+            // 
+            // label_Total
+            // 
+            this.label_Total.AutoSize = true;
+            this.label_Total.Font = new System.Drawing.Font("Tahoma", 7.854546F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label_Total.Location = new System.Drawing.Point(410, 7);
+            this.label_Total.Name = "label_Total";
+            this.label_Total.Size = new System.Drawing.Size(88, 14);
+            this.label_Total.TabIndex = 1;
+            this.label_Total.Text = "Tổng giá tiền";
+            // 
             // frm_SellMedicine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -984,6 +1016,8 @@
             this.panel_ReceiptTitle.ResumeLayout(false);
             this.panel_ReceiptTitle.PerformLayout();
             this.panel_ReceiptButton.ResumeLayout(false);
+            this.panel_ReceiptTotal.ResumeLayout(false);
+            this.panel_ReceiptTotal.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1062,5 +1096,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colNgayHetHan;
         private DevExpress.XtraGrid.Columns.GridColumn colDONTHUOC;
         private DevExpress.XtraGrid.Columns.GridColumn colTHUOC;
+        private System.Windows.Forms.Panel panel_ReceiptTotal;
+        private System.Windows.Forms.Label label_Total;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }

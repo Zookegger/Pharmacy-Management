@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Entity;
+using System.Data.SqlClient;
 
 namespace Pharmacist
 {
@@ -168,7 +169,66 @@ namespace Pharmacist
             e.Buttons[DialogResult.OK].Appearance.FontSizeDelta = 4;
             e.Buttons[DialogResult.OK].Appearance.FontStyleDelta = FontStyle.Bold;
         }
+        private void ShowSuccessMessage(string message)
+        {
+            Icon sucessIcon = null;
+            try
+            {
+                sucessIcon = GetIcon("success");
+            }
+            catch (FileNotFoundException fnfe)
+            {
+                XtraMessageBox.Show($"Error loading icon{fnfe.Message}");
+                sucessIcon = SystemIcons.Error;
+            }
+            ShowMessageBox(message, sucessIcon);
+        }
+        private DialogResult ShowConfirmationMessage(string message)
+        {
+            try
+            {
+                Icon icon = GetIcon("question");
 
+                XtraMessageBoxArgs args = new XtraMessageBoxArgs();
+                args.Text = message;
+                args.Buttons = new DialogResult[] { DialogResult.Yes, DialogResult.No };
+                args.Showing += Confirm_Args_Showing;
+                if (icon != null)
+                {
+                    args.Icon = icon;
+                }
+                return XtraMessageBox.Show(args);
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+                return DialogResult.No;
+            }
+        }
+        private void Confirm_Args_Showing(object sender, XtraMessageShowingArgs e)
+        {
+            // Main form style
+            e.MessageBoxForm.StartPosition = FormStartPosition.CenterParent;
+            e.MessageBoxForm.FormBorderStyle = FormBorderStyle.None;
+            e.MessageBoxForm.Appearance.BackColor = ColorTranslator.FromHtml("#d6d6d6");
+            e.MessageBoxForm.Appearance.FontStyleDelta = FontStyle.Bold;
+            e.MessageBoxForm.Appearance.FontSizeDelta = 4;
+
+            // Text Message style
+            e.MessageBoxForm.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            e.MessageBoxForm.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+
+            // Yes button style
+            e.Buttons[DialogResult.Yes].Text = "Xác nhận";
+            e.Buttons[DialogResult.Yes].Appearance.FontSizeDelta = 4;
+            e.Buttons[DialogResult.Yes].Appearance.FontStyleDelta = FontStyle.Bold;
+            e.Buttons[DialogResult.Yes].Padding = new Padding(10); // Vì một nguyên nhân nào đó nó set padding cho cả 2 nút thay vì chỉ set cho chính nó
+
+            // No button style
+            e.Buttons[DialogResult.No].Text = "Hủy";
+            e.Buttons[DialogResult.No].Appearance.FontSizeDelta = 4;
+            e.Buttons[DialogResult.No].Appearance.FontStyleDelta = FontStyle.Bold;
+        }
         private void txt_SearchMedicine_TextChanged(object sender, EventArgs e)
         {
             try
@@ -353,10 +413,61 @@ namespace Pharmacist
             popupContainerControl_Receipt.Show();
         }
 
-        private void btn_Checkout_Click(object sender, EventArgs e)
+        private int GetNextSequenceNumberForToday()
         {
-            ShowReceiptPopup();
+            int sequenceNumber = 0;
+
+            // Connect to the database and retrieve/increment the sequence number
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                // SQL Command to retrieve the next sequence number
+                string query = @"
+                    IF NOT EXISTS (SELECT 1 FROM ReceiptSequence WHERE SequenceDate = CAST(GETDATE() AS DATE))
+                    BEGIN
+                        INSERT INTO ReceiptSequence (SequenceDate, LastSequence) VALUES (CAST(GETDATE() AS DATE), 0);
+                    END;
+
+                    UPDATE ReceiptSequence
+                    SET LastSequence = LastSequence + 1
+                    OUTPUT INSERTED.LastSequence
+                    WHERE SequenceDate = CAST(GETDATE() AS DATE);
+                ";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    sequenceNumber = (int)cmd.ExecuteScalar();
+                }
+            }
+
+            return sequenceNumber;
         }
 
+        private string GenerateReceiptID()
+        {
+            string datePart = DateTime.Now.ToString("ddMMyy");
+            int sequenceNumber = GetNextSequenceNumberForToday();
+            string sequencePart = sequenceNumber.ToString("D3");
+
+            return $"{datePart}-{sequencePart}";
+        }
+
+        private void Checkout()
+        {
+            string datePart = DateTime.Now.ToString("ddMMyy");
+
+            int sequenceNumber = 
+        }
+
+        private void btn_Checkout_Click(object sender, EventArgs e)
+        {
+            if (check_SaveCustomerInfo.Checked)
+            {
+                ShowReceiptPopup();
+            }
+
+            ShowSuccessMessage("Thanh toán thành công");
+        }
     }
 }

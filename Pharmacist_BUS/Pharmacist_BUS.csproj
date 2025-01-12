@@ -66,6 +66,7 @@
     <Compile Include="MedicineServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProviderServices.cs" />
+    <Compile Include="ReceiptServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

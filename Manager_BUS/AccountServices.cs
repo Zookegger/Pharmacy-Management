@@ -2,6 +2,7 @@
 using PharmacistManagement_DAL.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,16 +16,15 @@ namespace Manager_BUS
     public class AccountService
     {
         private PharmacyManagementDB pharmacistDB = new PharmacyManagementDB();
+        private HashPassword hashPassword = new HashPassword();
         public List<TAIKHOAN> GetAccountList()
         {
             return pharmacistDB.TAIKHOAN.ToList();
         }
-        private HashPassword hashPassword = new HashPassword();
         public bool AddAccount(TAIKHOAN newAccount)
         {
             try
             {
-
                 // Băm mật khẩu trước khi lưu
                 newAccount.MatKhau = hashPassword.Hash(newAccount.MatKhau);
 
@@ -35,9 +35,25 @@ namespace Manager_BUS
 
                 return true;
             }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var validationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                    }
+                }
+                return false;
+            }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error adding account: {ex.Message}\nInner Exception: {ex.InnerException?.Message}");
+                System.Diagnostics.Debug.WriteLine($"Exception: {ex}");
+                if (ex.InnerException != null)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                }
                 return false;
             }
         }

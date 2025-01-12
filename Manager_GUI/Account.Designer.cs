@@ -357,7 +357,7 @@
             this.btn_Add.Size = new System.Drawing.Size(220, 62);
             this.btn_Add.TabIndex = 0;
             this.btn_Add.Text = "Thêm";
-            this.btn_Add.Click += new System.EventHandler(this.btn_Add_Click_1);
+            this.btn_Add.Click += new System.EventHandler(this.btn_Add_Click);
             // 
             // frm_Account
             // 

@@ -18,6 +18,7 @@ namespace Manager_GUI
     public partial class frm_Account : Form
     {
         private AccountService accountService = new AccountService();
+        private ManagerServices managerServices = new ManagerServices();
         public frm_Account()
         {
             InitializeComponent();
@@ -101,13 +102,11 @@ namespace Manager_GUI
             }
         }
 
-        private void btn_Add_Click_1(object sender, EventArgs e)
+        private void btn_Add_Click(object sender, EventArgs e)
         {
             try
             {
                 // Lấy thông tin từ các TextBox
-
-
                 int mataikhoan = int.Parse(txt_Id.Text);
                 string maNhanVien = txt_Idperson.Text;
                 if (string.IsNullOrEmpty(maNhanVien))
@@ -115,9 +114,17 @@ namespace Manager_GUI
                     MessageBox.Show("Mã nhân viên không được để trống.");
                     return;
                 }
-                string trangthai = txt_Status.Text;
+
+                NHANVIEN employee = managerServices.GetEmployee(maNhanVien);
+
+                if (employee == null) {
+                    throw new Exception("Không tìm thấy nhân viên");
+                }
+                string trangthai = "Active";
                 string tenTaiKhoan = txt_Name.Text;
                 string matKhau = txt_Password.Text;
+
+
 
                 // Kiểm tra tính hợp lệ
                 if (string.IsNullOrEmpty(tenTaiKhoan) || string.IsNullOrEmpty(matKhau))
@@ -130,7 +137,7 @@ namespace Manager_GUI
                 TAIKHOAN newAccount = new TAIKHOAN
                 {
                     MaTaiKhoan = mataikhoan,
-                    MaNhanVien = maNhanVien,
+                    MaNhanVien = employee.MaNhanVien,
                     TenTaiKhoan = tenTaiKhoan,
                     MatKhau = matKhau,
                     TrangThai = trangthai,
@@ -147,6 +154,8 @@ namespace Manager_GUI
                 // Gọi phương thức AddAccount từ AccountService
                 bool result = accountService.AddAccount(newAccount);
 
+                System.Diagnostics.Debug.WriteLine($"Result: {result}");
+
                 if (result)
                 {
                     MessageBox.Show("Thêm tài khoản thành công!");
@@ -159,8 +168,6 @@ namespace Manager_GUI
                 {
                     MessageBox.Show("Thêm tài khoản thất bại. Vui lòng thử lại.");
                 }
-
-
             }
             catch (DbEntityValidationException ex)
             {
@@ -174,8 +181,6 @@ namespace Manager_GUI
             }
             catch (Exception ex)
             {
-
-
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
                 MessageBox.Show($"Error adding account: {ex.Message}\nInner Exception: {ex.InnerException?.Message}");
             }

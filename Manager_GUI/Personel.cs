@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Validation;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Manager_GUI
 {
-    public partial class frm_Personel : Form
+    public partial class frm_Personel : System.Windows.Forms.Form
     {
         private ManagerServices ManagerServices = new ManagerServices();
         public frm_Personel()
@@ -138,6 +139,8 @@ namespace Manager_GUI
                     MaTiemThuoc = cmb_id.SelectedValue?.ToString() // Lấy mã tiệm từ ComboBox
                 };
 
+
+
                 bool result = ManagerServices.AddEmployee(nhanVien);
                 if (result)
                 {
@@ -151,9 +154,21 @@ namespace Manager_GUI
                     ClearControls(this);
                 }
             }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var validationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                    }
+                }
+                throw;
+            }
             catch (Exception ex)
             {
                 MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
         }
 

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv_Bill = new System.Windows.Forms.DataGridView();
             this.col_BillID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_CustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,14 +68,14 @@
             this.dgv_Bill.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_Bill.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dgv_Bill.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 7.8F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_Bill.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 7.2F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_Bill.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_Bill.ColumnHeadersHeight = 50;
             this.dgv_Bill.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv_Bill.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -86,15 +86,14 @@
             this.col_Date,
             this.col_TotalPrice});
             this.dgv_Bill.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_Bill.Location = new System.Drawing.Point(2, 28);
-            this.dgv_Bill.Margin = new System.Windows.Forms.Padding(4);
+            this.dgv_Bill.Location = new System.Drawing.Point(2, 26);
             this.dgv_Bill.Name = "dgv_Bill";
             this.dgv_Bill.ReadOnly = true;
             this.dgv_Bill.RowHeadersVisible = false;
             this.dgv_Bill.RowHeadersWidth = 47;
             this.dgv_Bill.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.dgv_Bill.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_Bill.Size = new System.Drawing.Size(1349, 629);
+            this.dgv_Bill.Size = new System.Drawing.Size(1011, 507);
             this.dgv_Bill.TabIndex = 105;
             this.dgv_Bill.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Bill_CellClick);
             this.dgv_Bill.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Medicine_CellContentClick);
@@ -146,9 +145,8 @@
             this.label_TitleAdd.Dock = System.Windows.Forms.DockStyle.Top;
             this.label_TitleAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.21818F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label_TitleAdd.Location = new System.Drawing.Point(0, 0);
-            this.label_TitleAdd.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_TitleAdd.Name = "label_TitleAdd";
-            this.label_TitleAdd.Size = new System.Drawing.Size(1689, 90);
+            this.label_TitleAdd.Size = new System.Drawing.Size(1267, 73);
             this.label_TitleAdd.TabIndex = 106;
             this.label_TitleAdd.Text = "Hóa đơn";
             this.label_TitleAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -159,11 +157,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_Id.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_Id.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.70909F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_Id.Location = new System.Drawing.Point(112, 0);
+            this.txt_Id.Location = new System.Drawing.Point(84, 0);
             this.txt_Id.Margin = new System.Windows.Forms.Padding(0);
             this.txt_Id.Name = "txt_Id";
             this.txt_Id.ReadOnly = true;
-            this.txt_Id.Size = new System.Drawing.Size(559, 30);
+            this.txt_Id.Size = new System.Drawing.Size(419, 28);
             this.txt_Id.TabIndex = 107;
             // 
             // txt_Name
@@ -172,11 +170,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_Name.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.70909F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_Name.Location = new System.Drawing.Point(112, 58);
+            this.txt_Name.Location = new System.Drawing.Point(84, 47);
             this.txt_Name.Margin = new System.Windows.Forms.Padding(0);
             this.txt_Name.Name = "txt_Name";
             this.txt_Name.ReadOnly = true;
-            this.txt_Name.Size = new System.Drawing.Size(559, 30);
+            this.txt_Name.Size = new System.Drawing.Size(419, 28);
             this.txt_Name.TabIndex = 109;
             // 
             // txt_Email
@@ -185,11 +183,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_Email.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_Email.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.70909F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_Email.Location = new System.Drawing.Point(112, 103);
+            this.txt_Email.Location = new System.Drawing.Point(84, 84);
             this.txt_Email.Margin = new System.Windows.Forms.Padding(0);
             this.txt_Email.Name = "txt_Email";
             this.txt_Email.ReadOnly = true;
-            this.txt_Email.Size = new System.Drawing.Size(559, 30);
+            this.txt_Email.Size = new System.Drawing.Size(419, 28);
             this.txt_Email.TabIndex = 111;
             // 
             // label_ID
@@ -199,10 +197,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_ID.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label_ID.Appearance.Options.UseFont = true;
-            this.label_ID.Location = new System.Drawing.Point(24, 10);
-            this.label_ID.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.label_ID.Location = new System.Drawing.Point(18, 8);
+            this.label_ID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.label_ID.Name = "label_ID";
-            this.label_ID.Size = new System.Drawing.Size(58, 24);
+            this.label_ID.Size = new System.Drawing.Size(52, 22);
             this.label_ID.TabIndex = 112;
             this.label_ID.Text = "Mã KH";
             this.label_ID.Click += new System.EventHandler(this.label_ID_Click);
@@ -214,10 +212,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(24, 58);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.labelControl1.Location = new System.Drawing.Point(18, 47);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(66, 24);
+            this.labelControl1.Size = new System.Drawing.Size(59, 22);
             this.labelControl1.TabIndex = 113;
             this.labelControl1.Text = "Tên KH";
             // 
@@ -228,10 +226,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(24, 103);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.labelControl2.Location = new System.Drawing.Point(18, 84);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(49, 24);
+            this.labelControl2.Size = new System.Drawing.Size(42, 22);
             this.labelControl2.TabIndex = 114;
             this.labelControl2.Text = "Email";
             // 
@@ -242,10 +240,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(8, 10);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.labelControl3.Location = new System.Drawing.Point(6, 8);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(61, 24);
+            this.labelControl3.Size = new System.Drawing.Size(57, 23);
             this.labelControl3.TabIndex = 115;
             this.labelControl3.Text = "Địa chỉ";
             this.labelControl3.Click += new System.EventHandler(this.labelControl3_Click);
@@ -257,10 +255,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(8, 63);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.labelControl4.Location = new System.Drawing.Point(6, 51);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(117, 24);
+            this.labelControl4.Size = new System.Drawing.Size(110, 23);
             this.labelControl4.TabIndex = 116;
             this.labelControl4.Text = "Số điện thoại";
             // 
@@ -270,11 +268,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_number.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_number.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.70909F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_number.Location = new System.Drawing.Point(146, 63);
+            this.txt_number.Location = new System.Drawing.Point(110, 51);
             this.txt_number.Margin = new System.Windows.Forms.Padding(0);
             this.txt_number.Name = "txt_number";
             this.txt_number.ReadOnly = true;
-            this.txt_number.Size = new System.Drawing.Size(519, 30);
+            this.txt_number.Size = new System.Drawing.Size(386, 28);
             this.txt_number.TabIndex = 117;
             this.txt_number.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -284,17 +282,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_Address.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_Address.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.70909F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_Address.Location = new System.Drawing.Point(146, 10);
+            this.txt_Address.Location = new System.Drawing.Point(110, 8);
             this.txt_Address.Margin = new System.Windows.Forms.Padding(0);
             this.txt_Address.Name = "txt_Address";
             this.txt_Address.ReadOnly = true;
-            this.txt_Address.Size = new System.Drawing.Size(519, 30);
+            this.txt_Address.Size = new System.Drawing.Size(386, 28);
             this.txt_Address.TabIndex = 118;
             // 
             // splitContainerControl1
             // 
-            this.splitContainerControl1.Location = new System.Drawing.Point(8, 77);
-            this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainerControl1.Location = new System.Drawing.Point(6, 63);
             this.splitContainerControl1.Name = "splitContainerControl1";
             // 
             // splitContainerControl1.Panel1
@@ -314,29 +311,29 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.labelControl4);
             this.splitContainerControl1.Panel2.Controls.Add(this.txt_number);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1452, 141);
-            this.splitContainerControl1.SplitterPosition = 661;
+            this.splitContainerControl1.Size = new System.Drawing.Size(1089, 115);
+            this.splitContainerControl1.SplitterPosition = 496;
             this.splitContainerControl1.TabIndex = 119;
             // 
             // groupControl1
             // 
             this.groupControl1.Controls.Add(this.dgv_Bill);
-            this.groupControl1.Location = new System.Drawing.Point(13, 226);
-            this.groupControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupControl1.Location = new System.Drawing.Point(10, 184);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1353, 659);
+            this.groupControl1.Size = new System.Drawing.Size(1015, 535);
             this.groupControl1.TabIndex = 120;
             this.groupControl1.Text = "Bảng hóa đơn";
             // 
             // frm_BillingAnalytics
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1689, 898);
+            this.ClientSize = new System.Drawing.Size(1267, 730);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.label_TitleAdd);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frm_BillingAnalytics";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hóa đơn";

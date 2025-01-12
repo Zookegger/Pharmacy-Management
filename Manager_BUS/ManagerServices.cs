@@ -28,7 +28,13 @@ namespace Manager_BUS
                 emp.HoTen.ToLower().Contains(search)    // Lọc theo tên nhân viên
             ).ToList();
         }
-
+        
+        public NHANVIEN GetEmployee(string employeeId)
+        {
+            return context.NHANVIEN.Where(
+                employee => employee.MaNhanVien == employeeId
+            ).FirstOrDefault();
+        }
 
         public List<BillDetailDTO> GetBillDetails()
         {

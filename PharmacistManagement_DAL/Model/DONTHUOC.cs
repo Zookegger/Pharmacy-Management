@@ -19,9 +19,7 @@ namespace PharmacistManagement_DAL.Model
         [StringLength(10)]
         public string MaDonThuoc { get; set; }
 
-        [Required]
-        [StringLength(10)]
-        public string MaKhachHang { get; set; }
+        public int MaKhachHang { get; set; }
 
         [Required]
         [StringLength(10)]

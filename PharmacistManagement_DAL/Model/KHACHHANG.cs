@@ -16,8 +16,7 @@ namespace PharmacistManagement_DAL.Model
         }
 
         [Key]
-        [StringLength(10)]
-        public string MaKhachHang { get; set; }
+        public int MaKhachHang { get; set; }
 
         [StringLength(30)]
         public string HoTen { get; set; }

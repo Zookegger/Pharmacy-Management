@@ -53,10 +53,6 @@ namespace PharmacistManagement_DAL.Model
                 .IsUnicode(false);
 
             modelBuilder.Entity<DONTHUOC>()
-                .Property(e => e.MaKhachHang)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<DONTHUOC>()
                 .Property(e => e.MaNhanVien)
                 .IsUnicode(false);
 
@@ -75,10 +71,6 @@ namespace PharmacistManagement_DAL.Model
 
             modelBuilder.Entity<GIAODICH>()
                 .Property(e => e.MaNhaCungCap)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<KHACHHANG>()
-                .Property(e => e.MaKhachHang)
                 .IsUnicode(false);
 
             modelBuilder.Entity<KHACHHANG>()

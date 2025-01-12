@@ -24,11 +24,13 @@ namespace Manager_BUS
         {
             try
             {
+
                 // Băm mật khẩu trước khi lưu
                 newAccount.MatKhau = hashPassword.Hash(newAccount.MatKhau);
 
                 // Thêm tài khoản vào cơ sở dữ liệu
                 pharmacistDB.TAIKHOAN.Add(newAccount);
+                
                 pharmacistDB.SaveChanges();  // Kiểm tra lỗi ở đây
 
                 return true;

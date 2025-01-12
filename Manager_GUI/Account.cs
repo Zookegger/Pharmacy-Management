@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using PharmacistManagement_DAL.Model;
 using Manager_BUS;
 using HashingPassword;
+using System.Data.Entity.Validation;
 
 namespace Manager_GUI
 {
@@ -64,56 +65,159 @@ namespace Manager_GUI
             BindGrid(taiKhoans);
         }
 
-        private void btn_Add_Click(object sender, EventArgs e)
+    
+
+ 
+
+        
+
+        private void dgv_Account_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            // Lấy thông tin từ các TextBox
 
+        }
 
-            string maNhanVien = txt_Idperson.Text;
-            if (string.IsNullOrEmpty(maNhanVien))
+        private void dgv_Account_CellClick_2(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Đảm bảo người dùng chọn một hàng hợp lệ
             {
-                MessageBox.Show("Mã nhân viên không được để trống.");
-                return;
-            }
-            string trangthai = txt_Status.Text;
-            string tenTaiKhoan = txt_Name.Text;
-            string matKhau = txt_Password.Text;
+                DataGridViewRow selectedRow = dgv_Account.Rows[e.RowIndex];
 
-            // Kiểm tra tính hợp lệ
-            if (string.IsNullOrEmpty(tenTaiKhoan) || string.IsNullOrEmpty(matKhau))
-            {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
-                return;
-            }
+                // Lấy giá trị từ từng cột của hàng được chọn và gán vào các TextBox
+                txt_Id.Text = selectedRow.Cells[0].Value?.ToString();
+                txt_Idperson.Text = selectedRow.Cells[1].Value?.ToString();
+                txt_Name.Text = selectedRow.Cells[2].Value?.ToString();
+                txt_Password.Text = selectedRow.Cells[3].Value?.ToString(); 
+                txt_Status.Text = selectedRow.Cells[4].Value?.ToString();
 
-            // Tạo đối tượng tài khoản mới
-            TAIKHOAN newAccount = new TAIKHOAN
-            {
-                MaNhanVien = maNhanVien,
-                TenTaiKhoan = tenTaiKhoan,
-                MatKhau = new HashPassword().Hash(matKhau), // Băm mật khẩu
-                TrangThai = trangthai,
-                LanCuoiCapNhat = DateTime.UtcNow
-            };
-
-            // Gọi phương thức AddAccount từ AccountService
-            bool result = accountService.AddAccount(newAccount);
-
-            if (result)
-            {
-                MessageBox.Show("Thêm tài khoản thành công!");
-
-                // Cập nhật lại DataGridView
-                List<TAIKHOAN> taiKhoans = accountService.GetAccountList();
-                BindGrid(taiKhoans);
-            }
-            else
-            {
-                MessageBox.Show("Thêm tài khoản thất bại. Vui lòng thử lại.");
+                // Gán giá trị ngày tháng vào DateTimePicker
+                if (DateTime.TryParse(selectedRow.Cells[5].Value?.ToString(), out DateTime lastUpdated))
+                {
+                    date_update.Value = lastUpdated;
+                }
+                else
+                {
+                    date_update.Value = DateTime.Now; // Gán ngày hiện tại nếu không có giá trị hợp lệ
+                }
             }
         }
 
-        private void btn_Update_Click(object sender, EventArgs e)
+        private void btn_Add_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                // Lấy thông tin từ các TextBox
+
+
+                int mataikhoan = int.Parse(txt_Id.Text);
+                string maNhanVien = txt_Idperson.Text;
+                if (string.IsNullOrEmpty(maNhanVien))
+                {
+                    MessageBox.Show("Mã nhân viên không được để trống.");
+                    return;
+                }
+                string trangthai = txt_Status.Text;
+                string tenTaiKhoan = txt_Name.Text;
+                string matKhau = txt_Password.Text;
+
+                // Kiểm tra tính hợp lệ
+                if (string.IsNullOrEmpty(tenTaiKhoan) || string.IsNullOrEmpty(matKhau))
+                {
+                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
+                    return;
+                }
+
+                // Tạo đối tượng tài khoản mới
+                TAIKHOAN newAccount = new TAIKHOAN
+                {
+                    MaTaiKhoan = mataikhoan,
+                    MaNhanVien = maNhanVien,
+                    TenTaiKhoan = tenTaiKhoan,
+                    MatKhau = matKhau,
+                    TrangThai = trangthai,
+                    LanCuoiCapNhat = DateTime.Now
+                };
+
+                System.Diagnostics.Debug.WriteLine($"{newAccount.MatKhau}");
+                System.Diagnostics.Debug.WriteLine($"{newAccount.MaTaiKhoan}");
+                System.Diagnostics.Debug.WriteLine($"{newAccount.MaNhanVien}");
+                System.Diagnostics.Debug.WriteLine($"{newAccount.TenTaiKhoan}");
+                System.Diagnostics.Debug.WriteLine($"{newAccount.TrangThai}");
+                System.Diagnostics.Debug.WriteLine($"{newAccount.LanCuoiCapNhat}");
+
+                // Gọi phương thức AddAccount từ AccountService
+                bool result = accountService.AddAccount(newAccount);
+
+                if (result)
+                {
+                    MessageBox.Show("Thêm tài khoản thành công!");
+
+                    // Cập nhật lại DataGridView
+                    List<TAIKHOAN> taiKhoans = accountService.GetAccountList();
+                    BindGrid(taiKhoans);
+                }
+                else
+                {
+                    MessageBox.Show("Thêm tài khoản thất bại. Vui lòng thử lại.");
+                }
+
+
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var validationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                MessageBox.Show($"Error adding account: {ex.Message}\nInner Exception: {ex.InnerException?.Message}");
+            }
+        }
+
+        private void btn_Delete_Click_1(object sender, EventArgs e)
+        {
+            if (dgv_Account.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn tài khoản cần xóa.");
+                return;
+            }
+
+            // Lấy mã tài khoản từ DataGridView và chuyển đổi sang int
+            if (!int.TryParse(dgv_Account.SelectedRows[0].Cells[0].Value.ToString(), out int maTaiKhoan))
+            {
+                MessageBox.Show("Mã tài khoản không hợp lệ.");
+                return;
+            }
+
+            // Xác nhận trước khi xóa
+            var confirmResult = MessageBox.Show("Bạn có chắc chắn muốn xóa tài khoản này?",
+                                                "Xác nhận xóa",
+                                                MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                // Gọi phương thức xóa tài khoản
+                bool result = accountService.DeleteAccount(maTaiKhoan);
+
+                if (result)
+                {
+                    MessageBox.Show("Xóa tài khoản thành công!");
+                    BindGrid(accountService.GetAccountList()); // Cập nhật lại DataGridView
+                }
+                else
+                {
+                    MessageBox.Show("Xóa tài khoản thất bại. Vui lòng thử lại.");
+                }
+            }
+        }
+
+        private void btn_Update_Click_1(object sender, EventArgs e)
         {
             if (dgv_Account.SelectedRows.Count == 0)
             {
@@ -161,72 +265,6 @@ namespace Manager_GUI
             else
             {
                 MessageBox.Show("Không tìm thấy tài khoản với Mã tài khoản đã chọn.");
-            }
-        }
-
-        private void btn_Delete_Click(object sender, EventArgs e)
-        {
-            if (dgv_Account.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Vui lòng chọn tài khoản cần xóa.");
-                return;
-            }
-
-            // Lấy mã tài khoản từ DataGridView và chuyển đổi sang int
-            if (!int.TryParse(dgv_Account.SelectedRows[0].Cells[0].Value.ToString(), out int maTaiKhoan))
-            {
-                MessageBox.Show("Mã tài khoản không hợp lệ.");
-                return;
-            }
-
-            // Xác nhận trước khi xóa
-            var confirmResult = MessageBox.Show("Bạn có chắc chắn muốn xóa tài khoản này?",
-                                                "Xác nhận xóa",
-                                                MessageBoxButtons.YesNo);
-            if (confirmResult == DialogResult.Yes)
-            {
-                // Gọi phương thức xóa tài khoản
-                bool result = accountService.DeleteAccount(maTaiKhoan);
-
-                if (result)
-                {
-                    MessageBox.Show("Xóa tài khoản thành công!");
-                    BindGrid(accountService.GetAccountList()); // Cập nhật lại DataGridView
-                }
-                else
-                {
-                    MessageBox.Show("Xóa tài khoản thất bại. Vui lòng thử lại.");
-                }
-            }
-        }
-
-        private void dgv_Account_CellClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dgv_Account_CellClick_2(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0) // Đảm bảo người dùng chọn một hàng hợp lệ
-            {
-                DataGridViewRow selectedRow = dgv_Account.Rows[e.RowIndex];
-
-                // Lấy giá trị từ từng cột của hàng được chọn và gán vào các TextBox
-                txt_Id.Text = selectedRow.Cells[0].Value?.ToString();
-                txt_Idperson.Text = selectedRow.Cells[1].Value?.ToString();
-                txt_Name.Text = selectedRow.Cells[2].Value?.ToString();
-                txt_Password.Text = selectedRow.Cells[3].Value?.ToString(); 
-                txt_Status.Text = selectedRow.Cells[4].Value?.ToString();
-
-                // Gán giá trị ngày tháng vào DateTimePicker
-                if (DateTime.TryParse(selectedRow.Cells[5].Value?.ToString(), out DateTime lastUpdated))
-                {
-                    date_update.Value = lastUpdated;
-                }
-                else
-                {
-                    date_update.Value = DateTime.Now; // Gán ngày hiện tại nếu không có giá trị hợp lệ
-                }
             }
         }
     }

@@ -1180,7 +1180,6 @@
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl_MedicationInfo;
         private DevExpress.XtraEditors.GroupControl groupControl_SellCart;
         private DevExpress.XtraEditors.PanelControl panelControl_BottomCartControls;
-        private RoundedButton roundedButton;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.SimpleButton btn_Checkout;
         private System.Windows.Forms.ComboBox cbb_ProductionDate;

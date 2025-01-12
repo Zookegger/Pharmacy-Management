@@ -160,12 +160,14 @@ namespace Login
                             pharmacistGUI = new frm_PharmacistGUI();
                             pharmacistGUI.FormClosed += (s, args) => this.Show();
                             this.Hide();
+                            txt_Password.Text = string.Empty;
                             pharmacistGUI.Show();
                             break;
                         case "quản lý":
                             ManagerGUI = new frm_ManagerGUI();
                             ManagerGUI.FormClosed += (s, args) => this.Show();
                             this.Hide();
+                            txt_Password.Text = string.Empty;
                             ManagerGUI.Show();
                             break;
                         case "admin":
@@ -182,6 +184,7 @@ namespace Login
                                 pharmacistGUI = new frm_PharmacistGUI();
                                 pharmacistGUI.FormClosed += (s, args) => this.Show();
                                 this.Hide();
+                                txt_Password.Text = string.Empty;
                                 pharmacistGUI.Show();
                             }
                             // Open Manager GUI
@@ -190,6 +193,7 @@ namespace Login
                                 ManagerGUI = new frm_ManagerGUI();
                                 ManagerGUI.FormClosed += (s, args) => this.Show();
                                 this.Hide();
+                                txt_Password.Text = string.Empty;
                                 ManagerGUI.Show();
                             }
                             break;

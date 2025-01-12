@@ -28,32 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label_Account = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.btn_Add = new DevExpress.XtraEditors.SimpleButton();
-            this.btn_Delete = new DevExpress.XtraEditors.SimpleButton();
-            this.btn_Update = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.dgv_Account = new System.Windows.Forms.DataGridView();
+            this.col_IDaccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_IDperson = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_password = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_last = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txt_Id = new System.Windows.Forms.TextBox();
             this.txt_Name = new System.Windows.Forms.TextBox();
             this.txt_Password = new System.Windows.Forms.TextBox();
             this.txt_Status = new System.Windows.Forms.TextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txt_LastUpdated = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
+            this.date_update = new System.Windows.Forms.DateTimePicker();
+            this.txt_Idperson = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.btn_Update = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_Delete = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_Add = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Account)).BeginInit();
@@ -61,6 +62,8 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label_Account
@@ -109,7 +112,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(19, 20);
+            this.label4.Location = new System.Drawing.Point(35, 66);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(113, 24);
             this.label4.TabIndex = 1;
@@ -119,98 +122,99 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(19, 66);
+            this.label5.Location = new System.Drawing.Point(9, 110);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(179, 24);
             this.label5.TabIndex = 2;
             this.label5.Text = "Lần Cuối Cập Nhập";
-            // 
-            // panelControl1
-            // 
-            this.panelControl1.Controls.Add(this.btn_Update);
-            this.panelControl1.Controls.Add(this.btn_Delete);
-            this.panelControl1.Controls.Add(this.btn_Add);
-            this.panelControl1.Location = new System.Drawing.Point(8, 225);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1452, 141);
-            this.panelControl1.TabIndex = 120;
-            // 
-            // btn_Add
-            // 
-            this.btn_Add.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_Add.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btn_Add.Appearance.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Bold);
-            this.btn_Add.Appearance.ForeColor = System.Drawing.Color.White;
-            this.btn_Add.Appearance.Options.UseBackColor = true;
-            this.btn_Add.Appearance.Options.UseFont = true;
-            this.btn_Add.Appearance.Options.UseForeColor = true;
-            this.btn_Add.AppearanceHovered.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold);
-            this.btn_Add.AppearanceHovered.Options.UseFont = true;
-            this.btn_Add.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 7.2F, System.Drawing.FontStyle.Bold);
-            this.btn_Add.AppearancePressed.Options.UseFont = true;
-            this.btn_Add.Location = new System.Drawing.Point(58, 41);
-            this.btn_Add.Name = "btn_Add";
-            this.btn_Add.Size = new System.Drawing.Size(220, 62);
-            this.btn_Add.TabIndex = 0;
-            this.btn_Add.Text = "Thêm";
-            this.btn_Add.Click += new System.EventHandler(this.btn_Add_Click);
-            // 
-            // btn_Delete
-            // 
-            this.btn_Delete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_Delete.Appearance.BackColor = System.Drawing.Color.Red;
-            this.btn_Delete.Appearance.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Bold);
-            this.btn_Delete.Appearance.Options.UseBackColor = true;
-            this.btn_Delete.Appearance.Options.UseFont = true;
-            this.btn_Delete.Location = new System.Drawing.Point(362, 41);
-            this.btn_Delete.Name = "btn_Delete";
-            this.btn_Delete.Size = new System.Drawing.Size(220, 62);
-            this.btn_Delete.TabIndex = 1;
-            this.btn_Delete.Text = "Xóa";
-            this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
-            // 
-            // btn_Update
-            // 
-            this.btn_Update.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_Update.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(141)))), ((int)(((byte)(210)))));
-            this.btn_Update.Appearance.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Bold);
-            this.btn_Update.Appearance.Options.UseBackColor = true;
-            this.btn_Update.Appearance.Options.UseFont = true;
-            this.btn_Update.Location = new System.Drawing.Point(663, 51);
-            this.btn_Update.Name = "btn_Update";
-            this.btn_Update.Size = new System.Drawing.Size(220, 62);
-            this.btn_Update.TabIndex = 2;
-            this.btn_Update.Text = "Sửa";
-            this.btn_Update.Click += new System.EventHandler(this.btn_Update_Click);
             // 
             // groupControl1
             // 
             this.groupControl1.Controls.Add(this.dgv_Account);
             this.groupControl1.Location = new System.Drawing.Point(8, 372);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1353, 659);
+            this.groupControl1.Size = new System.Drawing.Size(1301, 659);
             this.groupControl1.TabIndex = 121;
             this.groupControl1.Text = "Bảng Tài Khoản ";
             // 
             // dgv_Account
             // 
-            this.dgv_Account.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_Account.AllowUserToAddRows = false;
+            this.dgv_Account.AllowUserToDeleteRows = false;
+            this.dgv_Account.AllowUserToResizeColumns = false;
+            this.dgv_Account.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_Account.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 7.8F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_Account.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv_Account.ColumnHeadersHeight = 50;
+            this.dgv_Account.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv_Account.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column6,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5});
-            this.dgv_Account.Location = new System.Drawing.Point(5, 31);
+            this.col_IDaccount,
+            this.col_IDperson,
+            this.col_name,
+            this.col_password,
+            this.col_status,
+            this.col_last});
+            this.dgv_Account.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_Account.Location = new System.Drawing.Point(2, 28);
+            this.dgv_Account.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_Account.Name = "dgv_Account";
-            this.dgv_Account.RowHeadersWidth = 51;
-            this.dgv_Account.RowTemplate.Height = 24;
-            this.dgv_Account.Size = new System.Drawing.Size(1348, 629);
-            this.dgv_Account.TabIndex = 0;
+            this.dgv_Account.ReadOnly = true;
+            this.dgv_Account.RowHeadersVisible = false;
+            this.dgv_Account.RowHeadersWidth = 47;
+            this.dgv_Account.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dgv_Account.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_Account.Size = new System.Drawing.Size(1297, 629);
+            this.dgv_Account.TabIndex = 109;
+            this.dgv_Account.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Account_CellClick_2);
+            // 
+            // col_IDaccount
+            // 
+            this.col_IDaccount.HeaderText = "Mã  tài khoản";
+            this.col_IDaccount.MinimumWidth = 6;
+            this.col_IDaccount.Name = "col_IDaccount";
+            this.col_IDaccount.ReadOnly = true;
+            // 
+            // col_IDperson
+            // 
+            this.col_IDperson.HeaderText = "Mã nhân viên";
+            this.col_IDperson.MinimumWidth = 6;
+            this.col_IDperson.Name = "col_IDperson";
+            this.col_IDperson.ReadOnly = true;
+            // 
+            // col_name
+            // 
+            this.col_name.HeaderText = "Tên tài khoản";
+            this.col_name.MinimumWidth = 6;
+            this.col_name.Name = "col_name";
+            this.col_name.ReadOnly = true;
+            // 
+            // col_password
+            // 
+            this.col_password.HeaderText = "Mật khẩu";
+            this.col_password.MinimumWidth = 6;
+            this.col_password.Name = "col_password";
+            this.col_password.ReadOnly = true;
+            // 
+            // col_status
+            // 
+            this.col_status.HeaderText = "Trạng thái";
+            this.col_status.MinimumWidth = 6;
+            this.col_status.Name = "col_status";
+            this.col_status.ReadOnly = true;
+            // 
+            // col_last
+            // 
+            this.col_last.HeaderText = "Lần cuối cập nhật";
+            this.col_last.MinimumWidth = 6;
+            this.col_last.Name = "col_last";
+            this.col_last.ReadOnly = true;
             // 
             // txt_Id
             // 
@@ -235,9 +239,9 @@
             // 
             // txt_Status
             // 
-            this.txt_Status.Location = new System.Drawing.Point(204, 24);
+            this.txt_Status.Location = new System.Drawing.Point(203, 68);
             this.txt_Status.Name = "txt_Status";
-            this.txt_Status.Size = new System.Drawing.Size(453, 22);
+            this.txt_Status.Size = new System.Drawing.Size(450, 22);
             this.txt_Status.TabIndex = 6;
             // 
             // splitContainer1
@@ -259,62 +263,98 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.White;
-            this.splitContainer1.Panel2.Controls.Add(this.txt_LastUpdated);
+            this.splitContainer1.Panel2.Controls.Add(this.label6);
+            this.splitContainer1.Panel2.Controls.Add(this.txt_Idperson);
+            this.splitContainer1.Panel2.Controls.Add(this.date_update);
             this.splitContainer1.Panel2.Controls.Add(this.label4);
             this.splitContainer1.Panel2.Controls.Add(this.txt_Status);
             this.splitContainer1.Panel2.Controls.Add(this.label5);
-            this.splitContainer1.Size = new System.Drawing.Size(1452, 141);
-            this.splitContainer1.SplitterDistance = 725;
+            this.splitContainer1.Size = new System.Drawing.Size(1299, 141);
+            this.splitContainer1.SplitterDistance = 639;
             this.splitContainer1.TabIndex = 122;
             // 
-            // Column1
+            // date_update
             // 
-            this.Column1.HeaderText = "Mã TK";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 210;
+            this.date_update.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.date_update.Location = new System.Drawing.Point(203, 108);
+            this.date_update.Name = "date_update";
+            this.date_update.Size = new System.Drawing.Size(450, 22);
+            this.date_update.TabIndex = 7;
             // 
-            // Column6
+            // txt_Idperson
             // 
-            this.Column6.HeaderText = "Mã NV";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 210;
+            this.txt_Idperson.Location = new System.Drawing.Point(200, 20);
+            this.txt_Idperson.Name = "txt_Idperson";
+            this.txt_Idperson.Size = new System.Drawing.Size(453, 22);
+            this.txt_Idperson.TabIndex = 8;
             // 
-            // Column2
+            // label6
             // 
-            this.Column2.HeaderText = "Tên TK";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 210;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(24, 20);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(131, 24);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Mã Nhân viên";
             // 
-            // Column3
+            // panelControl1
             // 
-            this.Column3.HeaderText = "Mật Khẩu";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 210;
+            this.panelControl1.Controls.Add(this.btn_Update);
+            this.panelControl1.Controls.Add(this.btn_Delete);
+            this.panelControl1.Controls.Add(this.btn_Add);
+            this.panelControl1.Location = new System.Drawing.Point(8, 225);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(1301, 141);
+            this.panelControl1.TabIndex = 120;
             // 
-            // Column4
+            // btn_Update
             // 
-            this.Column4.HeaderText = "Trạng Thái ";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 210;
+            this.btn_Update.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_Update.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(141)))), ((int)(((byte)(210)))));
+            this.btn_Update.Appearance.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Bold);
+            this.btn_Update.Appearance.Options.UseBackColor = true;
+            this.btn_Update.Appearance.Options.UseFont = true;
+            this.btn_Update.Location = new System.Drawing.Point(656, 41);
+            this.btn_Update.Name = "btn_Update";
+            this.btn_Update.Size = new System.Drawing.Size(220, 62);
+            this.btn_Update.TabIndex = 2;
+            this.btn_Update.Text = "Sửa";
             // 
-            // Column5
+            // btn_Delete
             // 
-            this.Column5.HeaderText = "Lần Cuối Cập Nhập ";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 210;
+            this.btn_Delete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_Delete.Appearance.BackColor = System.Drawing.Color.Red;
+            this.btn_Delete.Appearance.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Bold);
+            this.btn_Delete.Appearance.Options.UseBackColor = true;
+            this.btn_Delete.Appearance.Options.UseFont = true;
+            this.btn_Delete.Location = new System.Drawing.Point(362, 41);
+            this.btn_Delete.Name = "btn_Delete";
+            this.btn_Delete.Size = new System.Drawing.Size(220, 62);
+            this.btn_Delete.TabIndex = 1;
+            this.btn_Delete.Text = "Xóa";
             // 
-            // txt_LastUpdated
+            // btn_Add
             // 
-            this.txt_LastUpdated.Location = new System.Drawing.Point(204, 70);
-            this.txt_LastUpdated.Name = "txt_LastUpdated";
-            this.txt_LastUpdated.Size = new System.Drawing.Size(453, 22);
-            this.txt_LastUpdated.TabIndex = 7;
+            this.btn_Add.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_Add.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btn_Add.Appearance.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Bold);
+            this.btn_Add.Appearance.ForeColor = System.Drawing.Color.White;
+            this.btn_Add.Appearance.Options.UseBackColor = true;
+            this.btn_Add.Appearance.Options.UseFont = true;
+            this.btn_Add.Appearance.Options.UseForeColor = true;
+            this.btn_Add.AppearanceHovered.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold);
+            this.btn_Add.AppearanceHovered.Options.UseFont = true;
+            this.btn_Add.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 7.2F, System.Drawing.FontStyle.Bold);
+            this.btn_Add.AppearancePressed.Options.UseFont = true;
+            this.btn_Add.Location = new System.Drawing.Point(58, 41);
+            this.btn_Add.Name = "btn_Add";
+            this.btn_Add.Size = new System.Drawing.Size(220, 62);
+            this.btn_Add.TabIndex = 0;
+            this.btn_Add.Text = "Thêm";
             // 
             // frm_Account
             // 
@@ -329,8 +369,7 @@
             this.Name = "frm_Account";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Account";
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.frm_Account_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Account)).EndInit();
@@ -340,6 +379,8 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -352,23 +393,25 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.SimpleButton btn_Add;
-        private DevExpress.XtraEditors.SimpleButton btn_Update;
-        private DevExpress.XtraEditors.SimpleButton btn_Delete;
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private System.Windows.Forms.DataGridView dgv_Account;
         private System.Windows.Forms.TextBox txt_Password;
         private System.Windows.Forms.TextBox txt_Name;
         private System.Windows.Forms.TextBox txt_Id;
         private System.Windows.Forms.TextBox txt_Status;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.TextBox txt_LastUpdated;
+        private System.Windows.Forms.DataGridView dgv_Account;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_IDaccount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_IDperson;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_password;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_status;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_last;
+        private System.Windows.Forms.DateTimePicker date_update;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txt_Idperson;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.SimpleButton btn_Update;
+        private DevExpress.XtraEditors.SimpleButton btn_Delete;
+        private DevExpress.XtraEditors.SimpleButton btn_Add;
     }
 }

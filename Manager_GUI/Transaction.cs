@@ -11,135 +11,91 @@ using PharmacistManagement_DAL.Model;
 using static DevExpress.XtraBars.Painters.PrimitivesPainterWindowsXP;
 using static Manager_GUI.frm_Transaction;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using Manager_BUS;
+using static Manager_BUS.TransactionService;
 
 namespace Manager_GUI
 {
     public partial class frm_Transaction : Form
     {
-        private List<GiaoDich> danhSachGiaoDich;
+
+
+        private TransactionService transaction = new TransactionService();
         public frm_Transaction()
         {
             InitializeComponent();
         }
-        public class GiaoDich
+
+        private void BindGrid(List<GIAODICH> giaodichs)
         {
-            public string MaGiaoDich { get; set; }
-            public string TenKhachHang { get; set; }
-            public string Email { get; set; }
-            public string SoDienThoai { get; set; }
-            public string DiaChi { get; set; }
-            public string LoaiGiaoDich { get; set; }
-            public decimal SoTien { get; set; }
-            public DateTime NgayGiaoDich { get; set; }
-            public string TrangThai { get; set; }
+            dgv_Transaction.Rows.Clear();
+
+
+
+            foreach (var giaodich in giaodichs)
+            {
+                int rowIndex = dgv_Transaction.Rows.Add();
+                dgv_Transaction.Rows[rowIndex].Cells[0].Value = giaodich.MaGiaoDich;
+                dgv_Transaction.Rows[rowIndex].Cells[1].Value = giaodich.MaLo;
+                dgv_Transaction.Rows[rowIndex].Cells[2].Value = giaodich.MaNhaCungCap;
+                dgv_Transaction.Rows[rowIndex].Cells[3].Value = giaodich.LoaiGiaoDich;
+                dgv_Transaction.Rows[rowIndex].Cells[4].Value = giaodich.NgayThucHien;
+                dgv_Transaction.Rows[rowIndex].Cells[5].Value = giaodich.SoLuongTonConLai;
+                dgv_Transaction.Rows[rowIndex].Cells[6].Value = giaodich.TinhTrang;
+
+
+
+            }
         }
+
 
         private void Transaction_Load(object sender, EventArgs e)
         {
-            danhSachGiaoDich = new List<GiaoDich>();
-            CapNhatDataGridView();
+            List<GIAODICH> giaodichs = transaction.GetTransactionList();
+            BindGrid(giaodichs);
         }
 
-        private void CapNhatDataGridView()
+        private void dgv_Transaction_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            dgv_Transaction.DataSource = null;
-            dgv_Transaction.DataSource = danhSachGiaoDich;
-        }
-        private void XoaTrangTextBox()
-        {
-            txt_Id.Text = "";
-            txt_Name.Text = "";
-            txt_Email.Text = "";
-            txt_number.Text = "";
-            txt_Address.Text = "";
-            txt_TransactionType.Text = "";
-            txt_Money.Text = "";
-            txt_Status.Text = "";
-        }
-
-        private void btn_Add_Click(object sender, EventArgs e)
-        {
-            // Kiểm tra dữ liệu đầu vào
-            if (string.IsNullOrWhiteSpace(txt_Id.Text) || string.IsNullOrWhiteSpace(txt_Name.Text) || string.IsNullOrWhiteSpace(txt_TransactionType.Text) || string.IsNullOrWhiteSpace(txt_Money.Text))
+            if (e.RowIndex >= 0) // Đảm bảo rằng người dùng chọn một hàng hợp lệ
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                DataGridViewRow selectedRow = dgv_Transaction.Rows[e.RowIndex];
 
-            // Thêm giao dịch mới
-            GiaoDich giaoDichMoi = new GiaoDich
-            {
-                MaGiaoDich = txt_Id.Text,
-                TenKhachHang = txt_Name.Text,
-                Email = txt_Email.Text,
-                SoDienThoai = txt_number.Text,
-                DiaChi = txt_Address.Text,
-                LoaiGiaoDich = txt_TransactionType.Text,
-                SoTien = decimal.Parse(txt_Money.Text),
-                NgayGiaoDich = DateTime.Now,
-                TrangThai = txt_Status.Text
-            };
+                // Lấy thông tin giao dịch từ DataGridView
+                string maGiaoDich = selectedRow.Cells[0].Value?.ToString();
+                string loaiGiaoDich = selectedRow.Cells[3].Value?.ToString();
 
-            danhSachGiaoDich.Add(giaoDichMoi);
-            CapNhatDataGridView();
+                // Lấy Mã Nhà Cung Cấp từ cột tương ứng
+                string maNhaCungCap = selectedRow.Cells[2].Value?.ToString();
 
-            MessageBox.Show("Thêm giao dịch thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Hiển thị thông tin giao dịch
+                txt_Id.Text = maGiaoDich;
+                txt_TransactionType.Text = loaiGiaoDich;
 
-            // Xóa trắng các ô nhập liệu
-            XoaTrangTextBox();
-
-        }
-
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void btn_Delete_Click(object sender, EventArgs e)
-        {
-            if (dgv_Transaction.SelectedRows.Count > 0)
-            {
-                int index = dgv_Transaction.SelectedRows[0].Index;
-
-                // Xóa giao dịch trong danh sách
-                danhSachGiaoDich.RemoveAt(index);
-                CapNhatDataGridView();
-
-                MessageBox.Show("Xóa giao dịch thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn một giao dịch để xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void btn_Update_Click(object sender, EventArgs e)
-        {
-            if (dgv_Transaction.SelectedRows.Count > 0)
-            {
-                int index = dgv_Transaction.SelectedRows[0].Index;
-
-                // Kiểm tra dữ liệu đầu vào
-                if (string.IsNullOrWhiteSpace(txt_Id.Text) || string.IsNullOrWhiteSpace(txt_Name.Text) || string.IsNullOrWhiteSpace(txt_TransactionType.Text) || string.IsNullOrWhiteSpace(txt_Money.Text))
+                if (!string.IsNullOrEmpty(maNhaCungCap))
                 {
-                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    // Tìm nhà cung cấp trong database
+                    NhaCungCapService supplierService = new NhaCungCapService();
+                    NHACUNGCAP supplier = supplierService.GetSupplierById(maNhaCungCap);
+
+                    if (supplier != null)
+                    {
+                        // Đổ dữ liệu nhà cung cấp lên các TextBox
+                        txt_idsupply.Text = supplier.MaNhaCungCap;
+                        txt_Name.Text = supplier.TenNhaCungCap;
+                        txt_Address.Text = supplier.DiaChi;
+                        txt_number.Text = supplier.SoDienThoai;
+                        txt_Email.Text = supplier.Email;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không tìm thấy thông tin nhà cung cấp!");
+                    }
                 }
-
-               
-
-                CapNhatDataGridView();
-
-                MessageBox.Show("Sửa giao dịch thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Xóa trắng các ô nhập liệu
-                XoaTrangTextBox();
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn một giao dịch để sửa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+        
     }
 }
+ 
 

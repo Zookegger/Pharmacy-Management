@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label_Transaction = new System.Windows.Forms.Label();
             this.txt_Email = new System.Windows.Forms.TextBox();
             this.txt_Name = new System.Windows.Forms.TextBox();
@@ -41,26 +42,18 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.dgv_Transaction = new System.Windows.Forms.DataGridView();
+            this.col_IDtransaction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_IDmedicien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_IDsupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_kind = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_Quanlity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.btn_Update = new DevExpress.XtraEditors.SimpleButton();
-            this.btn_Delete = new DevExpress.XtraEditors.SimpleButton();
-            this.btn_Add = new DevExpress.XtraEditors.SimpleButton();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.txt_TransactionType = new System.Windows.Forms.TextBox();
-            this.txt_Money = new System.Windows.Forms.TextBox();
-            this.txt_Status = new System.Windows.Forms.TextBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txt_idsupply = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Transaction)).BeginInit();
@@ -68,8 +61,6 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label_Transaction
@@ -86,7 +77,7 @@
             // 
             // txt_Email
             // 
-            this.txt_Email.Location = new System.Drawing.Point(210, 100);
+            this.txt_Email.Location = new System.Drawing.Point(178, 104);
             this.txt_Email.Name = "txt_Email";
             this.txt_Email.Size = new System.Drawing.Size(453, 22);
             this.txt_Email.TabIndex = 5;
@@ -109,7 +100,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(18, 100);
+            this.label3.Location = new System.Drawing.Point(25, 100);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 24);
             this.label3.TabIndex = 2;
@@ -121,9 +112,9 @@
             this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(18, 56);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(169, 24);
+            this.label2.Size = new System.Drawing.Size(136, 24);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Tên Khách Hàng  ";
+            this.label2.Text = "Nhà cung cấp ";
             // 
             // label1
             // 
@@ -172,7 +163,7 @@
             // groupControl1
             // 
             this.groupControl1.Controls.Add(this.dgv_Transaction);
-            this.groupControl1.Location = new System.Drawing.Point(18, 465);
+            this.groupControl1.Location = new System.Drawing.Point(13, 318);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(1770, 610);
             this.groupControl1.TabIndex = 122;
@@ -180,23 +171,91 @@
             // 
             // dgv_Transaction
             // 
-            this.dgv_Transaction.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_Transaction.AllowUserToAddRows = false;
+            this.dgv_Transaction.AllowUserToDeleteRows = false;
+            this.dgv_Transaction.AllowUserToResizeColumns = false;
+            this.dgv_Transaction.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_Transaction.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+            this.dgv_Transaction.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 7.8F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_Transaction.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgv_Transaction.ColumnHeadersHeight = 50;
+            this.dgv_Transaction.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv_Transaction.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column7,
-            this.Column8,
-            this.Column9,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6});
-            this.dgv_Transaction.Location = new System.Drawing.Point(10, 31);
+            this.col_IDtransaction,
+            this.col_IDmedicien,
+            this.col_IDsupplier,
+            this.col_kind,
+            this.col_date,
+            this.col_Quanlity,
+            this.col_status});
+            this.dgv_Transaction.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_Transaction.Location = new System.Drawing.Point(2, 28);
+            this.dgv_Transaction.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_Transaction.Name = "dgv_Transaction";
-            this.dgv_Transaction.RowHeadersWidth = 51;
-            this.dgv_Transaction.RowTemplate.Height = 24;
-            this.dgv_Transaction.Size = new System.Drawing.Size(1760, 563);
-            this.dgv_Transaction.TabIndex = 0;
+            this.dgv_Transaction.ReadOnly = true;
+            this.dgv_Transaction.RowHeadersVisible = false;
+            this.dgv_Transaction.RowHeadersWidth = 47;
+            this.dgv_Transaction.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dgv_Transaction.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_Transaction.Size = new System.Drawing.Size(1766, 580);
+            this.dgv_Transaction.TabIndex = 109;
+            this.dgv_Transaction.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Transaction_CellClick);
+            // 
+            // col_IDtransaction
+            // 
+            this.col_IDtransaction.HeaderText = "Mã giao dịch";
+            this.col_IDtransaction.MinimumWidth = 6;
+            this.col_IDtransaction.Name = "col_IDtransaction";
+            this.col_IDtransaction.ReadOnly = true;
+            // 
+            // col_IDmedicien
+            // 
+            this.col_IDmedicien.HeaderText = "Mã lô";
+            this.col_IDmedicien.MinimumWidth = 6;
+            this.col_IDmedicien.Name = "col_IDmedicien";
+            this.col_IDmedicien.ReadOnly = true;
+            // 
+            // col_IDsupplier
+            // 
+            this.col_IDsupplier.HeaderText = "Mã nhà cung cấp";
+            this.col_IDsupplier.MinimumWidth = 6;
+            this.col_IDsupplier.Name = "col_IDsupplier";
+            this.col_IDsupplier.ReadOnly = true;
+            // 
+            // col_kind
+            // 
+            this.col_kind.HeaderText = "Loại giao dịch";
+            this.col_kind.MinimumWidth = 6;
+            this.col_kind.Name = "col_kind";
+            this.col_kind.ReadOnly = true;
+            // 
+            // col_date
+            // 
+            this.col_date.HeaderText = "Ngày thực hiện";
+            this.col_date.MinimumWidth = 6;
+            this.col_date.Name = "col_date";
+            this.col_date.ReadOnly = true;
+            // 
+            // col_Quanlity
+            // 
+            this.col_Quanlity.HeaderText = "Số lượng tồn còn lại";
+            this.col_Quanlity.MinimumWidth = 6;
+            this.col_Quanlity.Name = "col_Quanlity";
+            this.col_Quanlity.ReadOnly = true;
+            // 
+            // col_status
+            // 
+            this.col_status.HeaderText = "Tình trạng";
+            this.col_status.MinimumWidth = 6;
+            this.col_status.Name = "col_status";
+            this.col_status.ReadOnly = true;
             // 
             // splitContainer1
             // 
@@ -207,89 +266,34 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.White;
-            this.splitContainer1.Panel1.Controls.Add(this.txt_Email);
+            this.splitContainer1.Panel1.Controls.Add(this.label7);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_idsupply);
             this.splitContainer1.Panel1.Controls.Add(this.label4);
             this.splitContainer1.Panel1.Controls.Add(this.txt_number);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.txt_Name);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.txt_Id);
-            this.splitContainer1.Panel1.Controls.Add(this.label3);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.White;
-            this.splitContainer1.Panel2.Controls.Add(this.txt_Status);
-            this.splitContainer1.Panel2.Controls.Add(this.txt_Money);
+            this.splitContainer1.Panel2.Controls.Add(this.txt_Email);
             this.splitContainer1.Panel2.Controls.Add(this.txt_TransactionType);
-            this.splitContainer1.Panel2.Controls.Add(this.label8);
-            this.splitContainer1.Panel2.Controls.Add(this.label7);
             this.splitContainer1.Panel2.Controls.Add(this.label6);
             this.splitContainer1.Panel2.Controls.Add(this.txt_Address);
             this.splitContainer1.Panel2.Controls.Add(this.label5);
-            this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
+            this.splitContainer1.Panel2.Controls.Add(this.label3);
             this.splitContainer1.Size = new System.Drawing.Size(1452, 232);
             this.splitContainer1.SplitterDistance = 725;
             this.splitContainer1.TabIndex = 123;
             // 
-            // panelControl1
+            // txt_TransactionType
             // 
-            this.panelControl1.Controls.Add(this.btn_Update);
-            this.panelControl1.Controls.Add(this.btn_Delete);
-            this.panelControl1.Controls.Add(this.btn_Add);
-            this.panelControl1.Location = new System.Drawing.Point(18, 318);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1452, 141);
-            this.panelControl1.TabIndex = 124;
-            // 
-            // btn_Update
-            // 
-            this.btn_Update.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_Update.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(141)))), ((int)(((byte)(210)))));
-            this.btn_Update.Appearance.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Bold);
-            this.btn_Update.Appearance.ForeColor = System.Drawing.Color.White;
-            this.btn_Update.Appearance.Options.UseBackColor = true;
-            this.btn_Update.Appearance.Options.UseFont = true;
-            this.btn_Update.Appearance.Options.UseForeColor = true;
-            this.btn_Update.Location = new System.Drawing.Point(744, 32);
-            this.btn_Update.Name = "btn_Update";
-            this.btn_Update.Size = new System.Drawing.Size(220, 62);
-            this.btn_Update.TabIndex = 2;
-            this.btn_Update.Text = "Sửa\r\n";
-            this.btn_Update.Click += new System.EventHandler(this.btn_Update_Click);
-            // 
-            // btn_Delete
-            // 
-            this.btn_Delete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_Delete.Appearance.BackColor = System.Drawing.Color.Red;
-            this.btn_Delete.Appearance.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Bold);
-            this.btn_Delete.Appearance.Options.UseBackColor = true;
-            this.btn_Delete.Appearance.Options.UseFont = true;
-            this.btn_Delete.Location = new System.Drawing.Point(394, 32);
-            this.btn_Delete.Name = "btn_Delete";
-            this.btn_Delete.Size = new System.Drawing.Size(220, 62);
-            this.btn_Delete.TabIndex = 1;
-            this.btn_Delete.Text = "Xóa ";
-            this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
-            // 
-            // btn_Add
-            // 
-            this.btn_Add.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_Add.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btn_Add.Appearance.Font = new System.Drawing.Font("Tahoma", 13.74545F, System.Drawing.FontStyle.Bold);
-            this.btn_Add.Appearance.ForeColor = System.Drawing.Color.White;
-            this.btn_Add.Appearance.Options.UseBackColor = true;
-            this.btn_Add.Appearance.Options.UseFont = true;
-            this.btn_Add.Appearance.Options.UseForeColor = true;
-            this.btn_Add.Location = new System.Drawing.Point(50, 32);
-            this.btn_Add.Name = "btn_Add";
-            this.btn_Add.Size = new System.Drawing.Size(220, 62);
-            this.btn_Add.TabIndex = 0;
-            this.btn_Add.Text = "Thêm ";
-            this.btn_Add.Click += new System.EventHandler(this.btn_Add_Click);
+            this.txt_TransactionType.Location = new System.Drawing.Point(178, 60);
+            this.txt_TransactionType.Name = "txt_TransactionType";
+            this.txt_TransactionType.Size = new System.Drawing.Size(453, 22);
+            this.txt_TransactionType.TabIndex = 11;
             // 
             // label6
             // 
@@ -301,116 +305,28 @@
             this.label6.TabIndex = 8;
             this.label6.Text = "Loại Giao Dịch";
             // 
+            // txt_idsupply
+            // 
+            this.txt_idsupply.Location = new System.Drawing.Point(210, 104);
+            this.txt_idsupply.Name = "txt_idsupply";
+            this.txt_idsupply.Size = new System.Drawing.Size(453, 22);
+            this.txt_idsupply.TabIndex = 7;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(15, 98);
+            this.label7.Location = new System.Drawing.Point(17, 100);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(83, 24);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "Số Tiền ";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(15, 145);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(113, 24);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Trạng Thái ";
-            // 
-            // txt_TransactionType
-            // 
-            this.txt_TransactionType.Location = new System.Drawing.Point(178, 60);
-            this.txt_TransactionType.Name = "txt_TransactionType";
-            this.txt_TransactionType.Size = new System.Drawing.Size(453, 22);
-            this.txt_TransactionType.TabIndex = 11;
-            // 
-            // txt_Money
-            // 
-            this.txt_Money.Location = new System.Drawing.Point(178, 98);
-            this.txt_Money.Name = "txt_Money";
-            this.txt_Money.Size = new System.Drawing.Size(453, 22);
-            this.txt_Money.TabIndex = 12;
-            // 
-            // txt_Status
-            // 
-            this.txt_Status.Location = new System.Drawing.Point(178, 145);
-            this.txt_Status.Name = "txt_Status";
-            this.txt_Status.Size = new System.Drawing.Size(453, 22);
-            this.txt_Status.TabIndex = 13;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Mã GD";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 150;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Mã KH";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 150;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Email";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.Width = 250;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "SĐT";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            this.Column8.Width = 150;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "Địa Chỉ ";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.Width = 260;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Loại GD";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 210;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Số Tiền ";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 170;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Ngày GD";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 210;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Trạng Thái ";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 210;
+            this.label7.Size = new System.Drawing.Size(166, 24);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "Mã nhà cung cấp ";
             // 
             // frm_Transaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1800, 1102);
-            this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.label_Transaction);
@@ -428,8 +344,6 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -448,26 +362,18 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private System.Windows.Forms.DataGridView dgv_Transaction;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.SimpleButton btn_Add;
-        private DevExpress.XtraEditors.SimpleButton btn_Update;
-        private DevExpress.XtraEditors.SimpleButton btn_Delete;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txt_Status;
-        private System.Windows.Forms.TextBox txt_Money;
         private System.Windows.Forms.TextBox txt_TransactionType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridView dgv_Transaction;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_IDtransaction;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_IDmedicien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_IDsupplier;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_kind;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_Quanlity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_status;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txt_idsupply;
     }
 }

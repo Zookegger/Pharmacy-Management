@@ -98,5 +98,72 @@ namespace Manager_BUS
             public string DiaChi { get; set; }
             public string Email { get; set; }
         }
+
+        public List<CHUCVU> GetPositions()
+        {
+            return context.CHUCVU.ToList();
+        }
+        public List<TIEMTHUOCTAY> GetStores()
+        {
+            return context.TIEMTHUOCTAY.ToList();
+        }
+        public bool AddEmployee(NHANVIEN nhanVien)
+        {
+            try
+            {
+                context.NHANVIEN.Add(nhanVien);
+                context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool UpdateEmployee(NHANVIEN updatedNhanVien)
+        {
+            try
+            {
+                var nhanVien = context.NHANVIEN.Find(updatedNhanVien.MaNhanVien);
+                if (nhanVien != null)
+                {
+                    nhanVien.HoTen = updatedNhanVien.HoTen;
+                    nhanVien.NgaySinh = updatedNhanVien.NgaySinh;
+                    nhanVien.GioiTinh = updatedNhanVien.GioiTinh;
+                    nhanVien.DiaChi = updatedNhanVien.DiaChi;
+                    nhanVien.SoDienThoai = updatedNhanVien.SoDienThoai;
+                    nhanVien.Email = updatedNhanVien.Email;
+                    nhanVien.NgayVaoLam = updatedNhanVien.NgayVaoLam;
+                    nhanVien.MaChucVu = updatedNhanVien.MaChucVu;
+                    nhanVien.MaTiemThuoc = updatedNhanVien.MaTiemThuoc;
+
+                    context.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool DeleteEmployee(string maNhanVien)
+        {
+            try
+            {
+                var nhanVien = context.NHANVIEN.Find(maNhanVien);
+                if (nhanVien != null)
+                {
+                    context.NHANVIEN.Remove(nhanVien);
+                    context.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

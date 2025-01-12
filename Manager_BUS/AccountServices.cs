@@ -1,73 +1,84 @@
-﻿using System;
+﻿using HashingPassword;
+using PharmacistManagement_DAL.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+
+
 
 namespace Manager_BUS
 {
-    
-        public class Account
+
+    public class AccountService
+    {
+        private PharmacyManagementDB pharmacistDB = new PharmacyManagementDB();
+        public List<TAIKHOAN> GetAccountList()
         {
-            public string MaTaiKhoan { get; set; }
-            public string TenTaiKhoan { get; set; }
-            public string MatKhau { get; set; }
-            public string TrangThai { get; set; }
-            public string LanCapNhat { get; set; }
+            return pharmacistDB.TAIKHOAN.ToList();
         }
-        internal class AccountService
+        private HashPassword hashPassword = new HashPassword();
+        public bool AddAccount(TAIKHOAN newAccount)
         {
-
-            private List<Account> danhSachTaiKhoan;
-
-            public AccountService()
+            try
             {
-                danhSachTaiKhoan = new List<Account>();
-            }
+                // Băm mật khẩu trước khi lưu
+                newAccount.MatKhau = hashPassword.Hash(newAccount.MatKhau);
 
-            public List<Account> GetAllAccounts()
-            {
-                return danhSachTaiKhoan;
-            }
+                // Thêm tài khoản vào cơ sở dữ liệu
+                pharmacistDB.TAIKHOAN.Add(newAccount);
+                pharmacistDB.SaveChanges();  // Kiểm tra lỗi ở đây
 
-            public bool AddAccount(Account account)
-            {
-                // Kiểm tra tài khoản đã tồn tại hay chưa
-                if (danhSachTaiKhoan.Exists(a => a.MaTaiKhoan == account.MaTaiKhoan))
-                {
-                    return false; // Tài khoản đã tồn tại
-                }
-
-                danhSachTaiKhoan.Add(account);
                 return true;
             }
-
-            public bool UpdateAccount(string maTaiKhoan, Account updatedAccount)
+            catch (Exception ex)
             {
-                var account = danhSachTaiKhoan.Find(a => a.MaTaiKhoan == maTaiKhoan);
-                if (account == null)
-                {
-                    return false; // Không tìm thấy tài khoản
-                }
-
-                account.TenTaiKhoan = updatedAccount.TenTaiKhoan;
-                account.MatKhau = updatedAccount.MatKhau;
-                account.TrangThai = updatedAccount.TrangThai;
-                account.LanCapNhat = updatedAccount.LanCapNhat;
+                MessageBox.Show($"Error adding account: {ex.Message}\nInner Exception: {ex.InnerException?.Message}");
+                return false;
+            }
+        }
+        public TAIKHOAN GetAccountById(int maTaiKhoan)
+        {
+            return pharmacistDB.TAIKHOAN.FirstOrDefault(tk => tk.MaTaiKhoan == maTaiKhoan);
+        }
+        public bool UpdateAccount(TAIKHOAN account)
+        {
+            try
+            {
+                pharmacistDB.Entry(account).State = System.Data.Entity.EntityState.Modified;
+                pharmacistDB.SaveChanges();
                 return true;
             }
-
-            public bool DeleteAccount(string maTaiKhoan)
+            catch (Exception ex)
             {
-                var account = danhSachTaiKhoan.Find(a => a.MaTaiKhoan == maTaiKhoan);
-                if (account == null)
-                {
-                    return false; // Không tìm thấy tài khoản
-                }
+                MessageBox.Show($"Error updating account: {ex.Message}\nInner Exception: {ex.InnerException?.Message}");
+                return false;
+            }
+        }
 
-                danhSachTaiKhoan.Remove(account);
-                return true;
+        public bool DeleteAccount(int maTaiKhoan)
+        {
+            try
+            {
+                // Tìm tài khoản theo mã tài khoản
+                TAIKHOAN account = GetAccountById(maTaiKhoan);
+                if (account != null)
+                {
+                    // Xóa tài khoản khỏi cơ sở dữ liệu
+                    pharmacistDB.TAIKHOAN.Remove(account);
+                    pharmacistDB.SaveChanges();
+                    return true;
+                }
+                return false; // Không tìm thấy tài khoản
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error deleting account: {ex.Message}\nInner Exception: {ex.InnerException?.Message}");
+                return false;
             }
         }
     }
+}
 

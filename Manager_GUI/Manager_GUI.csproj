@@ -140,6 +140,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HashingPassword\HashingPassword.csproj">
+      <Project>{4f7fdf80-5140-4ea0-bbbc-5de640a75da2}</Project>
+      <Name>HashingPassword</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Manager_BUS\Manager_BUS.csproj">
       <Project>{3db9fb5b-4b4e-4649-a2b0-7b200b99d582}</Project>
       <Name>Manager_BUS</Name>

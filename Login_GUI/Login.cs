@@ -2,6 +2,7 @@
 using Login_BUS;
 using Manager_GUI;
 using Pharmacist;
+using PharmacistManagement_DAL.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,7 @@ namespace Login
         {
             InitializeComponent();
         }
+
 
         private void btn_Exit_Click(object sender, EventArgs e)
         {
@@ -127,17 +129,27 @@ namespace Login
             e.Buttons[DialogResult.Cancel].Appearance.FontStyleDelta = FontStyle.Bold;
         }
 
+        public static class Session
+        {
+            public static NHANVIEN CurrentEmployee { get; set; }
+        }
+
         void Login(String username, String password)
         {
-            try { 
+            try
+            {
                 if (String.IsNullOrEmpty(username) || String.IsNullOrEmpty(password))
                 {
                     throw new Exception("Vui lòng nhập tên tài khoản và mật khẩu");
                 }
                 string role = string.Empty;
-                bool isLoginSuccess = loginServices.Login(txt_Username.Text, txt_Password.Text, out role);
+                bool isLoginSuccess = loginServices.Login(username, password, out role);
                 if (isLoginSuccess)
                 {
+                    // Retrieve the NHANVIEN object for the logged-in user
+                    var account = loginServices.GetAccountByUsername(username);
+                    Session.CurrentEmployee = account.NHANVIEN;
+
                     frm_PharmacistGUI pharmacistGUI;
                     frm_ManagerGUI ManagerGUI;
                     XtraMessageBoxArgs msgargs;
@@ -198,7 +210,7 @@ namespace Login
                     args.Showing += Error_Args_Showing;
                     XtraMessageBox.Show(args);
                 }
-            } 
+            }
             catch (Exception ex)
             {
                 XtraMessageBoxArgs args = new XtraMessageBoxArgs();
@@ -225,9 +237,6 @@ namespace Login
             }
         }
 
-        private void frm_Login_Load(object sender, EventArgs e)
-        {
-        }
 
         private void btn_Login_KeyDown(object sender, KeyEventArgs e)
         {

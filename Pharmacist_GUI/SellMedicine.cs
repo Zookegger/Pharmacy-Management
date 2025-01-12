@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Entity;
 using System.Data.SqlClient;
+using Pharmacist_BUS;
 
 namespace Pharmacist
 {
@@ -23,6 +24,7 @@ namespace Pharmacist
     {
         private readonly MedicineServices medicineServices = new MedicineServices();
         private readonly BatchServices batchServices = new BatchServices();
+        private readonly ReceiptServices receiptServices = new ReceiptServices();
         public frm_SellMedicine()
         {
             InitializeComponent();
@@ -385,89 +387,107 @@ namespace Pharmacist
                 }
             }
         }
-        private string GenerateReceiptContent()
-        {
-            // Collect receipt information (data from DataGridView or any other source)
-            StringBuilder receipt = new StringBuilder();
-            foreach (DataGridViewRow row in dgv_SellCart.Rows)
-            {
-                if (row.Cells[0].Value != null)
-                {
-                    receipt.AppendLine($"Item: {row.Cells[1].Value} - Quantity: {row.Cells[4].Value} - Price: {row.Cells[5].Value}");
-                }
-            }
-            receipt.AppendLine($"Total Price: {txt_TotalCartPrice.Text}");
-            return receipt.ToString();
-        }
+
+        //private string GenerateReceiptContent()
+        //{
+        //    // Collect receipt information (data from DataGridView or any other source)
+        //    StringBuilder receipt = new StringBuilder();
+
+        //    // Add Header
+        //    receipt.AppendLine("-------- Pharmacy Receipt --------");
+        //    receipt.AppendLine($"Receipt ID: {GenerateReceiptID()}");
+        //    receipt.AppendLine($"Date: {DateTime.Now.ToString("dd/MM/yyyy")}");
+        //    receipt.AppendLine("---------------------------------");
+
+        //    // Iterate through items in the cart
+        //    foreach (DataGridViewRow row in dgv_SellCart.Rows)
+        //    {
+        //        if (row.Cells[0].Value != null)
+        //        {
+        //            string itemName = row.Cells[1].Value.ToString();
+        //            string productionDate = row.Cells[2].Value.ToString();
+        //            string expirationDate = row.Cells[3].Value.ToString();
+        //            string quantity = row.Cells[4].Value.ToString();
+        //            string price = row.Cells[5].Value.ToString();
+
+        //            receipt.AppendLine($"Item: {itemName} | Production Date: {productionDate} | Expiry: {expirationDate}");
+        //            receipt.AppendLine($"Quantity: {quantity} | Price: {price}");
+        //        }
+        //    }
+
+        //    // Add total price
+        //    receipt.AppendLine("---------------------------------");
+        //    receipt.AppendLine($"Total Price: {txt_TotalCartPrice.Text}");
+        //    receipt.AppendLine("Thank you for shopping with us!");
+        //    receipt.AppendLine("-------- End of Receipt --------");
+
+        //    return receipt.ToString();
+        //}
 
         private void ShowReceiptPopup()
         {
-            // Create receipt content
+            //// Generate the receipt content
             //string receiptContent = GenerateReceiptContent();
 
-            //// Set the content inside the popup (this can be a label or rich text box)
-            //txt_EmployeeMade.Text = receiptContent;
+            //// Set the content inside the popup (use a label or rich text box inside your form)
+            //txt_EmployeeMade.Text = receiptContent;  // Assuming `txt_EmployeeMade` is a label or rich text box used for displaying the receipt
+
             popupContainerControl_Receipt.Left = (this.ClientSize.Width - popupContainerControl_Receipt.Width) / 2;
             popupContainerControl_Receipt.Top = (this.ClientSize.Height - popupContainerControl_Receipt.Height) / 2;
             // Show the popup
             popupContainerControl_Receipt.Show();
         }
 
-        private int GetNextSequenceNumberForToday()
-        {
-            int sequenceNumber = 0;
-
-            // Connect to the database and retrieve/increment the sequence number
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-
-                // SQL Command to retrieve the next sequence number
-                string query = @"
-                    IF NOT EXISTS (SELECT 1 FROM ReceiptSequence WHERE SequenceDate = CAST(GETDATE() AS DATE))
-                    BEGIN
-                        INSERT INTO ReceiptSequence (SequenceDate, LastSequence) VALUES (CAST(GETDATE() AS DATE), 0);
-                    END;
-
-                    UPDATE ReceiptSequence
-                    SET LastSequence = LastSequence + 1
-                    OUTPUT INSERTED.LastSequence
-                    WHERE SequenceDate = CAST(GETDATE() AS DATE);
-                ";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    sequenceNumber = (int)cmd.ExecuteScalar();
-                }
-            }
-
-            return sequenceNumber;
-        }
-
-        private string GenerateReceiptID()
-        {
-            string datePart = DateTime.Now.ToString("ddMMyy");
-            int sequenceNumber = GetNextSequenceNumberForToday();
-            string sequencePart = sequenceNumber.ToString("D3");
-
-            return $"{datePart}-{sequencePart}";
-        }
-
-        private void Checkout()
-        {
-            string datePart = DateTime.Now.ToString("ddMMyy");
-
-            int sequenceNumber = 
-        }
-
         private void btn_Checkout_Click(object sender, EventArgs e)
         {
-            if (check_SaveCustomerInfo.Checked)
+            try
             {
-                ShowReceiptPopup();
-            }
+                
 
-            ShowSuccessMessage("Thanh toán thành công");
+                // Proceed with checkout
+                Checkout();
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+        }
+        private void Checkout()
+        {
+            try
+            {
+                // Generate a null customer if no customer information is provided
+                KHACHHANG customer = receiptServices.GenerateNullCustomer();
+
+                // Save customer information if the checkbox is checked
+                if (check_SaveCustomerInfo.Checked)
+                {
+                    customer.HoTen = txt_InputCusName.Text;
+                    customer.Email = txt_InputEmail.Text;
+                    customer.DiaChi = txt_InputAddress.Text;
+                    customer.SoDienThoai = txt_InputPhone.Text;
+                }
+                receiptServices.AddCustomer(customer);
+                // Add receipt to the database
+                receiptServices.ProcessPurchase(receiptServices.GetCartItemsFromGrid(dgv_SellCart), customer);
+
+                // Show success message
+                ShowSuccessMessage("Thanh toán thành công");
+
+                // Clear the cart
+                dgv_SellCart.Rows.Clear();
+                totalCartPrice = 0;
+                txt_TotalCartPrice.Text = "0";
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+        }
+
+        private void simpleButton_Cancel_Click(object sender, EventArgs e)
+        {
+            throw new Exception("Hủy nhập thông tin");
         }
     }
 }

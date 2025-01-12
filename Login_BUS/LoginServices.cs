@@ -18,9 +18,9 @@ namespace Login_BUS
             System.Diagnostics.Debug.WriteLine("Checking login credentials...");
 
             var account = loginDB.TAIKHOAN.Where(x => x.TenTaiKhoan == username).FirstOrDefault();
-            role = account.NHANVIEN.CHUCVU.TenChucVu;
+            role = account?.NHANVIEN?.CHUCVU?.TenChucVu;
 
-            System.Diagnostics.Debug.WriteLine($"Found account: {account.MaTaiKhoan}");
+            System.Diagnostics.Debug.WriteLine($"Found account: {account?.MaTaiKhoan}");
             System.Diagnostics.Debug.WriteLine($"Role: {role}");
             if (account == null)
             {
@@ -31,6 +31,11 @@ namespace Login_BUS
             bool isPasswordValid = hashPassword.Verify(password, account.MatKhau);
             System.Diagnostics.Debug.WriteLine($"Password is valid: {isPasswordValid}");
             return isPasswordValid;
+        }
+
+        public TAIKHOAN GetAccountByUsername(string username)
+        {
+            return loginDB.TAIKHOAN.Include("NHANVIEN").Include("NHANVIEN.CHUCVU").FirstOrDefault(x => x.TenTaiKhoan == username);
         }
 
         public void Register(string username, string password, string employeeId)
@@ -59,4 +64,5 @@ namespace Login_BUS
             System.Diagnostics.Debug.WriteLine("Account created successfully.");
         }
     }
+
 }

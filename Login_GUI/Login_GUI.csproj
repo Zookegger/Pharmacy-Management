@@ -129,6 +129,10 @@
       <Project>{b9d2e12e-6c08-42f9-80f4-c1d299519f78}</Project>
       <Name>Manager_GUI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PharmacistManagement_DAL\PharmacistManagement_DAL.csproj">
+      <Project>{043E02AA-2B3A-4FC0-9305-3C49553AD3D8}</Project>
+      <Name>PharmacistManagement_DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Pharmacist_GUI\Pharmacist_GUI.csproj">
       <Project>{dbf3e577-ea3f-44fa-86ce-6a79c1e2bc15}</Project>
       <Name>Pharmacist_GUI</Name>

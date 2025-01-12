@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Pharmacist_BUS
 {
@@ -12,7 +13,7 @@ namespace Pharmacist_BUS
     {
         private PharmacyManagementDB db = new PharmacyManagementDB();
 
-        public KHACHHANG nullCustomer()
+        public KHACHHANG GenerateNullCustomer()
         {
             return new KHACHHANG {
                 MaKhachHang = GetLatestKhachhang().MaKhachHang + 1,
@@ -51,7 +52,7 @@ namespace Pharmacist_BUS
             return $"{datePart}-{sequencePart}";
         }
 
-        public void ProcessPurchase(int customerId, List<CHITIETDONTHUOC> items, KHACHHANG customer)
+        public void ProcessPurchase(List<CHITIETDONTHUOC> items, KHACHHANG customer)
         {
             using (var transaction = db.Database.BeginTransaction())
             {
@@ -94,6 +95,33 @@ namespace Pharmacist_BUS
                     System.Diagnostics.Debug.WriteLine($"Error processing purchase: {ex.Message}");
                 }
             }
+        }
+
+        public List<CHITIETDONTHUOC> GetCartItemsFromGrid(DataGridView dataGridView)
+        {
+            List<CHITIETDONTHUOC> items = new List<CHITIETDONTHUOC>();
+
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                if (row.Cells[0].Value != null)
+                {
+                    CHITIETDONTHUOC item = new CHITIETDONTHUOC
+                    {
+                        MaThuoc = row.Cells[0].Value.ToString(),
+                        SoLuong = int.Parse(row.Cells[4].Value.ToString()),
+                        NgayHetHan = DateTime.Parse(row.Cells[5].Value.ToString())
+                    };
+                    items.Add(item);
+                }
+            }
+
+            return items;
+        }
+
+        public void AddCustomer(KHACHHANG customer)
+        {
+            db.KHACHHANG.Add(customer);
+            db.SaveChanges();
         }
     }
 }

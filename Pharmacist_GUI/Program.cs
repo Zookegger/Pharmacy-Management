@@ -24,7 +24,7 @@ namespace Pharmacist
             DevExpress.XtraEditors.WindowsFormsSettings.RegisterUserSkins(asm);
             DevExpress.Skins.SkinManager.Default.RegisterAssembly(asm);
             Application.EnableVisualStyles();
-            Application.Run(new frm_PharmacistGUI());
+            Application.Run(new frm_PharmacistGUI(null));
         }
     }
 }

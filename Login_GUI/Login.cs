@@ -23,7 +23,6 @@ namespace Login
             InitializeComponent();
         }
 
-
         private void btn_Exit_Click(object sender, EventArgs e)
         {
             try
@@ -129,11 +128,6 @@ namespace Login
             e.Buttons[DialogResult.Cancel].Appearance.FontStyleDelta = FontStyle.Bold;
         }
 
-        public static class Session
-        {
-            public static NHANVIEN CurrentEmployee { get; set; }
-        }
-
         void Login(String username, String password)
         {
             try
@@ -148,7 +142,6 @@ namespace Login
                 {
                     // Retrieve the NHANVIEN object for the logged-in user
                     var account = loginServices.GetAccountByUsername(username);
-                    Session.CurrentEmployee = account.NHANVIEN;
 
                     frm_PharmacistGUI pharmacistGUI;
                     frm_ManagerGUI ManagerGUI;
@@ -157,14 +150,14 @@ namespace Login
                     switch (role.ToLower())
                     {
                         case "dược sĩ":
-                            pharmacistGUI = new frm_PharmacistGUI();
+                            pharmacistGUI = new frm_PharmacistGUI(account.NHANVIEN);
                             pharmacistGUI.FormClosed += (s, args) => this.Show();
                             this.Hide();
                             txt_Password.Text = string.Empty;
                             pharmacistGUI.Show();
                             break;
                         case "quản lý":
-                            ManagerGUI = new frm_ManagerGUI();
+                            ManagerGUI = new frm_ManagerGUI(account.NHANVIEN);
                             ManagerGUI.FormClosed += (s, args) => this.Show();
                             this.Hide();
                             txt_Password.Text = string.Empty;
@@ -181,7 +174,7 @@ namespace Login
                             // Open Pharmacist GUI
                             if (dr == DialogResult.Yes)
                             {
-                                pharmacistGUI = new frm_PharmacistGUI();
+                                pharmacistGUI = new frm_PharmacistGUI(account.NHANVIEN);
                                 pharmacistGUI.FormClosed += (s, args) => this.Show();
                                 this.Hide();
                                 txt_Password.Text = string.Empty;
@@ -190,7 +183,7 @@ namespace Login
                             // Open Manager GUI
                             else if (dr == DialogResult.No)
                             {
-                                ManagerGUI = new frm_ManagerGUI();
+                                ManagerGUI = new frm_ManagerGUI(account.NHANVIEN);
                                 ManagerGUI.FormClosed += (s, args) => this.Show();
                                 this.Hide();
                                 txt_Password.Text = string.Empty;

@@ -142,6 +142,8 @@
             // 
             // txt_ProviderAddress
             // 
+            this.txt_ProviderAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_ProviderAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_ProviderAddress.Font = new System.Drawing.Font("Tahoma", 15.70909F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txt_ProviderAddress.Location = new System.Drawing.Point(6, 3);
@@ -151,6 +153,8 @@
             // 
             // txt_ProviderName
             // 
+            this.txt_ProviderName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_ProviderName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_ProviderName.Font = new System.Drawing.Font("Tahoma", 15.70909F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txt_ProviderName.Location = new System.Drawing.Point(6, 3);
@@ -160,6 +164,8 @@
             // 
             // txt_ProviderId
             // 
+            this.txt_ProviderId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_ProviderId.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_ProviderId.Font = new System.Drawing.Font("Tahoma", 15.70909F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txt_ProviderId.Location = new System.Drawing.Point(6, 3);
@@ -356,7 +362,7 @@
             this.panel1.Location = new System.Drawing.Point(231, 71);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel1.Size = new System.Drawing.Size(250, 37);
+            this.panel1.Size = new System.Drawing.Size(340, 37);
             this.panel1.TabIndex = 108;
             // 
             // panel2
@@ -369,7 +375,7 @@
             this.panel2.Location = new System.Drawing.Point(231, 17);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel2.Size = new System.Drawing.Size(250, 37);
+            this.panel2.Size = new System.Drawing.Size(340, 37);
             this.panel2.TabIndex = 107;
             // 
             // labelControl_Title
@@ -453,7 +459,7 @@
             this.btn_RefreshGrid.MaximumSize = new System.Drawing.Size(36, 36);
             this.btn_RefreshGrid.MinimumSize = new System.Drawing.Size(30, 30);
             this.btn_RefreshGrid.Name = "btn_RefreshGrid";
-            this.btn_RefreshGrid.Size = new System.Drawing.Size(36, 36);
+            this.btn_RefreshGrid.Size = new System.Drawing.Size(30, 30);
             this.btn_RefreshGrid.TabIndex = 107;
             this.btn_RefreshGrid.Click += new System.EventHandler(this.btn_RefreshGrid_Click);
             // 

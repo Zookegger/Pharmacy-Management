@@ -22,10 +22,10 @@ namespace PharmacistManagement_DAL.Model
         [StringLength(30)]
         public string TenNhaCungCap { get; set; }
 
-        [StringLength(30)]
+        [StringLength(70)]
         public string DiaChi { get; set; }
 
-        [StringLength(30)]
+        [StringLength(50)]
         public string Email { get; set; }
 
         [StringLength(15)]

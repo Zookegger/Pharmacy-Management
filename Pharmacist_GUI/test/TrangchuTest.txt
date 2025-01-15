@@ -1,0 +1,43 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class QuanLyThuocTest {
+
+    private WebDriver driver;
+    private String baseUrl = "YOUR_BASE_URL"; // Thay YOUR_BASE_URL bằng địa chỉ trang web của bạn
+
+    @BeforeTest
+    public void setup() {
+        // Khởi tạo ChromeDriver (hoặc trình duyệt khác)
+        System.setProperty("webdriver.chrome.driver", "PATH_TO_CHROMEDRIVER"); // Thay PATH_TO_CHROMEDRIVER bằng đường dẫn đến ChromeDriver
+        driver = new ChromeDriver();
+        driver.manage().window().maximize(); // Mở cửa sổ trình duyệt ở chế độ toàn màn hình
+        driver.get(baseUrl);
+    }
+
+    @Test
+    public void testDieuHuongQuanLyThuoc() {
+        // Tìm phần tử "Quản Lý Thuốc" bằng XPath (hoặc ID, CSS Selector,...)
+        WebElement quanLyThuocLink = driver.findElement(By.xpath("//a[contains(text(),'Quản Lý Thuốc')]")); // Ví dụ tìm bằng XPath
+        Assert.assertNotNull(quanLyThuocLink, "Không tìm thấy link 'Quản Lý Thuốc'"); // Kiểm tra xem link có tồn tại hay không
+
+        // Nhấp vào link
+        quanLyThuocLink.click();
+
+        // Kiểm tra tiêu đề trang
+        String expectedTitle = "Quản Lý Thuốc"; // Thay bằng tiêu đề thực tế của trang
+        String actualTitle = driver.getTitle();
+        Assert.assertTrue(actualTitle.contains(expectedTitle), "Tiêu đề trang không đúng. Mong đợi: " + expectedTitle + ", Thực tế: " + actualTitle);
+    }
+
+    @AfterTest
+    public void tearDown() {
+        driver.quit(); // Đóng trình duyệt
+    }
+}

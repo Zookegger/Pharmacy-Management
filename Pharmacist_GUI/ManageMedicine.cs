@@ -161,7 +161,7 @@ namespace Pharmacist
 
                 THUOC medicine = new THUOC()
                 {
-                    MaThuoc = id,
+                    MaThuoc = id.ToUpper(),
                     TenThuoc = name,
                     LieuThuoc = dosage,
                     MoTa = description,
@@ -293,15 +293,22 @@ namespace Pharmacist
         }
         private void ShowMessageBox(String message, Icon icon = null) // set to = null or any default value to accept only 1 provided parameter
         {
-            XtraMessageBoxArgs args = new XtraMessageBoxArgs();
-            args.Text = message;
-            args.Buttons = new DialogResult[] { DialogResult.OK };
-            args.Showing += Error_Args_Showing;
-            if (icon != null)
+            try
             {
-                args.Icon = icon;
+                XtraMessageBoxArgs args = new XtraMessageBoxArgs();
+                args.Text = message;
+                args.Buttons = new DialogResult[] { DialogResult.OK };
+                args.Showing += Error_Args_Showing;
+                if (icon != null)
+                {
+                    args.Icon = icon;
+                }
+                XtraMessageBox.Show(args);
             }
-            XtraMessageBox.Show(args);
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void ShowErrorMessage(string errorMessage)
         {

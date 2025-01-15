@@ -12,6 +12,7 @@
     <RootNamespace>Manager_GUI</RootNamespace>
     <AssemblyName>Manager_GUI</AssemblyName>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <LangVersion>8.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -57,6 +58,9 @@
     <Reference Include="Microsoft.SqlServer.Types, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.160.1000.6\lib\net462\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
+    <Reference Include="PharmacistUIColor">
+      <HintPath>..\Pharmacist_GUI\lib\PharmacistUIColor.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -82,11 +86,11 @@
     <Compile Include="ViewReceipt.Designer.cs">
       <DependentUpon>ViewReceipt.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainDashboard.cs">
+    <Compile Include="ManagerDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainDashboard.Designer.cs">
-      <DependentUpon>MainDashboard.cs</DependentUpon>
+    <Compile Include="ManagerDashboard.Designer.cs">
+      <DependentUpon>ManagerDashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="ManageEmployee.cs">
       <SubType>Form</SubType>
@@ -108,8 +112,8 @@
     <EmbeddedResource Include="ViewReceipt.resx">
       <DependentUpon>ViewReceipt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainDashboard.resx">
-      <DependentUpon>MainDashboard.cs</DependentUpon>
+    <EmbeddedResource Include="ManagerDashboard.resx">
+      <DependentUpon>ManagerDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManageEmployee.resx">
       <DependentUpon>ManageEmployee.cs</DependentUpon>

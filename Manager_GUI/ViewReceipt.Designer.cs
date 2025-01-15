@@ -95,8 +95,6 @@
             this.dgv_Bill.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_Bill.Size = new System.Drawing.Size(1263, 514);
             this.dgv_Bill.TabIndex = 105;
-            this.dgv_Bill.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Bill_CellClick);
-            this.dgv_Bill.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Medicine_CellContentClick);
             // 
             // col_BillID
             // 

@@ -1,7 +1,9 @@
-﻿using PharmacistManagement_DAL.Model;
+﻿using Pharmacist;
+using PharmacistManagement_DAL.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,10 +19,10 @@ namespace Pharmacist_BUS
         {
             return new KHACHHANG {
                 MaKhachHang = GetLatestKhachhang().MaKhachHang + 1,
-                HoTen = null,
-                DiaChi = null,
-                Email = null,
-                SoDienThoai = null,
+                HoTen = " ",
+                DiaChi = " ",
+                Email = " ",
+                SoDienThoai = " ",
             };
         }
 
@@ -52,13 +54,23 @@ namespace Pharmacist_BUS
             return $"{datePart}-{sequencePart}";
         }
 
-        public void ProcessPurchase(List<CHITIETDONTHUOC> items, KHACHHANG customer)
+        public void ProcessPurchase(List<CHITIETDONTHUOC> items, KHACHHANG customer, NHANVIEN employee, out DONTHUOC receipt)
         {
             using (var transaction = db.Database.BeginTransaction())
             {
-
                 try
                 {
+                    DateTime earliestExpDate = DateTime.MaxValue; // Initialize to the maximum possible date
+
+                    // Go through receipt details to find the earliest expiration date
+                    foreach (CHITIETDONTHUOC item in items)
+                    {
+                        if (earliestExpDate > item.NgayHetHan)
+                        {
+                            earliestExpDate = item.NgayHetHan;
+                        }
+                    }
+
                     // Generate ReceiptID
                     string receiptID = GenerateReceiptID();
 
@@ -66,17 +78,22 @@ namespace Pharmacist_BUS
                     var donThuoc = new DONTHUOC
                     {
                         MaDonThuoc = receiptID,
-                        MaKhachHang = customer.MaKhachHang,
+                        MaKhachHang = customer.MaKhachHang, 
+                        MaNhanVien = employee.MaNhanVien, // Get current employee
                         NgayLenDon = DateTime.Now,
-                        NgayHetHan = DateTime.Now.AddMonths(6) // Example expiry date
+                        NgayHetHan = earliestExpDate // Use the earliest expiration date found
                     };
 
+                    receipt = donThuoc;
+
                     db.DONTHUOC.Add(donThuoc);
+
 
                     // Add ChiTietDonThuoc (Details)
                     foreach (var item in items)
                     {
                         item.MaDonThuoc = receiptID;
+                        System.Diagnostics.Debug.WriteLine($"Adding item {item.MaThuoc} to receipt {receiptID}");
                         db.CHITIETDONTHUOC.Add(item);
                     }
 
@@ -88,11 +105,23 @@ namespace Pharmacist_BUS
 
                     System.Diagnostics.Debug.WriteLine($"Receipt {receiptID} created successfully!");
                 }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            System.Diagnostics.Debug.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                        }
+                    }
+                    receipt = null;
+                }
                 catch (Exception ex)
                 {
                     // Rollback in case of error
                     transaction.Rollback();
                     System.Diagnostics.Debug.WriteLine($"Error processing purchase: {ex.Message}");
+                    receipt = null;
                 }
             }
         }
@@ -100,28 +129,65 @@ namespace Pharmacist_BUS
         public List<CHITIETDONTHUOC> GetCartItemsFromGrid(DataGridView dataGridView)
         {
             List<CHITIETDONTHUOC> items = new List<CHITIETDONTHUOC>();
+            BatchServices batchServices = new BatchServices();
 
+            System.Diagnostics.Debug.WriteLine("\nItems in cart:");
             foreach (DataGridViewRow row in dataGridView.Rows)
             {
-                if (row.Cells[0].Value != null)
+                String medicineId = row.Cells[0].Value.ToString();
+                System.Diagnostics.Debug.WriteLine($"Medicine ID: {medicineId}");
+                // Convert the expiration date cell value to DateTime
+                DateTime prodDate = Convert.ToDateTime(row.Cells[3].Value);
+                System.Diagnostics.Debug.WriteLine($"Expiration Date: {prodDate.ToString("dd/MM/yyyy")}");
+
+                // Get batch ID using medicine ID and Batch prod date
+                LOTHUOC batch = batchServices.GetBatchByMedIdAndExpDate(medicineId, prodDate);
+                if (batch != null)
                 {
                     CHITIETDONTHUOC item = new CHITIETDONTHUOC
                     {
-                        MaThuoc = row.Cells[0].Value.ToString(),
+                        MaThuoc = batch.MaThuoc,
                         SoLuong = int.Parse(row.Cells[4].Value.ToString()),
-                        NgayHetHan = DateTime.Parse(row.Cells[5].Value.ToString())
+                        NgayHetHan = batch.NgayHetHan
                     };
                     items.Add(item);
+                } else
+                {
+                    System.Diagnostics.Debug.WriteLine($"No batch found for Medicine ID: {medicineId} and Production Date: {prodDate}");
                 }
             }
 
             return items;
         }
 
+        public List<CHITIETDONTHUOC> GetReceiptDetails(DONTHUOC receipt)
+        {
+            return db.CHITIETDONTHUOC.Where(
+                r => r.MaDonThuoc == receipt.MaDonThuoc
+            ).ToList();
+        }
+
         public void AddCustomer(KHACHHANG customer)
         {
-            db.KHACHHANG.Add(customer);
-            db.SaveChanges();
+            try
+            {
+                db.KHACHHANG.Add(customer);
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var validationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DevExpress.LookAndFeel;
 using DevExpress.XtraBars.Navigation;
 using DevExpress.XtraEditors;
+using PharmacistManagement_DAL.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,18 +16,21 @@ namespace Manager_GUI
 {
     public partial class frm_ManagerGUI : DevExpress.XtraEditors.XtraForm
     {
-        public frm_ManagerGUI()
+        private readonly NHANVIEN currentEmployee;
+        public frm_ManagerGUI(NHANVIEN employee)
         {
             UserLookAndFeel.Default.SkinName = "My Basic";
             InitializeComponent();
+            currentEmployee = employee;
         }
 
         private void frm_ManagerGUI_Load(object sender, EventArgs e)
         {
+
             // Uncomment these lines to test loading the form on load
-             accordionControl_SidePanel.AllowItemSelection = true;
-             accordionControl_SidePanel.SelectedElement = accordionControlElement_Bill;
-             LoadForm("accordionControlElement_Bill");
+            accordionControl_SidePanel.AllowItemSelection = true;
+            accordionControl_SidePanel.SelectedElement = accordionControlElement_Bill;
+            LoadForm("accordionControlElement_Bill");
         }
 
         private void changeTitleName(object sender, EventArgs args)
@@ -61,13 +65,13 @@ namespace Manager_GUI
                 case "accordionControlElement_Bill":
                     form = new frm_BillingAnalytics();
                     break;
-                case "accordionControlElement_personnel":
-                    form = new frm_Personel();
+                case "accordionControlElement_Employees":
+                    form = new frm_Employees();
                     break;
-                case "accordionControlElement_acount":
-                    form = new frm_Account();
+                case "accordionControlElement_Accounts":
+                    form = new frm_Accounts();
                     break;
-                case "accordionControlElement_transaction":
+                case "accordionControlElement_Transactions":
                     form = new frm_Transaction();
                     break;
                 // Add other cases here if needed
@@ -94,8 +98,30 @@ namespace Manager_GUI
 
         private void btn_SelectFunctions(object sender, EventArgs e)
         {
-            // Example of how to call LoadForm
-            LoadForm("accordionControlElement_Bill");
+            try
+            {
+                // Get Selected Option
+                AccordionControlElement btn = sender as AccordionControlElement;
+                // Load corresponding form
+                System.Diagnostics.Debug.WriteLine($"Loading form: {btn.Name.ToString()}");
+                LoadForm(btn.Name.ToString());
+                // Change form's title
+                changeTitleName(btn, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                Icon errorIcon = null;
+                try
+                {
+                    errorIcon = GetIcon("error");
+                }
+                catch (FileNotFoundException fnfe)
+                {
+                    XtraMessageBox.Show($"Error loading icon{fnfe.Message}");
+                    errorIcon = SystemIcons.Error;
+                }
+                ShowMessageBox(ex.Message, errorIcon);
+            }
         }
 
         private void btn_LogOut_Click(object sender, EventArgs e)
@@ -110,23 +136,6 @@ namespace Manager_GUI
             DialogResult dr = XtraMessageBox.Show(args);
             if (dr == DialogResult.OK)
                 Application.Exit();
-        }
-
-        private void accordionControlElement1_Click(object sender, EventArgs e)
-        {
-            // Example of how to call LoadForm
-            LoadForm("accordionControlElement_Bill");
-        }
-
-        private void accordionControlElement_Bill_Click(object sender, EventArgs e)
-        {
-            // Example of how to call LoadForm
-            LoadForm("accordionControlElement_Bill");
-        }
-
-        private void panel_Main_Paint(object sender, PaintEventArgs e)
-        {
-            // Optional: Custom paint logic for panel_Main
         }
 
         private void Error_Args_Showing(object sender, XtraMessageShowingArgs e)
@@ -174,33 +183,6 @@ namespace Manager_GUI
             e.Buttons[DialogResult.Cancel].Appearance.FontStyleDelta = FontStyle.Bold;
         }
 
-        private void btn_bill(object sender, EventArgs e)
-        {
-            try
-            {
-                // Get Selected Option
-                AccordionControlElement btn = sender as AccordionControlElement;
-                // Load corresponding form
-                LoadForm(btn.Name.ToString());
-                // Change form's title
-                changeTitleName(btn, EventArgs.Empty);
-            }
-            catch (Exception ex)
-            {
-                Icon errorIcon = null;
-                try
-                {
-                    errorIcon = GetIcon("error");
-                }
-                catch (FileNotFoundException fnfe)
-                {
-                    XtraMessageBox.Show($"Error loading icon{fnfe.Message}");
-                    errorIcon = SystemIcons.Error;
-                }
-                ShowMessageBox(ex.Message, errorIcon);
-            }
-        }
-
         private Icon GetIcon(string iconName)
         {
             string iconPath = Path.Combine(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..")), $"icon/{iconName}_icon.ico");
@@ -226,92 +208,6 @@ namespace Manager_GUI
                 args.Icon = icon;
             }
             XtraMessageBox.Show(args);
-        }
-
-        private void btn_Personel(object sender, EventArgs e)
-        {
-            try
-            {
-                // Get Selected Option
-                AccordionControlElement btn = sender as AccordionControlElement;
-                // Load corresponding form
-                LoadForm(btn.Name.ToString());
-                // Change form's title
-                changeTitleName(btn, EventArgs.Empty);
-            }
-            catch (Exception ex)
-            {
-                Icon errorIcon = null;
-                try
-                {
-                    errorIcon = GetIcon("error");
-                }
-                catch (FileNotFoundException fnfe)
-                {
-                    XtraMessageBox.Show($"Error loading icon{fnfe.Message}");
-                    errorIcon = SystemIcons.Error;
-                }
-                ShowMessageBox(ex.Message, errorIcon);
-            }
-        }
-
-        private void accordionControlElement3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_account(object sender, EventArgs e)
-        {
-            try
-            {
-                // Get Selected Option
-                AccordionControlElement btn = sender as AccordionControlElement;
-                // Load corresponding form
-                LoadForm(btn.Name.ToString());
-                // Change form's title
-                changeTitleName(btn, EventArgs.Empty);
-            }
-            catch (Exception ex)
-            {
-                Icon errorIcon = null;
-                try
-                {
-                    errorIcon = GetIcon("error");
-                }
-                catch (FileNotFoundException fnfe)
-                {
-                    XtraMessageBox.Show($"Error loading icon{fnfe.Message}");
-                    errorIcon = SystemIcons.Error;
-                }
-                ShowMessageBox(ex.Message, errorIcon);
-            }
-        }
-
-        private void btn_transaction(object sender, EventArgs e)
-        {
-            try
-            {
-                // Get Selected Option
-                AccordionControlElement btn = sender as AccordionControlElement;
-                // Load corresponding form
-                LoadForm(btn.Name.ToString());
-                // Change form's title
-                changeTitleName(btn, EventArgs.Empty);
-            }
-            catch (Exception ex)
-            {
-                Icon errorIcon = null;
-                try
-                {
-                    errorIcon = GetIcon("error");
-                }
-                catch (FileNotFoundException fnfe)
-                {
-                    XtraMessageBox.Show($"Error loading icon{fnfe.Message}");
-                    errorIcon = SystemIcons.Error;
-                }
-                ShowMessageBox(ex.Message, errorIcon);
-            }
         }
     }
 }

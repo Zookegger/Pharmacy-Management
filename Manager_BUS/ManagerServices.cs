@@ -1,6 +1,7 @@
 ﻿using PharmacistManagement_DAL.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
@@ -10,11 +11,44 @@ namespace Manager_BUS
 {
     public class ManagerServices
     {
-        private PharmacyManagementDB context = new PharmacyManagementDB();
+        private PharmacyManagementDB db = new PharmacyManagementDB();
+
+        public DataTable GetEmployeeTable()
+        {
+            DataTable table = new DataTable();
+
+            table.Columns.Add("col_StoreName", typeof(string));
+            table.Columns.Add("col_EmployeeName", typeof(string));
+            table.Columns.Add("col_DateOfBirth", typeof(DateTime));
+            table.Columns.Add("col_JobName", typeof(string));
+
+            List<NHANVIEN> employeeList = GetEmployeeList();
+            System.Diagnostics.Debug.WriteLine($"Found {employeeList.Count} Employees");
+
+            foreach (NHANVIEN employee in employeeList)
+            {
+                string storeName = employee.TIEMTHUOCTAY.TenChiNhanh;
+
+                table.Rows.Add(
+                    employee.TIEMTHUOCTAY.TenChiNhanh,
+                    employee.HoTen,
+                    employee.NgaySinh,
+                    employee.CHUCVU.TenChucVu
+                );
+                System.Diagnostics.Debug.WriteLine($"Added employee to table:\n" +
+                    $"\t{employee.TIEMTHUOCTAY.TenChiNhanh},\n" +
+                    $"\t{employee.HoTen},\n" +
+                    $"\t{employee.NgaySinh}\n" +
+                    $"\t{employee.CHUCVU.TenChucVu}\n"
+                );
+            }
+
+            return table;
+        }
 
         public List<NHANVIEN> GetEmployeeList()
         {
-            return context.NHANVIEN.ToList();
+            return db.NHANVIEN.ToList();
         }
 
         public List<NHANVIEN> GetEmployeeList(string search)
@@ -23,25 +57,34 @@ namespace Manager_BUS
             search = search?.ToLower();
 
             // Lọc nhân viên theo từ khóa
-            return context.NHANVIEN.Where(emp =>
+            return db.NHANVIEN.Where(emp =>
                 emp.MaNhanVien.ToLower().Contains(search) ||  // Lọc theo mã nhân viên
                 emp.HoTen.ToLower().Contains(search)    // Lọc theo tên nhân viên
             ).ToList();
         }
 
-
-        public NHANVIEN GetEmployee(string employeeId)
+        public NHANVIEN GetEmployeeByID(String employeeId)
         {
-            return context.NHANVIEN.Where(
-                employee => employee.MaNhanVien == employeeId
-            ).FirstOrDefault();
+            return db.NHANVIEN.Where(employee => employee.MaNhanVien == employeeId).FirstOrDefault();
+        }
+
+        public NHANVIEN GetEmployeeByName(String employeeName)
+        {
+            return db.NHANVIEN.Where(employee => employee.HoTen.ToLower() == employeeName.ToLower()).FirstOrDefault();
+        }
+
+        public List<NHANVIEN> GetEmployeeByNameList(string employeeName)
+        {
+            return db.NHANVIEN.Where(
+                employee => employee.HoTen.ToLower().Contains(employeeName)
+            ).ToList();
         }
 
         public List<BillDetailDTO> GetBillDetails()
         {
-            var query = from d in context.DONTHUOC
-                        join c in context.CHITIETDONTHUOC on d.MaDonThuoc equals c.MaDonThuoc
-                        join t in context.THUOC on c.MaThuoc equals t.MaThuoc
+            var query = from d in db.DONTHUOC
+                        join c in db.CHITIETDONTHUOC on d.MaDonThuoc equals c.MaDonThuoc
+                        join t in db.THUOC on c.MaThuoc equals t.MaThuoc
                         select new
                         {
                             d.MaDonThuoc,
@@ -71,7 +114,7 @@ namespace Manager_BUS
 
         public CustomerDTO GetCustomerDetails(int maKhachHang)
         {
-            var khachHang = context.KHACHHANG
+            var khachHang = db.KHACHHANG
                                    .Where(kh => kh.MaKhachHang == maKhachHang)
                                    .Select(kh => new CustomerDTO
                                    {
@@ -108,18 +151,18 @@ namespace Manager_BUS
 
         public List<CHUCVU> GetPositions()
         {
-            return context.CHUCVU.ToList();
+            return db.CHUCVU.ToList();
         }
         public List<TIEMTHUOCTAY> GetStores()
         {
-            return context.TIEMTHUOCTAY.ToList();
+            return db.TIEMTHUOCTAY.ToList();
         }
         public bool AddEmployee(NHANVIEN nhanVien)
         {
             try
             {
-                context.NHANVIEN.Add(nhanVien);
-                context.SaveChanges();
+                db.NHANVIEN.Add(nhanVien);
+                db.SaveChanges();
                 return true;
             }
             catch
@@ -131,7 +174,7 @@ namespace Manager_BUS
         {
             try
             {
-                var nhanVien = context.NHANVIEN.Find(updatedNhanVien.MaNhanVien);
+                var nhanVien = db.NHANVIEN.Find(updatedNhanVien.MaNhanVien);
                 if (nhanVien != null)
                 {
                     nhanVien.HoTen = updatedNhanVien.HoTen;
@@ -144,7 +187,7 @@ namespace Manager_BUS
                     nhanVien.MaChucVu = updatedNhanVien.MaChucVu;
                     nhanVien.MaTiemThuoc = updatedNhanVien.MaTiemThuoc;
 
-                    context.SaveChanges();
+                    db.SaveChanges();
                     return true;
                 }
                 return false;
@@ -158,11 +201,11 @@ namespace Manager_BUS
         {
             try
             {
-                var nhanVien = context.NHANVIEN.Find(maNhanVien);
+                var nhanVien = db.NHANVIEN.Find(maNhanVien);
                 if (nhanVien != null)
                 {
-                    context.NHANVIEN.Remove(nhanVien);
-                    context.SaveChanges();
+                    db.NHANVIEN.Remove(nhanVien);
+                    db.SaveChanges();
                     return true;
                 }
                 return false;

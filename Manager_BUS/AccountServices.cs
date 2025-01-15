@@ -2,6 +2,7 @@
 using PharmacistManagement_DAL.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.IO;
@@ -10,19 +11,59 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
-
 namespace Manager_BUS
 {
-
-    public class AccountService
+    public class AccountServices
     {
-        private PharmacyManagementDB pharmacistDB = new PharmacyManagementDB();
+        private PharmacyManagementDB db = new PharmacyManagementDB();
         private HashPassword hashPassword = new HashPassword();
+        private readonly ManagerServices managerServices = new ManagerServices();
+
+        public DataTable GetAccountTable()
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("col_AccountID", typeof(string));
+            table.Columns.Add("col_UserName", typeof(string));
+            table.Columns.Add("col_EmployeeName", typeof(string));
+            table.Columns.Add("col_AccountStatus", typeof(string));
+            table.Columns.Add("col_LastUpdated", typeof(DateTime));
+
+            List<TAIKHOAN> accountList = GetAccountList();
+
+            System.Diagnostics.Debug.WriteLine($"Found {accountList.Count} batches");
+
+            foreach (TAIKHOAN account in accountList)
+            {
+                string employeeName = managerServices.GetEmployeeByID(account.MaNhanVien).HoTen;
+
+                table.Rows.Add(
+                    account.MaTaiKhoan,
+                    account.TenTaiKhoan,
+                    employeeName,
+                    account.TrangThai,
+                    account.LanCuoiCapNhat
+                );
+                System.Diagnostics.Debug.WriteLine($"Added account:\n" +
+                    $"\t{account.MaTaiKhoan},\n" +
+                    $"\t{account.TenTaiKhoan},\n" +
+                    $"\t{employeeName}\n" +
+                    $"\t{account.TrangThai}\n" +
+                    $"\t{account.LanCuoiCapNhat}\n"
+                );
+            }
+
+            return table;
+        }
         public List<TAIKHOAN> GetAccountList()
         {
-            return pharmacistDB.TAIKHOAN.ToList();
+            return db.TAIKHOAN.ToList();
         }
+
+        public TAIKHOAN GetAccountById(int maTaiKhoan)
+        {
+            return db.TAIKHOAN.FirstOrDefault(tk => tk.MaTaiKhoan == maTaiKhoan);
+        }
+
         public bool AddAccount(TAIKHOAN newAccount)
         {
             try
@@ -31,13 +72,10 @@ namespace Manager_BUS
                 newAccount.MatKhau = hashPassword.Hash(newAccount.MatKhau);
 
                 // Thêm tài khoản vào cơ sở dữ liệu
-                pharmacistDB.TAIKHOAN.Add(newAccount);
-                
+                db.TAIKHOAN.Add(newAccount);
                 System.Diagnostics.Debug.WriteLine($"Adding account: {newAccount.MaTaiKhoan}");
 
-                pharmacistDB.SaveChanges();  // Kiểm tra lỗi ở đây
-
-
+                db.SaveChanges();  // Kiểm tra lỗi ở đây
 
                 return true;
             }
@@ -54,69 +92,64 @@ namespace Manager_BUS
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error adding account: {ex.Message}\nInner Exception: {ex.InnerException?.Message}");
-                System.Diagnostics.Debug.WriteLine($"Exception: {ex}");
-                if (ex.InnerException != null)
-                {
-                    System.Diagnostics.Debug.WriteLine($"Inner Exception: {ex.InnerException.Message}");
-                }
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
                 return false;
             }
         }
-        public TAIKHOAN GetAccountById(int maTaiKhoan)
-        {
-            return pharmacistDB.TAIKHOAN.FirstOrDefault(tk => tk.MaTaiKhoan == maTaiKhoan);
-        }
-        public bool UpdateAccount(TAIKHOAN account)
+        
+        public void UpdateAccount(TAIKHOAN account)
         {
             try
             {
-                pharmacistDB.Entry(account).State = System.Data.Entity.EntityState.Modified;
-                pharmacistDB.SaveChanges();
-                return true;
+                db.Entry(account).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error updating account: {ex.Message}\nInner Exception: {ex.InnerException?.Message}");
-                return false;
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                throw;
             }
         }
 
-        public bool DeleteAccount(int maTaiKhoan)
+        public void DeleteAccount(TAIKHOAN account)
         {
             try
             {
-                // Tìm tài khoản theo mã tài khoản
-                TAIKHOAN account = GetAccountById(maTaiKhoan);
-                if (account != null)
+                // Xóa tài khoản khỏi cơ sở dữ liệu
+                db.TAIKHOAN.Remove(account);
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var validationErrors in ex.EntityValidationErrors)
                 {
-                    // Xóa tài khoản khỏi cơ sở dữ liệu
-                    pharmacistDB.TAIKHOAN.Remove(account);
-                    pharmacistDB.SaveChanges();
-                    return true;
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                    }
                 }
-                return false; // Không tìm thấy tài khoản
+                throw new Exception("Xóa tài khoản thất bại. Vui lòng thử lại.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error deleting account: {ex.Message}\nInner Exception: {ex.InnerException?.Message}");
-                return false;
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                throw new Exception("Xóa tài khoản thất bại. Vui lòng thử lại.");
             }
-
         }
+        
         public bool IsAccountIdExists(int accountId)
         {
-            return pharmacistDB.TAIKHOAN.Any(a => a.MaTaiKhoan == accountId);
+            return db.TAIKHOAN.Any(a => a.MaTaiKhoan == accountId);
         }
 
         public bool IsEmployeeIdExists(string employeeId)
         {
-            return pharmacistDB.TAIKHOAN.Any(a => a.MaNhanVien == employeeId);
+            return db.TAIKHOAN.Any(a => a.MaNhanVien == employeeId);
         }
 
         public bool IsAccountNameExists(string accountName)
         {
-            return pharmacistDB.TAIKHOAN.Any(a => a.TenTaiKhoan == accountName);
+            return db.TAIKHOAN.Any(a => a.TenTaiKhoan == accountName);
         }
     }
 }

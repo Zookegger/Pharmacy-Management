@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 
 namespace Pharmacist
 {
@@ -255,7 +256,7 @@ namespace Pharmacist
 
                 switch (btn.Name)
                 {
-                    case "btn_Insert":
+                    case "btn_Add":
                         InsertProvider();
                         break;
                     case "btn_Update":
@@ -320,17 +321,31 @@ namespace Pharmacist
         }
         private void InsertProvider()
         {
-            ValidateFields();
-            NHACUNGCAP provider = new NHACUNGCAP
+            try
             {
-                MaNhaCungCap = txt_ProviderId.Text.ToUpper(),
-                TenNhaCungCap = txt_ProviderName.Text,
-                DiaChi = txt_ProviderAddress.Text,
-                Email = txt_ProviderEmail.Text,
-                SoDienThoai = txt_ProviderPhone.Text
-            };
-            providerServices.InsertProvider(provider);
-            ShowSuccessMessage("Thêm thông tin thành công");
+                ValidateFields();
+                NHACUNGCAP provider = new NHACUNGCAP
+                {
+                    MaNhaCungCap = txt_ProviderId.Text.ToUpper(),
+                    TenNhaCungCap = txt_ProviderName.Text,
+                    DiaChi = txt_ProviderAddress.Text,
+                    Email = txt_ProviderEmail.Text,
+                    SoDienThoai = txt_ProviderPhone.Text
+                };
+                providerServices.InsertProvider(provider);
+                ShowSuccessMessage("Thêm thông tin thành công");
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach(var exceptions in ex.EntityValidationErrors)
+                {
+                    System.Diagnostics.Debug.WriteLine(exceptions.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage(ex.Message);
+            }
         }
         private void UpdateProvider()
         {

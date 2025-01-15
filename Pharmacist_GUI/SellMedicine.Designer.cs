@@ -76,7 +76,7 @@
             this.label_Total = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.gridControl = new DevExpress.XtraGrid.GridControl();
-            this.cHITIETDONTHUOCBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.receiptDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView_ReceiptDetail = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMaDonThuoc = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMaThuoc = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -105,20 +105,20 @@
             this.btn_PrintReceipt = new DevExpress.XtraEditors.SimpleButton();
             this.printDocument = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-            this.popupContainerControl1 = new DevExpress.XtraEditors.PopupContainerControl();
-            this.panelControlPopUp_CustomerTitle = new DevExpress.XtraEditors.PanelControl();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.txt_InputCusName = new System.Windows.Forms.TextBox();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.txt_InputAddress = new System.Windows.Forms.TextBox();
-            this.txt_InputEmail = new System.Windows.Forms.TextBox();
             this.labelControl_CustomerName = new DevExpress.XtraEditors.LabelControl();
             this.txt_InputPhone = new System.Windows.Forms.TextBox();
+            this.txt_InputEmail = new System.Windows.Forms.TextBox();
             this.labelControl_CustomerAddress = new DevExpress.XtraEditors.LabelControl();
+            this.txt_InputAddress = new System.Windows.Forms.TextBox();
+            this.panelControlPopUp_CustomerTitle = new DevExpress.XtraEditors.PanelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.simpleButton_EnterCustomer = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.simpleButton_Cancel = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton_EnterCustomer = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.txt_InputCusName = new System.Windows.Forms.TextBox();
+            this.popupContainerControl_GetCustomerInfo = new DevExpress.XtraEditors.PopupContainerControl();
             ((System.ComponentModel.ISupportInitialize)(this.panel_Title)).BeginInit();
             this.panel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listBox_AvailableMedicine)).BeginInit();
@@ -144,7 +144,7 @@
             this.groupControl_ReceiptContent.SuspendLayout();
             this.panel_ReceiptTotal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cHITIETDONTHUOCBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.receiptDetailsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView_ReceiptDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl_CustomerInfo)).BeginInit();
             this.groupControl_CustomerInfo.SuspendLayout();
@@ -152,12 +152,12 @@
             this.panel_ReceiptInfo.SuspendLayout();
             this.panel_ReceiptTitle.SuspendLayout();
             this.panel_ReceiptButton.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl1)).BeginInit();
-            this.popupContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlPopUp_CustomerTitle)).BeginInit();
             this.panelControlPopUp_CustomerTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl_GetCustomerInfo)).BeginInit();
+            this.popupContainerControl_GetCustomerInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // txt_SearchMedicine
@@ -330,7 +330,6 @@
             this.cbb_ProductionDate.Name = "cbb_ProductionDate";
             this.cbb_ProductionDate.Size = new System.Drawing.Size(250, 30);
             this.cbb_ProductionDate.TabIndex = 26;
-            this.cbb_ProductionDate.SelectedIndexChanged += new System.EventHandler(this.cbb_ProductionDate_SelectedIndexChanged);
             // 
             // label_MedicineName
             // 
@@ -538,6 +537,8 @@
             // 
             // dgv_SellCart
             // 
+            this.dgv_SellCart.AllowUserToAddRows = false;
+            this.dgv_SellCart.AllowUserToDeleteRows = false;
             this.dgv_SellCart.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_SellCart.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -677,7 +678,7 @@
             // 
             // gridControl
             // 
-            this.gridControl.DataSource = this.cHITIETDONTHUOCBindingSource;
+            this.gridControl.DataSource = this.receiptDetailsBindingSource;
             this.gridControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControl.Location = new System.Drawing.Point(2, 26);
             this.gridControl.MainView = this.gridView_ReceiptDetail;
@@ -687,9 +688,9 @@
             this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView_ReceiptDetail});
             // 
-            // cHITIETDONTHUOCBindingSource
+            // receiptDetailsBindingSource
             // 
-            this.cHITIETDONTHUOCBindingSource.DataSource = typeof(PharmacistManagement_DAL.Model.CHITIETDONTHUOC);
+            this.receiptDetailsBindingSource.DataSource = typeof(PharmacistManagement_DAL.Model.CHITIETDONTHUOC);
             // 
             // gridView_ReceiptDetail
             // 
@@ -921,7 +922,9 @@
             // 
             // btn_SkipPrint
             // 
-            this.btn_SkipPrint.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btn_SkipPrint.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btn_SkipPrint.Appearance.Font = new System.Drawing.Font("Tahoma", 11.12727F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btn_SkipPrint.Appearance.Options.UseBackColor = true;
             this.btn_SkipPrint.Appearance.Options.UseFont = true;
             this.btn_SkipPrint.Location = new System.Drawing.Point(461, 10);
             this.btn_SkipPrint.Name = "btn_SkipPrint";
@@ -931,7 +934,9 @@
             // 
             // btn_PrintReceipt
             // 
-            this.btn_PrintReceipt.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btn_PrintReceipt.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btn_PrintReceipt.Appearance.Font = new System.Drawing.Font("Tahoma", 11.12727F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btn_PrintReceipt.Appearance.Options.UseBackColor = true;
             this.btn_PrintReceipt.Appearance.Options.UseFont = true;
             this.btn_PrintReceipt.Location = new System.Drawing.Point(19, 10);
             this.btn_PrintReceipt.Name = "btn_PrintReceipt";
@@ -949,22 +954,49 @@
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
             // 
-            // popupContainerControl1
+            // labelControl_CustomerName
             // 
-            this.popupContainerControl1.Controls.Add(this.txt_InputCusName);
-            this.popupContainerControl1.Controls.Add(this.labelControl4);
-            this.popupContainerControl1.Controls.Add(this.panelControl1);
-            this.popupContainerControl1.Controls.Add(this.labelControl6);
-            this.popupContainerControl1.Controls.Add(this.panelControlPopUp_CustomerTitle);
-            this.popupContainerControl1.Controls.Add(this.txt_InputAddress);
-            this.popupContainerControl1.Controls.Add(this.labelControl_CustomerAddress);
-            this.popupContainerControl1.Controls.Add(this.txt_InputEmail);
-            this.popupContainerControl1.Controls.Add(this.txt_InputPhone);
-            this.popupContainerControl1.Controls.Add(this.labelControl_CustomerName);
-            this.popupContainerControl1.Location = new System.Drawing.Point(279, 179);
-            this.popupContainerControl1.Name = "popupContainerControl1";
-            this.popupContainerControl1.Size = new System.Drawing.Size(608, 365);
-            this.popupContainerControl1.TabIndex = 15;
+            this.labelControl_CustomerName.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.labelControl_CustomerName.Appearance.Options.UseFont = true;
+            this.labelControl_CustomerName.Location = new System.Drawing.Point(131, 73);
+            this.labelControl_CustomerName.Name = "labelControl_CustomerName";
+            this.labelControl_CustomerName.Size = new System.Drawing.Size(127, 22);
+            this.labelControl_CustomerName.TabIndex = 10;
+            this.labelControl_CustomerName.Text = "Tên khách hàng";
+            // 
+            // txt_InputPhone
+            // 
+            this.txt_InputPhone.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txt_InputPhone.Location = new System.Drawing.Point(270, 182);
+            this.txt_InputPhone.Name = "txt_InputPhone";
+            this.txt_InputPhone.Size = new System.Drawing.Size(208, 29);
+            this.txt_InputPhone.TabIndex = 7;
+            // 
+            // txt_InputEmail
+            // 
+            this.txt_InputEmail.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txt_InputEmail.Location = new System.Drawing.Point(270, 240);
+            this.txt_InputEmail.Name = "txt_InputEmail";
+            this.txt_InputEmail.Size = new System.Drawing.Size(208, 29);
+            this.txt_InputEmail.TabIndex = 6;
+            // 
+            // labelControl_CustomerAddress
+            // 
+            this.labelControl_CustomerAddress.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.labelControl_CustomerAddress.Appearance.Options.UseFont = true;
+            this.labelControl_CustomerAddress.Location = new System.Drawing.Point(131, 130);
+            this.labelControl_CustomerAddress.Name = "labelControl_CustomerAddress";
+            this.labelControl_CustomerAddress.Size = new System.Drawing.Size(57, 23);
+            this.labelControl_CustomerAddress.TabIndex = 11;
+            this.labelControl_CustomerAddress.Text = "Địa chỉ";
+            // 
+            // txt_InputAddress
+            // 
+            this.txt_InputAddress.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txt_InputAddress.Location = new System.Drawing.Point(270, 124);
+            this.txt_InputAddress.Name = "txt_InputAddress";
+            this.txt_InputAddress.Size = new System.Drawing.Size(208, 29);
+            this.txt_InputAddress.TabIndex = 5;
             // 
             // panelControlPopUp_CustomerTitle
             // 
@@ -974,88 +1006,6 @@
             this.panelControlPopUp_CustomerTitle.Name = "panelControlPopUp_CustomerTitle";
             this.panelControlPopUp_CustomerTitle.Size = new System.Drawing.Size(608, 53);
             this.panelControlPopUp_CustomerTitle.TabIndex = 0;
-            // 
-            // panelControl1
-            // 
-            this.panelControl1.Controls.Add(this.simpleButton_Cancel);
-            this.panelControl1.Controls.Add(this.simpleButton_EnterCustomer);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl1.Location = new System.Drawing.Point(0, 303);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(608, 62);
-            this.panelControl1.TabIndex = 1;
-            // 
-            // txt_InputCusName
-            // 
-            this.txt_InputCusName.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_InputCusName.Location = new System.Drawing.Point(273, 86);
-            this.txt_InputCusName.Name = "txt_InputCusName";
-            this.txt_InputCusName.Size = new System.Drawing.Size(208, 29);
-            this.txt_InputCusName.TabIndex = 4;
-            // 
-            // labelControl4
-            // 
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(134, 235);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(48, 22);
-            this.labelControl4.TabIndex = 8;
-            this.labelControl4.Text = "Email:";
-            // 
-            // labelControl6
-            // 
-            this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(134, 184);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(104, 22);
-            this.labelControl6.TabIndex = 9;
-            this.labelControl6.Text = "Số điện thoại";
-            // 
-            // txt_InputAddress
-            // 
-            this.txt_InputAddress.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_InputAddress.Location = new System.Drawing.Point(273, 134);
-            this.txt_InputAddress.Name = "txt_InputAddress";
-            this.txt_InputAddress.Size = new System.Drawing.Size(208, 29);
-            this.txt_InputAddress.TabIndex = 5;
-            // 
-            // txt_InputEmail
-            // 
-            this.txt_InputEmail.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_InputEmail.Location = new System.Drawing.Point(273, 232);
-            this.txt_InputEmail.Name = "txt_InputEmail";
-            this.txt_InputEmail.Size = new System.Drawing.Size(208, 29);
-            this.txt_InputEmail.TabIndex = 6;
-            // 
-            // labelControl_CustomerName
-            // 
-            this.labelControl_CustomerName.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl_CustomerName.Appearance.Options.UseFont = true;
-            this.labelControl_CustomerName.Location = new System.Drawing.Point(134, 89);
-            this.labelControl_CustomerName.Name = "labelControl_CustomerName";
-            this.labelControl_CustomerName.Size = new System.Drawing.Size(127, 22);
-            this.labelControl_CustomerName.TabIndex = 10;
-            this.labelControl_CustomerName.Text = "Tên khách hàng";
-            // 
-            // txt_InputPhone
-            // 
-            this.txt_InputPhone.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_InputPhone.Location = new System.Drawing.Point(273, 181);
-            this.txt_InputPhone.Name = "txt_InputPhone";
-            this.txt_InputPhone.Size = new System.Drawing.Size(208, 29);
-            this.txt_InputPhone.TabIndex = 7;
-            // 
-            // labelControl_CustomerAddress
-            // 
-            this.labelControl_CustomerAddress.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelControl_CustomerAddress.Appearance.Options.UseFont = true;
-            this.labelControl_CustomerAddress.Location = new System.Drawing.Point(134, 137);
-            this.labelControl_CustomerAddress.Name = "labelControl_CustomerAddress";
-            this.labelControl_CustomerAddress.Size = new System.Drawing.Size(54, 22);
-            this.labelControl_CustomerAddress.TabIndex = 11;
-            this.labelControl_CustomerAddress.Text = "Địa chỉ";
             // 
             // labelControl7
             // 
@@ -1067,29 +1017,91 @@
             this.labelControl7.TabIndex = 0;
             this.labelControl7.Text = "Nhập thông tin khách hàng";
             // 
-            // simpleButton_EnterCustomer
+            // labelControl6
             // 
-            this.simpleButton_EnterCustomer.Location = new System.Drawing.Point(486, 20);
-            this.simpleButton_EnterCustomer.Name = "simpleButton_EnterCustomer";
-            this.simpleButton_EnterCustomer.Size = new System.Drawing.Size(86, 26);
-            this.simpleButton_EnterCustomer.TabIndex = 0;
-            this.simpleButton_EnterCustomer.Text = "Xác nhận";
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.labelControl6.Appearance.Options.UseFont = true;
+            this.labelControl6.Location = new System.Drawing.Point(131, 185);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(110, 23);
+            this.labelControl6.TabIndex = 9;
+            this.labelControl6.Text = "Số điện thoại";
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.simpleButton_Cancel);
+            this.panelControl1.Controls.Add(this.simpleButton_EnterCustomer);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelControl1.Location = new System.Drawing.Point(0, 303);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(608, 62);
+            this.panelControl1.TabIndex = 1;
             // 
             // simpleButton_Cancel
             // 
-            this.simpleButton_Cancel.Location = new System.Drawing.Point(382, 20);
+            this.simpleButton_Cancel.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
+            this.simpleButton_Cancel.Appearance.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.simpleButton_Cancel.Appearance.Options.UseBackColor = true;
+            this.simpleButton_Cancel.Appearance.Options.UseFont = true;
+            this.simpleButton_Cancel.Location = new System.Drawing.Point(372, 11);
             this.simpleButton_Cancel.Name = "simpleButton_Cancel";
-            this.simpleButton_Cancel.Size = new System.Drawing.Size(86, 26);
+            this.simpleButton_Cancel.Size = new System.Drawing.Size(86, 41);
             this.simpleButton_Cancel.TabIndex = 1;
             this.simpleButton_Cancel.Text = "Hủy";
-            this.simpleButton_Cancel.Click += new System.EventHandler(this.simpleButton_Cancel_Click);
+            // 
+            // simpleButton_EnterCustomer
+            // 
+            this.simpleButton_EnterCustomer.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
+            this.simpleButton_EnterCustomer.Appearance.Font = new System.Drawing.Font("Tahoma", 9.818182F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.simpleButton_EnterCustomer.Appearance.Options.UseBackColor = true;
+            this.simpleButton_EnterCustomer.Appearance.Options.UseFont = true;
+            this.simpleButton_EnterCustomer.Location = new System.Drawing.Point(483, 11);
+            this.simpleButton_EnterCustomer.Name = "simpleButton_EnterCustomer";
+            this.simpleButton_EnterCustomer.Size = new System.Drawing.Size(110, 41);
+            this.simpleButton_EnterCustomer.TabIndex = 0;
+            this.simpleButton_EnterCustomer.Text = "Xác nhận";
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.labelControl4.Appearance.Options.UseFont = true;
+            this.labelControl4.Location = new System.Drawing.Point(131, 243);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(48, 22);
+            this.labelControl4.TabIndex = 8;
+            this.labelControl4.Text = "Email:";
+            // 
+            // txt_InputCusName
+            // 
+            this.txt_InputCusName.Font = new System.Drawing.Font("Tahoma", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txt_InputCusName.Location = new System.Drawing.Point(270, 70);
+            this.txt_InputCusName.Name = "txt_InputCusName";
+            this.txt_InputCusName.Size = new System.Drawing.Size(208, 29);
+            this.txt_InputCusName.TabIndex = 4;
+            // 
+            // popupContainerControl_GetCustomerInfo
+            // 
+            this.popupContainerControl_GetCustomerInfo.Controls.Add(this.txt_InputCusName);
+            this.popupContainerControl_GetCustomerInfo.Controls.Add(this.labelControl4);
+            this.popupContainerControl_GetCustomerInfo.Controls.Add(this.panelControl1);
+            this.popupContainerControl_GetCustomerInfo.Controls.Add(this.labelControl6);
+            this.popupContainerControl_GetCustomerInfo.Controls.Add(this.panelControlPopUp_CustomerTitle);
+            this.popupContainerControl_GetCustomerInfo.Controls.Add(this.txt_InputAddress);
+            this.popupContainerControl_GetCustomerInfo.Controls.Add(this.labelControl_CustomerAddress);
+            this.popupContainerControl_GetCustomerInfo.Controls.Add(this.txt_InputEmail);
+            this.popupContainerControl_GetCustomerInfo.Controls.Add(this.txt_InputPhone);
+            this.popupContainerControl_GetCustomerInfo.Controls.Add(this.labelControl_CustomerName);
+            this.popupContainerControl_GetCustomerInfo.Location = new System.Drawing.Point(302, 179);
+            this.popupContainerControl_GetCustomerInfo.Name = "popupContainerControl_GetCustomerInfo";
+            this.popupContainerControl_GetCustomerInfo.Size = new System.Drawing.Size(608, 365);
+            this.popupContainerControl_GetCustomerInfo.TabIndex = 15;
             // 
             // frm_SellMedicine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 720);
-            this.Controls.Add(this.popupContainerControl1);
+            this.Controls.Add(this.popupContainerControl_GetCustomerInfo);
             this.Controls.Add(this.popupContainerControl_Receipt);
             this.Controls.Add(this.groupControl_SellCart);
             this.Controls.Add(this.group_MedicationInfo);
@@ -1132,7 +1144,7 @@
             this.panel_ReceiptTotal.ResumeLayout(false);
             this.panel_ReceiptTotal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cHITIETDONTHUOCBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.receiptDetailsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView_ReceiptDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl_CustomerInfo)).EndInit();
             this.groupControl_CustomerInfo.ResumeLayout(false);
@@ -1143,14 +1155,14 @@
             this.panel_ReceiptTitle.ResumeLayout(false);
             this.panel_ReceiptTitle.PerformLayout();
             this.panel_ReceiptButton.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl1)).EndInit();
-            this.popupContainerControl1.ResumeLayout(false);
-            this.popupContainerControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlPopUp_CustomerTitle)).EndInit();
             this.panelControlPopUp_CustomerTitle.ResumeLayout(false);
             this.panelControlPopUp_CustomerTitle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl_GetCustomerInfo)).EndInit();
+            this.popupContainerControl_GetCustomerInfo.ResumeLayout(false);
+            this.popupContainerControl_GetCustomerInfo.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1221,7 +1233,7 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView_ReceiptDetail;
         private DevExpress.XtraEditors.SimpleButton btn_SkipPrint;
         private DevExpress.XtraEditors.SimpleButton btn_PrintReceipt;
-        private System.Windows.Forms.BindingSource cHITIETDONTHUOCBindingSource;
+        private System.Windows.Forms.BindingSource receiptDetailsBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colMaDonThuoc;
         private DevExpress.XtraGrid.Columns.GridColumn colMaThuoc;
         private DevExpress.XtraGrid.Columns.GridColumn colSoLuong;
@@ -1229,19 +1241,19 @@
         private System.Windows.Forms.Panel panel_ReceiptTotal;
         private System.Windows.Forms.Label label_Total;
         private System.Windows.Forms.TextBox textBox3;
-        private DevExpress.XtraEditors.PopupContainerControl popupContainerControl1;
-        private System.Windows.Forms.TextBox txt_InputCusName;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraEditors.PanelControl panelControlPopUp_CustomerTitle;
-        private System.Windows.Forms.TextBox txt_InputAddress;
-        private DevExpress.XtraEditors.LabelControl labelControl_CustomerAddress;
-        private System.Windows.Forms.TextBox txt_InputEmail;
-        private System.Windows.Forms.TextBox txt_InputPhone;
         private DevExpress.XtraEditors.LabelControl labelControl_CustomerName;
+        private System.Windows.Forms.TextBox txt_InputPhone;
+        private System.Windows.Forms.TextBox txt_InputEmail;
+        private DevExpress.XtraEditors.LabelControl labelControl_CustomerAddress;
+        private System.Windows.Forms.TextBox txt_InputAddress;
+        private DevExpress.XtraEditors.PanelControl panelControlPopUp_CustomerTitle;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.SimpleButton simpleButton_Cancel;
         private DevExpress.XtraEditors.SimpleButton simpleButton_EnterCustomer;
-        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private System.Windows.Forms.TextBox txt_InputCusName;
+        private DevExpress.XtraEditors.PopupContainerControl popupContainerControl_GetCustomerInfo;
     }
 }

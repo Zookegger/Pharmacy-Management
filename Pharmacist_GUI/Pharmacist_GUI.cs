@@ -16,16 +16,19 @@ using Pharmacist.Properties;
 using System.IO;
 using DevExpress.Utils.Svg;
 using PharmacistUI;
+using PharmacistManagement_DAL.Model;
 
 namespace Pharmacist
 {
     public partial class frm_PharmacistGUI : DevExpress.XtraEditors.XtraForm
     {
-        public frm_PharmacistGUI()
+        private readonly NHANVIEN currentEmployee;
+        public frm_PharmacistGUI(NHANVIEN employee)
         {
             // Set default skin
             UserLookAndFeel.Default.SkinName = "My Basic";
             InitializeComponent();
+            currentEmployee = employee;
         }
         private void frm_PharmacistUI_Load(object sender, EventArgs e)
         {
@@ -67,7 +70,7 @@ namespace Pharmacist
                     form = new frm_ManageMedicine();
                     break;
                 case "accordionControlElement_SellMedicine":
-                    form = new frm_SellMedicine();
+                    form = new frm_SellMedicine(currentEmployee);
                     break;
                 case "accordionControlElement_EditMedicine":
                     form = new frm_ManageBatch();
@@ -76,7 +79,7 @@ namespace Pharmacist
                     form = new frm_ManageProviders();
                     break;
                 case "accordionControlElement_UserProfile":
-                    form = new frm_UserProfile();
+                    form = new frm_UserProfile(currentEmployee);
                     break;
                 default:
                     throw new Exception($"Không tìm thấy form: frm_{btnName.Substring(24)}");

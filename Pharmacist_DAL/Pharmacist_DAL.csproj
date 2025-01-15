@@ -12,6 +12,7 @@
     <RootNamespace>Pharmacist_DAL</RootNamespace>
     <AssemblyName>Pharmacist_DAL</AssemblyName>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <LangVersion>8.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>

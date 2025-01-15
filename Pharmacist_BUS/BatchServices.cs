@@ -80,6 +80,14 @@ namespace Pharmacist
             return pharmacistDB.LOTHUOC.Where(batch => batch.MaLo == batchId).FirstOrDefault();
         }
 
+        public LOTHUOC GetBatchByMedIdAndExpDate(string medicineID, DateTime expDate)
+        {
+            return pharmacistDB.LOTHUOC.Where(batch => 
+                batch.MaThuoc == medicineID && 
+                batch.NgayHetHan == expDate
+            ).FirstOrDefault();
+        }
+
         public List<GIAODICH> GetTransactionList()
         {
             return pharmacistDB.GIAODICH.ToList();

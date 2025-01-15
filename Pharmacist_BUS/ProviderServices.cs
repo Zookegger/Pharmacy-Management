@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,8 +39,25 @@ namespace Pharmacist_BUS
         }
         public void InsertProvider(NHACUNGCAP provider)
         {
-            db.NHACUNGCAP.Add(provider);
-            db.SaveChanges();
+            try
+            {
+                db.NHACUNGCAP.Add(provider);
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var validationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
         }
         public void UpdateProvider(NHACUNGCAP provider)
         {

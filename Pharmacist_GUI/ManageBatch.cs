@@ -282,16 +282,6 @@ namespace Pharmacist
                 HandleException(ex);
             }
         }
-        private void txt_SearchBar_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-
-            } catch (Exception ex)
-            {
-                HandleException(ex);
-            }
-        }
         private void btn_SearchForMedicine_Click(object sender, EventArgs e)
         {
             try

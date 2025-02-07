@@ -1,6 +1,4 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-name: .NET
+name: .NET Framework WinForms Build
 
 on:
   push:
@@ -10,26 +8,23 @@ on:
 
 jobs:
   build:
-
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
+    - name: Checkout source code
+      uses: actions/checkout@v4
 
-    - name: Install .NET Framework 4.8
-      run: |
-        choco install netfx-4.8-devpack
-        
-    - name: Restore dependencies
-      run: dotnet restore
-      
-    - name: Build
-      run: dotnet build --configuration Debug --no-restore
-      
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Restore NuGet packages
+      run: nuget restore Pharmacy-management.sln
+
+    - name: Build solution
+      run: msbuild YourSolution.sln /p:Configuration=Release
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: Pharmacy Management App
+        path: Pharmacy-management\bin\Release\
